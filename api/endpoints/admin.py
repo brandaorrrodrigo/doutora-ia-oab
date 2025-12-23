@@ -81,30 +81,39 @@ QUESTOES_SEED = [
 ]
 
 @router.post("/seed-questoes")
-async def seed_questoes(db: Session = Depends(get_db_session)):
+async def seed_questoes():
     """
     Adiciona questões iniciais ao banco de dados
     Endpoint temporário para popular o sistema
     """
+    from database.connection import DatabaseManager
+
+    db_manager = DatabaseManager()
+    Session = db_manager.get_session_factory()
+    db = Session()
+
     adicionadas = 0
     duplicadas = 0
     erros = []
 
-    for q_data in QUESTOES_SEED:
-        try:
-            questao = QuestaoBanco(**q_data)
-            db.add(questao)
-            db.commit()
-            adicionadas += 1
-        except IntegrityError:
-            db.rollback()
-            duplicadas += 1
-        except Exception as e:
-            db.rollback()
-            erros.append({
-                "questao": q_data.get("codigo_questao"),
-                "erro": str(e)
-            })
+    try:
+        for q_data in QUESTOES_SEED:
+            try:
+                questao = QuestaoBanco(**q_data)
+                db.add(questao)
+                db.commit()
+                adicionadas += 1
+            except IntegrityError:
+                db.rollback()
+                duplicadas += 1
+            except Exception as e:
+                db.rollback()
+                erros.append({
+                    "questao": q_data.get("codigo_questao"),
+                    "erro": str(e)
+                })
+    finally:
+        db.close()
 
     return {
         "success": True,
