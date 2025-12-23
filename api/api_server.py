@@ -98,6 +98,10 @@ app.add_middleware(
 # Instância global do sistema
 sistema = JurisIA()
 
+# Importar e registrar routers administrativos
+from api.endpoints.admin import router as admin_router
+app.include_router(admin_router)
+
 
 # ============================================================
 # ENDPOINTS - INFORMAÇÕES
