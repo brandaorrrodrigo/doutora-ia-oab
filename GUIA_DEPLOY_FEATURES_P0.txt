@@ -1,0 +1,923 @@
+================================================================================
+GUIA DE DEPLOY: FEATURES P0 (EMBEDDINGS + LLM + CACHE)
+================================================================================
+Sistema: JURIS_IA_CORE_V1
+Data: 2025-12-17
+Prioridade: P0 (CRÍTICA)
+Tempo estimado: 4-6 horas
+================================================================================
+
+Este guia detalha passo a passo como fazer o deploy das 3 features P0:
+1. Sistema de Embeddings Vetoriais
+2. Explicações Pedagógicas com LLM
+3. Cache de Alto Desempenho com Redis
+
+================================================================================
+PRÉ-REQUISITOS
+================================================================================
+
+FERRAMENTAS
+-----------
+✓ Python 3.10+
+✓ PostgreSQL 14+ com extensão pgvector
+✓ Redis 7.x
+✓ pip (gerenciador de pacotes Python)
+✓ psql (cliente PostgreSQL)
+
+CREDENCIAIS
+-----------
+✓ OpenAI API Key (para embeddings e LLM)
+✓ PostgreSQL connection string
+✓ Redis connection string
+
+DEPENDÊNCIAS PYTHON
+-------------------
+Adicionar ao requirements.txt:
+
+    openai>=1.0.0
+    redis>=5.0.0
+    sqlalchemy>=2.0.0
+
+
+ESTIMATIVAS DE CUSTO
+--------------------
+OpenAI:
+- Embeddings: ~$0.20 (setup único para 5K questões)
+- LLM Explicações: ~$1-3/mês (100 usuários ativos)
+
+Redis:
+- Redis Cloud (250MB): $0/mês (tier gratuito)
+- Redis Cloud (1GB): $15/mês
+- AWS ElastiCache (cache.t3.micro): ~$13/mês
+
+Total mensal: ~$16-18/mês
+
+
+================================================================================
+ETAPA 1: CONFIGURAÇÃO DO AMBIENTE
+================================================================================
+
+1.1 Instalar Dependências Python
+---------------------------------
+
+cd D:\JURIS_IA_CORE_V1
+
+pip install openai redis sqlalchemy psycopg2-binary
+
+
+1.2 Configurar Variáveis de Ambiente
+-------------------------------------
+
+Criar/editar arquivo .env:
+
+# OpenAI (obrigatório)
+OPENAI_API_KEY=sk-proj-xxxxxxxxxxxxxxxxxxxxx
+
+# PostgreSQL (já deve existir)
+DATABASE_URL=postgresql://usuario:senha@localhost:5432/juris_ia
+
+# Redis (novo)
+REDIS_URL=redis://localhost:6379/0
+
+# Em produção, use Redis Cloud ou ElastiCache:
+# REDIS_URL=redis://:senha@redis-12345.cloud.redislabs.com:16379
+
+
+1.3 Verificar OpenAI API Key
+-----------------------------
+
+python -c "
+import os
+from openai import OpenAI
+client = OpenAI(api_key=os.getenv('OPENAI_API_KEY'))
+print('✓ OpenAI conectado:', client.models.list().data[0].id)
+"
+
+Esperado: ✓ OpenAI conectado: gpt-4o-mini
+
+
+1.4 Provisionar Redis
+----------------------
+
+OPÇÃO A: Redis Local (desenvolvimento)
+
+# Windows (via Chocolatey)
+choco install redis-64
+
+# Iniciar Redis
+redis-server
+
+# Testar
+redis-cli ping
+# Esperado: PONG
+
+
+OPÇÃO B: Redis Cloud (produção - RECOMENDADO)
+
+1. Acessar https://redis.com/try-free/
+2. Criar conta gratuita
+3. Criar novo database:
+   - Name: juris_ia_cache
+   - Cloud: AWS
+   - Region: São Paulo (sa-east-1)
+   - Plan: 250MB Free
+4. Copiar "Public endpoint" e "Default user password"
+5. Configurar REDIS_URL:
+   REDIS_URL=redis://default:senha@redis-12345.cloud.redislabs.com:16379
+
+
+1.5 Testar Conexão Redis
+-------------------------
+
+python -c "
+import os
+import redis
+r = redis.from_url(os.getenv('REDIS_URL'))
+print('✓ Redis conectado:', r.ping())
+print('✓ Redis info:', r.info('server')['redis_version'])
+"
+
+Esperado:
+✓ Redis conectado: True
+✓ Redis info: 7.x.x
+
+
+================================================================================
+ETAPA 2: MIGRAÇÕES DE BANCO DE DADOS
+================================================================================
+
+2.1 Habilitar Extensão pgvector
+--------------------------------
+
+psql $DATABASE_URL -c "CREATE EXTENSION IF NOT EXISTS vector;"
+
+Verificar:
+psql $DATABASE_URL -c "SELECT * FROM pg_extension WHERE extname = 'vector';"
+
+Esperado:
+ extname | ...
+---------+-----
+ vector  | ...
+
+
+2.2 Executar Migration 007 (Cache de Explicações)
+--------------------------------------------------
+
+psql $DATABASE_URL -f database/migrations/007_create_cache_explicacao.sql
+
+Verificar:
+psql $DATABASE_URL -c "
+SELECT table_name FROM information_schema.tables
+WHERE table_schema = 'public' AND table_name = 'cache_explicacao';
+"
+
+Esperado:
+    table_name
+------------------
+ cache_explicacao
+
+
+2.3 Verificar Coluna embedding em questao_oab
+----------------------------------------------
+
+psql $DATABASE_URL -c "
+SELECT column_name, data_type
+FROM information_schema.columns
+WHERE table_name = 'questao_oab' AND column_name = 'embedding';
+"
+
+Se NÃO existir, criar:
+
+ALTER TABLE questao_oab
+ADD COLUMN embedding VECTOR(3072);
+
+CREATE INDEX idx_questao_embedding
+ON questao_oab
+USING ivfflat (embedding vector_cosine_ops)
+WITH (lists = 100);
+
+
+2.4 Verificar Estrutura do Banco
+---------------------------------
+
+psql $DATABASE_URL -c "
+SELECT
+    t.table_name,
+    COUNT(c.column_name) as colunas
+FROM information_schema.tables t
+LEFT JOIN information_schema.columns c ON t.table_name = c.table_name
+WHERE t.table_schema = 'public'
+  AND t.table_name IN ('questao_oab', 'cache_explicacao')
+GROUP BY t.table_name
+ORDER BY t.table_name;
+"
+
+Esperado:
+    table_name    | colunas
+------------------+---------
+ cache_explicacao |       7
+ questao_oab      |     15+ (incluindo embedding)
+
+
+================================================================================
+ETAPA 3: POPULAR EMBEDDINGS
+================================================================================
+
+3.1 Verificar Estatísticas Iniciais
+------------------------------------
+
+python scripts/popular_embeddings.py --stats-only
+
+Esperado:
+================================================================================
+ESTATÍSTICAS DE EMBEDDINGS
+================================================================================
+Total de questões: 5000
+Questões com embedding: 0
+Questões sem embedding: 5000
+Cobertura: 0.0%
+
+
+3.2 Executar Geração de Embeddings (Teste)
+-------------------------------------------
+
+# Primeiro, testar com 10 questões
+python scripts/popular_embeddings.py --limite 10
+
+Saída esperada:
+================================================================================
+POPULAR EMBEDDINGS - QUESTÕES OAB
+================================================================================
+...
+✓ DATABASE_URL configurado
+✓ OPENAI_API_KEY configurado
+✓ Conectado ao banco de dados
+✓ pgvector instalado
+
+ESTATÍSTICAS DE EMBEDDINGS
+Total de questões: 5000
+Questões com embedding: 0
+Questões sem embedding: 5000
+Cobertura: 0.0%
+
+CONFIRMAÇÃO
+Será processado: até 10 questões
+...
+Custo estimado para 10 questões: ~$0.0004
+
+Deseja continuar? (s/n): s
+
+✓ EmbeddingService inicializado
+
+PROCESSANDO EMBEDDINGS
+...
+Progresso: 10/10 questões processadas
+
+GERAÇÃO DE EMBEDDINGS CONCLUÍDA
+Total de questões: 10
+Sucessos: 10
+Erros: 0
+Tempo total: 5.23s
+Taxa de sucesso: 100.0%
+Velocidade: 1.91 questões/segundo
+
+
+3.3 Popular Todas as Questões
+------------------------------
+
+# Após confirmar que teste funcionou, processar todas
+python scripts/popular_embeddings.py
+
+IMPORTANTE: Este processo pode levar de 30 minutos a 2 horas dependendo de:
+- Número de questões
+- Velocidade da API OpenAI
+- Qualidade da conexão
+
+Custo aproximado para 5.000 questões: ~$0.20
+
+
+3.4 Verificar Cobertura Final
+------------------------------
+
+python scripts/popular_embeddings.py --stats-only
+
+Esperado:
+Total de questões: 5000
+Questões com embedding: 5000
+Questões sem embedding: 0
+Cobertura: 100.0%
+
+
+3.5 Testar Busca Vetorial
+--------------------------
+
+python -c "
+from core.embedding_service import EmbeddingService
+from sqlalchemy import create_engine
+from sqlalchemy.orm import sessionmaker
+import os
+
+engine = create_engine(os.getenv('DATABASE_URL'))
+Session = sessionmaker(bind=engine)
+session = Session()
+
+# Buscar uma questão qualquer
+from sqlalchemy import text
+questao = session.execute(
+    text('SELECT id FROM questao_oab WHERE embedding IS NOT NULL LIMIT 1')
+).fetchone()
+
+if questao:
+    questao_id = questao[0]
+    print(f'Testando busca vetorial para questão {questao_id}...')
+
+    embedding_service = EmbeddingService()
+    similares = embedding_service.buscar_questoes_similares(
+        session, questao_id, limite=3, threshold_similaridade=0.7
+    )
+
+    print(f'✓ Encontradas {len(similares)} questões similares')
+    for i, q in enumerate(similares, 1):
+        print(f'{i}. Similaridade: {q[\"similaridade\"]:.3f} - {q[\"disciplina\"]}')
+else:
+    print('✗ Nenhuma questão com embedding encontrada')
+
+session.close()
+"
+
+
+================================================================================
+ETAPA 4: TESTAR EXPLICAÇÕES LLM
+================================================================================
+
+4.1 Criar Tabela de Cache (já feito na Migration 007)
+------------------------------------------------------
+
+Verificar:
+psql $DATABASE_URL -c "SELECT COUNT(*) FROM cache_explicacao;"
+
+Esperado: 0 (tabela vazia)
+
+
+4.2 Testar Geração de Explicação
+---------------------------------
+
+python -c "
+from core.explicacao_service import ExplicacaoService
+from sqlalchemy import create_engine, text
+from sqlalchemy.orm import sessionmaker
+import os
+from uuid import UUID
+
+engine = create_engine(os.getenv('DATABASE_URL'))
+Session = sessionmaker(bind=engine)
+session = Session()
+
+# Buscar uma questão com gabarito
+result = session.execute(
+    text('''
+        SELECT q.id, g.alternativa_correta
+        FROM questao_oab q
+        JOIN gabarito_questao g ON q.id = g.questao_id
+        LIMIT 1
+    ''')
+).fetchone()
+
+if result:
+    questao_id, alternativa_correta = result
+
+    # Simular erro (escolher alternativa diferente)
+    alternativa_errada = 'A' if alternativa_correta != 'A' else 'B'
+
+    print(f'Questão: {questao_id}')
+    print(f'Correta: {alternativa_correta}')
+    print(f'Escolhida (simulada): {alternativa_errada}')
+    print()
+
+    explicacao_service = ExplicacaoService()
+
+    print('Gerando explicação...')
+    explicacao, metadados = explicacao_service.gerar_explicacao_erro(
+        session=session,
+        questao_id=questao_id,
+        alternativa_escolhida=alternativa_errada,
+        tipo_erro='conceito',
+        usar_cache=True,
+        nivel_usuario='intermediario'
+    )
+
+    if explicacao:
+        print('✓ Explicação gerada com sucesso!')
+        print(f'Fonte: {metadados[\"fonte\"]}')
+        print(f'Tempo: {metadados[\"tempo_ms\"]}ms')
+        if 'custo_estimado' in metadados:
+            print(f'Custo: ${metadados[\"custo_estimado\"]:.6f}')
+        print()
+        print('EXPLICAÇÃO:')
+        print(explicacao[:300] + '...')
+    else:
+        print('✗ Erro ao gerar explicação')
+else:
+    print('✗ Nenhuma questão encontrada')
+
+session.close()
+"
+
+
+4.3 Testar Cache Hit
+--------------------
+
+# Executar novamente o mesmo teste acima
+# Na segunda execução, deve retornar:
+# Fonte: cache
+# Tempo: < 50ms (muito mais rápido)
+
+
+4.4 Verificar Cache Populado
+-----------------------------
+
+psql $DATABASE_URL -c "
+SELECT
+    COUNT(*) as total_explicacoes,
+    AVG(acessos) as media_acessos,
+    MAX(acessos) as max_acessos
+FROM cache_explicacao;
+"
+
+Esperado:
+ total_explicacoes | media_acessos | max_acessos
+-------------------+---------------+-------------
+                 1 |           2.0 |           2
+
+
+================================================================================
+ETAPA 5: CONFIGURAR CACHE REDIS
+================================================================================
+
+5.1 Testar Serviço de Cache
+----------------------------
+
+python -c "
+from core.cache_service import CacheService
+import os
+
+print('Testando CacheService...')
+cache = CacheService()
+
+# Health check
+if cache.health_check():
+    print('✓ Redis health check OK')
+else:
+    print('✗ Redis health check FALHOU')
+    exit(1)
+
+# Test set/get
+from uuid import uuid4
+teste_id = uuid4()
+teste_dados = {
+    'teste': 'valor',
+    'numero': 123,
+    'lista': [1, 2, 3]
+}
+
+cache.set_questao(teste_id, teste_dados)
+print('✓ Dados salvos no cache')
+
+dados_cache = cache.get_questao(teste_id)
+if dados_cache == teste_dados:
+    print('✓ Dados recuperados corretamente do cache')
+else:
+    print('✗ Erro ao recuperar dados do cache')
+
+# Info
+info = cache.info()
+print(f'✓ Redis versão: {info[\"versao\"]}')
+print(f'✓ Total de chaves: {info[\"total_chaves\"]}')
+print(f'✓ Memória usada: {info[\"memoria_usada_mb\"]:.2f} MB')
+"
+
+
+5.2 Testar Rate Limiting
+-------------------------
+
+python -c "
+from core.cache_service import CacheService
+
+cache = CacheService()
+
+usuario_teste = 'usuario_123'
+
+# Fazer 5 requisições (limite é 10 por minuto)
+for i in range(1, 6):
+    permitido = cache.verificar_rate_limit(
+        identificador=usuario_teste,
+        limite=10,
+        janela_segundos=60
+    )
+    print(f'Requisição {i}: {'✓ Permitida' if permitido else '✗ Bloqueada'}')
+
+print()
+print('Todas as 5 requisições devem ser permitidas (limite: 10/min)')
+"
+
+
+5.3 Benchmark de Performance
+-----------------------------
+
+python -c "
+from core.cache_service import CacheService
+from uuid import uuid4
+import time
+
+cache = CacheService()
+
+# Teste: salvar 100 questões
+print('Benchmark: salvando 100 questões no cache...')
+inicio = time.time()
+
+for i in range(100):
+    questao_id = uuid4()
+    dados = {
+        'enunciado': f'Questão {i}',
+        'disciplina': 'Direito Civil',
+        'dificuldade': 3
+    }
+    cache.set_questao(questao_id, dados)
+
+tempo_escrita = time.time() - inicio
+print(f'✓ Escrita: {tempo_escrita:.3f}s ({100/tempo_escrita:.1f} questões/s)')
+
+# Teste: ler 100 questões
+print('Benchmark: lendo 100 questões do cache...')
+# (seria necessário armazenar os IDs gerados acima para ler)
+"
+
+
+================================================================================
+ETAPA 6: INTEGRAÇÃO NAS APIS
+================================================================================
+
+6.1 Exemplo: Endpoint de Questão com Cache
+-------------------------------------------
+
+Adicionar em api/questoes.py:
+
+from fastapi import APIRouter, HTTPException
+from uuid import UUID
+from core.cache_service import CacheService
+from sqlalchemy.orm import Session
+
+router = APIRouter()
+cache = CacheService()
+
+@router.get("/questoes/{questao_id}")
+async def obter_questao(questao_id: UUID, session: Session):
+    # Tentar cache primeiro
+    questao = cache.get_questao(questao_id)
+
+    if questao:
+        return {
+            "fonte": "cache",
+            "latencia_ms": "< 10",
+            "questao": questao
+        }
+
+    # Cache miss - buscar no banco
+    from sqlalchemy import text
+    result = session.execute(
+        text("""
+            SELECT id, enunciado, alternativas, disciplina, assunto, dificuldade
+            FROM questao_oab
+            WHERE id = :id
+        """),
+        {"id": questao_id}
+    ).fetchone()
+
+    if not result:
+        raise HTTPException(status_code=404, detail="Questão não encontrada")
+
+    questao = {
+        "id": str(result[0]),
+        "enunciado": result[1],
+        "alternativas": result[2],
+        "disciplina": result[3],
+        "assunto": result[4],
+        "dificuldade": result[5]
+        # IMPORTANTE: NÃO incluir gabarito
+    }
+
+    # Salvar em cache
+    cache.set_questao(questao_id, questao)
+
+    return {
+        "fonte": "database",
+        "latencia_ms": "> 50",
+        "questao": questao
+    }
+
+
+6.2 Exemplo: Endpoint de Resposta com Explicação
+-------------------------------------------------
+
+Adicionar em api/sessoes.py:
+
+from fastapi import APIRouter
+from core.explicacao_service import ExplicacaoService
+
+router = APIRouter()
+explicacao_service = ExplicacaoService()
+
+@router.post("/sessoes/{sessao_id}/resposta")
+async def registrar_resposta(
+    sessao_id: UUID,
+    resposta: RespostaInput,
+    session: Session
+):
+    # ... código existente de validação ...
+
+    # Verificar se resposta está correta
+    from sqlalchemy import text
+    gabarito = session.execute(
+        text("""
+            SELECT alternativa_correta
+            FROM gabarito_questao
+            WHERE questao_id = :questao_id
+        """),
+        {"questao_id": resposta.questao_id}
+    ).fetchone()
+
+    correta = (resposta.alternativa_escolhida == gabarito[0])
+
+    # Se errou, gerar explicação
+    explicacao = None
+    if not correta:
+        explicacao, metadados = explicacao_service.gerar_explicacao_erro(
+            session=session,
+            questao_id=resposta.questao_id,
+            alternativa_escolhida=resposta.alternativa_escolhida,
+            tipo_erro=resposta.tipo_erro or 'conceito',
+            nivel_usuario='intermediario'  # ou buscar do perfil do usuário
+        )
+
+    # Salvar resposta no banco
+    # ...
+
+    return {
+        "correta": correta,
+        "alternativa_correta": gabarito[0] if not correta else None,
+        "explicacao": explicacao,
+        "fonte_explicacao": metadados.get("fonte") if explicacao else None
+    }
+
+
+================================================================================
+ETAPA 7: MONITORAMENTO E ALERTAS
+================================================================================
+
+7.1 Dashboard de Métricas (exemplo simples)
+--------------------------------------------
+
+Criar endpoint de métricas em api/admin.py:
+
+@router.get("/admin/metricas")
+async def obter_metricas(session: Session):
+    from core.cache_service import CacheService
+    from core.embedding_service import estatisticas_embeddings
+    from sqlalchemy import text
+
+    cache = CacheService()
+
+    # Estatísticas Redis
+    redis_info = cache.info()
+
+    # Estatísticas Embeddings
+    emb_stats = estatisticas_embeddings(session)
+
+    # Estatísticas Cache Explicações
+    cache_exp = session.execute(
+        text("SELECT * FROM estatisticas_cache_explicacao()")
+    ).fetchone()
+
+    return {
+        "redis": {
+            "versao": redis_info["versao"],
+            "memoria_mb": redis_info["memoria_usada_mb"],
+            "total_chaves": redis_info["total_chaves"],
+            "hit_rate": redis_info["hit_rate"]
+        },
+        "embeddings": {
+            "total_questoes": emb_stats["total_questoes"],
+            "cobertura_pct": emb_stats["percentual_cobertura"]
+        },
+        "explicacoes": {
+            "total_cache": cache_exp[0],
+            "explicacoes_ativas": cache_exp[1],
+            "hit_rate_estimado": cache_exp[4]
+        }
+    }
+
+
+7.2 Alertas Recomendados
+-------------------------
+
+Configurar alertas para:
+
+Redis:
+- Hit rate < 70% → Revisar estratégia de cache
+- Memória > 80% → Considerar upgrade
+- Latência p95 > 20ms → Investigar performance
+
+Embeddings:
+- Cobertura < 95% → Popular embeddings faltantes
+- Erros de geração → Verificar API key OpenAI
+
+Explicações:
+- Hit rate < 70% → Revisar TTL do cache
+- Custo diário > $1 → Otimizar uso do LLM
+
+
+7.3 Logs Estruturados
+----------------------
+
+Configurar logging em config/logging.py:
+
+import logging
+from pythonjsonlogger import jsonlogger
+
+logger = logging.getLogger()
+
+logHandler = logging.StreamHandler()
+formatter = jsonlogger.JsonFormatter()
+logHandler.setFormatter(formatter)
+logger.addHandler(logHandler)
+logger.setLevel(logging.INFO)
+
+
+================================================================================
+ETAPA 8: VALIDAÇÃO E TESTES
+================================================================================
+
+8.1 Testes de Integração
+-------------------------
+
+Criar tests/test_features_p0.py:
+
+import pytest
+from uuid import uuid4
+from core.embedding_service import EmbeddingService
+from core.explicacao_service import ExplicacaoService
+from core.cache_service import CacheService
+
+
+def test_embedding_service():
+    embedding_service = EmbeddingService()
+
+    texto = "Art. 5º Todos são iguais perante a lei"
+    embedding = embedding_service.gerar_embedding(texto)
+
+    assert len(embedding) == 3072
+    assert all(isinstance(x, float) for x in embedding)
+
+
+def test_explicacao_service(session, questao_id):
+    explicacao_service = ExplicacaoService()
+
+    explicacao, metadados = explicacao_service.gerar_explicacao_erro(
+        session=session,
+        questao_id=questao_id,
+        alternativa_escolhida='A',
+        tipo_erro='conceito'
+    )
+
+    assert explicacao is not None
+    assert len(explicacao) > 100
+    assert metadados["fonte"] in ["cache", "llm"]
+
+
+def test_cache_service():
+    cache = CacheService()
+
+    # Health check
+    assert cache.health_check() is True
+
+    # Set/Get
+    questao_id = uuid4()
+    dados = {"teste": "valor"}
+
+    cache.set_questao(questao_id, dados)
+    cached = cache.get_questao(questao_id)
+
+    assert cached == dados
+
+
+Executar:
+pytest tests/test_features_p0.py -v
+
+
+8.2 Teste de Carga (opcional)
+------------------------------
+
+Usar Locust ou Apache Bench para simular carga:
+
+# Instalar locust
+pip install locust
+
+# Criar locustfile.py com testes de carga
+# Executar
+locust -f locustfile.py --host http://localhost:8000
+
+
+================================================================================
+ETAPA 9: ROLLBACK PLAN
+================================================================================
+
+Se algo der errado, seguir este plano:
+
+9.1 Rollback de Embeddings
+---------------------------
+# Não é necessário - embeddings são read-only
+# Apenas parar de usar a busca vetorial
+
+
+9.2 Rollback de Explicações
+----------------------------
+# Desabilitar geração de explicações
+# No código, retornar explicacao = None
+
+# Limpar cache se necessário
+psql $DATABASE_URL -c "TRUNCATE cache_explicacao;"
+
+
+9.3 Rollback de Redis
+---------------------
+# Código tem fallback automático
+# Se Redis falhar, continua funcionando (mais lento)
+
+# Desabilitar Redis completamente
+# Comentar CacheService nas APIs
+
+
+================================================================================
+ETAPA 10: CHECKLIST FINAL
+================================================================================
+
+PRÉ-DEPLOY
+----------
+[ ] Revisar código das 3 features
+[ ] Executar testes unitários
+[ ] Executar testes de integração
+[ ] Validar variáveis de ambiente
+[ ] Revisar custos estimados
+
+DEPLOY
+------
+[ ] Executar migration 007
+[ ] Popular embeddings (script)
+[ ] Provisionar Redis
+[ ] Configurar REDIS_URL
+[ ] Testar conexões (OpenAI, Redis, PostgreSQL)
+[ ] Deploy do código atualizado
+[ ] Restart da aplicação
+
+PÓS-DEPLOY
+----------
+[ ] Verificar logs (sem erros)
+[ ] Testar endpoints principais
+[ ] Verificar métricas do Redis
+[ ] Validar hit rate do cache (após 1h)
+[ ] Monitorar custos OpenAI (após 24h)
+[ ] Coletar feedback de usuários (após 1 semana)
+
+MONITORAMENTO (30 dias)
+-----------------------
+[ ] Hit rate Redis > 70%
+[ ] Hit rate Explicações > 80%
+[ ] Latência p95 < 20ms
+[ ] Custo OpenAI < $5/mês
+[ ] Cobertura embeddings = 100%
+[ ] Nenhum erro crítico
+
+
+================================================================================
+SUPORTE E TROUBLESHOOTING
+================================================================================
+
+Problema: Embeddings não geram
+Solução: Verificar OPENAI_API_KEY, verificar saldo da conta OpenAI
+
+Problema: Redis não conecta
+Solução: Verificar REDIS_URL, verificar firewall, verificar Redis rodando
+
+Problema: Explicações muito lentas
+Solução: Verificar hit rate do cache, aumentar TTL, revisar prompt
+
+Problema: Custo OpenAI alto
+Solução: Verificar cache, reduzir max_tokens, usar modelo mais barato
+
+Problema: Latência alta
+Solução: Verificar hit rate do cache, otimizar queries, adicionar índices
+
+
+================================================================================
+FIM DO GUIA
+================================================================================

@@ -1,0 +1,502 @@
+================================================================================
+                    RELATÓRIO ALPHA - PRICING E A/B TESTING
+                        JURIS_IA_CORE_V1
+================================================================================
+
+Data de Início: [YYYY-MM-DD]
+Data de Término: [YYYY-MM-DD]
+Duração: [X] dias
+Responsável: Engenheiro de Release e Qualidade
+Versão: 1.0
+
+================================================================================
+                        SUMÁRIO EXECUTIVO
+================================================================================
+
+## OBJETIVO DOS TESTES
+Validar sistema de A/B Testing em ambiente controlado, testar enforcement de
+limites de pricing e coletar feedback de usuários Alpha antes de lançamento
+Beta público.
+
+## RESULTADO GERAL
+[✅ SUCESSO | ⚠️ SUCESSO COM RESSALVAS | ❌ FALHA]
+
+Taxa de Sucesso: [XX]% dos testes passaram
+Bugs Críticos: [X]
+Bugs Não-Críticos: [X]
+Feedback Positivo: [XX]%
+
+## RECOMENDAÇÃO FINAL
+[ ] ✅ LIBERAR PARA BETA PÚBLICO
+[ ] ⚠️ EXECUTAR AJUSTES MÍNIMOS ANTES DE BETA
+[ ] ❌ NÃO LIBERAR - CORREÇÕES NECESSÁRIAS
+
+================================================================================
+                    1. CONFIGURAÇÃO DO TESTE
+================================================================================
+
+### 1.1 Ambiente
+- Banco: PostgreSQL 15.4
+- Container: juris_postgres
+- API: [URL]
+- Migration: 012_ab_testing_structure.sql ✅ Executada em 0.164s
+
+### 1.2 Experimento Testado
+Nome: oab_mensal_limite_ajustado_2025_q1
+Descrição: Teste A/B Mensal 3 vs 4 sessões/dia
+Status: [Habilitado | Desabilitado]
+Duração: [X] dias
+
+Grupos:
+- Control (A): 3 sessões/dia (padrão)
+- Variant (B): 4 sessões/dia + mensagem destaque Semestral
+
+### 1.3 Usuários Alpha
+Total: 12 usuários
+
+| Perfil | Quantidade | Planos |
+|--------|------------|--------|
+| Admin / Desenvolvedor | 2 | N/A |
+| Heavy User | 3 | 2 Mensal (1 Control, 1 Variant), 1 Semestral |
+| Usuário Médio | 5 | 2 Free, 2 Mensal, 1 Semestral |
+| Advogado Avaliador | 2 | 1 Mensal, 1 Semestral |
+
+================================================================================
+                    2. RESULTADOS DOS TESTES
+================================================================================
+
+### 2.1 Testes por Perfil
+
+#### 2.1.1 Admin / Desenvolvedor
+**Usuários**: [2/2] ativos
+
+Tarefas Completadas:
+- [ ] Testou queries de configuração
+- [ ] Validou habilitar/desabilitar experimentos
+- [ ] Monitorou logs e performance
+- [ ] Reportou bugs técnicos
+
+Bugs Reportados: [X]
+Feedback: [Resumo do feedback]
+
+---
+
+#### 2.1.2 Heavy User Simulado
+**Usuários**: [3/3] ativos
+
+Comportamento Observado:
+- Média de sessões/dia: [X.X]
+- Bloqueios por usuário: [X.X]
+- Atingiu limite diário: [X]% dos dias
+
+Comparação Control vs Variant:
+| Métrica | Control | Variant | Diferença |
+|---------|---------|---------|-----------|
+| Sessions/dia | [X.X] | [X.X] | [+/-XX]% |
+| Blocks/dia | [X.X] | [X.X] | [+/-XX]% |
+
+Feedback: [Resumo do feedback]
+Bugs Reportados: [X]
+
+---
+
+#### 2.1.3 Usuário Médio
+**Usuários**: [5/5] ativos
+
+Comportamento Observado:
+- Média de sessões/dia: [X.X]
+- % que atingiu limite: [XX]%
+- Taxa de engajamento diário: [XX]%
+
+FREE (2 usuários):
+- Bloqueios na 2ª sessão: [X/X]
+- Mensagem pedagógica recebida: [Sim | Não]
+- Feedback sobre bloqueio: [Resumo]
+
+MENSAL (2 usuários):
+- Control: [X.X] sessões/dia, [X] bloqueios
+- Variant: [X.X] sessões/dia, [X] bloqueios
+- Diferença: [+/-XX]%
+
+Feedback Geral: [Resumo do feedback]
+
+---
+
+#### 2.1.4 Advogado Avaliador
+**Usuários**: [2/2] ativos
+
+Avaliações Realizadas:
+- Questões avaliadas: [XXX]
+- Questões de baixa qualidade: [X]
+- Feedback sobre tom das mensagens: [Resumo]
+
+Conclusão: [Resumo da avaliação jurídica]
+
+================================================================================
+                    3. MÉTRICAS CONSOLIDADAS
+================================================================================
+
+### 3.1 Saúde do Sistema
+**Período**: [Últimos X dias]
+
+| Métrica | Target | Atingido | Status |
+|---------|--------|----------|--------|
+| Uptime | > 95% | [XX.X]% | [✅|⚠️|❌] |
+| Latência p95 | < 300ms | [XXX]ms | [✅|⚠️|❌] |
+| Erros 500 | < 10/dia | [X]/dia | [✅|⚠️|❌] |
+| CPU médio | < 70% | [XX]% | [✅|⚠️|❌] |
+| Memória média | < 80% | [XX]% | [✅|⚠️|❌] |
+
+Conclusão: [Sistema ESTÁVEL | Sistema com INSTABILIDADES | Sistema INSTÁVEL]
+
+---
+
+### 3.2 Métricas de Uso
+**Período**: [Últimos X dias]
+
+Total de Sessões: [XXX]
+Sessões/dia: [XX.X] (média)
+Usuários ativos/dia: [XX.X] (média)
+Taxa de engajamento: [XX]%
+
+Bloqueios por Motivo:
+| Motivo | Total | % |
+|--------|-------|---|
+| LIMIT_SESSIONS_DAILY | [XX] | [XX]% |
+| LIMIT_QUESTIONS_SESSION | [XX] | [XX]% |
+| LIMIT_PIECE_MONTHLY | [XX] | [XX]% |
+| Outros | [XX] | [XX]% |
+
+Conclusão: [Uso DENTRO DO ESPERADO | Uso ACIMA DO ESPERADO | Uso ABAIXO DO ESPERADO]
+
+---
+
+### 3.3 Métricas de A/B Testing
+**Período**: [Últimos X dias]
+
+Distribuição de Grupos:
+- Control: [X] usuários ([XX]%)
+- Variant: [X] usuários ([XX]%)
+
+Comparação de Métricas:
+| Métrica | Control | Variant | Lift | p-value | Significante? |
+|---------|---------|---------|------|---------|---------------|
+| sessions_per_day | [X.XX] | [X.XX] | [+/-XX]% | [X.XXX] | [Sim|Não] |
+| blocks_per_day | [X.XX] | [X.XX] | [+/-XX]% | [X.XXX] | [Sim|Não] |
+| upgrade_click | [X] | [X] | [+/-XX]% | [X.XXX] | [Sim|Não] |
+| retention_7d | [XX]% | [XX]% | [+/-XX]% | [X.XXX] | [Sim|Não] |
+
+Interpretação:
+[Análise detalhada dos resultados do A/B Testing]
+
+Conclusão: [Variant MELHOR que Control | Variant PIOR que Control | SEM DIFERENÇA SIGNIFICATIVA]
+
+================================================================================
+                    4. BUGS IDENTIFICADOS
+================================================================================
+
+### 4.1 Bugs Críticos
+**Total**: [X]
+
+[Se nenhum:]
+✅ Nenhum bug crítico identificado durante testes Alpha.
+
+[Se houver, listar:]
+---
+BUG #1
+Título: [Descrição curta]
+Severidade: CRÍTICA
+Descrição: [Descrição detalhada]
+Passos para Reproduzir:
+1. [Passo 1]
+2. [Passo 2]
+Status: [ABERTO | RESOLVIDO | EM ANÁLISE]
+---
+
+### 4.2 Bugs Não-Críticos
+**Total**: [X]
+
+[Listar bugs de severidade média/baixa encontrados]
+
+================================================================================
+                    5. FEEDBACK DOS USUÁRIOS
+================================================================================
+
+### 5.1 Feedback Positivo
+**Total de comentários positivos**: [XX] ([XX]%)
+
+Principais Destaques:
+- "[Feedback 1]" - Usuário [X]
+- "[Feedback 2]" - Usuário [Y]
+- "[Feedback 3]" - Usuário [Z]
+
+Temas Recorrentes:
+- [Tema 1]: [XX]% mencionaram
+- [Tema 2]: [XX]% mencionaram
+
+---
+
+### 5.2 Feedback Negativo
+**Total de comentários negativos**: [XX] ([XX]%)
+
+Principais Reclamações:
+- "[Reclamação 1]" - Usuário [X]
+- "[Reclamação 2]" - Usuário [Y]
+
+Temas Recorrentes:
+- [Tema 1]: [XX]% mencionaram
+- [Tema 2]: [XX]% mencionaram
+
+Ações Tomadas:
+- [Ação 1 para endereçar feedback negativo]
+- [Ação 2]
+
+---
+
+### 5.3 Sugestões de Melhoria
+**Total de sugestões**: [XX]
+
+Top 3 Sugestões:
+1. [Sugestão 1] - [XX]% dos usuários
+2. [Sugestão 2] - [XX]% dos usuários
+3. [Sugestão 3] - [XX]% dos usuários
+
+Sugestões a Implementar Antes de Beta:
+- [ ] [Sugestão A]
+- [ ] [Sugestão B]
+
+Sugestões para Roadmap Futuro:
+- [ ] [Sugestão C]
+- [ ] [Sugestão D]
+
+================================================================================
+                    6. INCIDENTES E RESOLUÇÕES
+================================================================================
+
+### 6.1 Resumo de Incidentes
+**Total**: [X] incidentes
+
+| Data | Severidade | Componente | Duração | Status |
+|------|------------|------------|---------|--------|
+| [YYYY-MM-DD] | [CRÍTICO/ALTO/MÉDIO/BAIXO] | [Componente] | [X]min | [RESOLVIDO] |
+
+[Se nenhum:]
+✅ Nenhum incidente significativo durante testes Alpha.
+
+---
+
+### 6.2 Detalhamento de Incidentes
+
+[Para cada incidente crítico/alto:]
+---
+INCIDENTE #1
+Data/Hora: [YYYY-MM-DD HH:MM]
+Severidade: [CRÍTICO | ALTO]
+Componente: [API | Banco | Frontend | Infra]
+
+Descrição:
+[Descrição detalhada do problema]
+
+Impacto:
+- Usuários afetados: [X/12]
+- Tempo de indisponibilidade: [X] minutos
+- Dados perdidos: [Sim/Não]
+
+Causa Raiz:
+[Análise da causa]
+
+Resolução:
+[Passos tomados para resolver]
+
+Prevenção Futura:
+[Como evitar recorrência]
+---
+
+================================================================================
+                    7. ANÁLISE DE IMPACTO
+================================================================================
+
+### 7.1 Impacto de Custo
+**Custo médio de LLM por usuário/dia**: [R$ X.XX]
+
+| Plano | Custo Observado | Custo Estimado | Diferença |
+|-------|----------------|----------------|-----------|
+| FREE | R$ [X.XX] | R$ 2.50 | [+/-XX]% |
+| MENSAL Control | R$ [X.XX] | R$ 12.00 | [+/-XX]% |
+| MENSAL Variant | R$ [X.XX] | R$ 12.00 | [+/-XX]% |
+| SEMESTRAL | R$ [X.XX] | R$ 18.00 | [+/-XX]% |
+
+Conclusão: [Custos DENTRO DO ESPERADO | ACIMA DO ESPERADO | ABAIXO DO ESPERADO]
+
+---
+
+### 7.2 Impacto de Conversão (Estimado)
+**Período de análise**: [Muito curto para conclusões definitivas]
+
+Sinais Observados:
+- Upgrade clicks: [X] (Variant: [X], Control: [X])
+- Menções de "quero fazer upgrade": [X]
+- Taxa de abandono: [XX]%
+
+Projeção para Beta:
+[Estimativa conservadora baseada em sinais observados]
+
+---
+
+### 7.3 Impacto de Retenção
+**Período**: [X] dias (curto para conclusões definitivas)
+
+Taxa de retenção (retorno após primeiro uso):
+- Dia 1: [XX]%
+- Dia 3: [XX]%
+- Dia 7: [XX]% (se aplicável)
+
+Comparação Control vs Variant:
+- Control: [XX]% retorno em [X] dias
+- Variant: [XX]% retorno em [X] dias
+- Diferença: [+/-XX]%
+
+Conclusão: [Dados INSUFICIENTES | TENDÊNCIA POSITIVA | TENDÊNCIA NEGATIVA]
+
+================================================================================
+                    8. LIÇÕES APRENDIDAS
+================================================================================
+
+### 8.1 O Que Funcionou Bem
+1. [Item 1]
+   - Descrição: [...]
+   - Por quê funcionou: [...]
+
+2. [Item 2]
+   - Descrição: [...]
+   - Por quê funcionou: [...]
+
+---
+
+### 8.2 O Que Não Funcionou
+1. [Item 1]
+   - Descrição: [...]
+   - Por quê não funcionou: [...]
+   - Como corrigir: [...]
+
+2. [Item 2]
+   - Descrição: [...]
+   - Por quê não funcionou: [...]
+   - Como corrigir: [...]
+
+---
+
+### 8.3 Melhorias para Beta
+**Obrigatórias antes de Beta**:
+- [ ] [Melhoria 1]
+- [ ] [Melhoria 2]
+
+**Recomendadas para Beta**:
+- [ ] [Melhoria 3]
+- [ ] [Melhoria 4]
+
+**Roadmap Futuro**:
+- [ ] [Melhoria 5]
+- [ ] [Melhoria 6]
+
+================================================================================
+                    9. CHECKLIST DE PRONTO PARA BETA
+================================================================================
+
+### 9.1 Técnico
+- [ ] Zero bugs críticos em aberto
+- [ ] Uptime > 95% validado ([XX.X]% atingido)
+- [ ] Latência < 300ms validada ([XXX]ms atingido)
+- [ ] Performance estável por 7+ dias
+- [ ] Backup e rollback testados
+
+### 9.2 Funcional
+- [ ] A/B Testing atribuindo grupos corretamente
+- [ ] Métricas sendo coletadas corretamente
+- [ ] Experimento pode ser habilitado/desabilitado
+- [ ] Bloqueios ocorrem nos limites corretos
+- [ ] Mensagens pedagógicas exibidas corretamente
+
+### 9.3 UX
+- [ ] Mensagens pedagógicas recebem feedback positivo (>[XX]%)
+- [ ] Nenhum bloqueio injusto reportado
+- [ ] Usuários entendem limites de seus planos
+- [ ] Feedback geral positivo (>[XX]%)
+
+### 9.4 Negócio
+- [ ] Custos dentro do esperado (+/- 20%)
+- [ ] Sinais positivos de conversão (se aplicável)
+- [ ] Retenção estável ou crescente
+- [ ] Nenhum usuário solicitou cancelamento
+
+### 9.5 Documentação
+- [ ] Relatório Alpha completo (este documento)
+- [ ] Logs de sistema preservados
+- [ ] Screenshots de mensagens coletados
+- [ ] Feedback de usuários documentado
+
+================================================================================
+                    10. RECOMENDAÇÃO FINAL
+================================================================================
+
+### 10.1 Decisão
+[✅ | ⚠️ | ❌] LIBERAR PARA BETA PÚBLICO
+
+### 10.2 Justificativa
+[Justificativa detalhada da decisão baseada em:
+- Estabilidade técnica
+- Feedback de usuários
+- Métricas consolidadas
+- Bugs encontrados e resolvidos
+- Preparação da equipe]
+
+### 10.3 Condições (se aplicável)
+[Se decisão for ⚠️ (com ressalvas), listar condições:]
+1. [Condição 1 que deve ser atendida antes de Beta]
+2. [Condição 2]
+
+### 10.4 Próximos Passos
+**Imediatos** (próximos 3 dias):
+- [ ] [Passo 1]
+- [ ] [Passo 2]
+
+**Antes de Beta** (próximos 7 dias):
+- [ ] [Passo 3]
+- [ ] [Passo 4]
+
+**Durante Beta** (primeiros 30 dias):
+- [ ] [Passo 5]
+- [ ] [Passo 6]
+
+================================================================================
+                    ASSINATURAS E APROVAÇÕES
+================================================================================
+
+Elaborado por:
+Nome: [Nome do Engenheiro de Release]
+Data: [YYYY-MM-DD]
+Assinatura: _______________________
+
+Revisado por:
+Nome: [Nome do Tech Lead / CTO]
+Data: [YYYY-MM-DD]
+Assinatura: _______________________
+
+Aprovado por:
+Nome: [Nome do Product Owner / CEO]
+Data: [YYYY-MM-DD]
+Assinatura: _______________________
+
+================================================================================
+                    ANEXOS
+================================================================================
+
+Anexo A: Logs de Sistema (últimos 7 dias)
+Anexo B: Screenshots de Mensagens Pedagógicas
+Anexo C: Feedback Completo dos Usuários (transcrições)
+Anexo D: Queries SQL de Análise
+Anexo E: Backup do Banco Pós-Alpha
+
+================================================================================
+                    FIM DO RELATÓRIO
+================================================================================

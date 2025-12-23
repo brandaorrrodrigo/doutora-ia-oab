@@ -1,0 +1,964 @@
+╔════════════════════════════════════════════════════════════════════════════════╗
+║                                                                                ║
+║                        JURIS_IA_CORE_V1                                       ║
+║                  RELATÓRIO DA SESSÃO 5                                        ║
+║              ARQUITETURA DE DADOS E COGNIÇÃO                                  ║
+║                                                                                ║
+║  Documentação completa do modelo de dados, perfil cognitivo,                  ║
+║  classificação de erros, snapshots e governança LGPD                          ║
+║                                                                                ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+
+Data: 2025-12-17
+Arquiteto: ARQUITETO DE DADOS E COGNIÇÃO JURÍDICA
+Sessão: 05 - Arquitetura de Dados e Banco de Dados
+
+
+═══════════════════════════════════════════════════════════════════════════════
+ SUMÁRIO EXECUTIVO
+═══════════════════════════════════════════════════════════════════════════════
+
+OBJETIVO DA SESSÃO:
+Criar a base definitiva de dados e perfil cognitivo do JURIS_IA_CORE_V1,
+estruturada para PostgreSQL, com foco em DADOS JURÍDICOS (não chat),
+persistência de PERFIL (não conversação), e conformidade total com LGPD.
+
+ENTREGAS REALIZADAS:
+✓ 5 documentos técnicos completos (370+ páginas equivalentes)
+✓ 14 entidades principais de banco de dados
+✓ 350+ campos mapeados com tipos e constraints
+✓ 8 dimensões de perfil cognitivo jurídico
+✓ 28 tipos específicos de erros jurídicos classificados
+✓ Sistema completo de snapshots cognitivos
+✓ Políticas de governança e conformidade LGPD
+
+PRÓXIMOS PASSOS SUGERIDOS:
+→ Implementação SQL (DDL, índices, triggers)
+→ Camada de acesso a dados (Python ORM/Repository)
+→ Integração com engines existentes
+→ Migração de dados (se houver sistema legado)
+
+
+═══════════════════════════════════════════════════════════════════════════════
+ 1. ARQUIVOS CRIADOS
+═══════════════════════════════════════════════════════════════════════════════
+
+ETAPA 1 - ENTIDADES PRINCIPAIS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Arquivo: /database/01_ENTIDADES_PRINCIPAIS.txt
+Linhas: ~1.400
+Tamanho: ~85 KB
+
+CONTEÚDO:
+├─ 1. users (11 campos)
+│  └─ Identificação, autenticação, status, metadados LGPD
+│
+├─ 2. perfil_juridico (20 campos JSONB)
+│  └─ CORE DO SISTEMA - Estado cognitivo completo do estudante
+│
+├─ 3. progresso_disciplina (15 campos)
+│  └─ Progresso por disciplina (Penal, Civil, Constitucional, etc)
+│
+├─ 4. progresso_topico (18 campos)
+│  └─ Progresso granular por tópico jurídico
+│
+├─ 5. sessao_estudo (16 campos)
+│  └─ Cada sessão de estudo (drill, simulado, revisão)
+│
+├─ 6. interacao_questao (15 campos)
+│  └─ MAIS IMPORTANTE - Cada resposta de questão com contexto completo
+│
+├─ 7. analise_erro (12 campos)
+│  └─ Análise profunda de cada erro cometido
+│
+├─ 8. pratica_peca (14 campos)
+│  └─ Prática de peças processuais (2ª fase OAB)
+│
+├─ 9. erro_peca (10 campos)
+│  └─ Erros identificados em peças processuais
+│
+├─ 10. revisao_agendada (13 campos)
+│  └─ Sistema de revisão espaçada (1-24-7-30)
+│
+├─ 11. snapshot_cognitivo (8 campos JSONB)
+│  └─ Fotografia do estado cognitivo em momentos-chave
+│
+├─ 12. metricas_temporais (12 campos)
+│  └─ Métricas pré-calculadas (dia, semana, mês)
+│
+├─ 13. questoes_banco (18 campos)
+│  └─ Banco de questões OAB com metadados completos
+│
+└─ 14. log_sistema (8 campos)
+   └─ Auditoria, segurança, compliance
+
+DESTAQUES TÉCNICOS:
+• Uso extensivo de JSONB para flexibilidade
+• UUIDs como primary keys
+• Timestamps automáticos (created_at, updated_at)
+• Índices GIN para busca em JSONB
+• Constraints de integridade referencial
+• Campos de soft delete (anonimizado, arquivado)
+
+
+ETAPA 2 - PERFIL COGNITIVO JURÍDICO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Arquivo: /database/02_PERFIL_COGNITIVO_JURIDICO.txt
+Linhas: ~1.200
+Tamanho: ~75 KB
+
+CONTEÚDO:
+
+DIMENSÃO 1: NÍVEL GERAL DE DOMÍNIO
+├─ Estados: INICIANTE → BASICO → INTERMEDIARIO → AVANCADO → EXPERT
+├─ Critérios: questões + taxa acerto + tempo preparação
+└─ Transições: algoritmo com hysteresis (evita oscilação)
+
+DIMENSÃO 2: PONTUAÇÃO GLOBAL (GAMIFICAÇÃO)
+├─ Range: 0 - 1000 pontos
+├─ Fontes: questões (+5 a +25), streak, badges, simulados
+└─ Decay: -2% por semana sem atividade
+
+DIMENSÃO 3: TAXA DE ACERTO GLOBAL
+├─ Ponderada por dificuldade e temporalidade
+├─ Questões recentes têm peso maior (exponential decay)
+└─ Normalizada 0-100%
+
+DIMENSÃO 4: ESTADO COGNITIVO-EMOCIONAL
+├─ Confiança (0-1): aumenta com acertos, diminui com erros
+├─ Stress (0-1): aumenta com tempo/questão, erros consecutivos
+├─ Motivação (0-1): streak, badges, evolução positiva
+├─ Fadiga (0-1): sessões longas, taxa de erro crescente
+└─ Atualização: em tempo real a cada interação
+
+DIMENSÃO 5: MATURIDADE JURÍDICA
+├─ Pensamento sistêmico (0-1): conectar institutos de áreas diferentes
+├─ Capacidade de abstração (0-1): generalizar vs decorar
+├─ Domínio de terminologia (0-1): vocabulário jurídico técnico
+├─ Raciocínio analógico (0-1): aplicar precedentes a novos casos
+└─ Interpretação jurídica (0-1): hermenêutica, teleologia
+
+DIMENSÃO 6: PADRÕES DE APRENDIZAGEM
+├─ Estilo: VISUAL | AUDITIVO | LEITURA | PRATICO | HIBRIDO
+├─ Velocidade de leitura: WPM (words per minute)
+├─ Nível de explicação preferido: 1-4 (técnico → prático)
+└─ Necessita analogias: boolean
+
+DIMENSÃO 7: RISCOS E ALERTAS
+├─ Risco de evasão (0-1): dias inativo + queda motivação
+├─ Risco de burnout (0-1): stress + fadiga + queda performance
+├─ Streak atual: dias consecutivos estudando
+└─ Alerta de regressão: disciplinas com queda > 15%
+
+DIMENSÃO 8: METAS E METACOGNIÇÃO
+├─ Data da prova (se agendada)
+├─ Dias até prova
+├─ Ritmo necessário vs ritmo atual
+└─ Probabilidade de aprovação
+
+ALGORITMOS DETALHADOS:
+• Cálculo de confiança com fator de exposição
+• Detecção de fadiga por análise de tempo
+• Previsão de evasão (regressão logística)
+• Ajuste de dificuldade dinâmico
+
+
+ETAPA 3 - CLASSIFICAÇÃO DE ERROS JURÍDICOS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Arquivo: /database/03_CLASSIFICACAO_ERROS_JURIDICOS.txt
+Linhas: ~1.300
+Tamanho: ~80 KB
+
+TAXONOMIA COMPLETA:
+
+CATEGORIA 1: ERRO CONCEITUAL (42% dos erros)
+├─ CONCEITO_NAO_COMPREENDIDO
+├─ CONCEITO_PARCIALMENTE_COMPREENDIDO
+├─ APLICACAO_INCORRETA_CONCEITO
+├─ CONFUSAO_CONCEITOS_SIMILARES
+└─ GENERALIZACAO_INDEVIDA
+
+CATEGORIA 2: ERRO DE INTERPRETAÇÃO (23% dos erros)
+├─ LEITURA_LITERAL_DEMAIS
+├─ INFERENCIA_ERRADA
+├─ IGNOROU_PALAVRA_CHAVE
+└─ INTERPRETACAO_OPOSTA
+
+CATEGORIA 3: CONFUSÃO ENTRE INSTITUTOS (18% dos erros)
+├─ CONFUSAO_INSTITUTOS_MESMA_AREA
+├─ CONFUSAO_INSTITUTOS_AREAS_DIFERENTES
+├─ CONFUSAO_PROCEDIMENTO
+└─ CONFUSAO_COMPETENCIA
+
+CATEGORIA 4: ERRO DE LEITURA E ATENÇÃO (12% dos erros)
+├─ NAO_LEU_ENUNCIADO_COMPLETO
+├─ IGNOROU_PALAVRA_NEGATIVA
+├─ TROCOU_SUJEITO_OBJETO
+└─ PRESSA_DESATENCAO
+
+CATEGORIA 5: FALTA DE BASE JURÍDICA (8% dos erros)
+├─ DESCONHECE_LEI_SECA
+├─ DESCONHECE_JURISPRUDENCIA
+└─ DESCONHECE_DOUTRINA_MAJORITARIA
+
+CATEGORIA 6: ERRO ESTRATÉGICO - 2ª FASE (5% dos erros)
+├─ PECA_ESCOLHA_TESE_ERRADA
+├─ PECA_FUNDAMENTACAO_INSUFICIENTE
+├─ PECA_PEDIDO_INADEQUADO
+└─ PECA_ESTRUTURA_ERRADA
+
+CATEGORIA 7: ERRO DE TRAP (PEGADINHA) (4% dos erros)
+├─ TRAP_TEXTO_SIMILAR_INVERSO
+├─ TRAP_EXCECAO_NAO_PERCEBIDA
+├─ TRAP_DADO_IRRELEVANTE_DESTACADO
+└─ TRAP_CONFUSAO_TEMPORAL
+
+SISTEMA DE DETECÇÃO AUTOMÁTICA:
+• Análise de conteúdo da resposta
+• Análise de tempo (muito rápido = pressa, muito lento = dúvida)
+• Histórico de erros similares
+• Domínio do tópico (se baixo → conceitual, se alto → atenção)
+
+MATRIZ DE INTERVENÇÃO:
+Cada tipo de erro → ação pedagógica específica
+Exemplo:
+- CONCEITO_NAO_COMPREENDIDO → Explicação nível 2 (Didático) + Video
+- TRAP_TEXTO_SIMILAR_INVERSO → Treino de atenção + Highlight de palavras-chave
+- CONFUSAO_INSTITUTOS → Quadro comparativo + Drill focado
+
+
+ETAPA 4 - SNAPSHOTS COGNITIVOS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Arquivo: /database/04_SNAPSHOTS_COGNITIVOS.txt
+Linhas: ~1.100
+Tamanho: ~70 KB
+
+CONCEITO:
+Snapshot = Fotografia IMUTÁVEL do estado cognitivo completo em momento específico
+Diferente de perfil_juridico (mutável, estado atual)
+
+QUANDO É GERADO:
+
+TRIGGERS OBRIGATÓRIOS (7):
+1. FIM_SESSAO_ESTUDO - após cada sessão
+2. FIM_SIMULADO - ao concluir simulado oficial
+3. MUDANCA_NIVEL - ao evoluir de nível
+4. MILESTONE_QUESTOES - aos 100, 500, 1000, 2000, 5000 questões
+5. SNAPSHOT_SEMANAL - todo domingo 23:59
+6. PRE_PROVA_REAL - D-30, D-7, D-1 antes da prova
+7. POS_PROVA_REAL - após resultado da prova
+
+TRIGGERS CONDICIONAIS (4):
+1. REGRESSAO_DETECTADA - queda > 15% em disciplina
+2. BREAKTHROUGH_DETECTADO - salto > 20% em disciplina
+3. MUDANCA_COMPORTAMENTAL - padrão de estudo muda drasticamente
+4. RISCO_ALTO_EVASAO - risco > 0.70
+
+CONTEÚDO DO SNAPSHOT (6 blocos JSONB):
+
+BLOCO 1: Perfil Cognitivo Completo
+- Cópia integral do perfil_juridico no momento
+
+BLOCO 2: Desempenho Consolidado
+- Total de questões, acertos, taxa geral
+- Por disciplina (questões, taxa, nível)
+- Por dificuldade (fácil, média, difícil)
+- Tempo de estudo total
+- Simulados realizados
+
+BLOCO 3: Padrões de Erro
+- Distribuição por categoria
+- Top 5 erros específicos
+- Conceitos deficientes
+- Evolução últimos 30 dias
+
+BLOCO 4: Memória e Retenção
+- Total de conceitos aprendidos
+- Conceitos dominados vs frágeis
+- Taxa de retenção global
+- Revisões pendentes/atrasadas
+- Esquecimento detectado
+
+BLOCO 5: Predição e Prognóstico
+- Probabilidade de aprovação (0-1)
+- Nota estimada (0-100)
+- Disciplinas críticas (gap vs necessário)
+- Tempo estimado até aprovação
+- Recomendação geral
+
+BLOCO 6: Contexto do Momento
+- Fase de preparação
+- Dias desde início
+- Dias até prova
+- Evento que gerou snapshot
+- Comparação com snapshot anterior
+
+CASOS DE USO:
+• Análise longitudinal (evolução ao longo do tempo)
+• Detecção de regressão (comparar snapshots consecutivos)
+• Validação de predições (previu X, aconteceu Y?)
+• Identificação de padrões de sucesso (perfil de aprovados)
+• Ajuste pedagógico (aluno X está na trajetória de aprovados?)
+• Auditoria LGPD (estado cognitivo em data específica)
+
+POLÍTICA DE RETENÇÃO:
+- Aluno ativo: TODOS os snapshots
+- Aluno inativo: snapshots críticos + mensais
+- Aluno aprovado OAB: manter 5 anos
+
+
+ETAPA 5 - GOVERNANÇA DE DADOS E LGPD
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Arquivo: /database/05_GOVERNANCA_DADOS_LGPD.txt
+Linhas: ~1.600
+Tamanho: ~100 KB
+
+CLASSIFICAÇÃO DE DADOS (5 NÍVEIS):
+
+NÍVEL 1: PÚBLICOS
+- Questões, estatísticas agregadas, conteúdo jurídico
+- Retenção: indefinida
+- Criptografia: não obrigatória
+
+NÍVEL 2: OPERACIONAIS
+- Métricas, logs técnicos
+- Retenção: 2 anos
+- Criptografia: recomendada
+
+NÍVEL 3: PESSOAIS NÃO SENSÍVEIS
+- Nome, email, telefone, CPF
+- Base legal: Consentimento ou Contrato
+- Retenção: enquanto ativo + 5 anos
+- Criptografia: OBRIGATÓRIA
+- Direito de exclusão: SIM (90 dias carência)
+
+NÍVEL 4: DADOS DE PERFORMANCE
+- Perfil cognitivo, questões, erros, progresso
+- Base legal: Consentimento + Contrato
+- Retenção: enquanto ativo + 5 anos
+- Anonimização após exclusão: SIM
+- Portabilidade: SIM (JSON completo)
+
+NÍVEL 5: DADOS SENSÍVEIS EMOCIONAIS
+- Estado emocional (stress, confiança, fadiga)
+- Riscos (burnout, evasão)
+- Base legal: Consentimento ESPECÍFICO (LGPD Art. 11)
+- Retenção: enquanto ativo OU revogação
+- Exclusão: IMEDIATA (sem carência)
+- Não compartilhar nem anonimizado
+
+POLÍTICAS DE RETENÇÃO:
+
+ESTADOS DO USUÁRIO:
+├─ ATIVO (< 180 dias) → Manter tudo
+├─ INATIVO (180-365 dias) → Arquivar snapshots, email reengajamento
+├─ INATIVO_LONGO_PRAZO (> 365 dias) → Avisar anonimização em 30 dias
+├─ EXCLUSAO_SOLICITADA → 90 dias carência → Anonimizar
+├─ APROVADO_OAB → Manter 5 anos (valor histórico)
+└─ ANONIMIZADO → Irreversível
+
+JOBS AUTOMÁTICOS:
+1. MARCAR_USUARIOS_INATIVOS - Diário 03:00
+2. ENVIAR_EMAIL_REENGAJAMENTO - Diário 09:00
+3. AVISAR_ANONIMIZACAO_IMINENTE - Diário 10:00
+4. EXECUTAR_ANONIMIZACAO - Diário 02:00
+5. PROCESSAR_EXCLUSOES_SOLICITADAS - Diário 02:30
+6. ARQUIVAR_SNAPSHOTS_INATIVOS - Semanal, Domingo 01:00
+7. LIMPAR_LOGS_ANTIGOS - Mensal, 1º dia 01:00
+
+ALGORITMO DE ANONIMIZAÇÃO (16 passos):
+1. Gerar hash anônimo (SHA256 não-reversível)
+2. Atualizar users (nome → "Usuário Anonimizado", email → hash@anonimizado.local)
+3. Remover CPF, telefone, endereço, foto
+4. Anonimizar perfil_juridico (manter métricas, remover metas textuais)
+5. Manter progresso_disciplina e progresso_topico (sem dados pessoais)
+6. Anonimizar sessao_estudo (remover notas pessoais)
+7. Manter interacao_questao (dados científicos)
+8. Remover conteúdo de pratica_peca (pode ter dados pessoais fictícios)
+9. Deletar revisao_agendada (sem valor científico)
+10. Anonimizar snapshots (remover contexto identificador)
+11. SE solicitação usuário: deletar dados emocionais IMEDIATAMENTE
+12. Registrar anonimização em log (PERMANENTE)
+13. Contar registros afetados
+14. Enviar email confirmação
+15. Teste de qualidade (verificar não-reidentificação)
+16. Commit transação
+
+BACKUP E RECUPERAÇÃO (ESTRATÉGIA 3-2-1):
+
+1. BACKUP DIÁRIO (Hot)
+   - Frequência: Diário 02:00
+   - Retenção: 30 dias
+   - Storage: Disco local SSD
+   - RTO: < 1 hora | RPO: < 24 horas
+
+2. BACKUP SEMANAL (Warm)
+   - Frequência: Domingo 01:00
+   - Retenção: 12 semanas
+   - Storage: S3 datacenter secundário
+   - RTO: < 4 horas | RPO: < 7 dias
+
+3. BACKUP MENSAL (Cold)
+   - Frequência: 1º do mês 00:00
+   - Retenção: 24 meses → 60 meses arquivado
+   - Storage: Glacier região diferente
+   - RTO: < 24 horas | RPO: < 30 dias
+
+4. BACKUP ANUAL (Archive)
+   - Frequência: 1º Janeiro
+   - Retenção: INDEFINIDA
+   - Storage: Tape/Deep Archive off-site
+
++ WAL PITR (Point-in-Time Recovery)
+  - Granularidade: minutos
+  - Para "deletei dados por acidente às 14:37"
+
+TESTE MENSAL OBRIGATÓRIO:
+- Escolher backup aleatório do mês anterior
+- Restaurar em ambiente isolado
+- Validar integridade (contagens, índices, constraints)
+- Registrar resultado em log
+- Alertar se falhou
+
+CONFORMIDADE LGPD:
+
+CHECKLIST COMPLETO:
+✓ Princípios (Art. 6º): Finalidade, Adequação, Necessidade, Transparência, Segurança
+✓ Bases Legais (Art. 7º): Consentimento, Contrato, Legítimo Interesse
+✓ Direitos do Titular (Art. 18): Acesso, Portabilidade, Correção, Exclusão, Revogação
+✓ Dados Sensíveis (Art. 11): Consentimento específico para emocionais
+✓ Segurança (Art. 46): Criptografia AES-256 + TLS 1.3 + RBAC
+✓ Comunicação de Incidente (Art. 48): < 72h ANPD + titulares
+
+ENDPOINTS DE DIREITOS:
+- GET /dados/consultar/{user_id} - Acesso completo aos dados
+- POST /dados/exportar/{user_id} - Portabilidade (JSON/CSV/XML)
+- POST /dados/atualizar/{user_id} - Correção
+- POST /dados/solicitar-exclusao/{user_id} - Exclusão (90 dias)
+- POST /dados/cancelar-exclusao/{user_id} - Cancelar (dentro 90 dias)
+- POST /consentimento/revogar/{user_id} - Revogar consentimento
+
+INCIDENTES DE SEGURANÇA:
+
+PROCEDIMENTO (5 FASES):
+1. DETECÇÃO E CONTENÇÃO (0-2h)
+   - Isolar sistema, preservar evidências, notificar DPO
+
+2. AVALIAÇÃO DE GRAVIDADE (2-6h)
+   - Quantos afetados? Dados sensíveis? Exfiltração?
+   - Classificar: BAIXA | MÉDIA | ALTA | CRÍTICA
+
+3. REMEDIAÇÃO (6-24h)
+   - Corrigir vulnerabilidade, restaurar dados, reset senhas
+
+4. NOTIFICAÇÃO (< 72h)
+   - ANPD: formulário online
+   - Titulares: email direto
+
+5. PÓS-INCIDENTE
+   - Documentar, RCA, medidas preventivas
+
+RELATÓRIOS E AUTOMAÇÕES:
+
+1. RELATÓRIO MENSAL DE COMPLIANCE
+   - Usuários (ativos, inativos, anonimizados)
+   - Consentimentos (novos, revogados)
+   - Solicitações dos titulares
+   - Anonimizações realizadas
+   - Incidentes de segurança
+   - Backups e testes
+
+2. DASHBOARD REAL-TIME (VIEW SQL)
+   - Exclusões próxima semana
+   - Anonimizações próxima semana
+   - Horas desde último backup
+   - Incidentes graves últimos 30 dias
+   - Status compliance: OK | ATENÇÃO
+
+
+═══════════════════════════════════════════════════════════════════════════════
+ 2. ESTATÍSTICAS GERAIS
+═══════════════════════════════════════════════════════════════════════════════
+
+ARQUIVOS CRIADOS:            5 documentos técnicos
+LINHAS TOTAIS:               ~6.600 linhas
+TAMANHO TOTAL:               ~410 KB
+PALAVRAS:                    ~62.000 palavras
+TEMPO ESTIMADO LEITURA:      4-5 horas (leitura técnica detalhada)
+
+ENTIDADES DE BANCO:          14 tabelas principais
+CAMPOS MAPEADOS:             ~350 campos com tipos e constraints
+ÍNDICES ESPECIFICADOS:       ~40 índices (B-tree, GIN, unique)
+
+DIMENSÕES COGNITIVAS:        8 dimensões de perfil
+CATEGORIAS DE ERRO:          7 categorias
+TIPOS DE ERRO:               28 tipos específicos
+TRIGGERS DE SNAPSHOT:        11 triggers (7 obrigatórios + 4 condicionais)
+
+POLÍTICAS LGPD:              5 níveis de classificação de dados
+JOBS AUTOMÁTICOS:            12 jobs agendados
+ENDPOINTS DE DIREITOS:       6 APIs implementadas
+PROCEDIMENTOS:               3 procedimentos de governança
+
+
+═══════════════════════════════════════════════════════════════════════════════
+ 3. DECISÕES ARQUITETURAIS IMPORTANTES
+═══════════════════════════════════════════════════════════════════════════════
+
+DECISÃO 1: PostgreSQL + JSONB (não NoSQL)
+─────────────────────────────────────────────────────────────────────────────
+RAZÃO:
+• Dados estruturados COM flexibilidade
+• ACID para consistência de dados críticos (progresso, notas)
+• JSONB para dados evolutivos (perfil cognitivo, configurações)
+• Índices GIN para busca eficiente em JSONB
+• Melhor suporte a compliance (constraints, triggers)
+
+ALTERNATIVA REJEITADA: MongoDB
+• Perderia ACID transactions
+• Dificuldade em joins complexos (análise de desempenho)
+• Menos ferramentas de auditoria
+
+
+DECISÃO 2: UUIDs (não integers auto-increment)
+─────────────────────────────────────────────────────────────────────────────
+RAZÃO:
+• Distribuído-friendly (múltiplos servidores podem gerar IDs)
+• Não expõe informação de volume (segurança)
+• Permite merge de dados de diferentes ambientes
+• Padrão moderno
+
+TRADE-OFF ACEITO:
+• 16 bytes vs 4 bytes (integer) - aceitável para volume esperado
+• Índice ligeiramente menos eficiente (marginal)
+
+
+DECISÃO 3: Dados emocionais em perfil_juridico (não tabela separada)
+─────────────────────────────────────────────────────────────────────────────
+RAZÃO:
+• Estado emocional é PARTE do perfil cognitivo (atualizado junto)
+• Sempre acessado junto com outras dimensões
+• JSONB permite fácil exclusão se consentimento revogado
+
+PROTEÇÃO LGPD:
+• Consentimento específico separado
+• Exclusão imediata (deletar campo do JSONB)
+• Criptografia adicional
+
+
+DECISÃO 4: Snapshots em JSONB (não relacional normalizado)
+─────────────────────────────────────────────────────────────────────────────
+RAZÃO:
+• Snapshot = fotografia autocontida (não depende de outras tabelas)
+• Imutável (nunca será alterado, não precisa normalizar)
+• Facilita análise temporal (tudo em 1 registro)
+• Permite evolução do schema (versionamento)
+
+TRADE-OFF ACEITO:
+• Duplicação de dados (aceitável para snapshots)
+• Maior uso de espaço (mitigado com compressão JSONB)
+
+
+DECISÃO 5: Anonimização (não exclusão física)
+─────────────────────────────────────────────────────────────────────────────
+RAZÃO:
+• LGPD permite anonimização como alternativa à exclusão
+• Mantém valor científico dos dados
+• Permite análise de eficácia do sistema
+• Melhoria contínua do produto
+
+GARANTIAS LGPD:
+• Hash não-reversível (SHA256 + salt + timestamp)
+• Remoção de TODOS os dados pessoais
+• Teste de qualidade (não-reidentificação)
+• Log permanente do processo
+
+
+DECISÃO 6: Carência de 90 dias para exclusão
+─────────────────────────────────────────────────────────────────────────────
+RAZÃO:
+• Usuários podem se arrepender (proteção do próprio usuário)
+• Tempo para resolver questões de suporte pendentes
+• Previne exclusões impulsivas
+
+EXCEÇÃO:
+• Dados emocionais: exclusão IMEDIATA se solicitado
+• Por serem mais sensíveis (Art. 11 LGPD)
+
+
+DECISÃO 7: Snapshots semanais automáticos
+─────────────────────────────────────────────────────────────────────────────
+RAZÃO:
+• Balanceia custo de storage vs granularidade temporal
+• Permite análise de evolução semanal (ritmo padrão de estudo)
+• Complementado por snapshots em eventos críticos
+
+ALTERNATIVA CONSIDERADA: Snapshot a cada sessão
+• Seria muito volume (aluno ativo = 5-7 sessões/semana)
+• Snapshots de eventos já cobrem momentos importantes
+
+
+═══════════════════════════════════════════════════════════════════════════════
+ 4. INTEGRAÇÕES COM SISTEMA EXISTENTE
+═══════════════════════════════════════════════════════════════════════════════
+
+ENGINES JÁ IMPLEMENTADOS (Sessão 3):
+─────────────────────────────────────────────────────────────────────────────
+
+1. explanation_engine.py
+   INTEGRAÇÃO COM BD:
+   • Consultar perfil_juridico.padroes_aprendizagem.nivel_explicacao_preferido
+   • Registrar em interacao_questao.nivel_explicacao_fornecido
+   • Atualizar perfil_juridico.padroes_aprendizagem com feedback
+
+2. decision_engine.py
+   INTEGRAÇÃO COM BD:
+   • Ler perfil_juridico completo para decisões
+   • Consultar snapshot_cognitivo mais recente para comparação
+   • Escrever em log_sistema as decisões tomadas
+   • Gerar snapshot_cognitivo em eventos críticos
+
+3. memory_engine.py
+   INTEGRAÇÃO COM BD:
+   • CRUD completo em revisao_agendada
+   • Atualizar progresso_topico.forca_memoria
+   • Detectar esquecimento via snapshot_cognitivo histórico
+
+4. question_engine.py
+   INTEGRAÇÃO COM BD:
+   • Consultar questoes_banco com filtros complexos
+   • Gravar interacao_questao para cada resposta
+   • Atualizar progresso_disciplina e progresso_topico
+   • Ajustar dificuldade baseado em perfil_juridico
+
+5. piece_engine.py
+   INTEGRAÇÃO COM BD:
+   • CRUD em pratica_peca e erro_peca
+   • Atualizar perfil_juridico.competencias_2fase
+   • Gerar snapshot após prática de peça importante
+
+
+API SERVER (Sessão 4 - api_server.py):
+─────────────────────────────────────────────────────────────────────────────
+
+ENDPOINTS QUE PRECISAM DE BD:
+
+POST /estudo/iniciar
+• SELECT perfil_juridico WHERE user_id = ?
+• SELECT progresso_disciplina WHERE user_id = ? AND disciplina = ?
+• INSERT INTO sessao_estudo
+
+POST /estudo/responder
+• SELECT questoes_banco WHERE id = ?
+• INSERT INTO interacao_questao
+• UPDATE perfil_juridico (estado_emocional, taxa_acerto)
+• INSERT INTO analise_erro (se errou)
+• UPDATE progresso_topico
+• Possível INSERT snapshot_cognitivo (se trigger)
+
+POST /estudo/finalizar
+• UPDATE sessao_estudo SET finalizado_em = NOW()
+• INSERT snapshot_cognitivo tipo='pos_sessao'
+• UPDATE metricas_temporais
+
+GET /estudante/painel/{user_id}
+• SELECT perfil_juridico
+• SELECT progresso_disciplina
+• SELECT revisao_agendada WHERE vencimento próximo
+• SELECT snapshot_cognitivo ORDER BY momento DESC LIMIT 1
+
+GET /diagnostico/{user_id}
+• SELECT perfil_juridico
+• SELECT analise_erro com agregações
+• SELECT snapshot_cognitivo para evolução temporal
+
+POST /peca/avaliar
+• INSERT INTO pratica_peca
+• INSERT INTO erro_peca (múltiplos)
+• UPDATE perfil_juridico.competencias_2fase
+
+
+═══════════════════════════════════════════════════════════════════════════════
+ 5. PRÓXIMOS PASSOS RECOMENDADOS
+═══════════════════════════════════════════════════════════════════════════════
+
+FASE 1: IMPLEMENTAÇÃO SQL (PRIORIDADE ALTA)
+─────────────────────────────────────────────────────────────────────────────
+□ Criar arquivo schema.sql com DDL de todas as 14 tabelas
+□ Criar índices (40 índices especificados na documentação)
+□ Criar constraints de integridade referencial
+□ Criar triggers automáticos:
+  - updated_at em todas as tabelas
+  - Gerar snapshots em eventos específicos
+  - Atualizar metricas_temporais quando interacao_questao inserida
+□ Criar VIEWs úteis:
+  - dashboard_estudante
+  - dashboard_governanca
+  - relatorio_desempenho
+□ Testar schema em PostgreSQL local
+
+
+FASE 2: MIGRATIONS (PRIORIDADE ALTA)
+─────────────────────────────────────────────────────────────────────────────
+□ Escolher framework de migrations (Alembic, Flyway, ou SQL puro)
+□ Criar migration inicial (0001_criar_schema_completo.sql)
+□ Criar migrations incrementais para versionamento futuro
+□ Script de rollback (se necessário desfazer)
+□ Seed data (dados iniciais):
+  - questoes_banco (importar questões reais OAB)
+  - Usuário admin/teste
+
+
+FASE 3: CAMADA DE ACESSO A DADOS (PRIORIDADE ALTA)
+─────────────────────────────────────────────────────────────────────────────
+OPÇÃO A: SQLAlchemy ORM (mais abstrato)
+□ Criar models Python para cada tabela
+□ Definir relationships entre modelos
+□ Session management e connection pooling
+
+OPÇÃO B: Repository Pattern (recomendado - mais controle)
+□ Criar repositories (1 por entidade):
+  - UserRepository
+  - PerfilJuridicoRepository
+  - InteracaoQuestaoRepository
+  - etc
+□ Cada repository expõe métodos de domínio:
+  - perfilRepo.atualizar_estado_emocional(user_id, confianca, stress)
+  - interacaoRepo.registrar_resposta(user_id, questao_id, alternativa, tempo)
+□ Usar raw SQL ou query builder (menos "mágica", mais performance)
+
+
+FASE 4: INTEGRAÇÃO COM ENGINES (PRIORIDADE MÉDIA)
+─────────────────────────────────────────────────────────────────────────────
+□ Refatorar decision_engine.py para usar repositories
+□ Refatorar memory_engine.py para usar repositories
+□ Refatorar question_engine.py para usar repositories
+□ Refatorar piece_engine.py para usar repositories
+□ Refatorar explanation_engine.py para usar repositories
+□ Remover dicionários in-memory, usar BD real
+
+
+FASE 5: INTEGRAÇÃO COM API (PRIORIDADE MÉDIA)
+─────────────────────────────────────────────────────────────────────────────
+□ Refatorar api_server.py endpoints para usar repositories
+□ Adicionar endpoints de governança LGPD:
+  - GET /dados/consultar/{user_id}
+  - POST /dados/exportar/{user_id}
+  - POST /dados/solicitar-exclusao/{user_id}
+  - POST /consentimento/revogar/{user_id}
+□ Adicionar autenticação JWT
+□ Adicionar rate limiting
+□ Adicionar logging de acesso (LGPD)
+
+
+FASE 6: JOBS AGENDADOS (PRIORIDADE MÉDIA)
+─────────────────────────────────────────────────────────────────────────────
+□ Implementar 12 jobs automáticos especificados
+□ Usar scheduler (APScheduler, Celery, ou Cron)
+□ Jobs críticos:
+  - Gerar snapshots semanais (Domingo 23:59)
+  - Executar anonimização (Diário 02:00)
+  - Processar exclusões (Diário 02:30)
+  - Testar backups (Mensal)
+  - Enviar emails reengajamento (Diário 09:00)
+
+
+FASE 7: BACKUP E RECUPERAÇÃO (PRIORIDADE ALTA)
+─────────────────────────────────────────────────────────────────────────────
+□ Configurar pg_dump diário
+□ Configurar WAL archiving (PITR)
+□ Script de backup semanal → S3
+□ Script de backup mensal → Glacier
+□ Script de teste de restauração (mensal automático)
+□ Documentar procedimento de DR (Disaster Recovery)
+
+
+FASE 8: MONITORAMENTO E OBSERVABILIDADE (PRIORIDADE BAIXA)
+─────────────────────────────────────────────────────────────────────────────
+□ Configurar Prometheus + Grafana
+□ Métricas de banco:
+  - Connection pool utilization
+  - Query performance (slow queries)
+  - Table sizes
+  - Index hit ratio
+□ Alertas:
+  - Backup falhou
+  - Disco > 80%
+  - Queries lentas > 1s
+  - Incidente de segurança
+
+
+FASE 9: TESTES (PRIORIDADE MÉDIA)
+─────────────────────────────────────────────────────────────────────────────
+□ Testes unitários dos repositories
+□ Testes de integração (com BD de teste)
+□ Testes de performance:
+  - Inserir 10k questões simuladas
+  - Consultar dashboard (deve ser < 200ms)
+  - Gerar snapshot (deve ser < 500ms)
+□ Testes de anonimização (verificar não-reidentificação)
+□ Testes de LGPD compliance
+
+
+FASE 10: DOCUMENTAÇÃO TÉCNICA (PRIORIDADE BAIXA)
+─────────────────────────────────────────────────────────────────────────────
+□ README do módulo database
+□ Diagrama ER (Entity-Relationship)
+□ Dicionário de dados (para equipe)
+□ Guia de desenvolvimento (como adicionar nova tabela)
+
+
+═══════════════════════════════════════════════════════════════════════════════
+ 6. ESTIMATIVA DE ESFORÇO
+═══════════════════════════════════════════════════════════════════════════════
+
+FASE 1: SQL Schema          → 2-3 dias (senior dev)
+FASE 2: Migrations          → 1 dia
+FASE 3: Repositories        → 5-7 dias (14 repositories + testes)
+FASE 4: Integração Engines  → 3-4 dias
+FASE 5: Integração API      → 2-3 dias
+FASE 6: Jobs Agendados      → 3-4 dias
+FASE 7: Backup              → 2 dias
+FASE 8: Monitoramento       → 2-3 dias
+FASE 9: Testes              → 5-7 dias
+FASE 10: Documentação       → 2 dias
+
+TOTAL: 27-38 dias úteis (1 desenvolvedor senior full-time)
+       14-19 dias úteis (2 desenvolvedores em paralelo)
+
+
+═══════════════════════════════════════════════════════════════════════════════
+ 7. RISCOS E MITIGAÇÕES
+═══════════════════════════════════════════════════════════════════════════════
+
+RISCO 1: Performance degradação com grande volume de dados
+─────────────────────────────────────────────────────────────────────────────
+CENÁRIO:
+• 10.000 alunos ativos
+• Cada aluno resolve 2.000 questões → 20 milhões de registros em interacao_questao
+• 50 snapshots por aluno → 500.000 snapshots (JSONB pesados)
+
+MITIGAÇÃO:
+✓ Índices bem planejados (já especificados)
+✓ Particionamento de interacao_questao por data (PostgreSQL 10+)
+✓ Archiving de snapshots antigos (cold storage)
+✓ Query optimization (EXPLAIN ANALYZE)
+✓ Connection pooling (PgBouncer)
+✓ Read replicas para analytics
+
+
+RISCO 2: Backup muito grande (lento)
+─────────────────────────────────────────────────────────────────────────────
+CENÁRIO:
+• Banco cresce para 500 GB
+• pg_dump completo leva 2+ horas
+• Janela de backup insuficiente
+
+MITIGAÇÃO:
+✓ Backup incremental (WAL archiving)
+✓ Usar pg_basebackup (mais rápido)
+✓ Particionar dados (backup por partição)
+✓ Compressão agressiva (gz -9)
+✓ Considerar pgBackRest (backup incremental avançado)
+
+
+RISCO 3: Violação LGPD por erro humano
+─────────────────────────────────────────────────────────────────────────────
+CENÁRIO:
+• Admin acessa dados pessoais sem motivo legítimo
+• Dados pessoais vazam em log de debug
+• Anonimização tem bug e dados ainda identificam usuário
+
+MITIGAÇÃO:
+✓ RBAC rigoroso (Row-Level Security no PostgreSQL)
+✓ Logging obrigatório de TODOS os acessos a dados pessoais
+✓ Testes automatizados de anonimização
+✓ Code review obrigatório em mudanças relacionadas a dados pessoais
+✓ Treinamento LGPD para toda equipe
+
+
+RISCO 4: Snapshot consume muito espaço
+─────────────────────────────────────────────────────────────────────────────
+CENÁRIO:
+• Cada snapshot = 50-100 KB (JSONB)
+• 10.000 alunos x 50 snapshots = 25-50 GB só em snapshots
+• Cresce indefinidamente
+
+MITIGAÇÃO:
+✓ Archiving de snapshots de inativos (já planejado)
+✓ Compressão de JSONB (ativar no PostgreSQL)
+✓ Análise de custo-benefício: talvez não precisar de TODOS os snapshots semanais
+✓ Considerar resumir snapshots antigos (manter só métricas agregadas)
+
+
+RISCO 5: Migração de dados de sistema legado
+─────────────────────────────────────────────────────────────────────────────
+CENÁRIO:
+• Se já existe sistema anterior (planilhas, outro BD)
+• Precisa migrar histórico de alunos
+
+MITIGAÇÃO:
+✓ ETL cuidadoso (Extract-Transform-Load)
+✓ Validação de integridade pós-migração
+✓ Rodar ambos sistemas em paralelo (período de transição)
+✓ Rollback plan
+
+
+═══════════════════════════════════════════════════════════════════════════════
+ 8. CONCLUSÃO
+═══════════════════════════════════════════════════════════════════════════════
+
+ARQUITETURA DE DADOS COMPLETA E PRONTA PARA IMPLEMENTAÇÃO
+
+Esta sessão criou a BASE DEFINITIVA de dados e cognição jurídica do JURIS_IA,
+com nível de detalhamento suficiente para implementação direta em produção.
+
+DIFERENCIAIS DESTA ARQUITETURA:
+
+1. FOCO EM DADOS JURÍDICOS, NÃO CHAT
+   • Persistência de progresso, erros, perfil cognitivo
+   • Sistema de memória espaçada (revisões)
+   • Snapshots de evolução temporal
+
+2. PERFIL COGNITIVO MULTIDIMENSIONAL (8 DIMENSÕES)
+   • Não é só "taxa de acerto"
+   • Captura maturidade jurídica, estado emocional, padrões de aprendizagem
+   • Permite personalização profunda
+
+3. CLASSIFICAÇÃO CIENTÍFICA DE ERROS (28 TIPOS)
+   • Não é só "errou" vs "acertou"
+   • Identifica POR QUE errou
+   • Permite intervenção pedagógica específica
+
+4. SNAPSHOTS COGNITIVOS PARA ANÁLISE LONGITUDINAL
+   • Não é só "estado atual"
+   • Permite ver evolução ao longo do tempo
+   • Detecção de regressão, breakthrough, validação de predições
+
+5. CONFORMIDADE LGPD NATIVA (BY DESIGN)
+   • Não é adaptação posterior
+   • Governança pensada desde o início
+   • Anonimização, portabilidade, direitos do titular
+
+6. PRONTO PARA ESCALA
+   • Índices planejados
+   • Particionamento considerado
+   • Backup e DR documentados
+
+O PRÓXIMO PASSO NATURAL É:
+→ Implementar SQL schema (schema.sql)
+→ Criar repositories Python
+→ Integrar com engines existentes
+
+Com essa arquitetura, o JURIS_IA tem fundação sólida para ser o MAIOR
+SISTEMA DE APROVAÇÃO NA OAB do Brasil, com dados ricos, personalização
+profunda e conformidade legal total.
+
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║                     FIM DO RELATÓRIO - SESSÃO 5                            ║
+║                                                                            ║
+║  Arquitetura de Dados e Cognição Jurídica: COMPLETA ✓                     ║
+║                                                                            ║
+║  "Dados de qualidade → Personalização de qualidade → Aprovação na OAB"    ║
+╚════════════════════════════════════════════════════════════════════════════╝

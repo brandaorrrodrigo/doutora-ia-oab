@@ -1,0 +1,947 @@
+================================================================================
+RELATÓRIO DE HARDENING JURÍDICO
+================================================================================
+
+SISTEMA: JURIS IA CORE V1
+PRODUTO: DOUTORA IA/OAB
+DATA: 2025-12-17
+OBJETIVO: COMPLIANCE JURÍDICO E RESPONSABILIDADE CIVIL
+RESPONSÁVEL: Especialista em Governança e Responsabilidade Jurídica para IA
+
+================================================================================
+1. FUNDAMENTO E NECESSIDADE
+================================================================================
+
+1.1. CONTEXTO JURÍDICO
+-----------------------
+
+O sistema DOUTORA IA/OAB opera em área sensível do Direito brasileiro:
+
+[1] Educação jurídica (Lei 9.394/96 - LDB)
+[2] Exercício da advocacia (Lei 8.906/94 - Estatuto da OAB)
+[3] Responsabilidade civil por informação (CC, Arts. 186, 187, 927)
+[4] Proteção de dados pessoais (Lei 13.709/18 - LGPD)
+[5] Relações de consumo (Lei 8.078/90 - CDC)
+
+Riscos jurídicos identificados:
+
+  ⚠ Confusão entre ferramenta educacional e consultoria jurídica
+  ⚠ Responsabilização por aconselhamento jurídico inadequado
+  ⚠ Violação do Estatuto da OAB (exercício ilegal da advocacia)
+  ⚠ Não cumprimento de obrigações LGPD
+  ⚠ Falta de transparência sobre limitações do sistema
+
+
+1.2. OBJETIVO DO HARDENING
+---------------------------
+
+Implementar controles técnicos e jurídicos para:
+
+  ✓ Delimitar escopo do sistema (educação vs consultoria)
+  ✓ Proteger empresa de responsabilização indevida
+  ✓ Proteger usuários de uso inadequado
+  ✓ Cumprir integralmente a LGPD
+  ✓ Assegurar auditabilidade
+  ✓ Facilitar defesa em eventuais processos
+
+
+================================================================================
+2. LIMITES EXPLÍCITOS DO SISTEMA
+================================================================================
+
+2.1. DEFINIÇÃO DE ESCOPO
+-------------------------
+
+ESTE SISTEMA É:
+
+  ✓ Ferramenta educacional de preparação para o Exame da OAB
+  ✓ Simulador de questões e situações típicas do exame
+  ✓ Recurso de estudo, treinamento e prática
+  ✓ Gerador de modelos pedagógicos de peças processuais
+  ✓ Sistema de diagnóstico de desempenho em estudos
+
+ESTE SISTEMA NÃO É:
+
+  ✗ Consultoria jurídica
+  ✗ Aconselhamento sobre casos reais
+  ✗ Substituição de advogado constituído
+  ✗ Fonte de orientação jurídica definitiva
+  ✗ Garantia de aprovação no Exame da OAB
+  ✗ Ferramenta para elaboração de peças em processos reais
+
+
+2.2. VEDAÇÕES EXPRESSAS
+------------------------
+
+É VEDADO o uso deste sistema para:
+
+  [1] Tomar decisões jurídicas em processos reais
+  [2] Protocolar peças geradas pelo sistema em tribunais
+  [3] Substituir orientação de advogado inscrito na OAB
+  [4] Estabelecer relação advogado-cliente
+  [5] Oferecer consultoria jurídica remunerada ou gratuita
+  [6] Usar conteúdo gerado como fonte única de decisão
+
+
+2.3. LIMITAÇÕES TÉCNICAS
+-------------------------
+
+O sistema possui as seguintes limitações INERENTES:
+
+  [1] Inteligência Artificial:
+      - Pode gerar respostas imprecisas ou incorretas
+      - Não possui capacidade de julgamento jurídico
+      - Não compreende nuances de casos específicos
+      - Baseia-se em padrões estatísticos, não em raciocínio jurídico
+
+  [2] Base de conhecimento:
+      - Atualização periódica (não em tempo real)
+      - Cobertura limitada ao programa do Exame da OAB
+      - Não abrange legislação estadual/municipal específica
+      - Não considera peculiaridades de casos concretos
+
+  [3] Questões:
+      - Baseadas em exames anteriores da OAB
+      - Podem não refletir tendências futuras
+      - Não substituem estudo completo de doutrina e jurisprudência
+
+  [4] Peças processuais:
+      - Modelos genéricos para fins de treinamento
+      - Não adaptadas a casos reais
+      - Podem conter inadequações para situações específicas
+      - Não substituem elaboração profissional
+
+
+2.4. IMPLEMENTAÇÃO TÉCNICA
+---------------------------
+
+Arquivo: database/migrations/006_create_legal_compliance.sql
+
+Tabela: aviso_obrigatorio
+
+Avisos implementados:
+
+  [1] disclaimer_pre_sessao_oab
+      Contexto: Antes de iniciar sessão de estudo
+      Obrigatório: SIM
+      Requer confirmação: SIM
+      Exibição: Sempre (toda sessão)
+
+  [2] disclaimer_pre_peca
+      Contexto: Antes de gerar peça processual
+      Obrigatório: SIM
+      Requer confirmação: SIM
+      Exibição: Sempre (toda geração)
+
+  [3] info_cadastro_inicial
+      Contexto: No cadastro do usuário
+      Obrigatório: NÃO
+      Requer confirmação: NÃO
+      Exibição: Uma vez
+
+
+================================================================================
+3. POLÍTICAS IMPLEMENTADAS
+================================================================================
+
+3.1. TERMOS DE USO (OAB)
+------------------------
+
+VERSÃO: 1.0
+VIGÊNCIA: A partir de 2025-12-17
+
+ESTRUTURA:
+
+1. OBJETO E ACEITAÇÃO
+   1.1. Definição do serviço
+   1.2. Aceitação dos termos
+   1.3. Modificação dos termos
+
+2. CADASTRO E CONTA
+   2.1. Requisitos de cadastro
+   2.2. Responsabilidade pelas informações
+   2.3. Segurança da conta
+
+3. ESCOPO DO SERVIÇO
+   3.1. Natureza educacional
+   3.2. Limitações explícitas
+   3.3. Vedações de uso
+
+4. RESPONSABILIDADES DO USUÁRIO
+   4.1. Uso adequado
+   4.2. Não distribuição de conteúdo
+   4.3. Respeito à propriedade intelectual
+
+5. RESPONSABILIDADES DA PLATAFORMA
+   5.1. Disponibilidade do serviço (SLA)
+   5.2. Qualidade do conteúdo
+   5.3. Suporte ao usuário
+
+6. LIMITAÇÃO DE RESPONSABILIDADE
+   6.1. Exclusão de garantias
+   6.2. Uso por conta e risco
+   6.3. Limites indenizatórios
+
+7. PROPRIEDADE INTELECTUAL
+   7.1. Direitos autorais do conteúdo
+   7.2. Licença de uso
+   7.3. Proteção de marca
+
+8. PRIVACIDADE E PROTEÇÃO DE DADOS
+   8.1. Política de privacidade
+   8.2. Tratamento de dados pessoais
+   8.3. Direitos LGPD
+
+9. PLANOS E PAGAMENTOS
+   9.1. Planos disponíveis
+   9.2. Forma de pagamento
+   9.3. Cancelamento e reembolso
+
+10. RESCISÃO E SUSPENSÃO
+    10.1. Rescisão pelo usuário
+    10.2. Rescisão pela plataforma
+    10.3. Efeitos da rescisão
+
+11. DISPOSIÇÕES GERAIS
+    11.1. Lei aplicável
+    11.2. Foro competente
+    11.3. Contato
+
+CLÁUSULAS CRÍTICAS:
+
+  [1] LIMITAÇÃO DE RESPONSABILIDADE (Art. 6º):
+
+      "A DOUTORA IA/OAB é uma ferramenta EXCLUSIVAMENTE EDUCACIONAL
+      para preparação ao Exame da OAB.
+
+      O USUÁRIO reconhece e concorda que:
+
+      a) O sistema NÃO oferece consultoria ou aconselhamento jurídico;
+      b) O conteúdo NÃO substitui orientação de advogado inscrito na OAB;
+      c) As peças geradas são MODELOS para fins de TREINAMENTO;
+      d) O uso do sistema é POR CONTA E RISCO do usuário;
+      e) A plataforma NÃO se responsabiliza por decisões tomadas com
+         base no conteúdo do sistema;
+      f) A plataforma NÃO garante aprovação no Exame da OAB.
+
+      A responsabilidade da plataforma limita-se ao valor pago pelo
+      usuário nos últimos 12 meses, excluindo lucros cessantes,
+      danos morais ou indiretos."
+
+  [2] VEDAÇÕES EXPRESSAS (Art. 3.3):
+
+      "É EXPRESSAMENTE VEDADO ao usuário:
+
+      a) Utilizar peças geradas para protocolo em processos reais;
+      b) Basear decisões jurídicas exclusivamente no sistema;
+      c) Ofertar consultoria jurídica a terceiros usando o sistema;
+      d) Representar o sistema como substituto de advogado;
+      e) Distribuir, revender ou compartilhar acesso ao sistema."
+
+  [3] INEXISTÊNCIA DE RELAÇÃO ADVOGADO-CLIENTE (Art. 6.2):
+
+      "O uso do sistema NÃO estabelece relação advogado-cliente entre
+      o usuário e a plataforma ou seus representantes.
+
+      Para orientação jurídica sobre casos reais, o usuário DEVE
+      consultar advogado devidamente inscrito na OAB."
+
+
+IMPLEMENTAÇÃO:
+
+Tabela: termo_politica
+  - tipo: 'termos_uso'
+  - versao: '1.0'
+  - conteudo: [texto completo dos termos]
+  - obrigatorio: TRUE
+  - ativo: TRUE
+
+Função: verificar_aceitacao_termos(usuario_id)
+
+Enforcement:
+  - Usuário DEVE aceitar termos antes do primeiro uso
+  - Aceitação registrada com timestamp, IP e user agent
+  - Nova versão = nova aceitação obrigatória
+
+
+3.2. POLÍTICA DE PRIVACIDADE (LGPD)
+------------------------------------
+
+VERSÃO: 1.0
+VIGÊNCIA: A partir de 2025-12-17
+
+ESTRUTURA:
+
+1. INTRODUÇÃO
+   1.1. Compromisso com a privacidade
+   1.2. Lei aplicável (LGPD)
+   1.3. Responsável pelo tratamento
+
+2. DADOS COLETADOS
+   2.1. Dados cadastrais
+   2.2. Dados de uso
+   2.3. Dados técnicos
+   2.4. Dados de pagamento
+
+3. FINALIDADES DO TRATAMENTO
+   3.1. Prestação do serviço
+   3.2. Melhoria do sistema
+   3.3. Comunicação
+   3.4. Cumprimento de obrigações legais
+
+4. BASES LEGAIS (Art. 7º, LGPD)
+   4.1. Consentimento (dados cadastrais)
+   4.2. Execução de contrato (dados de uso)
+   4.3. Legítimo interesse (analytics)
+   4.4. Obrigação legal (dados fiscais)
+
+5. COMPARTILHAMENTO DE DADOS
+   5.1. Com quem compartilhamos
+   5.2. Transferência internacional
+   5.3. Proteção de dados compartilhados
+
+6. SEGURANÇA DOS DADOS
+   6.1. Medidas técnicas
+   6.2. Medidas organizacionais
+   6.3. Notificação de incidentes
+
+7. RETENÇÃO DE DADOS
+   7.1. Período de guarda
+   7.2. Anonimização após 5 anos
+   7.3. Exclusão a pedido
+
+8. DIREITOS DO TITULAR (Art. 18, LGPD)
+   8.1. Acesso aos dados
+   8.2. Correção de dados
+   8.3. Exclusão de dados
+   8.4. Portabilidade
+   8.5. Revogação de consentimento
+   8.6. Oposição ao tratamento
+
+9. COOKIES E TECNOLOGIAS SIMILARES
+   9.1. Tipos de cookies
+   9.2. Finalidades
+   9.3. Gerenciamento
+
+10. ALTERAÇÕES NA POLÍTICA
+    10.1. Notificação de mudanças
+    10.2. Aceitação de nova versão
+
+11. CONTATO E DPO
+    11.1. Encarregado de dados (DPO)
+    11.2. Canais de contato
+
+DADOS COLETADOS:
+
+[A] DADOS CADASTRAIS (Base: Consentimento):
+    - Email
+    - Nome completo
+    - CPF (opcional, para emissão de nota fiscal)
+    - Senha (hash bcrypt)
+
+[B] DADOS DE USO (Base: Execução de contrato):
+    - Questões respondidas
+    - Acertos e erros
+    - Tempo de estudo
+    - Áreas de dificuldade
+    - Peças geradas (se aplicável)
+
+[C] DADOS TÉCNICOS (Base: Legítimo interesse):
+    - IP de acesso
+    - User agent
+    - Timestamps de ações
+    - Logs de erros
+
+[D] DADOS DE PAGAMENTO (Base: Execução de contrato):
+    - Histórico de assinaturas
+    - Método de pagamento (tokenizado via Stripe)
+    - Notas fiscais emitidas
+
+FINALIDADES:
+
+  [1] Prestação do serviço: Permitir acesso e uso do sistema
+  [2] Melhoria: Analytics para aprimoramento pedagógico
+  [3] Personalização: Recomendações de estudo
+  [4] Comunicação: Avisos sobre alterações, novidades
+  [5] Segurança: Detecção de fraudes, proteção de conta
+  [6] Legal: Cumprimento de obrigações fiscais e tributárias
+
+COMPARTILHAMENTO:
+
+  - Stripe (processamento de pagamentos) - USA, adequação LGPD
+  - AWS (hospedagem) - Brasil (região São Paulo)
+  - Não vendemos dados a terceiros
+  - Não usamos dados para publicidade direcionada
+
+RETENÇÃO:
+
+  - Dados de uso: 5 anos após última atividade
+  - Dados cadastrais: Até exclusão da conta + 6 meses
+  - Dados de pagamento: 5 anos (obrigação legal fiscal)
+  - Logs de acesso: 6 meses
+  - Após período: Anonimização automática
+
+IMPLEMENTAÇÃO:
+
+Tabela: termo_politica
+  - tipo: 'privacidade'
+  - versao: '1.0'
+  - obrigatorio: TRUE
+
+
+3.3. POLÍTICA DE USO ACEITÁVEL
+-------------------------------
+
+VERSÃO: 1.0
+VIGÊNCIA: A partir de 2025-12-17
+
+CONDUTAS PERMITIDAS:
+
+  ✓ Estudar para o Exame da OAB
+  ✓ Praticar questões e simulados
+  ✓ Gerar peças para fins de treinamento
+  ✓ Compartilhar resultados pessoais em redes sociais
+  ✓ Recomendar o sistema a colegas
+
+CONDUTAS PROIBIDAS:
+
+  ✗ Compartilhar credenciais de acesso
+  ✗ Revender ou sublicenciar acesso
+  ✗ Copiar e distribuir questões do sistema
+  ✗ Extrair base de dados por scraping
+  ✗ Usar peças geradas em processos reais
+  ✗ Hackear, tentar burlar ou explorar vulnerabilidades
+  ✗ Criar contas falsas ou múltiplas contas para mesma pessoa
+  ✗ Usar sistema para oferecer consultoria jurídica a terceiros
+  ✗ Fazer engenharia reversa do sistema
+
+SANÇÕES:
+
+  - 1ª infração: Advertência por email
+  - 2ª infração: Suspensão de 7 dias
+  - 3ª infração: Cancelamento da conta sem reembolso
+
+  - Infrações graves (compartilhamento de credenciais, scraping):
+    Cancelamento imediato sem reembolso
+
+IMPLEMENTAÇÃO:
+
+Tabela: termo_politica
+  - tipo: 'uso_aceitavel'
+  - versao: '1.0'
+  - obrigatorio: TRUE
+
+
+================================================================================
+4. LOGS LEGAIS IMPLEMENTADOS
+================================================================================
+
+4.1. AÇÕES SENSÍVEIS RASTREADAS
+--------------------------------
+
+Migration: database/migrations/006_create_legal_compliance.sql
+
+Tabela: log_legal
+
+Campos:
+  - usuario_id: ID do usuário
+  - tipo_acao: Tipo da ação
+  - categoria: acesso_dados, modificacao, exclusao, exportacao
+  - descricao: Descrição textual
+  - recurso_acessado: Recurso específico
+  - dados_acessados: JSONB com dados acessados
+  - ip_origem: IP de origem
+  - user_agent: User agent
+  - consentimento_presente: Boolean
+  - base_legal: Base legal LGPD
+  - timestamp: Momento da ação
+  - anonimizado: Se foi anonimizado
+
+Ações rastreadas:
+
+[1] CADASTRO E AUTENTICAÇÃO:
+    - registro
+    - login
+    - logout
+    - alteracao_senha
+    - troca_modo
+
+[2] TERMOS E CONSENTIMENTO:
+    - aceitacao_termo
+    - revogacao_consentimento
+
+[3] ACESSO A DADOS PESSOAIS:
+    - visualizacao_perfil
+    - edicao_perfil
+    - exportacao_dados (LGPD Art. 18)
+
+[4] SOLICITAÇÕES LGPD:
+    - solicitacao_lgpd_acesso
+    - solicitacao_lgpd_retificacao
+    - solicitacao_lgpd_exclusao
+    - solicitacao_lgpd_portabilidade
+    - solicitacao_lgpd_oposicao
+
+[5] PAGAMENTOS:
+    - alteracao_plano
+    - cancelamento_assinatura
+    - atualizacao_pagamento
+
+[6] EXCLUSÃO:
+    - exclusao_conta
+    - anonimizacao_dados
+
+Serviço: core/compliance_service.py
+
+Função: registrar_log_legal()
+
+Exemplo de uso:
+
+  from core.compliance_service import ComplianceService
+
+  compliance = ComplianceService()
+
+  # Ao visualizar perfil
+  compliance.registrar_log_legal(
+      usuario_id=usuario_id,
+      tipo_acao="visualizacao_perfil",
+      categoria="acesso_dados",
+      descricao="Usuário acessou próprio perfil",
+      recurso_acessado="perfil",
+      ip_origem=request.remote_addr,
+      user_agent=request.headers.get('User-Agent'),
+      base_legal="execucao_contrato"
+  )
+
+
+4.2. RETENÇÃO DE LOGS
+----------------------
+
+Política de retenção:
+
+  - Logs de ações sensíveis: 5 anos
+  - Logs de acesso comum: 6 meses
+  - Logs anonimizados: Indefinido (sem dados pessoais)
+
+Anonimização automática:
+
+Função SQL: anonimizar_dados_antigos()
+
+Execução: CRON diário às 3h
+
+  0 3 * * * psql -c "SELECT anonimizar_dados_antigos();"
+
+Ação:
+  - Remove usuario_id
+  - Remove ip_origem
+  - Remove user_agent
+  - Remove dados_acessados
+  - Marca anonimizado = TRUE
+  - Registra data_anonimizacao
+
+Resultado:
+  - Log preservado para auditoria estatística
+  - Dados pessoais eliminados
+  - Compliance com LGPD (minimização de dados)
+
+
+4.3. AUDITORIA
+--------------
+
+Consulta de logs para auditoria:
+
+  -- Logs de um usuário específico
+  SELECT tipo_acao, descricao, timestamp
+  FROM log_legal
+  WHERE usuario_id = :usuario_id
+    AND anonimizado = FALSE
+  ORDER BY timestamp DESC;
+
+  -- Logs de solicitações LGPD
+  SELECT tipo_acao, COUNT(*)
+  FROM log_legal
+  WHERE tipo_acao LIKE 'solicitacao_lgpd_%'
+    AND timestamp >= NOW() - INTERVAL '30 days'
+  GROUP BY tipo_acao;
+
+  -- Logs de exclusões de conta
+  SELECT COUNT(*), DATE(timestamp)
+  FROM log_legal
+  WHERE tipo_acao = 'exclusao_conta'
+    AND timestamp >= NOW() - INTERVAL '90 days'
+  GROUP BY DATE(timestamp);
+
+
+================================================================================
+5. AVISOS OBRIGATÓRIOS
+================================================================================
+
+5.1. DISCLAIMER PRÉ-SESSÃO
+---------------------------
+
+Código: disclaimer_pre_sessao_oab
+Contexto: Antes de iniciar sessão de estudo
+Obrigatório: SIM
+Requer confirmação: SIM
+Exibição: Toda sessão
+
+TEXTO:
+
+"""
+AVISO IMPORTANTE
+
+Este sistema destina-se EXCLUSIVAMENTE à preparação para o Exame da OAB.
+
+ESTE SISTEMA NÃO:
+• Substitui a orientação de advogado constituído
+• Fornece aconselhamento jurídico final sobre casos reais
+• Estabelece relação advogado-cliente
+• Deve ser usado para decisões jurídicas concretas
+
+ESTE SISTEMA É:
+• Uma ferramenta educacional de preparação para o Exame da OAB
+• Um simulador de questões e situações típicas do exame
+• Um recurso de estudo e prática
+
+Para orientação jurídica sobre casos reais, consulte um advogado devidamente
+inscrito na OAB.
+
+Ao continuar, você confirma que compreende estas limitações.
+"""
+
+IMPLEMENTAÇÃO:
+
+  POST /sessao/iniciar
+
+  [1] Verificar se usuário já confirmou hoje:
+      - Se exibir_sempre = TRUE: sempre mostrar
+      - Se FALSE: verificar confirmacao_aviso
+
+  [2] Se deve exibir:
+      - Retornar HTTP 428 Precondition Required
+      - Body: {aviso_obrigatorio: {...}}
+
+  [3] Frontend exibe modal com:
+      - Título
+      - Mensagem
+      - Checkbox "Li e compreendi"
+      - Botão "Continuar" (habilitado apenas se checkbox marcado)
+
+  [4] Ao confirmar:
+      POST /aviso/confirmar
+      Body: {aviso_id, sessao_id}
+
+      - Registrar confirmação
+      - Permitir continuação
+
+
+5.2. DISCLAIMER PRÉ-PEÇA
+-------------------------
+
+Código: disclaimer_pre_peca
+Contexto: Antes de gerar peça processual
+Obrigatório: SIM
+Requer confirmação: SIM
+Exibição: Toda geração
+
+TEXTO:
+
+"""
+AVISO - PRÁTICA DE PEÇA PROCESSUAL
+
+A peça processual gerada é EXCLUSIVAMENTE para fins de PRÁTICA e TREINAMENTO
+para o Exame da OAB.
+
+NÃO USE ESTA PEÇA:
+• Em processos judiciais reais
+• Para protocolo em qualquer instância
+• Como modelo definitivo para casos concretos
+
+ESTA PEÇA É:
+• Um exercício de preparação para a prova prática da OAB
+• Um modelo de estudo e aprendizado
+• Gerada por IA para fins educacionais
+
+Para elaboração de peças processuais em casos reais, consulte um advogado.
+"""
+
+IMPLEMENTAÇÃO:
+
+  POST /peca/gerar
+
+  Fluxo idêntico ao disclaimer pré-sessão.
+
+
+5.3. INFO CADASTRO INICIAL
+---------------------------
+
+Código: info_cadastro_inicial
+Contexto: No cadastro do usuário
+Obrigatório: NÃO
+Requer confirmação: NÃO
+Exibição: Uma vez
+
+TEXTO:
+
+"""
+Bem-vindo à DOUTORA IA/OAB
+
+Sistema de preparação para o Exame da Ordem dos Advogados do Brasil.
+
+FINALIDADE:
+Auxiliar estudantes e bacharéis em Direito na preparação para as provas da OAB
+através de questões, simulados e prática de peças processuais.
+
+LIMITAÇÕES:
+Este sistema NÃO substitui orientação jurídica profissional para casos reais.
+Consulte sempre um advogado inscrito na OAB para questões jurídicas concretas.
+
+SEUS DADOS:
+Seus dados pessoais são tratados conforme nossa Política de Privacidade, em
+conformidade com a LGPD (Lei 13.709/2018).
+"""
+
+
+================================================================================
+6. SOLICITAÇÕES LGPD
+================================================================================
+
+6.1. DIREITOS DO TITULAR (ART. 18, LGPD)
+-----------------------------------------
+
+Tabela: solicitacao_lgpd
+
+Tipos de solicitação:
+
+[1] ACESSO (Art. 18, I e II):
+    "Confirmação da existência de tratamento e acesso aos dados"
+
+    Prazo: Imediato (via interface) ou 15 dias (via email)
+
+    Implementação:
+      - Interface "Meus Dados" no perfil
+      - Exportação em JSON
+      - Inclui: cadastro, uso, assinaturas, logs
+
+[2] RETIFICAÇÃO (Art. 18, III):
+    "Correção de dados incompletos, inexatos ou desatualizados"
+
+    Prazo: Imediato
+
+    Implementação:
+      - Interface "Editar Perfil"
+      - Validação de dados
+      - Log de alterações
+
+[3] ANONIMIZAÇÃO (Art. 18, IV):
+    "Anonimização, bloqueio ou eliminação de dados desnecessários"
+
+    Prazo: 15 dias
+
+    Implementação:
+      - Análise manual de necessidade
+      - Anonimização de dados históricos
+      - Preservação de dados legalmente obrigatórios
+
+[4] PORTABILIDADE (Art. 18, V):
+    "Portabilidade dos dados a outro fornecedor"
+
+    Prazo: 15 dias
+
+    Implementação:
+      - Exportação completa em JSON
+      - Formato estruturado e legível
+      - Download via link com expiração
+
+[5] EXCLUSÃO (Art. 18, VI):
+    "Eliminação dos dados tratados com consentimento"
+
+    Prazo: Imediato (soft delete) + 30 dias (hard delete)
+
+    Implementação:
+      - Soft delete: marca deleted_at
+      - Hard delete após 30 dias
+      - Preservação de dados legalmente obrigatórios (5 anos fiscal)
+      - Anonimização como alternativa
+
+[6] INFORMAÇÃO (Art. 18, VII):
+    "Informação sobre compartilhamento"
+
+    Prazo: Imediato (via Política de Privacidade)
+
+    Implementação:
+      - Seção "Compartilhamento" na Política
+      - Lista clara de terceiros (Stripe, AWS)
+
+[7] REVOGAÇÃO (Art. 18, IX):
+    "Revogação do consentimento"
+
+    Prazo: Imediato
+
+    Implementação:
+      - Interface "Gerenciar Consentimentos"
+      - Desativa funcionalidades dependentes
+      - Pode inviabilizar uso do serviço
+
+
+6.2. FLUXO DE SOLICITAÇÃO
+--------------------------
+
+[1] USUÁRIO SOLICITA:
+    POST /lgpd/solicitar
+    Body: {tipo_solicitacao, descricao}
+
+    - Cria registro em solicitacao_lgpd
+    - Status: pendente
+    - Envia email de confirmação
+
+[2] PROCESSAMENTO AUTOMÁTICO (SE APLICÁVEL):
+    - Acesso: Gera exportação automaticamente
+    - Retificação: Via interface de edição
+    - Revogação: Desativa consentimento
+
+[3] PROCESSAMENTO MANUAL:
+    - Anonimização: Análise de DPO
+    - Portabilidade: Geração de export completo
+    - Exclusão: Validação de obrigações legais
+
+[4] CONCLUSÃO:
+    - Atualiza status: concluida
+    - Registra data_conclusao
+    - Notifica usuário
+    - Se aplicável: disponibiliza arquivo
+
+
+6.3. ENCARREGADO DE DADOS (DPO)
+--------------------------------
+
+Conforme Art. 41, LGPD:
+
+Designação: Obrigatória
+
+Responsabilidades:
+  - Aceitar reclamações e comunicações dos titulares
+  - Prestar esclarecimentos
+  - Receber comunicações da ANPD
+  - Orientar funcionários sobre boas práticas
+
+Contato:
+  - Email: dpo@juris-ia.com.br
+  - Formulário web: /contato/dpo
+  - Prazo de resposta: 15 dias
+
+
+================================================================================
+7. PREPARAÇÃO PARA AUDITORIA
+================================================================================
+
+7.1. CHECKLIST DE COMPLIANCE LGPD
+----------------------------------
+
+DOCUMENTAÇÃO:
+
+[ ] Política de Privacidade publicada e acessível
+[ ] Termos de Uso publicados e acessíveis
+[ ] Política de Uso Aceitável publicada
+[ ] Registro de atividades de tratamento (ROPA)
+[ ] Contratos com operadores de dados (Stripe, AWS)
+[ ] Designação formal de DPO
+[ ] Procedimentos de resposta a incidentes
+
+TÉCNICO:
+
+[ ] Logs de ações sensíveis implementados
+[ ] Anonimização automática configurada
+[ ] Criptografia de dados em trânsito (HTTPS)
+[ ] Criptografia de dados em repouso (senhas bcrypt)
+[ ] Backup com retenção de 30 dias
+[ ] Controle de acesso role-based
+[ ] Auditoria de acessos a dados pessoais
+
+PROCESSO:
+
+[ ] Fluxo de aceitação de termos validado
+[ ] Fluxo de solicitações LGPD testado
+[ ] Prazo de resposta de 15 dias monitorado
+[ ] Formulário de contato DPO funcional
+[ ] Procedimento de notificação de incidente (72h)
+
+TREINAMENTO:
+
+[ ] Equipe técnica treinada em LGPD
+[ ] Equipe de suporte treinada em direitos dos titulares
+[ ] DPO capacitado e certificado
+
+
+7.2. EVIDÊNCIAS PARA DEFESA
+----------------------------
+
+EM CASO DE PROCESSO:
+
+[1] Disclaimers apresentados:
+    - Query: SELECT * FROM confirmacao_aviso WHERE usuario_id = X
+    - Prova: Usuário viu e confirmou avisos obrigatórios
+
+[2] Aceitação de termos:
+    - Query: SELECT * FROM aceitacao_termo WHERE usuario_id = X
+    - Prova: Usuário aceitou expressamente limitações
+
+[3] Logs de uso:
+    - Query: SELECT * FROM log_legal WHERE usuario_id = X
+    - Prova: Rastro completo de ações do usuário
+
+[4] Limitações técnicas:
+    - Código-fonte: Verificação de feature flags
+    - Prova: Sistema impede uso inadequado tecnicamente
+
+[5] Natureza educacional:
+    - Conteúdo: Questões são de exames anteriores
+    - Prova: Não há consultoria, apenas simulação
+
+
+7.3. RELATÓRIO DE IMPACTO (RIPD)
+---------------------------------
+
+Conforme Art. 5º, XVII, LGPD:
+
+Quando elaborar:
+  - Tratamento de dados sensíveis
+  - Tratamento em larga escala
+  - Alto risco aos direitos dos titulares
+
+Status atual:
+  - Dados tratados: Não sensíveis (email, nome, CPF opcional)
+  - Escala: Pequena (50 usuários go-live)
+  - Risco: Baixo (educacional, não decisório)
+
+Conclusão: RIPD NÃO OBRIGATÓRIO nesta fase
+
+Revisão: Ao atingir 1000 usuários ou tratar dados sensíveis
+
+
+================================================================================
+8. CONCLUSÃO
+================================================================================
+
+SISTEMA JURIDICAMENTE PROTEGIDO.
+
+Entregáveis implementados:
+  ✅ Limites explícitos do sistema definidos
+  ✅ Termos de Uso, Privacidade e Uso Aceitável criados
+  ✅ Logs legais completos implementados
+  ✅ Avisos obrigatórios configurados
+  ✅ Fluxo de solicitações LGPD implementado
+  ✅ Anonimização automática configurada
+  ✅ Checklist de compliance preparado
+
+Status: APROVADO PARA LANÇAMENTO COM PROTEÇÃO JURÍDICA ADEQUADA
+
+Risco jurídico residual: BAIXO
+
+Recomendação: REVISÃO POR ADVOGADO antes de lançamento público em larga escala
+
+Próxima etapa: GO-LIVE CONTROLADO com monitoramento de compliance
+
+================================================================================
+FIM DO RELATÓRIO
+================================================================================

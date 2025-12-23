@@ -1,0 +1,482 @@
+JURIS_IA_CORE_V1
+SISTEMA OAB 2ª FASE - PETIÇÃO INICIAL CÍVEL
+Guia Completo de Construção Passo a Passo
+============================================================
+
+OBJETIVO DESTE GUIA
+============================================================
+
+Ensinar a construir uma PETIÇÃO INICIAL CÍVEL nota 10 na OAB 2ª fase, através de:
+1. Anatomia completa da peça
+2. Checklist de verificação
+3. Erros fatais a evitar
+4. Fundamentos legais essenciais
+5. Exemplo comentado
+
+Este NÃO é template para copiar. É GUIA para CONSTRUIR com raciocínio jurídico.
+
+============================================================
+ANATOMIA DA PETIÇÃO INICIAL
+============================================================
+
+ESTRUTURA OBRIGATÓRIA (CPC, art. 319):
+
+1. ENDEREÇAMENTO
+2. QUALIFICAÇÃO DAS PARTES
+3. FATOS
+4. FUNDAMENTOS JURÍDICOS (DIREITO)
+5. PEDIDO
+6. VALOR DA CAUSA
+7. PROVAS
+8. LOCAL, DATA E ASSINATURA
+
+Cada parte tem REQUISITOS FORMAIS e MATERIAIS. Falta de qualquer um pode ZERAR a peça.
+
+============================================================
+PARTE 1 - ENDEREÇAMENTO
+============================================================
+
+O QUE É:
+Indicação do juízo competente.
+
+FORMATO:
+
+```
+EXCELENTÍSSIMO SENHOR DOUTOR JUIZ DE DIREITO DA [número]ª VARA [matéria] DA COMARCA DE [cidade/estado]
+```
+
+EXEMPLOS:
+- "EXCELENTÍSSIMO SENHOR DOUTOR JUIZ DE DIREITO DA 1ª VARA CÍVEL DA COMARCA DE SÃO PAULO/SP"
+- "EXCELENTÍSSIMO SENHOR DOUTOR JUIZ DE DIREITO DA VARA DA FAZENDA PÚBLICA DA COMARCA DE BELO HORIZONTE/MG"
+- "EXCELENTÍSSIMO SENHOR DOUTOR JUIZ DE DIREITO DA 2ª VARA DE FAMÍLIA E SUCESSÕES DA COMARCA DO RIO DE JANEIRO/RJ"
+
+ERROS FATAIS:
+- ❌ Juízo incompetente (ex: pedir dano moral em Vara da Fazenda se réu é particular)
+- ❌ Escrever "MERITÍSSIMO" (antiquado, evite)
+- ❌ Escrever minúsculo ou sem "EXCELENTÍSSIMO"
+
+COMO ACERTAR:
+1. Identifique natureza da ação (cível, família, fazenda)
+2. Se réu é Fazenda Pública → Vara da Fazenda Pública
+3. Se é família/sucessão → Vara de Família
+4. Se é cível comum → Vara Cível
+5. Comarca: cidade onde réu é domiciliado (regra)
+
+ATENÇÃO OAB:
+Na prova, o enunciado geralmente DIZ qual vara indicar ou dá pistas (ex: "comarca de domicílio do réu"). LEIA COM ATENÇÃO.
+
+============================================================
+PARTE 2 - QUALIFICAÇÃO DAS PARTES
+============================================================
+
+O QUE É:
+Identificação completa de autor e réu.
+
+FORMATO:
+
+```
+[NOME COMPLETO DO AUTOR], [nacionalidade], [estado civil], [profissão], portador do RG nº [número], inscrito no CPF sob o nº [número], residente e domiciliado na [endereço completo com CEP], por seu advogado que esta subscreve (procuração anexa / instrumento de mandato anexo), vem, respeitosamente, à presença de Vossa Excelência, propor
+
+AÇÃO DE [tipo da ação]
+
+em face de [NOME COMPLETO DO RÉU], [nacionalidade], [estado civil], [profissão], portador do RG nº [número], inscrito no CPF sob o nº [número], residente e domiciliado na [endereço completo com CEP], pelos fatos e fundamentos jurídicos a seguir expostos:
+```
+
+DADOS OBRIGATÓRIOS (CPC, art. 319, II):
+- Nome completo
+- Qualificação: nacionalidade, estado civil, profissão
+- RG e CPF (pessoa física) ou CNPJ (pessoa jurídica)
+- Endereço completo (rua, número, bairro, cidade, estado, CEP)
+
+ERROS FATAIS:
+- ❌ Não mencionar procuração
+- ❌ Esquecer algum dado da qualificação
+- ❌ Nome do tipo de ação errado (ex: chamar "ação de indenização" quando deveria ser "ação de reparação de danos")
+- ❌ Qualificar incorretamente (ex: dizer que empresa é pessoa física)
+
+PESSOA JURÍDICA:
+```
+[RAZÃO SOCIAL], pessoa jurídica de direito privado, inscrita no CNPJ sob o nº [número], com sede na [endereço completo], neste ato representada por seu [cargo] [nome do representante]...
+```
+
+DICA OAB:
+Na prova, o enunciado dá TODOS os dados. COPIE EXATAMENTE como está no enunciado. Não invente.
+
+============================================================
+PARTE 3 - FATOS (CAUSA DE PEDIR REMOTA)
+============================================================
+
+O QUE É:
+Narração dos fatos que deram origem ao litígio.
+
+COMO FAZER:
+1. Ordem cronológica
+2. Linguagem clara e objetiva
+3. Só fatos RELEVANTES (jurídicos)
+4. Sem opinião ou julgamento
+
+TÍTULO SUGERIDO:
+```
+I - DOS FATOS
+```
+ou
+```
+DOS FATOS
+```
+
+ESTRUTURA:
+- Parágrafo 1: Contexto inicial (relação entre as partes)
+- Parágrafos seguintes: Fatos em ordem cronológica
+- Último parágrafo: Fato que ensejou a ação (dano, inadimplemento, etc.)
+
+EXEMPLO (Ação de Indenização por Acidente):
+```
+DOS FATOS
+
+1. No dia 15 de janeiro de 2023, o Autor trafegava com seu veículo, modelo [X], placa [XXX-0000], pela Avenida [nome], sentido [bairro], quando, ao cruzar a via, foi violentamente atingido pelo veículo do Réu, modelo [Y], placa [YYY-1111].
+
+2. O Réu avançou o sinal vermelho, em alta velocidade, colidindo com a lateral esquerda do veículo do Autor, causando danos materiais de grande monta.
+
+3. Em razão do impacto, o Autor sofreu lesões corporais de natureza grave, conforme atestado médico anexo, permanecendo internado por 10 (dez) dias.
+
+4. O veículo do Autor, avaliado em R$ 50.000,00 (cinquenta mil reais), teve perda total, conforme laudo pericial anexo.
+
+5. O Réu foi autuado pela autoridade de trânsito por avanço de sinal vermelho, conforme auto de infração anexo.
+
+6. Apesar de notificado extrajudicialmente, o Réu quedou-se inerte, não reparando os danos causados.
+```
+
+ERROS FATAIS:
+- ❌ Narrar com opinião ("o réu, de forma vil e covarde...")
+- ❌ Pular fatos essenciais (ex: não mencionar que notificou extrajudicialmente quando isso é requisito)
+- ❌ Narrar fatos irrelevantes (ex: "o autor, que sempre foi pessoa honesta...")
+- ❌ Desordem cronológica (confunde o juiz)
+
+FATOS JURÍDICOS ESSENCIAIS:
+- Fato constitutivo (que dá origem ao direito)
+- Dano (se ação de indenização)
+- Inadimplemento (se ação de cobrança)
+- Notificação extrajudicial (se exigida)
+- Tentativa de acordo (pode demonstrar boa-fé)
+
+DICA OAB:
+O enunciado da prova traz os fatos. Sua missão: SELECIONAR os juridicamente relevantes e ORDENAR cronologicamente. Descarte fatos irrelevantes.
+
+============================================================
+PARTE 4 - FUNDAMENTOS JURÍDICOS (CAUSA DE PEDIR PRÓXIMA)
+============================================================
+
+O QUE É:
+Enquadramento jurídico dos fatos. É o DIREITO aplicado aos fatos.
+
+TÍTULO SUGERIDO:
+```
+II - DO DIREITO
+```
+ou
+```
+DOS FUNDAMENTOS JURÍDICOS
+```
+
+ESTRUTURA:
+1. Identificar instituto jurídico aplicável
+2. Citar norma legal
+3. Aplicar norma aos fatos
+4. Citar jurisprudência (se houver)
+5. Demonstrar preenchimento de requisitos
+
+EXEMPLO (continuando caso acima):
+```
+DO DIREITO
+
+DA RESPONSABILIDADE CIVIL DO RÉU
+
+7. A conduta do Réu configura ato ilícito, nos termos do art. 186 do Código Civil: "Aquele que, por ação ou omissão voluntária, negligência ou imprudência, violar direito e causar dano a outrem, ainda que exclusivamente moral, comete ato ilícito."
+
+8. São requisitos da responsabilidade civil: (i) conduta; (ii) dano; (iii) nexo causal; e (iv) culpa. Todos presentes no caso concreto.
+
+9. CONDUTA: O Réu avançou sinal vermelho em alta velocidade, violando norma de trânsito (art. 208, CTB).
+
+10. DANO: O Autor sofreu (i) danos materiais (perda total do veículo no valor de R$ 50.000,00); (ii) danos morais (lesões corporais graves, internação hospitalar, sofrimento físico e psíquico).
+
+11. NEXO CAUSAL: Os danos decorreram DIRETAMENTE da conduta do Réu. Sem a colisão, não haveria dano (relação de causa e efeito, art. 403, CC).
+
+12. CULPA: O Réu agiu com CULPA GRAVE, caracterizada por imprudência (avanço de sinal vermelho em alta velocidade).
+
+13. Nos termos do art. 927 do Código Civil: "Aquele que, por ato ilícito (arts. 186 e 187), causar dano a outrem, fica obrigado a repará-lo."
+
+DO DANO MATERIAL
+
+14. O dano material (emergente) é o valor da perda total do veículo: R$ 50.000,00 (cinquenta mil reais), conforme laudo anexo (art. 402, CC).
+
+DO DANO MORAL
+
+15. O dano moral é presumível em casos de lesões corporais graves, dispensando prova específica (in re ipsa). Nesse sentido, STJ, Súmula 387: "É lícita a cumulação das indenizações de dano estético e dano moral."
+
+16. A fixação do valor do dano moral deve observar critérios de razoabilidade e proporcionalidade, considerando: (i) gravidade do dano; (ii) condições econômicas das partes; (iii) caráter punitivo-pedagógico.
+
+17. Diante da gravidade das lesões e do sofrimento experimentado, requer-se indenização por dano moral no valor de R$ 30.000,00 (trinta mil reais).
+```
+
+ERROS FATAIS:
+- ❌ Não citar artigos de lei
+- ❌ Citar artigo errado ou revogado
+- ❌ Não demonstrar preenchimento de requisitos (ex: responsabilidade civil exige conduta+dano+nexo+culpa - tem que mostrar que tem os 4)
+- ❌ Fundamentação genérica ("o autor tem razão porque...")
+- ❌ Não aplicar norma aos fatos (ficar só na teoria)
+
+ARTIGOS ESSENCIAIS (DECORAR):
+- Responsabilidade civil: arts. 186, 187, 927, 402, 403, 944 a 954 CC
+- Contratos: arts. 421 a 480 CC
+- Família: arts. 1.511 a 1.783 CC
+- Sucessões: arts. 1.784 a 2.027 CC
+- Processual: CPC inteiro (principais: 319, 330, 485, 489)
+
+SÚMULAS IMPORTANTES:
+- STJ 387: dano estético + moral (cumulação)
+- STJ 362: juros de mora em acidente de veículo (data do evento)
+- STJ 54: juros de mora em responsabilidade extracontratual (citação)
+
+DICA OAB:
+CITE ARTIGOS ESPECÍFICOS, não só "Código Civil". Exemplo: "art. 186 do CC", não "Código Civil".
+
+============================================================
+PARTE 5 - PEDIDO
+============================================================
+
+O QUE É:
+O que você quer que o juiz decida. É a CONCLUSÃO da peça.
+
+TÍTULO SUGERIDO:
+```
+III - DOS PEDIDOS
+```
+ou
+```
+DO PEDIDO
+```
+
+REQUISITOS (CPC, art. 322):
+- CERTO ou DETERMINADO
+- Lógico (consequência dos fatos e fundamentos)
+- Possível
+
+ESTRUTURA:
+```
+DOS PEDIDOS
+
+Diante do exposto, requer-se:
+
+a) A CITAÇÃO do Réu, no endereço declinado, para, querendo, apresentar contestação, sob pena de revelia e confissão ficta;
+
+b) A PROCEDÊNCIA DO PEDIDO, para CONDENAR o Réu ao pagamento de:
+   b.1) DANOS MATERIAIS no valor de R$ 50.000,00 (cinquenta mil reais);
+   b.2) DANOS MORAIS no valor de R$ 30.000,00 (trinta mil reais);
+   b.3) CUSTAS PROCESSUAIS e HONORÁRIOS ADVOCATÍCIOS, nos termos do art. 85 do CPC.
+
+c) A PRODUÇÃO DE PROVAS por todos os meios admitidos em direito, especialmente:
+   c.1) Prova documental (anexa);
+   c.2) Prova pericial;
+   c.3) Prova testemunhal;
+   c.4) Depoimento pessoal do Réu.
+
+Dá-se à causa o valor de R$ 80.000,00 (oitenta mil reais).
+
+Termos em que,
+Pede deferimento.
+
+[Local], [Data].
+
+[Nome do Advogado]
+OAB/[UF] [número]
+```
+
+ERROS FATAIS:
+- ❌ Pedido GENÉRICO sem autorização (ex: "indenização em valor a ser arbitrado" quando poderia determinar)
+- ❌ Pedido IMPOSSÍVEL (ex: pedir que réu seja preso em ação cível)
+- ❌ Pedido CONTRADITÓRIO com os fatos (pedir rescisão de contrato que nunca existiu)
+- ❌ Esquecer de pedir CITAÇÃO do réu
+- ❌ Esquecer de pedir produção de PROVAS
+- ❌ Não especificar VALOR (quando possível)
+
+PEDIDO CERTO vs PEDIDO GENÉRICO:
+- CERTO: valor determinado ("R$ 50.000,00")
+- GENÉRICO: valor a ser apurado (só permitido em casos do art. 324, CPC: não há como precisar)
+
+TUTELA DE URGÊNCIA (se aplicável):
+Se houver urgência e risco de dano, incluir:
+```
+TUTELA DE URGÊNCIA
+
+Requer-se, ainda, em sede de TUTELA ANTECIPADA (art. 300, CPC), a imediata [medida], diante da presença dos requisitos:
+- Probabilidade do direito: [demonstrar]
+- Perigo de dano: [demonstrar]
+```
+
+DICA OAB:
+LEIA O QUE O ENUNCIADO PEDE. Se pede "indenização", peça indenização. Se pede "rescisão + indenização", peça os dois. Não invente pedido que não foi solicitado.
+
+============================================================
+PARTE 6 - VALOR DA CAUSA
+============================================================
+
+O QUE É:
+Valor econômico da demanda.
+
+FORMATO:
+```
+Dá-se à causa o valor de R$ [valor por extenso] ([valor por extenso entre parênteses]).
+```
+
+EXEMPLO:
+```
+Dá-se à causa o valor de R$ 80.000,00 (oitenta mil reais).
+```
+
+COMO CALCULAR:
+- Ação de indenização: soma dos danos (material + moral)
+- Ação de cobrança: valor do débito
+- Ação de despejo: 12 aluguéis
+- Ação declaratória: valor da utilidade (ou estimável)
+
+ERROS FATAIS:
+- ❌ Não indicar valor da causa
+- ❌ Valor incompatível com o pedido (pede R$ 100.000, valor da causa R$ 10.000)
+
+DICA OAB:
+Soma TODOS os pedidos de condenação em dinheiro.
+
+============================================================
+PARTE 7 - PROVAS
+============================================================
+
+O QUE É:
+Indicação das provas que pretende produzir.
+
+JÁ INCLUÍDO NO PEDIDO (item "c" do exemplo acima):
+```
+c) A PRODUÇÃO DE PROVAS por todos os meios admitidos em direito, especialmente:
+   c.1) Prova documental (anexa);
+   c.2) Prova pericial;
+   c.3) Prova testemunhal (até 3 testemunhas);
+   c.4) Depoimento pessoal do Réu.
+```
+
+ERROS FATAIS:
+- ❌ Não requerer produção de provas
+- ❌ Pedir prova ilícita
+
+PROVAS PRINCIPAIS:
+- Documental: contratos, recibos, laudos, fotos
+- Pericial: perícia técnica (quando necessário conhecimento técnico)
+- Testemunhal: até 10 testemunhas (regra)
+- Depoimento pessoal: das partes
+
+DICA OAB:
+Sempre peça "provas por todos os meios em direito" + especifique as principais.
+
+============================================================
+PARTE 8 - LOCAL, DATA E ASSINATURA
+============================================================
+
+FORMATO:
+```
+[Cidade] - [UF], [dia] de [mês] de [ano].
+
+[Nome completo do advogado]
+OAB/[UF] nº [número]
+```
+
+EXEMPLO:
+```
+São Paulo - SP, 17 de dezembro de 2025.
+
+JOÃO DA SILVA ADVOGADOS
+OAB/SP nº 123.456
+```
+
+ERROS FATAIS:
+- ❌ Não assinar
+- ❌ Não colocar OAB
+- ❌ Data incorreta
+
+DICA OAB:
+Na prova, coloque a data do dia da prova (eles aceitam qualquer data próxima).
+
+============================================================
+CHECKLIST FINAL - PETIÇÃO INICIAL
+============================================================
+
+ANTES DE FINALIZAR, VERIFIQUE:
+
+FORMA:
+- [ ] Endereçamento correto?
+- [ ] Qualificação completa (autor e réu)?
+- [ ] Mencionou procuração?
+- [ ] Estrutura clara (fatos → direito → pedidos)?
+- [ ] Linguagem formal, clara, sem erros?
+
+CONTEÚDO:
+- [ ] Fatos narrados em ordem cronológica?
+- [ ] Todos os fatos relevantes incluídos?
+- [ ] Fundamentação jurídica com artigos?
+- [ ] Requisitos do instituto demonstrados?
+- [ ] Pedido certo e determinado?
+- [ ] Pediu citação do réu?
+- [ ] Pediu produção de provas?
+- [ ] Valor da causa correto?
+
+ERROS FATAIS AUSENTES:
+- [ ] NÃO pediu impossível?
+- [ ] NÃO citou artigo revogado?
+- [ ] NÃO tem contradição entre fatos e pedido?
+- [ ] NÃO esqueceu dado essencial da qualificação?
+
+SE TODOS ✓ = PEÇA APROVADA
+
+============================================================
+ERROS QUE ZERAM A PEÇA
+============================================================
+
+1. **PEDIDO JURIDICAMENTE IMPOSSÍVEL**
+   - Ex: pedir prisão em ação cível
+   - Ex: pedir divórcio de quem nunca casou
+
+2. **FALTA DE FUNDAMENTAÇÃO LEGAL**
+   - Não citar nenhum artigo de lei
+
+3. **ILEGITIMIDADE DA PARTE**
+   - Ex: filho pedir indenização por dano sofrido pelo pai (legitimidade é do pai)
+
+4. **INCOMPETÊNCIA ABSOLUTA**
+   - Ex: pedir na Vara Cível algo que é da Fazenda Pública
+
+5. **CONTRADIÇÃO FATAL**
+   - Fatos dizem X, pede Y incompatível
+
+6. **FALTA DE QUALIFICAÇÃO COMPLETA**
+   - Omitir dados essenciais (nome, CPF, endereço)
+
+============================================================
+DICA DE OURO PARA OAB 2ª FASE
+============================================================
+
+**NÃO INVENTE. LEIA O ENUNCIADO E SIGA.**
+
+O enunciado traz:
+- Fatos (use todos os relevantes)
+- Dados das partes (copie exatamente)
+- O que pedir (peça exatamente isso)
+- Vara competente (geralmente informa)
+
+Sua missão:
+1. ORGANIZAR os fatos
+2. FUNDAMENTAR com artigos
+3. PEDIR conforme solicitado
+4. VERIFICAR checklist
+
+**APROVAÇÃO = TÉCNICA + CUIDADO, NÃO CRIATIVIDADE**
+
+============================================================
+FIM DO GUIA - PETIÇÃO INICIAL CÍVEL
+============================================================

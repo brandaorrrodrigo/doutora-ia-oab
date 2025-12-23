@@ -1,0 +1,541 @@
+================================================================================
+GUIA DE DEPLOY: DOCKER + OLLAMA + RTX 3090
+================================================================================
+Sistema: JURIS_IA_CORE_V1
+Stack: PostgreSQL + Redis + Ollama + FastAPI
+GPU: NVIDIA RTX 3090 (24GB VRAM)
+Data: 2025-12-17
+================================================================================
+
+VISÃO GERAL
+================================================================================
+
+Este guia configura TODA a stack em Docker com um único comando:
+
+✅ PostgreSQL + pgvector     (Banco de dados)
+✅ Redis                      (Cache)
+✅ Ollama + GPU               (IA local)
+✅ Backend FastAPI            (API)
+✅ pgAdmin (opcional)         (Interface DB)
+✅ Redis Commander (opcional) (Interface Redis)
+
+VANTAGENS DOCKER:
+- ✅ Setup automático (1 comando)
+- ✅ Isolamento total
+- ✅ Fácil deploy/rollback
+- ✅ Portabilidade
+- ✅ Logs centralizados
+- ✅ GPU funcionando out-of-the-box
+
+
+PRÉ-REQUISITOS
+================================================================================
+
+1. DOCKER + DOCKER COMPOSE
+---------------------------
+
+Windows:
+  Docker Desktop: https://www.docker.com/products/docker-desktop/
+  - Baixar e instalar
+  - Habilitar WSL2
+  - Reiniciar
+
+Linux:
+  # Instalar Docker
+  curl -fsSL https://get.docker.com | sh
+  sudo usermod -aG docker $USER
+
+  # Instalar Docker Compose
+  sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+  sudo chmod +x /usr/local/bin/docker-compose
+
+Verificar:
+  docker --version
+  docker-compose --version
+
+
+2. NVIDIA CONTAINER TOOLKIT (PARA GPU)
+---------------------------------------
+
+Windows:
+  Docker Desktop já inclui suporte a GPU NVIDIA
+  Apenas verificar drivers atualizados
+
+Linux:
+  # Instalar NVIDIA Container Toolkit
+  distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+  curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
+  curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+
+  sudo apt-get update
+  sudo apt-get install -y nvidia-container-toolkit
+  sudo systemctl restart docker
+
+Verificar:
+  docker run --rm --gpus all nvidia/cuda:11.8.0-base-ubuntu22.04 nvidia-smi
+
+
+3. MAKE (OPCIONAL MAS RECOMENDADO)
+-----------------------------------
+
+Windows:
+  choco install make
+  # ou
+  winget install GnuWin32.Make
+
+Linux:
+  sudo apt install make
+
+Verificar:
+  make --version
+
+
+SETUP RÁPIDO (PRIMEIRA VEZ)
+================================================================================
+
+OPÇÃO A: COM MAKE (RECOMENDADO)
+--------------------------------
+
+1. Clonar/navegar ao projeto:
+   cd D:\JURIS_IA_CORE_V1
+
+2. Setup completo automatizado (5-15 minutos):
+   make quick-start
+
+   Isso vai:
+   ✓ Criar arquivo .env
+   ✓ Iniciar todos os containers
+   ✓ Baixar modelos Ollama (nomic-embed-text + llama3.1:8b)
+   ✓ Executar migrações do banco
+   ✓ Popular 100 embeddings de teste
+
+3. Verificar:
+   make health
+
+4. Acessar:
+   - Backend: http://localhost:8000
+   - Ollama: http://localhost:11434
+
+
+OPÇÃO B: SEM MAKE (MANUAL)
+---------------------------
+
+1. Criar arquivo .env:
+   cp .env.docker .env
+
+2. Iniciar containers:
+   docker-compose up -d
+
+3. Aguardar ~30 segundos para tudo iniciar
+
+4. Baixar modelos Ollama:
+   docker-compose exec ollama ollama pull nomic-embed-text
+   docker-compose exec ollama ollama pull llama3.1:8b-instruct-q8_0
+
+5. Popular embeddings (teste):
+   docker-compose exec backend python scripts/popular_embeddings_ollama.py --limite 100
+
+
+ARQUITETURA DOS CONTAINERS
+================================================================================
+
++----------------+     +--------------+     +---------------+
+|   PostgreSQL   |     |    Redis     |     |    Ollama     |
+|   (pgvector)   |     |   (cache)    |     |  (GPU/RTX)    |
+|   Port: 5432   |     |  Port: 6379  |     | Port: 11434   |
++----------------+     +--------------+     +---------------+
+        ↑                     ↑                     ↑
+        |                     |                     |
+        +--------------------+|+--------------------+
+                             |||
+                       +-----vvv--------+
+                       |    Backend     |
+                       |    (FastAPI)   |
+                       |   Port: 8000   |
+                       +----------------+
+                              |
+                              v
+                         API Externa
+
+
+COMANDOS ESSENCIAIS (MAKE)
+================================================================================
+
+## GERENCIAMENTO DE CONTAINERS ##
+
+make up              # Iniciar containers
+make down            # Parar containers
+make restart         # Reiniciar containers
+make logs            # Ver logs (tempo real)
+make ps              # Listar containers
+make health          # Verificar saúde dos serviços
+
+## OLLAMA ##
+
+make ollama-models       # Listar modelos instalados
+make ollama-pull-llm     # Baixar llama3.1:8b (8GB)
+make ollama-pull-70b     # Baixar llama3:70b (40GB - máxima qualidade)
+
+## EMBEDDINGS ##
+
+make populate-embeddings      # Popular TODAS as questões
+make populate-embeddings-test # Popular 100 questões (teste)
+
+## BANCO DE DADOS ##
+
+make db-shell         # Shell PostgreSQL
+make db-migrate       # Executar migrações
+make backup-db        # Backup do banco
+make restore-db FILE=backup.sql  # Restaurar backup
+
+## MONITORAMENTO ##
+
+make stats            # Estatísticas dos containers
+make nvidia-smi       # Monitorar GPU
+
+## FERRAMENTAS ##
+
+make tools-up         # Iniciar pgAdmin + Redis Commander
+make tools-down       # Parar ferramentas
+
+## DESENVOLVIMENTO ##
+
+make shell-backend    # Shell do container backend
+make test             # Executar testes
+
+
+COMANDOS ESSENCIAIS (SEM MAKE)
+================================================================================
+
+docker-compose up -d                    # Iniciar
+docker-compose down                     # Parar
+docker-compose logs -f                  # Logs
+docker-compose ps                       # Status
+docker-compose restart                  # Reiniciar
+
+# Executar comandos dentro dos containers
+docker-compose exec backend bash
+docker-compose exec postgres psql -U juris_ia_user -d juris_ia
+docker-compose exec ollama ollama list
+
+
+POPULAR EMBEDDINGS (PRODUÇÃO)
+================================================================================
+
+# Opção 1: Via make
+make populate-embeddings
+
+# Opção 2: Manual
+docker-compose exec backend python scripts/popular_embeddings_ollama.py \
+  --modelo nomic-embed-text
+
+Tempo esperado (RTX 3090):
+- 1.000 questões: ~20 segundos
+- 5.000 questões: ~90-120 segundos
+- 10.000 questões: ~3-4 minutos
+
+
+MONITORAR GPU (RTX 3090)
+================================================================================
+
+# Terminal 1: Monitorar GPU continuamente
+make nvidia-smi
+
+# Terminal 2: Popular embeddings
+make populate-embeddings
+
+# Terminal 3: Ver logs
+make logs-backend
+
+Você deve ver:
+- GPU Utilization: 70-95%
+- VRAM Usage: ~10GB
+- Temperature: 60-75°C
+- Power: 150-250W
+
+
+FERRAMENTAS ADMINISTRATIVAS
+================================================================================
+
+Iniciar ferramentas:
+  make tools-up
+
+Acessar:
+  pgAdmin:         http://localhost:5050
+    Email: admin@juris-ia.com
+    Senha: admin123 (alterar no .env)
+
+  Redis Commander: http://localhost:8081
+
+
+MODELOS OLLAMA (OPÇÕES)
+================================================================================
+
+EMBEDDING (escolher 1):
+
+1. nomic-embed-text (RECOMENDADO)
+   make ollama-pull-embedding
+   Tamanho: 1.5GB
+   Dimensões: 768
+
+2. mxbai-embed-large
+   docker-compose exec ollama ollama pull mxbai-embed-large
+   Tamanho: 670MB
+   Dimensões: 1024
+
+
+LLM (escolher 1):
+
+1. llama3.1:8b (RECOMENDADO para RTX 3090)
+   make ollama-pull-llm
+   Tamanho: 8.5GB
+   Qualidade: Muito boa
+   Velocidade: 100-150 tokens/seg
+
+2. llama3:70b (MÁXIMA QUALIDADE)
+   make ollama-pull-70b
+   Tamanho: 40GB
+   Qualidade: Excelente (próximo GPT-4)
+   Velocidade: 30-50 tokens/seg
+
+3. llama3.2:3b (MAIS LEVE)
+   docker-compose exec ollama ollama pull llama3.2:3b
+   Tamanho: 2GB
+   Qualidade: Boa
+   Velocidade: Rápido
+
+
+ALTERAR MODELOS
+================================================================================
+
+1. Editar arquivo .env:
+   EMBEDDING_MODEL=nomic-embed-text
+   LLM_MODEL=llama3.1:8b-instruct-q8_0
+
+2. Reiniciar backend:
+   docker-compose restart backend
+
+3. Verificar logs:
+   docker-compose logs -f backend
+
+
+BACKUP E RESTORE
+================================================================================
+
+BACKUP:
+  make backup-db
+  # Salva em: backups/backup_YYYYMMDD_HHMMSS.sql
+
+RESTORE:
+  make restore-db FILE=backups/backup_20251217_150000.sql
+
+
+LOGS E DEBUG
+================================================================================
+
+# Todos os logs
+docker-compose logs -f
+
+# Apenas backend
+docker-compose logs -f backend
+
+# Apenas Ollama
+docker-compose logs -f ollama
+
+# Últimas 100 linhas
+docker-compose logs --tail=100 backend
+
+# Desde uma data
+docker-compose logs --since 2024-01-01T10:00:00 backend
+
+
+TROUBLESHOOTING
+================================================================================
+
+PROBLEMA: GPU não detectada no container Ollama
+SOLUÇÃO:
+  # Verificar host
+  nvidia-smi
+
+  # Verificar container
+  docker run --rm --gpus all nvidia/cuda:11.8.0-base-ubuntu22.04 nvidia-smi
+
+  # Se falhar, reinstalar NVIDIA Container Toolkit
+
+PROBLEMA: Ollama não baixa modelos
+SOLUÇÃO:
+  # Verificar espaço em disco
+  df -h
+
+  # Verificar internet
+  docker-compose exec ollama ping -c 3 ollama.com
+
+  # Baixar manualmente
+  docker-compose exec ollama ollama pull nomic-embed-text
+
+PROBLEMA: Backend não conecta ao Ollama
+SOLUÇÃO:
+  # Verificar se Ollama está rodando
+  docker-compose ps ollama
+
+  # Verificar logs
+  docker-compose logs ollama
+
+  # Reiniciar
+  docker-compose restart ollama backend
+
+PROBLEMA: PostgreSQL não inicia
+SOLUÇÃO:
+  # Ver logs
+  docker-compose logs postgres
+
+  # Remover volume (CUIDADO: perde dados)
+  docker-compose down -v
+  docker-compose up -d
+
+PROBLEMA: Porta já em uso
+SOLUÇÃO:
+  # Ver o que está usando a porta
+  netstat -ano | findstr :8000
+
+  # Alterar porta no docker-compose.yml
+  ports:
+    - "8001:8000"  # Usar 8001 ao invés de 8000
+
+
+PERFORMANCE ESPERADA (RTX 3090)
+================================================================================
+
+EMBEDDINGS:
+  Velocidade: 50-70 questões/segundo
+  5.000 questões: ~90-120 segundos
+  Latência individual: 50-100ms
+
+EXPLICAÇÕES (LLM 8b):
+  Primeira vez: 1-2 segundos
+  Via cache: < 50ms
+  Tokens/seg: 100-150
+
+EXPLICAÇÕES (LLM 70b):
+  Primeira vez: 4-6 segundos
+  Via cache: < 50ms
+  Tokens/seg: 30-50
+
+BUSCA VETORIAL:
+  10 similares: < 50ms
+  100 similares: < 200ms
+
+
+VARIÁVEIS DE AMBIENTE (.env)
+================================================================================
+
+# Modelos
+EMBEDDING_MODEL=nomic-embed-text
+LLM_MODEL=llama3.1:8b-instruct-q8_0
+
+# Senhas (MUDAR EM PRODUÇÃO!)
+POSTGRES_PASSWORD=changeme123
+JWT_SECRET_KEY=your-secret-key-here
+
+# URLs (não mudar se usar docker-compose)
+DATABASE_URL=postgresql://juris_ia_user:changeme123@postgres:5432/juris_ia
+REDIS_URL=redis://redis:6379/0
+OLLAMA_HOST=http://ollama:11434
+
+
+ESCALAR PARA PRODUÇÃO
+================================================================================
+
+AJUSTES RECOMENDADOS:
+
+1. Usar volumes externos (para backup):
+   docker volume create juris_ia_postgres_prod
+   docker volume create juris_ia_ollama_prod
+
+2. Limitar recursos:
+   deploy:
+     resources:
+       limits:
+         cpus: '8'
+         memory: 32G
+
+3. Habilitar restart automático:
+   restart: always
+
+4. Usar secrets para senhas:
+   secrets:
+     postgres_password:
+       external: true
+
+5. Adicionar load balancer:
+   nginx:
+     image: nginx:alpine
+     ports:
+       - "80:80"
+     depends_on:
+       - backend
+
+
+CHECKLIST DE DEPLOY
+================================================================================
+
+DESENVOLVIMENTO:
+  [ ] make quick-start
+  [ ] make health
+  [ ] make populate-embeddings-test
+  [ ] make test
+
+STAGING:
+  [ ] Alterar senhas no .env
+  [ ] make up
+  [ ] make ollama-pull-all
+  [ ] make populate-embeddings
+  [ ] Testar endpoints principais
+  [ ] make backup-db
+
+PRODUÇÃO:
+  [ ] Usar volumes externos
+  [ ] Configurar backup automático
+  [ ] Configurar monitoramento (Prometheus/Grafana)
+  [ ] Configurar alertas
+  [ ] Documentar procedimentos de rollback
+  [ ] Testar restore de backup
+
+
+PRÓXIMOS PASSOS
+================================================================================
+
+1. [ ] Executar make quick-start (5-15 min)
+2. [ ] Verificar make health (todos OK)
+3. [ ] Acessar http://localhost:8000 (API funcionando)
+4. [ ] Popular embeddings completos: make populate-embeddings (2 min)
+5. [ ] Testar explicações via API
+6. [ ] Configurar backup automático
+7. [ ] Deploy em produção
+
+
+SUPORTE
+================================================================================
+
+Logs: make logs
+Health check: make health
+GPU: make nvidia-smi
+Modelos: make ollama-models
+
+Documentação:
+- docker-compose.yml (configuração completa)
+- Makefile (todos os comandos)
+- .env.docker (variáveis de ambiente)
+
+
+================================================================================
+FIM DO GUIA
+================================================================================
+
+COM DOCKER + RTX 3090, VOCÊ TEM:
+✅ Setup em 1 comando (make quick-start)
+✅ 100% isolado e portável
+✅ GPU funcionando automaticamente
+✅ Fácil escalar e fazer deploy
+✅ Backup/restore simplificado
+🚀 A MELHOR CONFIGURAÇÃO POSSÍVEL!

@@ -1,0 +1,493 @@
+================================================================================
+GUIA OTIMIZADO: OLLAMA/LLAMA PARA RTX 3090 (24GB VRAM)
+================================================================================
+Sistema: JURIS_IA_CORE_V1
+Hardware: NVIDIA RTX 3090
+Data: 2025-12-17
+Tempo estimado: 20-30 minutos
+================================================================================
+
+VISÃO GERAL
+================================================================================
+
+Com RTX 3090 (24GB VRAM), você pode usar os MELHORES modelos:
+
+✅ EMBEDDINGS: nomic-embed-text ou mxbai-embed-large
+   Performance esperada: 40-60 questões/segundo
+
+✅ LLM: llama3.1:8b ou até llama3:70b (quantizado)
+   Performance esperada: 1-2 segundos por explicação
+
+Sua GPU é aproximadamente:
+- 3x mais rápida que RTX 3060
+- 2x mais rápida que RTX 4080
+- Similar a RTX 4090 (mas com mais VRAM!)
+
+
+RECOMENDAÇÃO DE MODELOS (OTIMIZADO PARA RTX 3090)
+================================================================================
+
+EMBEDDINGS - OPÇÃO 1 (RECOMENDADO):
+------------------------------------
+nomic-embed-text
+- Dimensões: 768
+- Tamanho: ~1.5GB VRAM
+- Performance: ~50-70 questões/segundo
+- Qualidade: Excelente
+
+ollama pull nomic-embed-text
+
+
+EMBEDDINGS - OPÇÃO 2 (MAIOR QUALIDADE):
+----------------------------------------
+mxbai-embed-large
+- Dimensões: 1024
+- Tamanho: ~670MB VRAM
+- Performance: ~60-80 questões/segundo
+- Qualidade: Excelente
+
+ollama pull mxbai-embed-large
+
+
+LLM - OPÇÃO 1 (RECOMENDADO):
+-----------------------------
+llama3.1:8b
+- Parâmetros: 8 bilhões
+- Tamanho: ~5GB VRAM
+- Performance: ~100-150 tokens/seg → ~1-2s por explicação
+- Qualidade: Muito boa (superior ao 3b)
+
+ollama pull llama3.1:8b
+
+
+LLM - OPÇÃO 2 (MÁXIMA QUALIDADE):
+----------------------------------
+llama3:70b (quantizado Q4)
+- Parâmetros: 70 bilhões (quantizado)
+- Tamanho: ~20GB VRAM
+- Performance: ~30-50 tokens/seg → ~4-6s por explicação
+- Qualidade: Excelente (quase GPT-4)
+
+ollama pull llama3:70b-q4_K_M
+
+
+LLM - OPÇÃO 3 (BALANCEADO):
+----------------------------
+llama3.1:8b-instruct-q8_0
+- Parâmetros: 8 bilhões (quantização Q8)
+- Tamanho: ~8GB VRAM
+- Performance: ~80-120 tokens/seg → ~2-3s por explicação
+- Qualidade: Excelente
+
+ollama pull llama3.1:8b-instruct-q8_0
+
+
+MINHA RECOMENDAÇÃO FINAL PARA RTX 3090:
+========================================
+
+EMBEDDINGS: nomic-embed-text
+LLM: llama3.1:8b-instruct-q8_0
+
+MOTIVO:
+- Usa apenas ~10GB VRAM (sobram 14GB para outros processos)
+- Performance excelente (1-2s por explicação)
+- Qualidade muito superior ao 3b
+- Pode rodar ambos simultaneamente
+
+
+INSTALAÇÃO RÁPIDA (RTX 3090)
+================================================================================
+
+1. INSTALAR OLLAMA
+------------------
+
+Windows:
+1. Baixar: https://ollama.com/download/windows
+2. Instalar OllamaSetup.exe
+3. Verificar: ollama --version
+
+
+2. VERIFICAR GPU
+----------------
+
+# Verificar se RTX 3090 está disponível
+nvidia-smi
+
+# Esperado:
+# +-----------------------------------------------------------------------------+
+# | NVIDIA-SMI 525.xx       Driver Version: 525.xx       CUDA Version: 12.x   |
+# |-------------------------------+----------------------+----------------------+
+# |   0  NVIDIA GeForce RTX 3090  On   | 00000000:01:00.0  Off |                  N/A |
+# | 30%   45C    P8    25W / 350W |      0MiB / 24576MiB |      0%      Default |
+
+
+3. BAIXAR MODELOS (ORDEM RECOMENDADA)
+--------------------------------------
+
+# Embedding (1.5GB) - 2 minutos
+ollama pull nomic-embed-text
+
+# LLM (8GB) - 10 minutos
+ollama pull llama3.1:8b-instruct-q8_0
+
+# Verificar
+ollama list
+
+# Esperado:
+# NAME                              SIZE      MODIFIED
+# nomic-embed-text:latest           1.5 GB    2 minutes ago
+# llama3.1:8b-instruct-q8_0:latest  8.5 GB    5 minutes ago
+
+
+4. CONFIGURAR OLLAMA PARA RTX 3090
+-----------------------------------
+
+# Criar/editar arquivo de configuração
+# Windows: %USERPROFILE%\.ollama\config.json
+
+{
+  "num_gpu": 1,
+  "num_thread": 16,
+  "num_ctx": 8192,
+  "num_batch": 1024,
+  "gpu_layers": 99
+}
+
+Explicação:
+- num_gpu: 1 = Usar 1 GPU
+- num_thread: 16 = Usar 16 threads CPU (ajustar conforme seu CPU)
+- num_ctx: 8192 = Contexto maior (aproveita VRAM)
+- num_batch: 1024 = Batch grande (melhor throughput)
+- gpu_layers: 99 = Carregar todo modelo na GPU
+
+
+5. TESTAR PERFORMANCE
+---------------------
+
+# Testar embedding
+time ollama run nomic-embed-text "Art. 5º da Constituição Federal"
+
+# Esperado: < 100ms
+
+# Testar LLM
+time ollama run llama3.1:8b-instruct-q8_0 "Explique o princípio da isonomia em 100 palavras"
+
+# Esperado: ~2 segundos (50-60 tokens/seg)
+
+
+BENCHMARK RTX 3090
+================================================================================
+
+EMBEDDINGS (nomic-embed-text):
+------------------------------
+Teste com 1000 questões:
+
+cd D:\JURIS_IA_CORE_V1
+python -c "
+import time
+from core.embedding_service_ollama import EmbeddingServiceOllama
+
+service = EmbeddingServiceOllama(model='nomic-embed-text')
+
+# Aquecer GPU
+for i in range(10):
+    service.gerar_embedding('teste ' * 100)
+
+# Benchmark
+start = time.time()
+for i in range(100):
+    service.gerar_embedding(f'Questão de teste número {i}. ' * 50)
+elapsed = time.time() - start
+
+print(f'Tempo: {elapsed:.2f}s')
+print(f'Velocidade: {100/elapsed:.1f} embeddings/segundo')
+"
+
+# RESULTADO ESPERADO RTX 3090:
+# Tempo: ~1.5-2s
+# Velocidade: 50-70 embeddings/segundo
+
+
+LLM (llama3.1:8b):
+------------------
+python -c "
+import time
+from core.explicacao_service_ollama import ExplicacaoServiceOllama
+
+service = ExplicacaoServiceOllama(model='llama3.1:8b-instruct-q8_0')
+
+# Testar
+texto, meta = service._chamar_ollama(
+    'Explique em 200 palavras o princípio da legalidade no Direito Penal',
+    'Você é professor de Direito'
+)
+
+print(f'Tokens gerados: {meta[\"tokens_gerados\"]}')
+print(f'Tempo: {meta[\"tempo_s\"]:.2f}s')
+print(f'Velocidade: {meta[\"tokens_gerados\"]/meta[\"tempo_s\"]:.1f} tokens/s')
+"
+
+# RESULTADO ESPERADO RTX 3090:
+# Tokens gerados: ~200
+# Tempo: 1.5-2.5s
+# Velocidade: 80-130 tokens/segundo
+
+
+POPULAR EMBEDDINGS (PRODUÇÃO)
+================================================================================
+
+# Base completa (5000 questões) - ~2 minutos com RTX 3090
+python scripts/popular_embeddings_ollama.py \
+  --modelo nomic-embed-text
+
+# Estatísticas esperadas:
+# Total: 5000 questões
+# Tempo: ~90-120 segundos
+# Velocidade: 40-60 questões/segundo
+# Custo: R$ 0,00
+
+
+AJUSTAR COLUNA DO BANCO
+================================================================================
+
+# Para nomic-embed-text (768 dims)
+psql $DATABASE_URL -c "
+ALTER TABLE questao_oab
+DROP COLUMN IF EXISTS embedding CASCADE;
+
+ALTER TABLE questao_oab
+ADD COLUMN embedding VECTOR(768);
+
+CREATE INDEX idx_questao_embedding
+ON questao_oab
+USING ivfflat (embedding vector_cosine_ops)
+WITH (lists = 200);
+"
+
+# Lists = 200 para melhor performance com base de 5K questões
+
+
+MONITORAMENTO RTX 3090
+================================================================================
+
+# Terminal 1: Monitorar GPU
+watch -n 1 nvidia-smi
+
+# Terminal 2: Popular embeddings
+python scripts/popular_embeddings_ollama.py --modelo nomic-embed-text
+
+# Terminal 3: Gerar explicações (teste de carga)
+python -c "
+from core.explicacao_service_ollama import ExplicacaoServiceOllama
+from sqlalchemy import create_engine, text
+from sqlalchemy.orm import sessionmaker
+import os
+
+engine = create_engine(os.getenv('DATABASE_URL'))
+Session = sessionmaker(bind=engine)
+session = Session()
+
+service = ExplicacaoServiceOllama(model='llama3.1:8b-instruct-q8_0')
+
+# Buscar 10 questões
+questoes = session.execute(
+    text('''
+        SELECT q.id, g.alternativa_correta
+        FROM questao_oab q
+        JOIN gabarito_questao g ON q.id = g.questao_id
+        LIMIT 10
+    ''')
+).fetchall()
+
+# Gerar explicações para todas
+for questao_id, alt_correta in questoes:
+    alt_errada = 'A' if alt_correta != 'A' else 'B'
+
+    explicacao, meta = service.gerar_explicacao_erro(
+        session, questao_id, alt_errada, 'conceito'
+    )
+
+    print(f'Questão {questao_id}: {meta[\"tempo_ms\"]}ms')
+
+session.close()
+"
+
+
+VOCÊ DEVE VER (nvidia-smi):
+---------------------------
++-----------------------------------------------------------------------------+
+|   0  NVIDIA GeForce RTX 3090  On   | ... |
+| 45%   65C    P2   180W / 350W |  10234MiB / 24576MiB |  85%      Default |
++-----------------------------------------------------------------------------+
+
+Indicadores saudáveis:
+- Utilização: 70-95% (processando)
+- Temperatura: 60-75°C
+- Potência: 150-250W
+- VRAM: ~10GB em uso
+
+
+OTIMIZAÇÕES EXTRAS PARA RTX 3090
+================================================================================
+
+1. AUMENTAR BATCH SIZE
+-----------------------
+Para embeddings em massa, aumentar batch:
+
+# Editar core/embedding_service_ollama.py
+BATCH_SIZE = 100  # Era 50, aumentar para 100
+
+
+2. USAR MODELO 70B (MÁXIMA QUALIDADE)
+--------------------------------------
+Se você quer a MELHOR qualidade (trade-off: mais lento):
+
+# Baixar modelo grande (~40GB)
+ollama pull llama3:70b-q4_K_M
+
+# Usar no serviço
+explicacao_service = ExplicacaoServiceOllama(model='llama3:70b-q4_K_M')
+
+Performance:
+- ~30-50 tokens/seg (vs 80-130 do 8b)
+- ~4-6s por explicação (vs 1-2s do 8b)
+- Qualidade comparável a GPT-4
+
+
+3. RODAR EMBEDDING + LLM SIMULTANEAMENTE
+-----------------------------------------
+Com 24GB VRAM, você pode rodar ambos ao mesmo tempo:
+
+# Terminal 1: Servidor de embeddings
+python -c "
+from core.embedding_service_ollama import EmbeddingServiceOllama
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+service = EmbeddingServiceOllama(model='nomic-embed-text')
+
+@app.route('/embed', methods=['POST'])
+def embed():
+    texto = request.json['texto']
+    embedding = service.gerar_embedding(texto)
+    return jsonify({'embedding': embedding})
+
+app.run(port=5001)
+"
+
+# Terminal 2: Servidor de explicações
+python -c "
+from core.explicacao_service_ollama import ExplicacaoServiceOllama
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+service = ExplicacaoServiceOllama(model='llama3.1:8b')
+
+@app.route('/explicar', methods=['POST'])
+def explicar():
+    # ... código ...
+    return jsonify({'explicacao': explicacao})
+
+app.run(port=5002)
+"
+
+Ambos rodando = ~10GB VRAM total (sobram 14GB)
+
+
+COMPARAÇÃO: SUA RTX 3090 vs OUTRAS GPUS
+================================================================================
+
+EMBEDDINGS (questões/segundo):
+  CPU 8 cores:     ~2-3
+  RTX 3060 12GB:   ~10-15
+  RTX 4080 16GB:   ~25-35
+  RTX 3090 24GB:   ~50-70  ← VOCÊ ESTÁ AQUI
+  RTX 4090 24GB:   ~60-90
+
+EXPLICAÇÕES (tokens/segundo):
+  CPU 8 cores:     ~5-10
+  RTX 3060 12GB:   ~50-80  (modelo 3b)
+  RTX 4080 16GB:   ~80-120 (modelo 8b)
+  RTX 3090 24GB:   ~100-150 (modelo 8b) ← VOCÊ ESTÁ AQUI
+  RTX 4090 24GB:   ~150-200 (modelo 8b)
+
+
+RESULTADO ESPERADO (BASE COMPLETA)
+================================================================================
+
+Popular 5000 questões:
+- Tempo: ~90-120 segundos
+- Velocidade: 40-60 questões/segundo
+
+Gerar 100 explicações:
+- Primeira vez: ~150-200 segundos
+- Via cache (após 1 semana): ~5 segundos (hit rate 80%)
+
+Busca vetorial:
+- 10 similares: < 50ms
+- 100 similares: < 200ms
+
+
+TROUBLESHOOTING RTX 3090
+================================================================================
+
+PROBLEMA: GPU não utilizada (0%)
+SOLUÇÃO:
+  nvidia-smi  # Verificar se detectada
+  # Reinstalar drivers NVIDIA
+  # Verificar ollama está usando GPU:
+  ollama run llama3.1:8b --verbose
+
+PROBLEMA: Temperatura muito alta (>85°C)
+SOLUÇÃO:
+  # Melhorar ventilação
+  # Limpar poeira
+  # Reduzir power limit:
+  nvidia-smi -pl 300  # Limitar a 300W (de 350W)
+
+PROBLEMA: OOM (Out of Memory)
+SOLUÇÃO:
+  # Usar modelo menor
+  # Fechar outros programas que usam GPU
+  # Verificar VRAM disponível:
+  nvidia-smi
+
+
+PRÓXIMOS PASSOS
+================================================================================
+
+1. [ ] Instalar Ollama (5 min)
+2. [ ] Baixar modelos recomendados (15 min)
+3. [ ] Verificar GPU funcionando (2 min)
+4. [ ] Popular embeddings base completa (2 min)
+5. [ ] Testar explicações (2 min)
+6. [ ] Integrar nas APIs (próxima etapa)
+
+
+COMANDOS PRONTOS (COPIAR E COLAR)
+================================================================================
+
+# 1. Instalar Ollama (Windows)
+# Baixar e executar: https://ollama.com/download/windows
+
+# 2. Baixar modelos
+ollama pull nomic-embed-text
+ollama pull llama3.1:8b-instruct-q8_0
+
+# 3. Verificar GPU
+nvidia-smi
+
+# 4. Popular embeddings
+cd D:\JURIS_IA_CORE_V1
+python scripts/popular_embeddings_ollama.py --modelo nomic-embed-text
+
+# 5. Testar explicações
+python -c "from core.explicacao_service_ollama import ExplicacaoServiceOllama; service = ExplicacaoServiceOllama(model='llama3.1:8b-instruct-q8_0'); print('✓ Serviço inicializado com sucesso!')"
+
+
+COM SUA RTX 3090, VOCÊ TEM A MELHOR CONFIGURAÇÃO POSSÍVEL! 🚀
+
+
+================================================================================
+FIM DO GUIA RTX 3090
+================================================================================

@@ -1,0 +1,519 @@
+JURIS_IA_CORE_V1
+SISTEMA INTEGRAL E DEFINITIVO DE FORMAÇÃO JURÍDICA E APROVAÇÃO OAB
+Versão 1.0 - O Maior Aprovador de OAB do Brasil
+============================================================
+
+VISÃO GERAL DO SISTEMA
+============================================================
+
+O JURIS_IA_CORE_V1 é um sistema completo, modular e escalável de inteligência artificial jurídica, projetado para ser o maior aprovador de OAB do Brasil. O sistema integra:
+
+1. FORMAÇÃO JURÍDICA COMPLETA
+2. APROVAÇÃO NA OAB 1ª FASE
+3. APROVAÇÃO NA OAB 2ª FASE
+4. ATUAÇÃO PROFISSIONAL ASSISTIDA POR IA
+
+Este NÃO é MVP, NÃO é protótipo. É o SISTEMA DEFINITIVO.
+
+============================================================
+ARQUITETURA DO SISTEMA
+============================================================
+
+MÓDULOS PRINCIPAIS:
+
+1. ONTOLOGIA JURÍDICA (knowledge_base)
+   - Conceitos fundamentais do Direito
+   - Ramos e sub-ramos completos
+   - Institutos jurídicos
+   - Hierarquia e relações lógicas
+   - Formato RAG-ready
+
+2. LEI SECA ESTRUTURADA (lei_seca)
+   - Constituição Federal indexada
+   - Códigos completos (Civil, Penal, Processo)
+   - Leis especiais organizadas
+   - Artigos com contexto, pegadinhas e aplicação
+
+3. SISTEMA OAB 1ª FASE (oab_1fase)
+   - 17 disciplinas estruturadas
+   - Banco de questões categorizado
+   - Padrões de cobrança por banca
+   - Motor de explicação de alternativas
+   - Diagnóstico de erros conceituais
+   - Estratégias de resolução
+
+4. SISTEMA OAB 2ª FASE (oab_2fase)
+   - Peças por área (Cível, Penal, Trabalho, etc.)
+   - Checklist lógico de construção
+   - Motor de verificação de requisitos
+   - Fundamentos legais organizados
+   - Simulador de prova
+
+5. MOTOR DE APRENDIZAGEM (motor_aprendizagem)
+   - Diagnóstico contínuo de performance
+   - Classificação de erros
+   - Ciclos de revisão espaçada (1-24-7)
+   - Ajuste de profundidade dinâmico
+   - Detecção de regressão
+   - Mapas de calor de conhecimento
+
+6. IA JURÍDICA PROFISSIONAL (ia_profissional)
+   - Suporte pós-aprovação
+   - Organização de raciocínio jurídico
+   - Templates de peças profissionais
+   - Jurisprudência integrada
+   - Estudo contínuo orientado
+
+7. GOVERNANÇA E ÉTICA (governanca)
+   - Limites éticos da IA
+   - Logs e auditoria
+   - Responsabilidade e disclaimers
+   - Proteção de dados
+   - Compliance OAB
+
+8. ENGINES (engines)
+   - Motor de decisão (decision_engine)
+   - Motor de explicação (explanation_engine)
+   - Motor de geração de questões (question_engine)
+   - Motor de correção de peças (piece_engine)
+   - Motor de revisão espaçada (memory_engine)
+
+============================================================
+PRINCÍPIOS DE DESIGN
+============================================================
+
+1. MODULARIDADE
+   - Cada módulo é independente e testável
+   - Comunicação via interfaces definidas
+   - Facilita manutenção e expansão
+
+2. ESCALABILIDADE
+   - Estrutura preparada para milhares de usuários
+   - Cache inteligente de conteúdo
+   - Banco de dados otimizado
+
+3. RAG-READY
+   - Todo conteúdo estruturado para RAG
+   - Embeddings pré-calculados
+   - Contexto rico em cada chunk
+
+4. DIDÁTICA INTEGRADA
+   - Linguagem técnica + explicação simples
+   - Progressão de complexidade
+   - Analogias e exemplos práticos
+
+5. FOCO EM RESULTADOS
+   - Métricas claras de progresso
+   - Feedback imediato e acionável
+   - Ajuste contínuo baseado em performance
+
+6. ÉTICA E RESPONSABILIDADE
+   - IA não decide, orienta
+   - Disclaimers claros
+   - Logs de uso
+   - Proteção de dados
+
+============================================================
+FLUXO DE USO DO SISTEMA
+============================================================
+
+FASE 1: ONBOARDING E DIAGNÓSTICO
+--------------------------------------------------
+
+1. Cadastro do aluno
+   - Nome, e-mail, telefone
+   - Nível de conhecimento jurídico
+   - Data prevista para OAB
+   - Área de interesse (2ª fase)
+
+2. Diagnóstico inicial
+   - Mini-simulado de 30 questões (todas as disciplinas)
+   - Identificação de pontos fortes e fracos
+   - Mapeamento de lacunas conceituais
+   - Geração de plano de estudos personalizado
+
+3. Definição de metas
+   - Data da prova
+   - Horas disponíveis por dia
+   - Disciplinas prioritárias
+   - Estratégia de revisão
+
+FASE 2: ESTUDO DIRIGIDO (1ª FASE)
+--------------------------------------------------
+
+1. Conteúdo modular
+   - Cada disciplina dividida em módulos
+   - Cada módulo: teoria + prática
+   - Progressão: conceitos fundamentais → institutos específicos → questões
+
+2. Ciclo de aprendizagem
+   - TEORIA: leitura da ontologia + lei seca
+   - PRÁTICA: resolução de questões comentadas
+   - REVISÃO: ciclo 1-24-7 (1h, 24h, 7 dias)
+   - REFORÇO: drill focado em erros
+
+3. Motor de decisão ativo
+   - Monitora cada interação
+   - Detecta padrões de erro
+   - Ajusta dificuldade dinamicamente
+   - Sugere revisões e reforços
+
+4. Explicações multinível
+   - Nível 1: técnica (para quem domina)
+   - Nível 2: didática (explicação simples)
+   - Nível 3: analogias (compreensão intuitiva)
+   - Nível 4: exemplos práticos (aplicação real)
+
+FASE 3: SIMULADOS E AJUSTE FINO
+--------------------------------------------------
+
+1. Simulados progressivos
+   - Mini-simulados (10-20 questões) semanais
+   - Simulados completos (80 questões) mensais
+   - Condições reais: tempo, interface, pressão
+
+2. Análise de performance
+   - Taxa de acerto por disciplina
+   - Tempo médio por questão
+   - Padrões de erro (conceitual, leitura, pressa)
+   - Comparação com média nacional
+
+3. Ajuste de plano
+   - Redistribuição de tempo de estudo
+   - Foco em disciplinas fracas
+   - Revisão de disciplinas fortes (manutenção)
+   - Estratégias de prova (ordem, tempo, chute inteligente)
+
+FASE 4: PREPARAÇÃO 2ª FASE
+--------------------------------------------------
+
+1. Escolha da área
+   - Direito Civil
+   - Direito Penal
+   - Direito do Trabalho
+   - Direito Tributário
+   - Direito Empresarial
+   - Direito Constitucional
+   - Direito Administrativo
+
+2. Estudo de peças
+   - Estrutura da peça (anatomia)
+   - Requisitos formais e materiais
+   - Fundamentos legais essenciais
+   - Checklist de verificação
+   - Peças-modelo comentadas
+
+3. Treino de construção
+   - Construção guiada (IA auxilia passo a passo)
+   - Construção livre (aluno faz sozinho)
+   - Correção automatizada + humana
+   - Feedback detalhado
+
+4. Simulados de 2ª fase
+   - Condições reais: 5 horas, papel, casos práticos
+   - Correção por rubrica
+   - Identificação de erros fatais
+   - Sugestões de melhoria
+
+FASE 5: PÓS-APROVAÇÃO (PROFISSIONAL)
+--------------------------------------------------
+
+1. Transição para atuação
+   - Templates profissionais
+   - Jurisprudência atualizada
+   - Organização de raciocínio jurídico
+   - Estudo contínuo de novidades
+
+2. Especialização
+   - Aprofundamento em áreas escolhidas
+   - Cursos de pós-graduação assistidos
+   - Simulador de audiências e sustentações
+
+3. Mentoria contínua
+   - IA como assistente jurídico
+   - Sugestões de fundamentação
+   - Alertas de prazos e jurisprudência
+
+============================================================
+TECNOLOGIAS E STACK
+============================================================
+
+BACKEND:
+- Python (FastAPI, Pydantic, SQLAlchemy)
+- TypeScript (Node.js, Express)
+- PostgreSQL (dados estruturados)
+- Redis (cache, sessões)
+- Elasticsearch (busca e RAG)
+
+IA E ML:
+- LLM local: Ollama (Llama 3, Mistral)
+- Embeddings: sentence-transformers
+- RAG: LangChain, Faiss
+- Classificação de erros: scikit-learn
+
+FRONTEND:
+- Next.js 14
+- React 18
+- TailwindCSS
+- Shadcn/ui
+
+INFRA:
+- Docker, Docker Compose
+- GitHub Actions (CI/CD)
+- Vercel (frontend) ou Railway
+- AWS S3 (arquivos)
+
+MONITORAMENTO:
+- Sentry (erros)
+- PostHog (analytics)
+- Logs estruturados (Winston)
+
+============================================================
+DIFERENCIAIS DO JURIS_IA_CORE_V1
+============================================================
+
+1. ONTOLOGIA JURÍDICA COMPLETA
+   - Não é apenas banco de questões
+   - É mapa conceitual completo do Direito
+   - Relações lógicas entre institutos
+   - Progressão didática natural
+
+2. EXPLICAÇÕES MULTINÍVEL
+   - Adapta-se ao nível do aluno
+   - Não apenas mostra a resposta correta
+   - Ensina o PORQUÊ de cada alternativa
+
+3. MOTOR DE APRENDIZAGEM INTELIGENTE
+   - Não segue cronograma rígido
+   - Ajusta-se continuamente ao desempenho
+   - Detecta e corrige regressões
+   - Revisão espaçada científica (1-24-7)
+
+4. FOCO EM PADRÕES DE ERRO
+   - Não apenas "acertou/errou"
+   - Classifica tipo de erro (conceitual, leitura, pressa)
+   - Corrige causa raiz, não sintoma
+
+5. SISTEMA OAB 2ª FASE ESTRUTURADO
+   - Não apenas "escreva uma petição"
+   - Checklist lógico de construção
+   - Verificação automatizada de requisitos
+   - Correção detalhada
+
+6. PÓS-APROVAÇÃO INTEGRADO
+   - Sistema não acaba na aprovação
+   - Continua como assistente profissional
+   - Transição suave estudante → advogado
+
+7. ÉTICA E RESPONSABILIDADE
+   - IA não substitui advogado
+   - IA não decide casos reais
+   - IA ensina raciocínio jurídico
+   - Limites claros e transparentes
+
+============================================================
+ROADMAP DE DESENVOLVIMENTO
+============================================================
+
+FASE 1: MVP FUNCIONAL (4 semanas)
+- Ontologia base (5 ramos principais)
+- Lei seca estruturada (CF + 3 códigos)
+- Sistema 1ª fase (5 disciplinas)
+- Motor de explicação básico
+- Interface simples
+
+FASE 2: SISTEMA COMPLETO 1ª FASE (8 semanas)
+- Ontologia completa (todos os ramos)
+- Lei seca completa (leis especiais)
+- Sistema 1ª fase (17 disciplinas)
+- Banco de 5.000+ questões
+- Motor de aprendizagem inteligente
+- Simulados completos
+
+FASE 3: SISTEMA 2ª FASE (8 semanas)
+- Sistema de peças (7 áreas)
+- Checklist e verificação
+- Correção automatizada
+- Simulados 2ª fase
+
+FASE 4: POLIMENTO E ESCALA (4 semanas)
+- Otimização de performance
+- Testes de carga
+- Interface refinada
+- Gamificação
+- Onboarding aprimorado
+
+FASE 5: PÓS-APROVAÇÃO (contínuo)
+- IA profissional
+- Templates avançados
+- Jurisprudência integrada
+- Especialização
+
+FASE 6: EXPANSÃO (futuro)
+- Concursos públicos jurídicos
+- Pós-graduação assistida
+- Mentoria de carreira
+
+============================================================
+MÉTRICAS DE SUCESSO
+============================================================
+
+MÉTRICAS DO ALUNO:
+- Taxa de aprovação na OAB
+- Nota média nos simulados
+- Tempo até aprovação
+- Satisfação (NPS)
+
+MÉTRICAS DO SISTEMA:
+- Precisão das explicações (avaliação humana)
+- Tempo de resposta (<2s para questões)
+- Uptime (>99.9%)
+- Acurácia da classificação de erros (>85%)
+
+MÉTRICAS DE NEGÓCIO:
+- Número de alunos ativos
+- Taxa de conversão (trial → pago)
+- LTV (Lifetime Value)
+- Churn rate
+- CAC (Custo de Aquisição de Cliente)
+
+============================================================
+MODELO DE NEGÓCIO
+============================================================
+
+PLANOS:
+
+1. GRATUITO
+   - Acesso limitado à ontologia
+   - 10 questões por dia
+   - Explicações básicas
+
+2. ESSENCIAL (R$ 97/mês)
+   - Ontologia completa
+   - Questões ilimitadas
+   - Explicações multinível
+   - 1 simulado completo/mês
+
+3. PRO (R$ 197/mês)
+   - Tudo do Essencial
+   - Sistema 2ª fase
+   - Simulados ilimitados
+   - Correção de peças (5/mês)
+   - Suporte prioritário
+
+4. PREMIUM (R$ 397/mês)
+   - Tudo do Pro
+   - Correção de peças ilimitada
+   - IA profissional pós-aprovação
+   - Mentoria mensal (1h)
+   - Acesso vitalício após aprovação
+
+PLANO DE ASSINATURA ANUAL:
+- 20% de desconto
+- Garantia: aprovado ou seu dinheiro de volta
+
+PARCERIAS:
+- Cursos preparatórios (licenciamento do sistema)
+- Faculdades de Direito (acesso institucional)
+- OAB Seccionais (programas de inclusão)
+
+============================================================
+GOVERNANÇA E ÉTICA
+============================================================
+
+PRINCÍPIOS ÉTICOS:
+
+1. TRANSPARÊNCIA
+   - IA não é "caixa preta"
+   - Aluno sabe quando está interagindo com IA
+   - Fontes e fundamentos sempre citados
+
+2. RESPONSABILIDADE
+   - IA não substitui advogado
+   - IA não fornece aconselhamento jurídico definitivo
+   - IA ensina raciocínio, não decide
+
+3. PRIVACIDADE
+   - Dados do aluno são confidenciais
+   - Não venda de dados
+   - Conformidade com LGPD
+
+4. SEGURANÇA
+   - Criptografia de dados
+   - Backup diário
+   - Logs de auditoria
+
+5. ACESSIBILIDADE
+   - Interface acessível (WCAG 2.1)
+   - Plano gratuito robusto
+   - Bolsas para alunos de baixa renda
+
+DISCLAIMERS:
+
+"O JURIS_IA_CORE_V1 é um sistema educacional de apoio à formação jurídica e preparação para a OAB. Ele NÃO substitui professores, cursos presenciais, leitura de doutrinas ou a orientação de profissionais experientes. A IA não presta consultoria jurídica, não decide casos concretos e não substitui o julgamento profissional de um advogado. O usuário é responsável por validar todas as informações e buscar orientação adequada quando necessário."
+
+"Aprovação na OAB depende de múltiplos fatores: dedicação, estudo consistente, saúde mental, condições de prova, etc. O sistema maximiza as chances de aprovação, mas não a garante."
+
+============================================================
+EQUIPE NECESSÁRIA
+============================================================
+
+FASE MVP:
+- 1 Engenheiro de IA/ML
+- 1 Desenvolvedor Fullstack
+- 1 Advogado especialista em OAB
+- 1 Designer UX/UI
+- 1 Product Manager
+
+FASE ESCALA:
+- 2 Engenheiros de IA/ML
+- 3 Desenvolvedores (2 backend, 1 frontend)
+- 5 Advogados especialistas (áreas da 2ª fase)
+- 1 Designer
+- 1 PM
+- 1 Head de Produto
+- 1 Customer Success
+- 1 Marketing
+
+============================================================
+CRONOGRAMA E INVESTIMENTO ESTIMADO
+============================================================
+
+FASE MVP (4 semanas):
+- Equipe: 5 pessoas
+- Custo: R$ 80.000
+- Entregável: sistema funcional com 5 disciplinas
+
+FASE COMPLETA (24 semanas):
+- Equipe: 8-10 pessoas
+- Custo: R$ 400.000
+- Entregável: sistema completo 1ª e 2ª fase
+
+INFRAESTRUTURA (mensal):
+- Servidores, banco, IA: R$ 5.000
+- Escalável conforme crescimento
+
+MARKETING (mensal):
+- Ads, conteúdo, parcerias: R$ 20.000
+- ROI estimado: 3:1
+
+============================================================
+CONCLUSÃO
+============================================================
+
+O JURIS_IA_CORE_V1 não é apenas um sistema de questões comentadas. É uma PLATAFORMA COMPLETA DE FORMAÇÃO JURÍDICA, que acompanha o aluno desde o início dos estudos até a atuação profissional.
+
+O diferencial está na ONTOLOGIA JURÍDICA COMPLETA, no MOTOR DE APRENDIZAGEM INTELIGENTE e no FOCO EM PADRÕES DE ERRO, não apenas em acertos e erros superficiais.
+
+O objetivo é claro: SER O MAIOR APROVADOR DE OAB DO BRASIL.
+
+E isso será alcançado com:
+- Conteúdo técnico impecável
+- Didática progressiva e adaptativa
+- Tecnologia de ponta
+- Ética e responsabilidade
+- Foco obsessivo no resultado do aluno
+
+============================================================
+FIM DO DOCUMENTO PRINCIPAL
+============================================================

@@ -1,0 +1,960 @@
+JURIS_IA_CORE_V1 - MODELO DE DADOS
+ETAPA 1: ENTIDADES PRINCIPAIS DO SISTEMA
+Data: 2025-12-17
+============================================================
+
+PRINCÍPIOS ARQUITETURAIS
+============================================================
+
+1. PostgreSQL como SGBD principal
+2. Dados jurídicos têm prioridade sobre dados sociais
+3. Persistir PERFIL COGNITIVO, não conversas
+4. LGPD-compliant por design
+5. Semi-stateful: histórico essencial, lixo descartável
+6. Auditável e rastreável
+7. Otimizado para análise cognitiva
+
+============================================================
+ENTIDADE 1: USUARIO (users)
+============================================================
+
+FINALIDADE:
+Representa o estudante/profissional que usa o sistema.
+Dados mínimos necessários, foco em identificação e controle de acesso.
+
+CAMPOS ESSENCIAIS:
+
+usuario_id              UUID PRIMARY KEY
+email                   VARCHAR(255) UNIQUE NOT NULL
+senha_hash              VARCHAR(255) NOT NULL
+nome_completo           VARCHAR(255) NOT NULL
+cpf                     VARCHAR(11) UNIQUE (criptografado)
+data_nascimento         DATE
+telefone                VARCHAR(20)
+estado_oab              VARCHAR(2) (UF onde pretende fazer OAB)
+
+-- Controle
+criado_em               TIMESTAMP DEFAULT NOW()
+ultimo_acesso           TIMESTAMP
+ativo                   BOOLEAN DEFAULT TRUE
+tipo_conta              VARCHAR(50) (gratuito, essencial, pro, premium)
+data_expiracao          TIMESTAMP
+
+-- LGPD
+consentimento_lgpd      BOOLEAN DEFAULT FALSE
+data_consentimento      TIMESTAMP
+termos_versao           INTEGER
+
+-- Flags operacionais
+email_verificado        BOOLEAN DEFAULT FALSE
+primeiro_acesso         BOOLEAN DEFAULT TRUE
+onboarding_completo     BOOLEAN DEFAULT FALSE
+
+RELAÇÕES:
+- 1:1 com perfil_juridico
+- 1:N com sessoes_estudo
+- 1:N com historico_questoes
+- 1:N com pratica_pecas
+
+ÍNDICES:
+- email (único)
+- cpf (único, criptografado)
+- ultimo_acesso (para detectar inatividade)
+- tipo_conta (para segmentação)
+
+OBSERVAÇÕES:
+- CPF armazenado com criptografia AES-256
+- Senha com bcrypt (cost factor 12)
+- Soft delete (ativo = false), não DELETE físico
+- Campos pessoais mínimos (LGPD)
+
+============================================================
+ENTIDADE 2: PERFIL_JURIDICO (perfil_juridico)
+============================================================
+
+FINALIDADE:
+Núcleo do sistema cognitivo. Armazena o ESTADO COGNITIVO JURÍDICO
+do estudante: onde está, para onde vai, como aprende.
+
+CAMPOS ESSENCIAIS:
+
+perfil_id               UUID PRIMARY KEY
+usuario_id              UUID FOREIGN KEY REFERENCES users
+atualizado_em           TIMESTAMP DEFAULT NOW()
+
+-- Nível Geral
+nivel_global            VARCHAR(50) (INICIANTE, INTERMEDIARIO, AVANCADO, EXPERT)
+pontuacao_global        INTEGER (0-1000)
+taxa_acerto_global      DECIMAL(5,2) (0.00 a 100.00)
+
+-- Experiência Jurídica
+anos_estudo_direito     INTEGER
+ja_fez_oab              BOOLEAN
+tentativas_oab          INTEGER
+aprovado_oab_1fase      BOOLEAN
+aprovado_oab_2fase      BOOLEAN
+data_ultima_tentativa   DATE
+
+-- Estado Cognitivo Atual
+confianca_geral         DECIMAL(3,2) (0.00 a 1.00)
+stress_nivel            DECIMAL(3,2) (0.00 a 1.00)
+motivacao_nivel         DECIMAL(3,2) (0.00 a 1.00)
+fadiga_cognitiva        DECIMAL(3,2) (0.00 a 1.00)
+
+-- Padrões de Aprendizagem
+estilo_aprendizagem     VARCHAR(50) (visual, auditivo, cinestesico, leitura)
+velocidade_leitura      VARCHAR(50) (lenta, media, rapida)
+preferencia_explicacao  VARCHAR(50) (tecnica, didatica, analogia, pratica)
+tempo_medio_questao     INTEGER (segundos)
+
+-- Maturidade Jurídica (0-100)
+pensamento_sistematico  INTEGER
+capacidade_abstração    INTEGER
+dominio_terminologia    INTEGER
+raciocinio_analogico    INTEGER
+interpretacao_legal     INTEGER
+
+-- Riscos e Alertas
+risco_evasao            DECIMAL(3,2) (0.00 a 1.00)
+risco_burnout           DECIMAL(3,2) (0.00 a 1.00)
+dias_sem_estudo         INTEGER
+streak_atual            INTEGER (dias consecutivos)
+streak_maximo           INTEGER
+
+-- Objetivos
+objetivo_principal      VARCHAR(100) (OAB_1fase, OAB_2fase, concurso, atualizacao)
+data_objetivo           DATE
+horas_estudo_semanal    INTEGER
+progresso_objetivo      DECIMAL(5,2) (percentual)
+
+RELAÇÕES:
+- 1:1 com usuario
+- 1:N com progresso_disciplina
+- 1:N com snapshots_cognitivos
+
+ÍNDICES:
+- usuario_id (único)
+- nivel_global
+- risco_evasao (para intervenções)
+- dias_sem_estudo (para reengajamento)
+
+OBSERVAÇÕES:
+- Atualizado após CADA interação significativa
+- Campos de maturidade jurídica calculados por algoritmo
+- Níveis de stress/motivação atualizados em tempo real
+- Base para TODAS as decisões de adaptação
+
+============================================================
+ENTIDADE 3: PROGRESSO_DISCIPLINA (progresso_disciplina)
+============================================================
+
+FINALIDADE:
+Rastreamento granular do domínio em cada disciplina jurídica.
+Permite ajuste fino de drills e identificação de gaps.
+
+CAMPOS ESSENCIAIS:
+
+progresso_id            UUID PRIMARY KEY
+perfil_id               UUID FOREIGN KEY REFERENCES perfil_juridico
+disciplina              VARCHAR(100) NOT NULL
+atualizado_em           TIMESTAMP DEFAULT NOW()
+
+-- Métricas de Desempenho
+nivel_disciplina        VARCHAR(50) (FRAGIL, FRACO, MEDIO, BOM, EXCELENTE)
+taxa_acerto             DECIMAL(5,2) (0.00 a 100.00)
+questoes_resolvidas     INTEGER
+questoes_acertadas      INTEGER
+questoes_erradas        INTEGER
+
+-- Distribuição de Dificuldade
+acerto_facil            DECIMAL(5,2)
+acerto_medio            DECIMAL(5,2)
+acerto_dificil          DECIMAL(5,2)
+acerto_muito_dificil    DECIMAL(5,2)
+
+-- Evolução Temporal
+primeira_questao_em     TIMESTAMP
+ultima_questao_em       TIMESTAMP
+dias_estudando          INTEGER
+tendencia               VARCHAR(50) (MELHORA, ESTAVEL, REGRESSAO)
+
+-- Análise de Gaps
+topicos_dominados       JSONB (array de tópicos)
+topicos_frageis         JSONB (array de tópicos)
+conceitos_faltantes     JSONB (array de conceitos)
+
+-- Tipos de Erro Predominantes
+erro_conceitual_pct     DECIMAL(5,2)
+erro_interpretacao_pct  DECIMAL(5,2)
+erro_leitura_pct        DECIMAL(5,2)
+erro_tempo_pct          DECIMAL(5,2)
+
+-- Recomendações Ativas
+proxima_revisao         TIMESTAMP
+dificuldade_recomendada VARCHAR(50)
+foco_recomendado        VARCHAR(100)
+
+-- Estatísticas Avançadas
+tempo_medio_questao     INTEGER (segundos)
+desvio_padrao_tempo     INTEGER
+consistencia_score      DECIMAL(3,2) (0.00 a 1.00)
+
+RELAÇÕES:
+- N:1 com perfil_juridico
+- 1:N com progresso_topico (subtópicos)
+
+ÍNDICES:
+- perfil_id + disciplina (composto, único)
+- taxa_acerto
+- tendencia
+- proxima_revisao
+
+OBSERVAÇÕES:
+- 17 disciplinas principais da OAB
+- Atualizado após cada questão respondida
+- Tendência calculada por regressão linear (últimos 30 dias)
+- JSONB para flexibilidade em tópicos/conceitos
+
+============================================================
+ENTIDADE 4: PROGRESSO_TOPICO (progresso_topico)
+============================================================
+
+FINALIDADE:
+Nível granular: domínio de subtópicos dentro de cada disciplina.
+Permite drill hiperfocado em gaps específicos.
+
+CAMPOS ESSENCIAIS:
+
+topico_id               UUID PRIMARY KEY
+progresso_disciplina_id UUID FOREIGN KEY REFERENCES progresso_disciplina
+topico                  VARCHAR(200) NOT NULL
+atualizado_em           TIMESTAMP DEFAULT NOW()
+
+-- Métricas
+nivel_dominio           VARCHAR(50) (NUNCA_VISTO, FRAGIL, MEDIO, BOM, DOMINADO)
+taxa_acerto             DECIMAL(5,2)
+exposicoes              INTEGER (quantas vezes viu)
+acertos_consecutivos    INTEGER
+erros_consecutivos      INTEGER
+
+-- Memória
+forca_memoria           VARCHAR(50) (FRAGIL, FRACA, MEDIA, FORTE, CONSOLIDADA)
+proxima_revisao         TIMESTAMP
+ciclo_atual             VARCHAR(10) (1h, 24h, 7d, 30d)
+ultima_revisao          TIMESTAMP
+revisoes_realizadas     INTEGER
+
+-- Profundidade Conceitual
+profundidade_atingida   INTEGER (1-4: tecnica, didatica, analogia, pratica)
+artigos_dominados       JSONB (artigos de lei relacionados)
+jurisprudencia_vista    JSONB (súmulas/precedentes)
+
+-- Relações Conceituais
+conceitos_prerequisitos JSONB (conceitos que deve dominar antes)
+conceitos_relacionados  JSONB (conceitos que se conectam)
+confundido_com          JSONB (institutos que confunde)
+
+RELAÇÕES:
+- N:1 com progresso_disciplina
+
+ÍNDICES:
+- progresso_disciplina_id + topico (composto, único)
+- forca_memoria
+- proxima_revisao
+- nivel_dominio
+
+OBSERVAÇÕES:
+- Centenas de tópicos por disciplina
+- Base para sistema de revisão espaçada
+- Detecta confusões entre institutos similares
+- Rastreamento fino de conceitos jurídicos
+
+============================================================
+ENTIDADE 5: SESSAO_ESTUDO (sessoes_estudo)
+============================================================
+
+FINALIDADE:
+Representa uma sessão contínua de estudo.
+Permite análise de padrões temporais, fadiga, eficácia.
+
+CAMPOS ESSENCIAIS:
+
+sessao_id               UUID PRIMARY KEY
+usuario_id              UUID FOREIGN KEY REFERENCES users
+tipo_sessao             VARCHAR(50) (drill, simulado, revisao, livre)
+iniciada_em             TIMESTAMP DEFAULT NOW()
+finalizada_em           TIMESTAMP
+duracao_segundos        INTEGER
+
+-- Configuração
+disciplina_foco         VARCHAR(100)
+dificuldade_alvo        VARCHAR(50)
+objetivo_sessao         VARCHAR(200)
+
+-- Resultados
+questoes_planejadas     INTEGER
+questoes_respondidas    INTEGER
+questoes_acertadas      INTEGER
+taxa_acerto_sessao      DECIMAL(5,2)
+
+-- Estado Cognitivo Durante Sessão
+stress_inicial          DECIMAL(3,2)
+stress_final            DECIMAL(3,2)
+motivacao_inicial       DECIMAL(3,2)
+motivacao_final         DECIMAL(3,2)
+fadiga_final            DECIMAL(3,2)
+
+-- Padrões Temporais
+hora_inicio             TIME
+dia_semana              INTEGER (1-7)
+periodo_dia             VARCHAR(50) (madrugada, manha, tarde, noite)
+
+-- Interrupções
+pausas                  INTEGER
+tempo_pausado           INTEGER (segundos)
+finalizou_completa      BOOLEAN
+
+-- Eficácia
+produtividade_score     DECIMAL(3,2) (0.00 a 1.00)
+foco_score              DECIMAL(3,2) (0.00 a 1.00)
+tempo_medio_questao     INTEGER
+
+RELAÇÕES:
+- N:1 com usuario
+- 1:N com interacao_questao
+
+ÍNDICES:
+- usuario_id + iniciada_em
+- tipo_sessao
+- hora_inicio (padrão de horário)
+- dia_semana (padrão semanal)
+
+OBSERVAÇÕES:
+- Sessão = unidade atômica de estudo
+- Detecta melhores horários de estudo
+- Identifica fadiga e queda de desempenho
+- Base para recomendações de pausas
+
+============================================================
+ENTIDADE 6: INTERACAO_QUESTAO (interacao_questao)
+============================================================
+
+FINALIDADE:
+Registro detalhado de CADA resposta a CADA questão.
+Núcleo da análise cognitiva: onde, quando, como e por que errou/acertou.
+
+CAMPOS ESSENCIAIS:
+
+interacao_id            UUID PRIMARY KEY
+usuario_id              UUID FOREIGN KEY REFERENCES users
+sessao_id               UUID FOREIGN KEY REFERENCES sessoes_estudo
+questao_id              UUID FOREIGN KEY REFERENCES questoes_banco
+respondida_em           TIMESTAMP DEFAULT NOW()
+
+-- Resposta
+alternativa_escolhida   CHAR(1)
+alternativa_correta     CHAR(1)
+acertou                 BOOLEAN
+tempo_resposta          INTEGER (segundos)
+
+-- Contexto da Questão
+disciplina              VARCHAR(100)
+topico                  VARCHAR(200)
+dificuldade_questao     VARCHAR(50)
+tags_questao            JSONB
+
+-- Análise de Erro (se errou)
+tipo_erro               VARCHAR(100)
+erro_categoria          VARCHAR(100)
+conceito_faltante       VARCHAR(200)
+pegadinha_caiu          VARCHAR(200)
+
+-- Análise Cognitiva
+confianca_resposta      DECIMAL(3,2) (0.00 a 1.00) - quão certo estava
+tempo_ideal             INTEGER (tempo esperado para questão)
+desvio_tempo            INTEGER (diferença do ideal)
+velocidade_relativa     VARCHAR(50) (muito_rapido, rapido, normal, lento, muito_lento)
+
+-- Estado Mental no Momento
+stress_momento          DECIMAL(3,2)
+fatiga_momento          DECIMAL(3,2)
+numero_questao_sessao   INTEGER (1ª, 2ª, 3ª...)
+
+-- Flags de Comportamento
+pulou_questao           BOOLEAN
+voltou_questao          BOOLEAN
+mudou_resposta          BOOLEAN
+usou_eliminacao         BOOLEAN
+tempo_excessivo         BOOLEAN
+
+-- Aprendizado
+explicacao_vista        BOOLEAN
+nivel_explicacao_vista  INTEGER (1-4)
+entendeu_explicacao     BOOLEAN (feedback do usuário)
+marcou_revisao          BOOLEAN
+
+RELAÇÕES:
+- N:1 com usuario
+- N:1 com sessao_estudo
+- N:1 com questoes_banco
+- 1:1 com analise_erro (se errou)
+
+ÍNDICES:
+- usuario_id + respondida_em
+- questao_id (questões mais respondidas)
+- acertou (filtro rápido)
+- tipo_erro
+- disciplina + topico
+
+OBSERVAÇÕES:
+- REGISTRO MAIS IMPORTANTE DO SISTEMA
+- Base para TODA análise cognitiva
+- Permite replay mental da prova
+- Detecta padrões temporais de erro
+- Identifica questões-armadilha
+
+============================================================
+ENTIDADE 7: ANALISE_ERRO (analise_erro)
+============================================================
+
+FINALIDADE:
+Análise PROFUNDA de cada erro cometido.
+Taxonomia rica permite diagnóstico preciso e intervenção cirúrgica.
+
+CAMPOS ESSENCIAIS:
+
+analise_id              UUID PRIMARY KEY
+interacao_id            UUID FOREIGN KEY REFERENCES interacao_questao
+analisada_em            TIMESTAMP DEFAULT NOW()
+
+-- Classificação Primária
+tipo_erro_primario      VARCHAR(100) NOT NULL
+tipo_erro_secundario    VARCHAR(100)
+gravidade_erro          VARCHAR(50) (leve, moderado, grave, critico)
+
+-- Taxonomia Detalhada
+erro_conceitual         BOOLEAN
+erro_interpretacao      BOOLEAN
+erro_leitura            BOOLEAN
+erro_calculo            BOOLEAN
+erro_tempo_pressao      BOOLEAN
+erro_pegadinha          BOOLEAN
+erro_confusao_institutos BOOLEAN
+erro_falta_base_legal   BOOLEAN
+
+-- Diagnóstico Cognitivo
+conceito_mal_compreendido VARCHAR(200)
+confundiu_com_conceito   VARCHAR(200)
+artigo_desconhecido      VARCHAR(100)
+prerequisito_faltante    VARCHAR(200)
+
+-- Raiz do Erro
+causa_raiz              VARCHAR(200)
+profundidade_gap        VARCHAR(50) (superficial, medio, profundo)
+reversivel_curto_prazo  BOOLEAN
+
+-- Padrão de Erro
+erro_recorrente         BOOLEAN
+ocorrencias_similares   INTEGER
+ultimo_erro_similar     TIMESTAMP
+tendencia_erro          VARCHAR(50) (aumentando, estavel, diminuindo)
+
+-- Intervenção Recomendada
+tipo_intervencao        VARCHAR(100)
+urgencia                VARCHAR(50) (baixa, media, alta, critica)
+drill_recomendado       VARCHAR(200)
+revisao_conceito        VARCHAR(200)
+
+-- Impacto
+impacto_confianca       DECIMAL(3,2) (-1.00 a 1.00)
+impacto_motivacao       DECIMAL(3,2) (-1.00 a 1.00)
+
+RELAÇÕES:
+- 1:1 com interacao_questao
+
+ÍNDICES:
+- tipo_erro_primario
+- gravidade_erro
+- erro_recorrente
+- urgencia
+
+OBSERVAÇÕES:
+- Criado APENAS quando há erro
+- Alimenta sistema de recomendação
+- Identifica padrões invisíveis ao usuário
+- Base para intervenção preventiva
+
+============================================================
+ENTIDADE 8: PRATICA_PECA (pratica_peca)
+============================================================
+
+FINALIDADE:
+Registro de prática de peças processuais (2ª fase OAB).
+Avaliação estruturada de competências práticas.
+
+CAMPOS ESSENCIAIS:
+
+pratica_id              UUID PRIMARY KEY
+usuario_id              UUID FOREIGN KEY REFERENCES users
+sessao_id               UUID FOREIGN KEY REFERENCES sessoes_estudo (nullable)
+iniciada_em             TIMESTAMP DEFAULT NOW()
+finalizada_em           TIMESTAMP
+
+-- Configuração
+tipo_peca               VARCHAR(100) NOT NULL
+area_direito            VARCHAR(100)
+enunciado               TEXT NOT NULL
+
+-- Produção
+conteudo_escrito        TEXT
+palavras_escritas       INTEGER
+tempo_escrita           INTEGER (segundos)
+salvamentos_parciais    INTEGER
+
+-- Avaliação Geral
+nota_final              DECIMAL(4,2) (0.00 a 10.00)
+aprovado                BOOLEAN (>= 6.0)
+avaliada_em             TIMESTAMP
+
+-- Avaliação por Competência
+adequacao_normas        DECIMAL(4,2) (0.00 a 10.00)
+tecnica_processual      DECIMAL(4,2)
+argumentacao_juridica   DECIMAL(4,2)
+clareza_objetividade    DECIMAL(4,2)
+
+-- Análise de Estrutura
+partes_obrigatorias     JSONB (presença de cada parte)
+partes_presentes        INTEGER
+partes_ausentes         INTEGER
+partes_incompletas      INTEGER
+
+-- Erros Encontrados
+total_erros             INTEGER
+erros_fatais            INTEGER
+erros_graves            INTEGER
+erros_moderados         INTEGER
+erros_leves             INTEGER
+
+-- Categorias de Erro
+erro_formal             BOOLEAN
+erro_material           BOOLEAN
+erro_fundamentacao      BOOLEAN
+erro_pedido             BOOLEAN
+erro_estrutura          BOOLEAN
+
+-- Feedback
+pontos_fortes           JSONB (array)
+pontos_melhorar         JSONB (array)
+recomendacoes           JSONB (array)
+
+-- Progresso
+tentativa_numero        INTEGER (1ª, 2ª, 3ª tentativa)
+evolucao_anterior       DECIMAL(4,2) (diferença da nota anterior)
+
+RELAÇÕES:
+- N:1 com usuario
+- N:1 com sessao_estudo (opcional)
+- 1:N com erro_peca
+
+ÍNDICES:
+- usuario_id + iniciada_em
+- tipo_peca
+- nota_final
+- aprovado
+
+OBSERVAÇÕES:
+- Peça completa armazenada (TEXT)
+- Avaliação estruturada por competência
+- Rastreamento de evolução
+- Base para feedback personalizado
+
+============================================================
+ENTIDADE 9: ERRO_PECA (erro_peca)
+============================================================
+
+FINALIDADE:
+Detalhamento de cada erro encontrado em peça processual.
+Permite feedback granular e aprendizado específico.
+
+CAMPOS ESSENCIAIS:
+
+erro_id                 UUID PRIMARY KEY
+pratica_id              UUID FOREIGN KEY REFERENCES pratica_peca
+detectado_em            TIMESTAMP DEFAULT NOW()
+
+-- Classificação
+tipo_erro               VARCHAR(100) NOT NULL
+gravidade               VARCHAR(50) (fatal, grave, moderado, leve)
+categoria               VARCHAR(100)
+
+-- Localização
+parte_peca              VARCHAR(100)
+localizacao_texto       VARCHAR(500)
+
+-- Descrição
+descricao_erro          TEXT NOT NULL
+impacto                 TEXT
+correcao_sugerida       TEXT NOT NULL
+
+-- Fundamento
+artigo_violado          VARCHAR(100)
+fundamentacao_legal     TEXT
+
+-- Recorrência
+erro_recorrente         BOOLEAN
+ocorrencias_usuario     INTEGER
+
+RELAÇÕES:
+- N:1 com pratica_peca
+
+ÍNDICES:
+- pratica_id
+- tipo_erro
+- gravidade
+- erro_recorrente
+
+OBSERVAÇÕES:
+- Permite correção detalhada
+- Identifica erros sistemáticos
+- Base para drill de peças
+
+============================================================
+ENTIDADE 10: REVISAO_AGENDADA (revisao_agendada)
+============================================================
+
+FINALIDADE:
+Agenda de revisões espaçadas (ciclo 1-24-7-30).
+Garante consolidação de memória de longo prazo.
+
+CAMPOS ESSENCIAIS:
+
+revisao_id              UUID PRIMARY KEY
+usuario_id              UUID FOREIGN KEY REFERENCES users
+topico                  VARCHAR(200) NOT NULL
+disciplina              VARCHAR(100) NOT NULL
+agendada_para           TIMESTAMP NOT NULL
+criada_em               TIMESTAMP DEFAULT NOW()
+
+-- Contexto
+conceitos               JSONB (array de conceitos)
+artigos_relacionados    JSONB (array de artigos)
+questao_origem_id       UUID (questão que gerou revisão)
+
+-- Ciclo
+ciclo_atual             VARCHAR(10) (1h, 24h, 7d, 30d)
+ciclo_numero            INTEGER (1, 2, 3, 4)
+forca_memoria_pre       VARCHAR(50)
+
+-- Estado
+status                  VARCHAR(50) (pendente, realizada, pulada, cancelada)
+realizada_em            TIMESTAMP
+resultado               VARCHAR(50) (acertou, errou, parcial)
+
+-- Pós-Revisão
+forca_memoria_pos       VARCHAR(50)
+proxima_revisao         TIMESTAMP
+acertos_consecutivos    INTEGER
+precisa_reforço         BOOLEAN
+
+RELAÇÕES:
+- N:1 com usuario
+- 1:N com interacao_questao (revisões realizadas)
+
+ÍNDICES:
+- usuario_id + agendada_para
+- status + agendada_para (revisões pendentes)
+- disciplina + topico
+
+OBSERVAÇÕES:
+- Sistema proativo de revisão
+- Ciclo 1-24-7-30 dias
+- Ajusta intervalo baseado em desempenho
+- Previne esquecimento
+
+============================================================
+ENTIDADE 11: SNAPSHOT_COGNITIVO (snapshot_cognitivo)
+============================================================
+
+FINALIDADE:
+Fotografia do estado cognitivo em momento específico.
+Permite análise longitudinal e detecção de regressão.
+
+CAMPOS ESSENCIAIS:
+
+snapshot_id             UUID PRIMARY KEY
+perfil_id               UUID FOREIGN KEY REFERENCES perfil_juridico
+capturado_em            TIMESTAMP DEFAULT NOW()
+tipo_trigger            VARCHAR(100) (semanal, mensal, pre_prova, pos_sessao)
+
+-- Estado Geral
+nivel_global            VARCHAR(50)
+taxa_acerto_global      DECIMAL(5,2)
+questoes_total          INTEGER
+
+-- Por Disciplina
+estado_disciplinas      JSONB (snapshot de todas as disciplinas)
+
+-- Estado Cognitivo
+confianca               DECIMAL(3,2)
+stress                  DECIMAL(3,2)
+motivacao               DECIMAL(3,2)
+fadiga                  DECIMAL(3,2)
+
+-- Métricas de Evolução
+questoes_desde_ultimo   INTEGER
+dias_desde_ultimo       INTEGER
+evolucao_taxa_acerto    DECIMAL(5,2) (delta)
+
+-- Padrões Identificados
+erros_recorrentes       JSONB
+topicos_dominados       JSONB
+topicos_frageis         JSONB
+
+-- Predições
+probabilidade_aprovacao DECIMAL(3,2) (0.00 a 1.00)
+areas_risco             JSONB
+recomendacoes_urgentes  JSONB
+
+RELAÇÕES:
+- N:1 com perfil_juridico
+
+ÍNDICES:
+- perfil_id + capturado_em
+- tipo_trigger
+
+OBSERVAÇÕES:
+- Gerado automaticamente (semanal/mensal)
+- Base para análise de tendência
+- Detecta regressão cognitiva
+- Permite rollback mental
+
+============================================================
+ENTIDADE 12: METRICAS_TEMPORAIS (metricas_temporais)
+============================================================
+
+FINALIDADE:
+Agregações pré-calculadas para dashboards e análises.
+Evita queries pesadas em tabelas grandes.
+
+CAMPOS ESSENCIAIS:
+
+metrica_id              UUID PRIMARY KEY
+usuario_id              UUID FOREIGN KEY REFERENCES users
+periodo                 VARCHAR(50) (dia, semana, mes)
+data_inicio             DATE
+data_fim                DATE
+calculada_em            TIMESTAMP DEFAULT NOW()
+
+-- Atividade
+dias_ativos             INTEGER
+sessoes_realizadas      INTEGER
+horas_estudo            DECIMAL(5,2)
+questoes_respondidas    INTEGER
+
+-- Desempenho
+taxa_acerto_periodo     DECIMAL(5,2)
+evolucao_taxa           DECIMAL(5,2) (delta período anterior)
+questoes_acertadas      INTEGER
+questoes_erradas        INTEGER
+
+-- Por Disciplina
+metricas_disciplinas    JSONB
+
+-- Comportamento
+media_sessao_minutos    INTEGER
+melhor_horario          TIME
+melhor_dia_semana       INTEGER
+streak_periodo          INTEGER
+
+-- Pontos Focais
+disciplina_melhor       VARCHAR(100)
+disciplina_pior         VARCHAR(100)
+topico_mais_estudado    VARCHAR(200)
+erro_mais_comum         VARCHAR(100)
+
+RELAÇÕES:
+- N:1 com usuario
+
+ÍNDICES:
+- usuario_id + periodo + data_inicio (composto)
+
+OBSERVAÇÕES:
+- Atualizado por job agendado
+- Reduz carga em queries de dashboard
+- Histórico de métricas
+
+============================================================
+ENTIDADE 13: QUESTOES_BANCO (questoes_banco)
+============================================================
+
+FINALIDADE:
+Banco central de questões OAB.
+Metadados ricos para seleção inteligente.
+
+CAMPOS ESSENCIAIS:
+
+questao_id              UUID PRIMARY KEY
+codigo_questao          VARCHAR(50) UNIQUE (Q001, Q002...)
+criada_em               TIMESTAMP DEFAULT NOW()
+
+-- Conteúdo
+enunciado               TEXT NOT NULL
+alternativa_a           TEXT NOT NULL
+alternativa_b           TEXT NOT NULL
+alternativa_c           TEXT NOT NULL
+alternativa_d           TEXT NOT NULL
+alternativa_correta     CHAR(1) NOT NULL
+
+-- Classificação
+disciplina              VARCHAR(100) NOT NULL
+topico                  VARCHAR(200) NOT NULL
+subtopicos              JSONB (array)
+tags                    JSONB (array)
+
+-- Dificuldade
+dificuldade_oficial     VARCHAR(50)
+dificuldade_calculada   VARCHAR(50)
+taxa_acerto_geral       DECIMAL(5,2)
+vezes_respondida        INTEGER
+vezes_acertada          INTEGER
+
+-- Origem
+exame_oab               VARCHAR(50) (XXXII, XXXIII...)
+ano_prova               INTEGER
+ordem_prova             INTEGER
+
+-- Metadados Pedagógicos
+conceitos_testados      JSONB (array)
+artigos_relacionados    JSONB (array)
+jurisprudencia          JSONB (array)
+pegadinhas              JSONB (array)
+
+-- Explicações
+explicacao_nivel_1      TEXT (técnica)
+explicacao_nivel_2      TEXT (didática)
+explicacao_nivel_3      TEXT (analogia)
+explicacao_nivel_4      TEXT (prática)
+
+-- Análise de Alternativas
+explicacao_alt_a        TEXT
+explicacao_alt_b        TEXT
+explicacao_alt_c        TEXT
+explicacao_alt_d        TEXT
+
+-- Estatísticas Avançadas
+tempo_medio_resposta    INTEGER (segundos)
+tipo_erro_comum         VARCHAR(100)
+confusao_frequente      VARCHAR(200)
+
+-- Qualidade
+revisada                BOOLEAN
+qualidade_score         DECIMAL(3,2)
+ultima_revisao          TIMESTAMP
+
+RELAÇÕES:
+- 1:N com interacao_questao
+
+ÍNDICES:
+- disciplina + topico
+- dificuldade_calculada
+- taxa_acerto_geral
+- tags (GIN index para JSONB)
+- conceitos_testados (GIN index)
+
+OBSERVAÇÕES:
+- Núcleo do sistema de questões
+- Metadados ricos permitem seleção inteligente
+- Dificuldade ajustada dinamicamente
+- Base para geração de drills
+
+============================================================
+ENTIDADE 14: LOG_SISTEMA (log_sistema)
+============================================================
+
+FINALIDADE:
+Auditoria e troubleshooting.
+Rastreamento de eventos críticos do sistema.
+
+CAMPOS ESSENCIAIS:
+
+log_id                  UUID PRIMARY KEY
+timestamp               TIMESTAMP DEFAULT NOW()
+usuario_id              UUID (nullable)
+nivel                   VARCHAR(50) (INFO, WARNING, ERROR, CRITICAL)
+
+-- Evento
+evento_tipo             VARCHAR(100) NOT NULL
+evento_categoria        VARCHAR(100)
+evento_descricao        TEXT
+
+-- Contexto
+ip_origem               VARCHAR(50)
+user_agent              VARCHAR(500)
+endpoint                VARCHAR(200)
+metodo_http             VARCHAR(10)
+
+-- Payload
+dados_entrada           JSONB
+dados_saida             JSONB
+erro_detalhes           TEXT
+
+-- Rastreamento
+trace_id                UUID
+session_id              UUID
+request_id              UUID
+
+RELAÇÕES:
+- N:1 com usuario (opcional)
+
+ÍNDICES:
+- timestamp
+- nivel
+- evento_tipo
+- usuario_id
+
+OBSERVAÇÕES:
+- Retenção: 90 dias
+- Logs críticos preservados
+- Anonimização após período
+- LGPD-compliant
+
+============================================================
+RESUMO DAS ENTIDADES
+============================================================
+
+14 ENTIDADES PRINCIPAIS:
+
+NÚCLEO:
+1. usuario - Identificação e acesso
+2. perfil_juridico - Estado cognitivo central
+3. progresso_disciplina - Domínio por matéria
+4. progresso_topico - Domínio granular
+
+INTERAÇÃO:
+5. sessao_estudo - Unidade de estudo
+6. interacao_questao - Cada resposta
+7. analise_erro - Diagnóstico profundo de erro
+8. pratica_peca - Prática 2ª fase
+9. erro_peca - Erros em peças
+
+SISTEMA COGNITIVO:
+10. revisao_agendada - Revisão espaçada
+11. snapshot_cognitivo - Fotografia temporal
+12. metricas_temporais - Agregações
+
+CONTEÚDO:
+13. questoes_banco - Banco de questões
+
+OPERACIONAL:
+14. log_sistema - Auditoria
+
+TOTAL DE CAMPOS: ~350 campos
+RELAÇÕES: ~30 foreign keys
+JSONB FIELDS: ~40 (flexibilidade + performance)
+
+============================================================
+FIM DA ETAPA 1
+============================================================
+
+PRÓXIMA ETAPA: PERFIL COGNITIVO JURÍDICO
+Aguardando confirmação para prosseguir.

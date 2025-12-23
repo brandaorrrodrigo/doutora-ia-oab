@@ -1,0 +1,196 @@
+version: '3.8'
+
+services:
+  # ================================================================================
+  # POSTGRESQL + PGVECTOR
+  # ================================================================================
+  postgres:
+    image: ankane/pgvector:latest
+    container_name: juris_ia_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: juris_ia
+      POSTGRES_USER: juris_ia_user
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme123}
+      POSTGRES_INITDB_ARGS: "--encoding=UTF8"
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./database/migrations:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U juris_ia_user -d juris_ia"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - juris_ia_network
+
+  # ================================================================================
+  # REDIS (CACHE)
+  # ================================================================================
+  redis:
+    image: redis:7-alpine
+    container_name: juris_ia_redis
+    restart: unless-stopped
+    command: redis-server --appendonly yes --maxmemory 1gb --maxmemory-policy allkeys-lru
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - juris_ia_network
+
+  # ================================================================================
+  # OLLAMA (IA LOCAL COM GPU)
+  # ================================================================================
+  ollama:
+    image: ollama/ollama:latest
+    container_name: juris_ia_ollama
+    restart: unless-stopped
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    environment:
+      - OLLAMA_HOST=0.0.0.0:11434
+      - OLLAMA_ORIGINS=*
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11434/api/tags"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - juris_ia_network
+
+  # ================================================================================
+  # BACKEND API (FASTAPI)
+  # ================================================================================
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: juris_ia_backend
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://juris_ia_user:${POSTGRES_PASSWORD:-changeme123}@postgres:5432/juris_ia
+      - REDIS_URL=redis://redis:6379/0
+      - OLLAMA_HOST=http://ollama:11434
+      - EMBEDDING_MODEL=nomic-embed-text
+      - LLM_MODEL=llama3.1:8b-instruct-q8_0
+    volumes:
+      - ./core:/app/core
+      - ./api:/app/api
+      - ./scripts:/app/scripts
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      ollama:
+        condition: service_healthy
+    networks:
+      - juris_ia_network
+
+  # ================================================================================
+  # INICIALIZADOR DE MODELOS OLLAMA
+  # ================================================================================
+  ollama_init:
+    image: ollama/ollama:latest
+    container_name: juris_ia_ollama_init
+    depends_on:
+      ollama:
+        condition: service_healthy
+    entrypoint: /bin/bash
+    command:
+      - -c
+      - |
+        echo "Aguardando Ollama estar pronto..."
+        sleep 10
+
+        echo "Baixando modelo de embeddings: nomic-embed-text..."
+        ollama pull nomic-embed-text
+
+        echo "Baixando modelo LLM: llama3.1:8b-instruct-q8_0..."
+        ollama pull llama3.1:8b-instruct-q8_0
+
+        echo "✓ Modelos baixados com sucesso!"
+        echo "✓ Setup Ollama concluído!"
+    environment:
+      - OLLAMA_HOST=http://ollama:11434
+    networks:
+      - juris_ia_network
+
+  # ================================================================================
+  # PGADMIN (OPCIONAL - Interface para PostgreSQL)
+  # ================================================================================
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: juris_ia_pgadmin
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@juris-ia.com
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD:-admin123}
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    ports:
+      - "5050:80"
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      - postgres
+    networks:
+      - juris_ia_network
+    profiles:
+      - tools
+
+  # ================================================================================
+  # REDIS COMMANDER (OPCIONAL - Interface para Redis)
+  # ================================================================================
+  redis_commander:
+    image: rediscommander/redis-commander:latest
+    container_name: juris_ia_redis_commander
+    restart: unless-stopped
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    ports:
+      - "8081:8081"
+    depends_on:
+      - redis
+    networks:
+      - juris_ia_network
+    profiles:
+      - tools
+
+# ================================================================================
+# VOLUMES
+# ================================================================================
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+  ollama_data:
+    driver: local
+  pgadmin_data:
+    driver: local
+
+# ================================================================================
+# NETWORKS
+# ================================================================================
+networks:
+  juris_ia_network:
+    driver: bridge

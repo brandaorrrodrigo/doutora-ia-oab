@@ -1,0 +1,503 @@
+JURIS_IA_CORE_V1
+LEI SECA ESTRUTURADA - CÓDIGO PENAL (DECRETO-LEI 2.848/1940)
+Versão 1.0 - Formato RAG-Ready para IA
+============================================================
+
+ÍNDICE GERAL
+============================================================
+
+PARTE GERAL (arts. 1º a 120)
+  TÍTULO I - Da Aplicação da Lei Penal (arts. 1º a 12)
+  TÍTULO II - Do Crime (arts. 13 a 31)
+  TÍTULO III - Da Imputabilidade Penal (arts. 26 a 28)
+  TÍTULO IV - Do Concurso de Pessoas (arts. 29 a 31)
+  TÍTULO V - Das Penas (arts. 32 a 76)
+  TÍTULO VI - Das Medidas de Segurança (arts. 96 a 99)
+  TÍTULO VII - Da Ação Penal (arts. 100 a 106)
+  TÍTULO VIII - Da Extinção da Punibilidade (arts. 107 a 120)
+
+PARTE ESPECIAL (arts. 121 a 361)
+  TÍTULO I - Dos Crimes Contra a Pessoa (arts. 121 a 154)
+  TÍTULO II - Dos Crimes Contra o Patrimônio (arts. 155 a 183)
+  TÍTULO III - Dos Crimes Contra a Propriedade Imaterial (arts. 184 a 196)
+  [demais títulos]
+
+============================================================
+PARTE GERAL - TÍTULO I
+DA APLICAÇÃO DA LEI PENAL
+============================================================
+
+--------------------------------------------------
+ARTIGO 1º - PRINCÍPIO DA LEGALIDADE
+--------------------------------------------------
+
+TEXTO COMPLETO:
+Art. 1º Não há crime sem lei anterior que o defina. Não há pena sem prévia cominação legal.
+
+SÍNTESE OBJETIVA:
+Consagra princípio da legalidade penal (nullum crimen, nulla poena sine lege). Crime e pena só existem se previstos em LEI ANTERIOR.
+
+CONCEITOS RELACIONADOS:
+- Legalidade estrita: reserva absoluta de lei
+- Anterioridade: lei deve ser anterior ao fato
+- Taxatividade: crime deve ser claramente definido
+- Irretroatividade da lei penal (regra)
+
+EXCEÇÕES:
+- Lei penal mais benéfica retroage (art. 2º, parágrafo único)
+
+PEGADINHAS OAB:
+1. "Decreto pode criar crime" (ERRADO: só LEI, em sentido formal)
+2. "Lei penal sempre retroage" (ERRADO: só retroage se mais benéfica - art. 2º)
+3. "Analogia é permitida em Direito Penal" (DEPENDE: analogia in bonam partem SIM, in malam partem NÃO)
+4. Confundir anterioridade com irretroatividade
+
+INCIDÊNCIA NA OAB:
+Frequência: ALTA
+Disciplinas: Penal, Constitucional
+Tipo de cobrança: literal, interpretação, aplicação em casos concretos
+
+APLICAÇÃO PRÁTICA:
+- Arguir atipicidade: fato não previsto em lei como crime
+- Defender retroatividade de lei mais benéfica
+- Impugnar analogia in malam partem
+
+JURISPRUDÊNCIA RELEVANTE:
+- STF: tipicidade conglobante inadmissível no Brasil (legalidade estrita)
+- STJ: analogia in bonam partem é permitida
+
+ARTIGOS RELACIONADOS:
+- CF, art. 5º, XXXIX (mesmo princípio)
+- CP, art. 2º (lei penal no tempo)
+
+--------------------------------------------------
+ARTIGO 2º - LEI PENAL NO TEMPO
+--------------------------------------------------
+
+TEXTO COMPLETO:
+Art. 2º Ninguém pode ser punido por fato que lei posterior deixa de considerar crime, cessando em virtude dela a execução e os efeitos penais da sentença condenatória.
+Parágrafo único. A lei posterior, que de qualquer modo favorecer o agente, aplica-se aos fatos anteriores, ainda que decididos por sentença condenatória transitada em julgado.
+
+SÍNTESE OBJETIVA:
+Regra: lei penal não retroage (tempus regit actum). Exceção: retroage se mais benéfica (novatio legis in mellius). Se lei posterior descriminaliza (abolitio criminis), crime desaparece.
+
+CONCEITOS RELACIONADOS:
+- Abolitio criminis: fato deixa de ser crime
+- Novatio legis in mellius: lei nova mais favorável
+- Novatio legis in pejus: lei nova mais severa (NÃO retroage)
+- Novatio legis incriminadora: lei nova cria crime (NÃO retroage)
+- Lex tertia: combinação de leis (STF não aceita)
+
+EXCEÇÕES:
+Nenhuma (regra absoluta da retroatividade benéfica)
+
+PEGADINHAS OAB:
+1. "Lei penal mais benéfica só se aplica se não há trânsito em julgado" (ERRADO: aplica-se MESMO após trânsito - parágrafo único)
+2. "Abolitio criminis mantém efeitos civis da condenação" (ERRADO: cessam efeitos PENAIS, mas não civis/administrativos)
+3. "Juiz pode combinar lei antiga + lei nova para beneficiar" (ERRADO: STF veda lex tertia)
+4. "Lei temporária retroage se mais benéfica" (ERRADO: lei excepcional/temporária tem ultratividade - art. 3º)
+
+INCIDÊNCIA NA OAB:
+Frequência: MUITO ALTA
+Tipo de cobrança: casos práticos, sucessão de leis, abolitio criminis
+
+APLICAÇÃO PRÁTICA:
+- Pedir aplicação de lei mais benéfica (mesmo após trânsito)
+- Pedir extinção de punibilidade por abolitio criminis
+- Revisar condenação por lei nova benéfica
+
+JURISPRUDÊNCIA RELEVANTE:
+- STF: vedada lex tertia (combinação de leis)
+- STJ: abolitio criminis extingue punibilidade, mas não efeitos civis
+
+--------------------------------------------------
+ARTIGO 13 - RELAÇÃO DE CAUSALIDADE
+--------------------------------------------------
+
+TEXTO COMPLETO:
+Art. 13. O resultado, de que depende a existência do crime, somente é imputável a quem lhe deu causa. Considera-se causa a ação ou omissão sem a qual o resultado não teria ocorrido.
+§ 1º A superveniência de causa relativamente independente exclui a imputação quando, por si só, produziu o resultado; os fatos anteriores, entretanto, imputam-se a quem os praticou.
+§ 2º A omissão é penalmente relevante quando o omitente devia e podia agir para evitar o resultado. O dever de agir incumbe a quem:
+a) tenha por lei obrigação de cuidado, proteção ou vigilância;
+b) de outra forma, assumiu a responsabilidade de impedir o resultado;
+c) com seu comportamento anterior, criou o risco da ocorrência do resultado.
+
+SÍNTESE OBJETIVA:
+Nexo causal: resultado só é imputado a quem deu causa. Causa: conduta sem a qual resultado não ocorreria (teoria da equivalência dos antecedentes - conditio sine qua non). Omissão: relevante se havia dever jurídico de agir.
+
+CONCEITOS RELACIONADOS:
+- Nexo de causalidade
+- Teoria da equivalência dos antecedentes (conditio sine qua non)
+- Concausa: causa que concorre
+- Causa superveniente relativamente independente
+- Crimes omissivos próprios e impróprios (comissivos por omissão)
+
+EXCEÇÕES:
+§ 1º: causa superveniente relativamente independente que, POR SI SÓ, produziu resultado → rompe nexo
+
+PEGADINHAS OAB:
+1. "Causa superveniente ABSOLUTAMENTE independente" (ex: raio mata vítima): sempre rompe nexo
+2. "Causa superveniente RELATIVAMENTE independente": só rompe se, POR SI SÓ, produziu resultado
+3. Confundir crimes omissivos próprios (omissão de socorro) com impróprios (mãe que não alimenta filho e ele morre - homicídio)
+4. "Qualquer omissão gera crime" (ERRADO: só se havia dever jurídico de agir - § 2º)
+
+INCIDÊNCIA NA OAB:
+Frequência: ALTA
+Tipo de cobrança: casos práticos com nexo causal, concausas
+
+APLICAÇÃO PRÁTICA:
+- Romper nexo causal em defesa (causa superveniente)
+- Distinguir dolo de culpa pela previsibilidade
+- Identificar posição de garante (§ 2º)
+
+JURISPRUDÊNCIA RELEVANTE:
+- STJ: concausa preexistente não rompe nexo
+- STF: hemofilia (concausa preexistente) não exclui homicídio
+
+--------------------------------------------------
+ARTIGO 14 - CRIME CONSUMADO E TENTADO
+--------------------------------------------------
+
+TEXTO COMPLETO:
+Art. 14. Diz-se o crime:
+I - consumado, quando nele se reúnem todos os elementos de sua definição legal;
+II - tentado, quando, iniciada a execução, não se consuma por circunstâncias alheias à vontade do agente.
+Parágrafo único. Salvo disposição em contrário, pune-se a tentativa com a pena correspondente ao crime consumado, diminuída de um a dois terços.
+
+SÍNTESE OBJETIVA:
+Consumação: todos os elementos do tipo realizados. Tentativa (conatus): execução iniciada, mas não consuma por circunstâncias alheias à vontade do agente. Pena da tentativa: reduzida de 1/3 a 2/3.
+
+CONCEITOS RELACIONADOS:
+- Iter criminis: caminho do crime (cogitação → preparação → execução → consumação)
+- Tentativa perfeita (acabada): agente faz tudo, mas não consuma
+- Tentativa imperfeita (inacabada): interrompido no meio
+- Desistência voluntária (art. 15): para no meio, só responde por atos já praticados
+- Arrependimento eficaz (art. 15): faz tudo, mas evita resultado
+- Arrependimento posterior (art. 16): após consumação, repara dano
+
+EXCEÇÕES:
+- Crimes culposos: não admitem tentativa (regra)
+- Crimes habituais: não admitem tentativa
+- Contravenções penais: não admitem tentativa (Lei das Contravenções, art. 4º)
+- Crime impossível (art. 17): não há tentativa punível
+
+PEGADINHAS OAB:
+1. "Crime culposo admite tentativa" (REGRA: NÃO, salvo exceções raríssimas)
+2. "Contravenção admite tentativa" (ERRADO: não admite)
+3. Confundir desistência voluntária (para no meio) com arrependimento eficaz (faz tudo, mas evita) - ambos NÃO respondem por tentativa, só por atos praticados
+4. "Tentativa sempre reduz 2/3" (ERRADO: redução de 1/3 a 2/3 - critério do juiz)
+5. Crime impossível: não há crime nem tentativa (art. 17)
+
+INCIDÊNCIA NA OAB:
+Frequência: MUITO ALTA
+Tipo de cobrança: casos práticos, diferença entre tentativa e consumação, institutos do art. 15
+
+APLICAÇÃO PRÁTICA:
+- Pleitear redução de 1/3 a 2/3 na tentativa
+- Alegar desistência voluntária (não responde por tentativa)
+- Alegar crime impossível (art. 17)
+
+JURISPRUDÊNCIA RELEVANTE:
+- STJ: tentativa branca (vítima não é atingida) admite tentativa de homicídio
+- STF: aborto tentado é punível
+
+--------------------------------------------------
+ARTIGO 18 - DOLO E CULPA
+--------------------------------------------------
+
+TEXTO COMPLETO:
+Art. 18. Diz-se o crime:
+I - doloso, quando o agente quis o resultado ou assumiu o risco de produzi-lo;
+II - culposo, quando o agente deu causa ao resultado por imprudência, negligência ou imperícia.
+Parágrafo único. Salvo os casos expressos em lei, ninguém pode ser punido por fato previsto como crime, senão quando o pratica dolosamente.
+
+SÍNTESE OBJETIVA:
+Dolo: vontade de realizar o tipo (direto) ou assunção do risco (eventual). Culpa: violação do dever de cuidado (imprudência, negligência, imperícia). Regra: crime só é punível a título de dolo, salvo previsão expressa de culpa.
+
+CONCEITOS RELACIONADOS:
+- Dolo direto: quer o resultado
+- Dolo eventual: assume o risco (foda-se se acontecer)
+- Culpa consciente: prevê resultado, mas confia que não ocorrerá
+- Culpa inconsciente: não prevê, mas deveria prever
+- Imprudência: ação descuidada
+- Negligência: omissão descuidada
+- Imperícia: falta de habilidade técnica
+
+DIFERENÇA CRUCIAL (MAIS COBRADA):
+- Dolo eventual: "foda-se se matar" (assume risco)
+- Culpa consciente: "não vai acontecer" (confia que evita)
+
+EXCEÇÕES:
+Parágrafo único: crime culposo SÓ SE LEI PREVER expressamente
+
+PEGADINHAS OAB:
+1. **Dolo eventual x Culpa consciente**: diferença CRUCIAL e MAIS COBRADA
+   - Racha (art. 308 CTB): dolo eventual de homicídio ou culpa consciente? STF: pode ser dolo eventual se contexto demonstrar indiferença
+2. "Crime culposo é sempre punido" (ERRADO: só se lei prever)
+3. "Tentativa culposa é punível" (REGRA: NÃO)
+4. Confundir imprudência (ação) com negligência (omissão)
+
+INCIDÊNCIA NA OAB:
+Frequência: MUITO ALTA
+Tipo de cobrança: casos práticos diferenciando dolo eventual x culpa consciente
+
+APLICAÇÃO PRÁTICA:
+- Defender que era culpa consciente, não dolo eventual (reduz pena drasticamente)
+- Alegar que crime não prevê modalidade culposa (atipicidade)
+
+JURISPRUDÊNCIA RELEVANTE:
+- STF: racha com morte pode ser homicídio doloso (dolo eventual)
+- STJ: embriaguez ao volante com morte: pode ser dolo eventual
+
+--------------------------------------------------
+ARTIGO 21 - ERRO DE TIPO
+--------------------------------------------------
+
+TEXTO COMPLETO:
+Art. 21. O desconhecimento da lei é inescusável. O erro sobre elemento constitutivo do tipo legal de crime exclui o dolo, mas permite a punição por crime culposo, se previsto em lei.
+
+SÍNTESE OBJETIVA:
+Erro de tipo: erro sobre elemento do fato (ex: pego guarda-chuva achando que é meu). Exclui dolo. Se erro evitável, pode responder por culpa (se crime culposo existe).
+
+CONCEITOS RELACIONADOS:
+- Erro de tipo essencial: sobre elemento do tipo (exclui dolo)
+- Erro de tipo acidental: sobre circunstância secundária (não exclui dolo)
+- Erro de proibição (art. 21): erro sobre ilicitude (atenua pena)
+- Descriminante putativa (art. 20, § 1º): erro sobre causa de exclusão
+
+DIFERENÇA CRUCIAL:
+- Erro de tipo: erro sobre FATO ("achei que era meu")
+- Erro de proibição: erro sobre PROIBIÇÃO ("achei que podia")
+
+PEGADINHAS OAB:
+1. "Desconhecimento da lei isenta de pena" (ERRADO: art. 21, caput - erro de proibição, não de tipo)
+2. Confundir erro de tipo com erro de proibição
+3. "Erro de tipo sempre isenta" (DEPENDE: se evitável, pode responder por culpa)
+4. Descriminante putativa por erro de tipo (exclui dolo e culpa) x descriminante putativa por erro de proibição (só reduz pena)
+
+INCIDÊNCIA NA OAB:
+Frequência: ALTA
+Tipo de cobrança: casos práticos diferenciando erro de tipo x erro de proibição
+
+--------------------------------------------------
+ARTIGO 23 - EXCLUSÃO DE ILICITUDE
+--------------------------------------------------
+
+TEXTO COMPLETO:
+Art. 23. Não há crime quando o agente pratica o fato:
+I - em estado de necessidade;
+II - em legítima defesa;
+III - em estrito cumprimento de dever legal;
+IV - no exercício regular de direito.
+
+SÍNTESE OBJETIVA:
+Causas de exclusão da ilicitude (justificantes): estado de necessidade, legítima defesa, estrito cumprimento de dever legal, exercício regular de direito. Fato é típico, mas não ilícito.
+
+CONCEITOS RELACIONADOS (DETALHADOS NOS ARTS. 24 E 25):
+
+ESTADO DE NECESSIDADE (ART. 24):
+- Perigo atual
+- Não provocado voluntariamente
+- Inevitabilidade
+- Razoabilidade (sacrifício de bem menor ou igual)
+- Exemplo: furtar comida para não morrer de fome
+
+LEGÍTIMA DEFESA (ART. 25):
+- Agressão injusta
+- Atual ou iminente
+- Direito próprio ou de terceiro
+- Meios necessários
+- Moderação
+- Exemplo: reagir a assalto
+
+PEGADINHAS OAB:
+1. **Legítima defesa não admite excesso** (ERRADO: admite, mas responde pelo excesso - art. 23, parágrafo único)
+2. **Legítima defesa contra legítima defesa** (NÃO EXISTE - segunda é estado de necessidade)
+3. **Legítima defesa de terceiro**: precisa que terceiro não tenha provocado (senão é auxílio)
+4. **Estado de necessidade sacrificando bem MAIOR**: crime (ex: matar alguém para salvar própria vida - conflito vida x vida)
+5. **Estrito cumprimento de dever legal**: policial que prende em flagrante NÃO comete sequestro
+
+INCIDÊNCIA NA OAB:
+Frequência: MUITO ALTA
+Tipo de cobrança: casos práticos, excesso, requisitos
+
+APLICAÇÃO PRÁTICA:
+- Alegar legítima defesa (excludente de ilicitude)
+- Alegar estado de necessidade
+- Distinguir excesso doloso (crime doloso) de excesso culposo (crime culposo se previsto)
+
+--------------------------------------------------
+ARTIGO 59 - FIXAÇÃO DA PENA (SISTEMA TRIFÁSICO)
+--------------------------------------------------
+
+TEXTO COMPLETO:
+Art. 59. O juiz, atendendo à culpabilidade, aos antecedentes, à conduta social, à personalidade do agente, aos motivos, às circunstâncias e consequências do crime, bem como ao comportamento da vítima, estabelecerá, conforme seja necessário e suficiente para reprovação e prevenção do crime:
+I - as penas aplicáveis dentre as cominadas;
+II - a quantidade de pena aplicável, dentro dos limites previstos;
+III - o regime inicial de cumprimento da pena privativa de liberdade;
+IV - a substituição da pena privativa da liberdade aplicada, por outra espécie de pena, se cabível.
+
+SÍNTESE OBJETIVA:
+Critérios para fixação da pena (circunstâncias judiciais). Sistema trifásico: 1ª fase (judicial), 2ª fase (agravantes/atenuantes), 3ª fase (causas de aumento/diminuição).
+
+CIRCUNSTÂNCIAS JUDICIAIS (VETORIAIS):
+1. Culpabilidade (grau)
+2. Antecedentes
+3. Conduta social
+4. Personalidade
+5. Motivos
+6. Circunstâncias
+7. Consequências
+8. Comportamento da vítima
+
+SISTEMA TRIFÁSICO:
+1ª FASE: pena-base (art. 59 - circunstâncias judiciais)
+2ª FASE: agravantes (art. 61/62) e atenuantes (art. 65/66)
+3ª FASE: causas de aumento e diminuição (parte especial ou geral)
+
+PEGADINHAS OAB:
+1. "Agravantes vêm antes de atenuantes" (ORDEM: 1º pena-base, 2º agravantes/atenuantes, 3º causas de aumento/diminuição)
+2. "Reincidência é circunstância judicial" (ERRADO: é agravante - 2ª fase, art. 61, I)
+3. "Atenuante pode reduzir abaixo do mínimo" (REGRA: NÃO, Súmula 231 STJ - mas causas de diminuição SIM)
+4. "Comportamento da vítima sempre favorece réu" (DEPENDE: se vítima provocou, pode atenuar)
+
+INCIDÊNCIA NA OAB:
+Frequência: ALTA (2ª fase - peça prática)
+Tipo de cobrança: dosimetria da pena, alegações finais
+
+APLICAÇÃO PRÁTICA:
+- Pedir reconhecimento de atenuantes
+- Impugnar agravantes indevidas
+- Fundamentar pena-base no mínimo legal
+
+JURISPRUDÊNCIA RELEVANTE:
+- Súmula 231 STJ: atenuante não reduz abaixo do mínimo (salvo réu menor de 21 anos - Súmula 231 em revisão)
+- STJ: maus antecedentes e reincidência não podem ser usados simultaneamente se baseados no mesmo fato
+
+============================================================
+PARTE ESPECIAL - CRIMES CONTRA A PESSOA
+============================================================
+
+--------------------------------------------------
+ARTIGO 121 - HOMICÍDIO
+--------------------------------------------------
+
+TEXTO COMPLETO:
+Art. 121. Matar alguém:
+Pena - reclusão, de 6 (seis) a 20 (vinte) anos.
+
+§ 1º Se o agente comete o crime impelido por motivo de relevante valor social ou moral, ou sob o domínio de violenta emoção, logo em seguida a injusta provocação da vítima, o juiz pode reduzir a pena de um sexto a um terço.
+
+§ 2º Se o homicídio é cometido:
+I - mediante paga ou promessa de recompensa, ou por outro motivo torpe;
+II - por motivo fútil;
+III - com emprego de veneno, fogo, explosivo, asfixia, tortura ou outro meio insidioso ou cruel, ou de que possa resultar perigo comum;
+IV - à traição, de emboscada, ou mediante dissimulação ou outro recurso que dificulte ou torne impossível a defesa do ofendido;
+V - para assegurar a execução, a ocultação, a impunidade ou vantagem de outro crime:
+Pena - reclusão, de 12 (doze) a 30 (trinta) anos.
+
+§ 3º Se o homicídio é culposo:
+Pena - detenção, de 1 (um) a 3 (três) anos.
+
+SÍNTESE OBJETIVA:
+Homicídio simples: matar alguém (6 a 20 anos reclusão). Privilegiado (§ 1º): relevante valor social/moral ou violenta emoção após injusta provocação (reduz 1/6 a 1/3). Qualificado (§ 2º): 5 qualificadoras (12 a 30 anos). Culposo (§ 3º): 1 a 3 anos detenção.
+
+QUALIFICADORAS (§ 2º):
+I - Motivo torpe (ex: matar por herança)
+II - Motivo fútil (ex: matar por discussão boba)
+III - Meio cruel/insidioso (veneno, fogo, tortura)
+IV - Recurso que dificulta defesa (traição, emboscada)
+V - Conexão com outro crime
+
+PRIVILEGIADO (§ 1º):
+- Relevante valor social/moral: ex: matar estuprador do filho
+- Violenta emoção logo após injusta provocação: ex: flagrante de adultério (cuidado: não justifica feminicídio)
+
+FEMINICÍDIO (§ 2º-A - Lei 13.104/2015):
+Homicídio contra mulher por razão de sexo feminino (violência doméstica ou menosprezo à condição de mulher).
+
+PEGADINHAS OAB:
+1. "Homicídio privilegiado-qualificado é possível" (DEPENDE: maioria da doutrina aceita, mas há divergência)
+2. "Motivo fútil = sem motivo" (ERRADO: fútil é motivo DESPROPORCIONAL, sem motivo pode ser outro)
+3. "Violenta emoção justifica matar em qualquer situação" (ERRADO: precisa ser LOGO EM SEGUIDA a injusta provocação)
+4. "Feminicídio só se matar esposa/namorada" (ERRADO: qualquer mulher, em contexto de menosprezo ou violência doméstica)
+5. Confundir homicídio doloso (art. 121, caput) com culposo (§ 3º)
+
+INCIDÊNCIA NA OAB:
+Frequência: MUITO ALTA
+Tipo de cobrança: qualificadoras, privilegiado, feminicídio, tentativa
+
+APLICAÇÃO PRÁTICA:
+- Pleitear reconhecimento de homicídio privilegiado
+- Impugnar qualificadoras indevidas
+- Diferenciar homicídio doloso de culposo
+
+--------------------------------------------------
+ARTIGO 155 - FURTO
+--------------------------------------------------
+
+TEXTO COMPLETO:
+Art. 155. Subtrair, para si ou para outrem, coisa alheia móvel:
+Pena - reclusão, de 1 (um) a 4 (quatro) anos, e multa.
+
+§ 1º A pena aumenta-se de um terço, se o crime é praticado durante o repouso noturno.
+
+§ 2º Se o criminoso é primário, e é de pequeno valor a coisa furtada, o juiz pode substituir a pena de reclusão pela de detenção, diminuí-la de um a dois terços, ou aplicar somente a pena de multa.
+
+§ 3º Equipara-se à coisa móvel a energia elétrica ou qualquer outra que tenha valor econômico.
+
+§ 4º A pena é de reclusão de 2 (dois) a 8 (oito) anos, e multa, se o crime é cometido:
+I - com destruição ou rompimento de obstáculo à subtração da coisa;
+II - com abuso de confiança, ou mediante fraude, escalada ou destreza;
+III - com emprego de chave falsa;
+IV - mediante concurso de duas ou mais pessoas.
+
+§ 5º A pena é de reclusão de 3 (três) a 8 (oito) anos, se a subtração for de veículo automotor que venha a ser transportado para outro Estado ou para o exterior.
+
+SÍNTESE OBJETIVA:
+Furto: subtrair coisa alheia móvel (1 a 4 anos). Privilegiado (§ 2º): primário + pequeno valor. Qualificado (§ 4º): destruição de obstáculo, fraude, escalada, destreza, chave falsa, concurso de pessoas. Furto de veículo (§ 5º): 3 a 8 anos se transportado para outro estado/exterior.
+
+ELEMENTOS:
+- Subtrair: retirar da esfera de vigilância da vítima
+- Coisa alheia: não é sua
+- Móvel: pode ser transportada
+- Animus furandi: intenção de apropriar definitivamente
+
+QUALIFICADORAS (§ 4º):
+I - Destruição/rompimento de obstáculo
+II - Abuso de confiança, fraude, escalada, destreza
+III - Chave falsa
+IV - Concurso de pessoas (2 ou +)
+
+PEGADINHAS OAB:
+1. "Furto de uso não é crime" (DEPENDE: maioria entende atípico se restitui logo, mas há divergência)
+2. "Repouso noturno é das 22h às 6h" (ERRADO: conceito varia por região - quando vítima está descansando)
+3. "Furto privilegiado + qualificado é possível" (NÃO - são incompatíveis)
+4. "Princípio da insignificância sempre aplica" (DEPENDE: critérios do STF - mínima ofensividade, ausência de periculosidade, reduzido grau de reprovabilidade, inexpressividade da lesão)
+5. Confundir furto (subtração sem violência) com roubo (subtração COM violência/ameaça)
+
+INCIDÊNCIA NA OAB:
+Frequência: ALTA
+Tipo de cobrança: qualificadoras, privilegiado, princípio da insignificância
+
+============================================================
+OBSERVAÇÕES FINAIS
+============================================================
+
+Este documento estrutura o Código Penal para consumo por IA jurídica. Cada artigo contém:
+- Texto completo
+- Síntese objetiva
+- Conceitos relacionados
+- Pegadinhas OAB (foco especial)
+- Incidência na prova
+- Aplicação prática
+- Jurisprudência relevante
+
+Próximos documentos:
+- Completar Código Penal (demais crimes)
+- Código de Processo Penal estruturado
+- Leis penais especiais (Lei de Drogas, Crimes Hediondos, etc.)
+
+============================================================
+FIM DO DOCUMENTO - CÓDIGO PENAL ESTRUTURADO (PARCIAL)
+============================================================

@@ -1,0 +1,608 @@
+================================================================================
+GUIA DE SETUP: OLLAMA/LLAMA (IA PRÓPRIA LOCAL)
+================================================================================
+Sistema: JURIS_IA_CORE_V1
+Data: 2025-12-17
+Tempo estimado: 30-60 minutos
+================================================================================
+
+VISÃO GERAL
+================================================================================
+
+Este guia detalha como configurar Ollama com modelos Llama locais para:
+1. Embeddings vetoriais (busca semântica)
+2. Explicações pedagógicas com LLM
+3. 100% privado e sem custos de API
+
+VANTAGENS OLLAMA/LLAMA:
+✓ Custo ZERO de API
+✓ Dados 100% privados (não saem do servidor)
+✓ Sem limites de rate limiting
+✓ Latência previsível
+✓ Sem dependência externa
+
+REQUISITOS DE HARDWARE:
+- CPU: 4+ cores
+- RAM: 8GB mínimo, 16GB recomendado
+- Disco: 10GB+ livre
+- GPU (opcional mas recomendado): NVIDIA/AMD com 6GB+ VRAM
+
+
+================================================================================
+ETAPA 1: INSTALAR OLLAMA
+================================================================================
+
+1.1 WINDOWS
+-----------
+
+Opção A: Instalador oficial (RECOMENDADO)
+
+1. Baixar instalador:
+   https://ollama.com/download/windows
+
+2. Executar OllamaSetup.exe
+
+3. Seguir assistente de instalação
+
+4. Verificar instalação:
+   ollama --version
+
+   Esperado: ollama version is 0.x.x
+
+
+Opção B: Via PowerShell (avançado)
+
+# Download e instalação via script
+irm https://ollama.com/install.ps1 | iex
+
+
+1.2 LINUX
+---------
+
+Ubuntu/Debian:
+
+curl -fsSL https://ollama.com/install.sh | sh
+
+# Verificar instalação
+ollama --version
+
+# Iniciar serviço
+systemctl start ollama
+systemctl enable ollama  # Auto-start no boot
+
+
+Fedora/RHEL:
+
+curl -fsSL https://ollama.com/install.sh | sh
+
+
+Arch Linux:
+
+yay -S ollama
+
+
+1.3 DOCKER (alternativa)
+------------------------
+
+# Pull da imagem
+docker pull ollama/ollama:latest
+
+# Executar container
+docker run -d \
+  --name ollama \
+  -p 11434:11434 \
+  -v ollama:/root/.ollama \
+  ollama/ollama
+
+# Com GPU NVIDIA
+docker run -d \
+  --gpus all \
+  --name ollama \
+  -p 11434:11434 \
+  -v ollama:/root/.ollama \
+  ollama/ollama
+
+
+1.4 VERIFICAR INSTALAÇÃO
+-------------------------
+
+# Testar se Ollama está rodando
+curl http://localhost:11434/api/tags
+
+# Esperado: {"models":[]}
+
+# Ou via PowerShell (Windows)
+Invoke-RestMethod http://localhost:11434/api/tags
+
+
+================================================================================
+ETAPA 2: BAIXAR MODELOS
+================================================================================
+
+2.1 MODELO PARA EMBEDDINGS
+---------------------------
+
+OPÇÃO 1: nomic-embed-text (RECOMENDADO)
+- Qualidade: Excelente
+- Dimensões: 768
+- Tamanho: ~1.5GB
+- RAM necessária: ~3GB
+
+ollama pull nomic-embed-text
+
+
+OPÇÃO 2: mxbai-embed-large
+- Qualidade: Alta
+- Dimensões: 1024
+- Tamanho: ~670MB
+- RAM necessária: ~2GB
+
+ollama pull mxbai-embed-large
+
+
+OPÇÃO 3: all-minilm (mais rápido)
+- Qualidade: Boa
+- Dimensões: 384
+- Tamanho: ~120MB
+- RAM necessária: ~1GB
+
+ollama pull all-minilm
+
+
+2.2 MODELO PARA EXPLICAÇÕES (LLM)
+----------------------------------
+
+OPÇÃO 1: llama3.2:3b (RECOMENDADO para começar)
+- Qualidade: Boa
+- Parâmetros: 3 bilhões
+- Tamanho: ~2GB
+- RAM necessária: ~4GB
+- Velocidade: Rápido
+
+ollama pull llama3.2:3b
+
+
+OPÇÃO 2: llama3.1:8b (BALANCEADO)
+- Qualidade: Muito boa
+- Parâmetros: 8 bilhões
+- Tamanho: ~4.7GB
+- RAM necessária: ~8GB
+- Velocidade: Moderado
+
+ollama pull llama3.1:8b
+
+
+OPÇÃO 3: llama3:70b (MELHOR QUALIDADE - requer hardware potente)
+- Qualidade: Excelente
+- Parâmetros: 70 bilhões
+- Tamanho: ~40GB (quantizado)
+- RAM necessária: ~64GB ou GPU com 40GB+ VRAM
+- Velocidade: Lento (CPU), rápido (GPU)
+
+ollama pull llama3:70b
+
+
+2.3 VERIFICAR MODELOS INSTALADOS
+---------------------------------
+
+ollama list
+
+Esperado:
+NAME                    ID              SIZE    MODIFIED
+nomic-embed-text:latest abc123def456    1.5 GB  2 minutes ago
+llama3.2:3b             def456ghi789    2.0 GB  1 minute ago
+
+
+2.4 TESTAR MODELOS
+------------------
+
+Testar embedding:
+
+ollama run nomic-embed-text "Art. 5º Todos são iguais perante a lei"
+
+# Deve retornar um vetor de números
+
+
+Testar LLM:
+
+ollama run llama3.2:3b "Explique o princípio da isonomia em Direito Constitucional"
+
+# Deve retornar explicação em texto
+
+
+================================================================================
+ETAPA 3: CONFIGURAR GPU (OPCIONAL MAS RECOMENDADO)
+================================================================================
+
+3.1 NVIDIA GPU (CUDA)
+---------------------
+
+Windows:
+
+1. Instalar drivers NVIDIA mais recentes:
+   https://www.nvidia.com/Download/index.aspx
+
+2. Verificar CUDA:
+   nvidia-smi
+
+   Esperado: Informações da GPU e CUDA version
+
+3. Ollama detecta CUDA automaticamente
+
+
+Linux:
+
+1. Instalar drivers NVIDIA:
+   sudo ubuntu-drivers autoinstall
+
+2. Instalar CUDA Toolkit:
+   sudo apt install nvidia-cuda-toolkit
+
+3. Verificar:
+   nvidia-smi
+
+4. Reiniciar Ollama:
+   systemctl restart ollama
+
+
+3.2 AMD GPU (ROCm) - Linux apenas
+----------------------------------
+
+1. Instalar ROCm:
+   sudo apt install rocm-hip-runtime
+
+2. Adicionar usuário ao grupo render:
+   sudo usermod -a -G render $USER
+
+3. Reiniciar:
+   sudo reboot
+
+4. Verificar:
+   rocm-smi
+
+
+3.3 VERIFICAR ACELERAÇÃO GPU
+-----------------------------
+
+# Executar modelo e observar logs
+ollama run llama3.2:3b --verbose
+
+# Se GPU ativa, deve mostrar:
+# "using GPU: NVIDIA GeForce RTX 3060"
+
+# Monitorar uso de GPU
+nvidia-smi -l 1  # Atualiza a cada 1 segundo
+
+
+================================================================================
+ETAPA 4: CONFIGURAR SISTEMA JURIS_IA
+================================================================================
+
+4.1 INSTALAR DEPENDÊNCIAS PYTHON
+---------------------------------
+
+cd D:\JURIS_IA_CORE_V1
+
+# Adicionar ao requirements.txt
+echo "requests>=2.31.0" >> requirements.txt
+
+# Instalar
+pip install requests
+
+
+4.2 TESTAR CONEXÃO COM OLLAMA
+------------------------------
+
+python -c "
+import requests
+response = requests.get('http://localhost:11434/api/tags')
+print('✓ Ollama conectado:', response.status_code == 200)
+print('Modelos:', response.json()['models'])
+"
+
+
+4.3 AJUSTAR COLUNA EMBEDDING NO BANCO
+--------------------------------------
+
+O script faz isso automaticamente, mas para ajustar manualmente:
+
+# Para nomic-embed-text (768 dims)
+psql $DATABASE_URL -c "
+ALTER TABLE questao_oab
+DROP COLUMN IF EXISTS embedding;
+
+ALTER TABLE questao_oab
+ADD COLUMN embedding VECTOR(768);
+"
+
+# Para mxbai-embed-large (1024 dims)
+# USE VECTOR(1024)
+
+# Para all-minilm (384 dims)
+# USE VECTOR(384)
+
+
+4.4 POPULAR EMBEDDINGS
+----------------------
+
+# Teste com 10 questões
+python scripts/popular_embeddings_ollama.py --modelo nomic-embed-text --limite 10
+
+# Processar todas as questões
+python scripts/popular_embeddings_ollama.py --modelo nomic-embed-text
+
+# Ver apenas estatísticas
+python scripts/popular_embeddings_ollama.py --stats-only
+
+
+4.5 TESTAR EXPLICAÇÕES
+-----------------------
+
+python -c "
+from core.explicacao_service_ollama import ExplicacaoServiceOllama
+from sqlalchemy import create_engine, text
+from sqlalchemy.orm import sessionmaker
+import os
+
+engine = create_engine(os.getenv('DATABASE_URL'))
+Session = sessionmaker(bind=engine)
+session = Session()
+
+# Buscar uma questão
+result = session.execute(
+    text('''
+        SELECT q.id, g.alternativa_correta
+        FROM questao_oab q
+        JOIN gabarito_questao g ON q.id = g.questao_id
+        LIMIT 1
+    ''')
+).fetchone()
+
+if result:
+    questao_id, alt_correta = result
+    alt_errada = 'A' if alt_correta != 'A' else 'B'
+
+    explicacao_service = ExplicacaoServiceOllama(model='llama3.2:3b')
+
+    print(f'Gerando explicação...')
+    explicacao, metadados = explicacao_service.gerar_explicacao_erro(
+        session=session,
+        questao_id=questao_id,
+        alternativa_escolhida=alt_errada,
+        tipo_erro='conceito'
+    )
+
+    if explicacao:
+        print(f'✓ Explicação gerada!')
+        print(f'Tempo: {metadados[\"tempo_ms\"]}ms')
+        print(f'Tokens: {metadados[\"tokens_gerados\"]}')
+        print(f'Custo: R$ 0,00')
+        print()
+        print('EXPLICAÇÃO:')
+        print(explicacao[:300] + '...')
+
+session.close()
+"
+
+
+================================================================================
+ETAPA 5: OTIMIZAÇÃO E PERFORMANCE
+================================================================================
+
+5.1 CONFIGURAÇÃO DE MEMÓRIA
+----------------------------
+
+Criar/editar ~/.ollama/config.json (Linux) ou %USERPROFILE%\.ollama\config.json (Windows):
+
+{
+  "num_gpu": 1,
+  "num_thread": 8,
+  "num_ctx": 4096,
+  "num_batch": 512
+}
+
+Parâmetros:
+- num_gpu: Número de GPUs a usar (0 = CPU only)
+- num_thread: Threads CPU
+- num_ctx: Tamanho do contexto (tokens)
+- num_batch: Batch size para geração
+
+
+5.2 BENCHMARKS ESPERADOS
+-------------------------
+
+Embeddings (nomic-embed-text):
+- CPU (8 cores): ~2-3 questões/segundo
+- GPU (RTX 3060): ~10-15 questões/segundo
+- GPU (RTX 4090): ~30-50 questões/segundo
+
+Explicações (llama3.2:3b):
+- CPU (8 cores): ~5-10 tokens/segundo (~30s por explicação)
+- GPU (RTX 3060): ~50-80 tokens/segundo (~5s por explicação)
+- GPU (RTX 4090): ~150-200 tokens/segundo (~2s por explicação)
+
+
+5.3 CACHE DE MODELOS
+---------------------
+
+Ollama mantém modelos em cache na RAM. Para limpar:
+
+# Parar Ollama
+systemctl stop ollama  # Linux
+# ou fechar aplicação (Windows)
+
+# Limpar cache
+rm -rf ~/.ollama/models/*  # Linux
+# ou via Settings > Clear Cache (Windows)
+
+# Reiniciar e baixar modelos novamente
+
+
+5.4 MONITORAMENTO
+-----------------
+
+# Ver logs do Ollama (Linux)
+journalctl -u ollama -f
+
+# Ver uso de recursos
+htop  # CPU/RAM
+nvidia-smi -l 1  # GPU
+
+
+================================================================================
+ETAPA 6: INTEGRAÇÃO NAS APIS
+================================================================================
+
+6.1 USAR EMBEDDING SERVICE
+---------------------------
+
+from core.embedding_service_ollama import EmbeddingServiceOllama
+
+# Inicializar
+embedding_service = EmbeddingServiceOllama(
+    model="nomic-embed-text"
+)
+
+# Gerar embedding para questão
+sucesso, erro = embedding_service.gerar_embedding_questao(
+    session,
+    questao_id
+)
+
+# Buscar similares
+similares = embedding_service.buscar_questoes_similares(
+    session,
+    questao_id,
+    limite=5
+)
+
+
+6.2 USAR EXPLICAÇÃO SERVICE
+----------------------------
+
+from core.explicacao_service_ollama import ExplicacaoServiceOllama
+
+# Inicializar
+explicacao_service = ExplicacaoServiceOllama(
+    model="llama3.2:3b"
+)
+
+# Gerar explicação
+explicacao, metadados = explicacao_service.gerar_explicacao_erro(
+    session=session,
+    questao_id=questao_id,
+    alternativa_escolhida='A',
+    tipo_erro='conceito'
+)
+
+
+================================================================================
+ETAPA 7: TROUBLESHOOTING
+================================================================================
+
+PROBLEMA: Ollama não inicia
+SOLUÇÃO:
+  Windows: Verificar Task Manager se processo está rodando
+  Linux: systemctl status ollama
+  Verificar logs: journalctl -u ollama
+
+PROBLEMA: Modelos muito lentos
+SOLUÇÃO:
+  - Verificar se GPU está ativa (nvidia-smi)
+  - Usar modelo menor (llama3.2:3b ao invés de llama3:70b)
+  - Aumentar RAM disponível
+  - Fechar outros programas
+
+PROBLEMA: Erro "model not found"
+SOLUÇÃO:
+  ollama list  # Ver modelos instalados
+  ollama pull <modelo>  # Baixar modelo
+
+PROBLEMA: Erro de memória (OOM)
+SOLUÇÃO:
+  - Usar modelo menor
+  - Aumentar SWAP (Linux)
+  - Reduzir num_ctx e num_batch
+  - Usar quantização menor (ex: llama3:70b-q4 ao invés de llama3:70b)
+
+PROBLEMA: GPU não é detectada
+SOLUÇÃO:
+  - Atualizar drivers NVIDIA/AMD
+  - Verificar nvidia-smi funciona
+  - Reinstalar CUDA Toolkit
+  - Verificar compatibilidade GPU com Ollama
+
+
+================================================================================
+ETAPA 8: COMPARAÇÃO: OLLAMA vs OPENAI
+================================================================================
+
+CUSTOS (100 usuários ativos, 1 mês):
+
+OpenAI:
+  Embeddings: $0.20 (setup) + $0 (após setup)
+  Explicações: ~$1-3/mês
+  TOTAL: ~$1-3/mês
+
+Ollama:
+  Embeddings: $0
+  Explicações: $0
+  Infraestrutura: Custo do servidor (já existente)
+  TOTAL: $0/mês
+
+
+PERFORMANCE:
+
+OpenAI:
+  Latência: 500-2000ms (depende da internet)
+  Qualidade: Excelente (GPT-4o-mini)
+  Rate limit: Sim (10K req/min)
+
+Ollama (GPU):
+  Latência: 50-200ms (local)
+  Qualidade: Muito boa (Llama 3.2)
+  Rate limit: Não
+
+
+PRIVACIDADE:
+
+OpenAI:
+  Dados: Enviados para API OpenAI
+  Logs: Armazenados pela OpenAI por 30 dias
+  Compliance: Depende de termos da OpenAI
+
+Ollama:
+  Dados: 100% local, nunca saem do servidor
+  Logs: Totalmente sob seu controle
+  Compliance: Total conformidade LGPD
+
+
+RECOMENDAÇÃO:
+
+Para produção em escala: Ollama
+- Custo zero
+- Melhor privacidade
+- Melhor performance (com GPU)
+
+Para protótipo rápido: OpenAI
+- Setup mais rápido
+- Sem necessidade de hardware potente
+
+
+================================================================================
+PRÓXIMOS PASSOS
+================================================================================
+
+1. [ ] Instalar Ollama
+2. [ ] Baixar modelos (nomic-embed-text + llama3.2:3b)
+3. [ ] Configurar GPU (se disponível)
+4. [ ] Popular embeddings
+5. [ ] Testar explicações
+6. [ ] Integrar nas APIs
+7. [ ] Monitorar performance
+8. [ ] (Opcional) Upgrade para modelos maiores se performance não for suficiente
+
+
+================================================================================
+FIM DO GUIA
+================================================================================

@@ -1,0 +1,910 @@
+JURIS_IA_CORE_V1
+ONTOLOGIA JURÍDICA COMPLETA - BASE ABSOLUTA
+Versão 1.0 - Sistema Definitivo de Formação e Aprovação OAB
+============================================================
+
+ESTRUTURA GERAL DA ONTOLOGIA
+============================================================
+
+Este documento contém a ontologia jurídica completa, organizada hierarquicamente desde conceitos fundamentais até institutos específicos. Cada conceito possui:
+
+- Definição técnica
+- Explicação didática
+- Relações jurídicas
+- Incidência na OAB
+- Aplicação prática
+- Erros comuns de interpretação
+
+============================================================
+NÍVEL 1 - CONCEITOS FUNDAMENTAIS DO DIREITO
+============================================================
+
+--------------------------------------------------
+CONCEITO: DIREITO
+--------------------------------------------------
+
+DEFINIÇÃO TÉCNICA:
+Conjunto de normas jurídicas coercitivas que regulam a vida em sociedade, garantindo ordem, segurança jurídica e justiça social mediante a institucionalização de deveres, direitos, sanções e processos.
+
+EXPLICAÇÃO DIDÁTICA:
+O Direito é o sistema de regras que organiza a sociedade. Pense nele como o código de funcionamento da vida em grupo: ele define o que pode, o que não pode, as consequências de cada ação e os procedimentos para resolver conflitos.
+
+RELAÇÕES JURÍDICAS:
+- Relaciona-se com: norma jurídica, ordenamento jurídico, justiça, sanção
+- Fundamenta: todos os ramos do Direito
+- Pressupõe: sociedade, Estado, pessoa
+
+INCIDÊNCIA NA OAB:
+- Cobrança em Ética e Estatuto da OAB: fundamentos deontológicos
+- Cobrança em Direito Constitucional: princípios estruturantes
+- Cobrança em Filosofia do Direito: escolas e correntes
+- Peso: alto nas questões introdutórias e interdisciplinares
+
+APLICAÇÃO PRÁTICA:
+O advogado usa o conceito de Direito para:
+- Fundamentar petições e arrazoados
+- Distinguir direito positivo de direito natural
+- Argumentar com princípios gerais do direito
+- Identificar lacunas e antinomias normativas
+
+ERROS COMUNS:
+- Confundir Direito com Lei: nem toda norma é lei formal
+- Reduzir Direito a coerção: ele também persuade e educa
+- Ignorar o caráter sistêmico: Direito é ordenamento, não normas isoladas
+- Esquecer a dimensão axiológica: Direito não é neutro, tem valores
+
+--------------------------------------------------
+CONCEITO: NORMA JURÍDICA
+--------------------------------------------------
+
+DEFINIÇÃO TÉCNICA:
+Regra de conduta abstrata, geral, coercitiva e bilateral, dotada de imperatividade estatal, estruturada em hipótese de incidência e consequência jurídica, cuja função é regular comportamentos intersubjetivos com eficácia e validade no ordenamento.
+
+EXPLICAÇÃO DIDÁTICA:
+Norma jurídica é a "célula" do Direito. Ela estabelece: se acontecer X (fato), então deve ocorrer Y (consequência). Exemplo: se alguém causar dano (fato), deve indenizar (consequência). A norma é obrigatória e o Estado pode forçar seu cumprimento.
+
+RELAÇÕES JURÍDICAS:
+- Compõe: ordenamento jurídico
+- Divide-se em: norma-regra e norma-princípio
+- Relaciona-se com: fato jurídico, relação jurídica, sanção
+- Distingue-se de: norma moral, norma social
+
+INCIDÊNCIA NA OAB:
+- Cobrança em todas as disciplinas: base de interpretação
+- Estrutura lógica (hipótese-consequência) é fundamental
+- Hierarquia das normas: CF > Lei > Decreto
+- Conflitos normativos: antinomias e lacunas
+
+APLICAÇÃO PRÁTICA:
+- Subsunção: enquadrar fato na norma
+- Interpretação: revelar sentido e alcance da norma
+- Fundamentação: citar norma aplicável ao caso
+- Argumentação: usar normas como premissas lógicas
+
+ERROS COMUNS:
+- Confundir norma com artigo de lei: norma pode estar implícita
+- Ignorar que princípios são normas: CF/88 reconhece força normativa
+- Não distinguir vigência de validade: norma vigente pode ser inválida
+- Aplicar norma sem verificar revogação ou inconstitucionalidade
+
+--------------------------------------------------
+CONCEITO: ORDENAMENTO JURÍDICO
+--------------------------------------------------
+
+DEFINIÇÃO TÉCNICA:
+Sistema unitário, hierárquico e dinâmico de normas jurídicas que, fundado em norma fundamental, regula integralmente a vida social mediante coerência lógica, completude material e legitimidade axiológica.
+
+EXPLICAÇÃO DIDÁTICA:
+Ordenamento é o conjunto organizado de todas as normas jurídicas de um país. Imagine uma pirâmide: no topo está a Constituição, abaixo as leis, depois os decretos, e assim por diante. Todas as normas devem estar em harmonia.
+
+RELAÇÕES JURÍDICAS:
+- Estrutura-se por: hierarquia normativa, unidade, coerência, completude
+- Fundamenta-se em: Constituição Federal (norma fundamental)
+- Relaciona-se com: sistema jurídico, fontes do direito
+- Distingue-se de: microssistemas jurídicos
+
+INCIDÊNCIA NA OAB:
+- Hierarquia: CF > Lei Complementar > Lei Ordinária > Decreto
+- Controle de constitucionalidade: verificar compatibilidade vertical
+- Conflito de leis no tempo: vigência, ab-rogação, derrogação
+- Integração de lacunas: analogia, costumes, princípios gerais
+
+APLICAÇÃO PRÁTICA:
+- Verificar hierarquia para resolver conflitos normativos
+- Identificar inconstitucionalidade de leis
+- Aplicar normas de transição (LINDB)
+- Usar fontes subsidiárias quando há lacuna
+
+ERROS COMUNS:
+- Achar que decreto pode contrariar lei: hierarquia deve ser respeitada
+- Ignorar que costume é fonte: integra o ordenamento
+- Confundir lacuna com silêncio eloquente: ausência pode ser proposital
+- Não observar regras de transitoriedade: conflito de leis no tempo
+
+--------------------------------------------------
+CONCEITO: FATO JURÍDICO
+--------------------------------------------------
+
+DEFINIÇÃO TÉCNICA:
+Todo acontecimento natural ou humano a que o ordenamento jurídico atribui efeitos de criar, modificar, conservar ou extinguir relações jurídicas.
+
+EXPLICAÇÃO DIDÁTICA:
+Fato jurídico é qualquer evento que gera consequências no mundo do Direito. Exemplos: nascimento (cria direitos), morte (extingue obrigações), contrato (cria deveres), furto (gera responsabilidade penal).
+
+RELAÇÕES JURÍDICAS:
+- Divide-se em: fato jurídico stricto sensu (natural) e ato jurídico (humano)
+- Relaciona-se com: hipótese normativa, incidência, relação jurídica
+- Gera: efeitos jurídicos, direitos, deveres, pretensões, obrigações
+
+INCIDÊNCIA NA OAB:
+- Direito Civil: fatos geradores de responsabilidade, negócios jurídicos
+- Direito Penal: fato típico, ilícito e culpável
+- Direito Tributário: fato gerador do tributo
+- Direito Processual: fatos processuais e suas consequências
+
+APLICAÇÃO PRÁTICA:
+- Identificar o fato que deu origem ao litígio
+- Qualificar juridicamente o fato (subsunção)
+- Determinar efeitos jurídicos do fato
+- Provar o fato em juízo
+
+ERROS COMUNS:
+- Confundir fato com ato: todo ato é fato, mas nem todo fato é ato
+- Ignorar pressupostos de validade do ato jurídico
+- Não distinguir ato lícito de ilícito: consequências diferentes
+- Confundir fato consumado com preclusão consumativa
+
+--------------------------------------------------
+CONCEITO: RELAÇÃO JURÍDICA
+--------------------------------------------------
+
+DEFINIÇÃO TÉCNICA:
+Vínculo intersubjetivo estabelecido por norma jurídica entre sujeitos de direito (ativo e passivo), tendo por objeto uma prestação ou abstenção, tutelado pelo ordenamento e dotado de exigibilidade e coercibilidade.
+
+EXPLICAÇÃO DIDÁTICA:
+Relação jurídica é o laço que une pessoas sob a proteção do Direito. Exemplo: quando você compra algo, surge uma relação jurídica entre você (comprador) e o vendedor. Você tem direito de receber o produto; ele tem dever de entregá-lo.
+
+RELAÇÕES JURÍDICAS:
+- Elementos: sujeito ativo, sujeito passivo, objeto, vínculo jurídico
+- Relaciona-se com: direito subjetivo, dever jurídico, pretensão, ação
+- Pressupõe: capacidade jurídica, legitimidade, interesse
+
+INCIDÊNCIA NA OAB:
+- Base de todas as disciplinas
+- Polo ativo x polo passivo (legitimidade)
+- Objeto possível, lícito, determinado ou determinável
+- Relações obrigacionais, reais, familiares, sucessórias
+
+APLICAÇÃO PRÁTICA:
+- Definir partes legítimas em ação judicial
+- Identificar direitos e deveres de cada parte
+- Determinar causa de pedir e pedido
+- Verificar interesse processual
+
+ERROS COMUNS:
+- Confundir relação jurídica com contrato: pode ser extracontratual
+- Não identificar corretamente sujeito passivo: ilegitimidade
+- Ignorar pluralidade de vínculos: solidariedade, subsidiariedade
+- Confundir direito subjetivo com pretensão
+
+--------------------------------------------------
+CONCEITO: PESSOA (SUJEITO DE DIREITO)
+--------------------------------------------------
+
+DEFINIÇÃO TÉCNICA:
+Ente dotado de personalidade jurídica, apto a ser titular de direitos e deveres na ordem jurídica, compreendendo pessoa natural (ser humano) e pessoa jurídica (ente coletivo personalizado).
+
+EXPLICAÇÃO DIDÁTICA:
+Pessoa é quem pode ter direitos e deveres. Existem dois tipos: pessoa natural (você, eu, qualquer ser humano) e pessoa jurídica (empresas, associações, fundações). Ambas podem processar e ser processadas.
+
+RELAÇÕES JURÍDICAS:
+- Atributos: personalidade, capacidade, legitimidade, estado
+- Relaciona-se com: capacidade de direito, capacidade de fato
+- Distingue-se de: patrimônio, domicílio, nome, cidadania
+- Relaciona-se com: nascituro, embrião, espólio, massa falida
+
+INCIDÊNCIA NA OAB:
+- Direito Civil: início e fim da personalidade, capacidade
+- Direito Empresarial: tipos de sociedades, desconsideração
+- Direito do Consumidor: vulnerabilidade do consumidor
+- Direito Processual: partes, legitimidade, representação
+
+APLICAÇÃO PRÁTICA:
+- Verificar legitimidade para estar em juízo
+- Identificar necessidade de representação ou assistência
+- Determinar responsabilidade (pessoa física x pessoa jurídica)
+- Verificar hipóteses de desconsideração da personalidade jurídica
+
+ERROS COMUNS:
+- Confundir capacidade de direito com capacidade de fato
+- Achar que nascituro não tem direitos: ele tem proteção legal
+- Ignorar que PJ pode ser responsabilizada penalmente em casos específicos
+- Não verificar representação adequada de incapazes
+
+--------------------------------------------------
+CONCEITO: SANÇÃO JURÍDICA
+--------------------------------------------------
+
+DEFINIÇÃO TÉCNICA:
+Consequência jurídica desfavorável imposta pelo Estado ao violador de norma jurídica, com finalidade retributiva, preventiva, reparatória ou pedagógica, garantindo a coercibilidade do ordenamento.
+
+EXPLICAÇÃO DIDÁTICA:
+Sanção é a punição ou consequência negativa que o Estado aplica a quem descumpre a lei. Pode ser: pena (prisão, multa), reparação de dano (indenização), anulação de ato, perda de direito.
+
+RELAÇÕES JURÍDICAS:
+- Tipos: penal, civil, administrativa, processual
+- Relaciona-se com: ilícito, responsabilidade, coerção
+- Finalidades: retribuição, prevenção, reparação, educação
+- Distingue-se de: pena natural, consequência moral
+
+INCIDÊNCIA NA OAB:
+- Direito Penal: penas e medidas de segurança
+- Direito Civil: perdas e danos, nulidades, resolução
+- Direito Administrativo: sanções disciplinares e regulatórias
+- Direito Processual: nulidades, multas, extinção do processo
+
+APLICAÇÃO PRÁTICA:
+- Pleitear condenação adequada ao ilícito
+- Calcular danos materiais e morais
+- Defender contra sanções desproporcionais
+- Usar precedentes sobre dosimetria
+
+ERROS COMUNS:
+- Confundir sanção com pena: sanção é gênero
+- Não observar proporcionalidade: sanção deve ser adequada
+- Ignorar prescrição: sanção não pode ser eterna
+- Confundir sanção com efeito reflexo do ato
+
+============================================================
+NÍVEL 2 - RAMOS DO DIREITO
+============================================================
+
+--------------------------------------------------
+RAMO: DIREITO CONSTITUCIONAL
+--------------------------------------------------
+
+DEFINIÇÃO TÉCNICA:
+Ramo do Direito Público que estuda a organização fundamental do Estado, a estruturação dos Poderes, os direitos e garantias fundamentais, e os mecanismos de controle de constitucionalidade, tendo por fonte primária a Constituição Federal.
+
+EXPLICAÇÃO DIDÁTICA:
+Direito Constitucional é o "mapa" do Brasil jurídico. Ele define como o país é organizado, quem manda, quais são seus direitos fundamentais e como protegê-los. É a base de todo o ordenamento.
+
+SUB-RAMOS E TEMAS:
+- Teoria da Constituição
+- Controle de Constitucionalidade
+- Direitos Fundamentais
+- Organização do Estado e dos Poderes
+- Ordem Econômica e Social
+- Hermenêutica Constitucional
+
+INSTITUTOS FUNDAMENTAIS:
+- Princípios constitucionais
+- Direitos e garantias fundamentais
+- Separação dos poderes
+- Federação
+- Controle de constitucionalidade (difuso e concentrado)
+- Ações constitucionais (HC, MS, MI, HD, MS Coletivo)
+- Emendas constitucionais
+- Tratados internacionais
+- Estado de defesa e estado de sítio
+- Intervenção federal
+
+INCIDÊNCIA NA OAB:
+- Peso: 15-20% das questões (1ª fase)
+- Temas mais cobrados: direitos fundamentais, controle de constitucionalidade, organização dos poderes
+- Peça: mandado de segurança, habeas corpus
+- Questões práticas: aplicação de princípios, interpretação conforme
+
+APLICAÇÃO PRÁTICA:
+- Fundamentar petições em direitos fundamentais
+- Arguir inconstitucionalidade de leis
+- Impetrar remédios constitucionais
+- Interpretar leis conforme a Constituição
+
+ERROS COMUNS:
+- Não ler literalmente a CF: OAB cobra texto seco
+- Confundir controle difuso com concentrado
+- Ignorar súmulas do STF: jurisprudência é essencial
+- Não dominar prazos e ritos das ações constitucionais
+
+--------------------------------------------------
+RAMO: DIREITO CIVIL
+--------------------------------------------------
+
+DEFINIÇÃO TÉCNICA:
+Ramo do Direito Privado que regula as relações jurídicas entre particulares, abrangendo pessoa, família, bens, obrigações, contratos, responsabilidade civil e sucessões, fundado nos princípios da autonomia privada, boa-fé e função social.
+
+EXPLICAÇÃO DIDÁTICA:
+Direito Civil cuida das relações entre pessoas comuns: casamento, herança, compra e venda, contratos, indenização por danos. É o direito do dia a dia.
+
+SUB-RAMOS E TEMAS:
+- Parte Geral (pessoa, bens, fatos jurídicos)
+- Direito das Obrigações
+- Direito dos Contratos
+- Responsabilidade Civil
+- Direito das Coisas (Direitos Reais)
+- Direito de Família
+- Direito das Sucessões
+
+INSTITUTOS FUNDAMENTAIS:
+- Capacidade civil
+- Prescrição e decadência
+- Negócio jurídico (validade, invalidade, ineficácia)
+- Obrigações: dar, fazer, não fazer
+- Contratos: formação, efeitos, extinção
+- Responsabilidade civil: dano, nexo causal, culpa/risco
+- Propriedade e posse
+- Casamento, união estável, filiação
+- Sucessão legítima e testamentária
+
+INCIDÊNCIA NA OAB:
+- Peso: 20-25% (1ª fase)
+- Temas recorrentes: contratos, responsabilidade civil, família, sucessões
+- Peça: ação de indenização, divórcio, inventário, rescisão contratual
+- Questões práticas: cálculo de danos, partilha, vícios
+
+APLICAÇÃO PRÁTICA:
+- Redigir contratos seguros
+- Pleitear indenizações
+- Conduzir inventários e divórcios
+- Defender posse e propriedade
+
+ERROS COMUNS:
+- Confundir nulidade com anulabilidade
+- Ignorar diferença entre prescrição e decadência
+- Não aplicar princípios: função social, boa-fé objetiva
+- Confundir responsabilidade objetiva com subjetiva
+
+--------------------------------------------------
+RAMO: DIREITO PENAL
+--------------------------------------------------
+
+DEFINIÇÃO TÉCNICA:
+Ramo do Direito Público que define infrações penais (crimes e contravenções), comina sanções (penas e medidas de segurança), estabelece princípios limitadores do poder punitivo estatal e disciplina causas de exclusão de ilicitude e culpabilidade.
+
+EXPLICAÇÃO DIDÁTICA:
+Direito Penal define o que é crime, qual a pena e quando alguém pode ser punido. Ele protege bens jurídicos importantes (vida, patrimônio, honra) e limita o poder do Estado de prender e punir.
+
+SUB-RAMOS E TEMAS:
+- Parte Geral: teoria do crime, imputabilidade, pena
+- Parte Especial: crimes em espécie (contra pessoa, patrimônio, etc.)
+- Legislação Penal Especial (Lei de Drogas, crimes hediondos, etc.)
+
+INSTITUTOS FUNDAMENTAIS:
+- Princípios: legalidade, anterioridade, culpabilidade
+- Teoria do crime: fato típico, ilícito, culpável
+- Dolo e culpa
+- Causas de exclusão: legítima defesa, estado de necessidade, estrito cumprimento
+- Tentativa, consumação, desistência voluntária
+- Concurso de crimes
+- Penas: privativas de liberdade, restritivas de direito, multa
+- Extinção da punibilidade
+
+INCIDÊNCIA NA OAB:
+- Peso: 10-15% (1ª fase)
+- Temas cobrados: teoria do crime, dosimetria, extinção da punibilidade
+- Peça: menos comum, mas pode cair defesa preliminar, alegações finais
+- Questões práticas: subsunção, excludentes, concurso
+
+APLICAÇÃO PRÁTICA:
+- Defesa criminal: arguir excludentes, prescrição, atipicidade
+- Dosimetria da pena: calcular redutores e agravantes
+- Habeas corpus: combater ilegalidades
+- Revisão criminal: desconstituir condenações injustas
+
+ERROS COMUNS:
+- Confundir dolo eventual com culpa consciente
+- Não distinguir tentativa de crime impossível
+- Ignorar princípio da insignificância: cabe em crimes de menor potencial
+- Confundir causas de exclusão de ilicitude com causas de isenção de pena
+
+--------------------------------------------------
+RAMO: DIREITO PROCESSUAL CIVIL
+--------------------------------------------------
+
+DEFINIÇÃO TÉCNICA:
+Ramo do Direito Público que disciplina a jurisdição civil, regulando procedimentos, prazos, recursos, provas e atos processuais destinados à solução de conflitos mediante tutela estatal adequada, tempestiva e efetiva, fundado no CPC/2015.
+
+EXPLICAÇÃO DIDÁTICA:
+Direito Processual Civil é o "manual de instruções" para levar um problema ao Judiciário. Ele ensina como entrar com ação, como se defender, como produzir provas, como recorrer.
+
+SUB-RAMOS E TEMAS:
+- Teoria Geral do Processo
+- Procedimento Comum
+- Procedimentos Especiais
+- Tutelas Provisórias
+- Provas
+- Recursos
+- Execução
+
+INSTITUTOS FUNDAMENTAIS:
+- Jurisdição, ação, processo
+- Pressupostos processuais, condições da ação
+- Petição inicial, contestação, réplica
+- Revelia, improcedência liminar
+- Provas: ônus, meios, valoração
+- Sentença, coisa julgada
+- Recursos: apelação, agravo, embargos de declaração, REsp, RE
+- Execução: cumprimento de sentença, defesas
+
+INCIDÊNCIA NA OAB:
+- Peso: 15-20% (1ª fase)
+- Temas recorrentes: prazos, recursos, procedimento comum, execução
+- Peça: petição inicial, contestação, recurso de apelação
+- Questões práticas: calcular prazos, identificar recursos cabíveis
+
+APLICAÇÃO PRÁTICA:
+- Propor ações judiciais
+- Defender clientes
+- Interpor recursos adequados
+- Executar sentenças
+
+ERROS COMUNS:
+- Errar contagem de prazos: cuidado com dias úteis, feriados
+- Interpor recurso errado: cada decisão tem recurso específico
+- Não observar requisitos formais: peça pode ser rejeitada
+- Confundir tutela antecipada com cautelar
+
+--------------------------------------------------
+RAMO: DIREITO DO TRABALHO
+--------------------------------------------------
+
+DEFINIÇÃO TÉCNICA:
+Ramo do Direito Privado Social que regula relações de emprego e trabalho subordinado, estabelecendo direitos mínimos do trabalhador, obrigações do empregador, condições de trabalho seguro e digno, fundado na CLT e na CF/88.
+
+EXPLICAÇÃO DIDÁTICA:
+Direito do Trabalho protege quem trabalha com carteira assinada. Define salário mínimo, jornada, férias, FGTS, 13º, segurança no trabalho e direitos em caso de demissão.
+
+SUB-RAMOS E TEMAS:
+- Direito Individual do Trabalho
+- Direito Coletivo do Trabalho
+- Direito Processual do Trabalho
+
+INSTITUTOS FUNDAMENTAIS:
+- Relação de emprego: requisitos (pessoalidade, subordinação, onerosidade, não eventualidade)
+- Contrato de trabalho: prazo determinado e indeterminado
+- Jornada de trabalho: horas extras, adicional noturno, intervalo
+- Remuneração: salário, gratificações, comissões
+- Férias, 13º salário, FGTS
+- Rescisão contratual: justa causa, dispensa sem justa causa, pedido de demissão
+- Aviso prévio, multa do FGTS, seguro-desemprego
+- Estabilidades: gestante, acidente, CIPA
+
+INCIDÊNCIA NA OAB:
+- Peso: 10-15% (1ª fase)
+- Temas cobrados: rescisão, jornada, verbas rescisórias
+- Peça: reclamação trabalhista
+- Questões práticas: cálculo de verbas, enquadramento de justa causa
+
+APLICAÇÃO PRÁTICA:
+- Propor reclamações trabalhistas
+- Defender empresas em ações trabalhistas
+- Calcular verbas rescisórias
+- Negociar acordos
+
+ERROS COMUNS:
+- Confundir autônomo com empregado: requisitos diferentes
+- Não dominar cálculo de horas extras
+- Ignorar reforma trabalhista (Lei 13.467/2017): mudanças importantes
+- Confundir prazo prescricional: 2 anos da rescisão para ação, 5 anos retroativos
+
+--------------------------------------------------
+RAMO: DIREITO EMPRESARIAL
+--------------------------------------------------
+
+DEFINIÇÃO TÉCNICA:
+Ramo do Direito Privado que regula atividade empresarial, sociedades empresárias, títulos de crédito, contratos mercantis, recuperação judicial, falência e propriedade industrial, fundado no CC/2002, Lei de Falências e legislação especial.
+
+EXPLICAÇÃO DIDÁTICA:
+Direito Empresarial cuida das regras para quem tem empresa: como abrir, tipos de sociedade, contratos comerciais, o que fazer em crise (recuperação judicial ou falência).
+
+SUB-RAMOS E TEMAS:
+- Direito Societário
+- Títulos de Crédito
+- Contratos Empresariais
+- Propriedade Industrial
+- Recuperação Judicial e Falência
+
+INSTITUTOS FUNDAMENTAIS:
+- Empresa, empresário, estabelecimento empresarial
+- Registro empresarial
+- Sociedades: simples, limitada, anônima, cooperativa
+- Títulos: cheque, nota promissória, duplicata, letra de câmbio
+- Contratos: compra e venda mercantil, representação, franquia
+- Recuperação judicial: requisitos, plano, créditos
+- Falência: requisitos, efeitos, ordem de créditos
+
+INCIDÊNCIA NA OAB:
+- Peso: 10-12% (1ª fase)
+- Temas cobrados: sociedades, títulos de crédito, recuperação judicial
+- Peça: menos comum, mas pode cair pedido de falência, impugnação de crédito
+- Questões práticas: tipos societários, endosso, aval
+
+APLICAÇÃO PRÁTICA:
+- Constituir sociedades
+- Redigir contratos empresariais
+- Cobrar títulos de crédito
+- Ajuizar ou defender recuperações judiciais e falências
+
+ERROS COMUNS:
+- Confundir tipos societários: Ltda x S/A
+- Não dominar institutos do título de crédito: endosso, aval, aceite
+- Ignorar ordem de credores na falência: trabalhista tem preferência
+- Confundir recuperação judicial com extrajudicial
+
+============================================================
+NÍVEL 3 - INSTITUTOS JURÍDICOS ESSENCIAIS
+============================================================
+
+Os institutos jurídicos são construções conceituais complexas que integram múltiplas normas, princípios e relações jurídicas para regular fenômenos específicos da vida social.
+
+--------------------------------------------------
+INSTITUTO: PRESCRIÇÃO E DECADÊNCIA
+--------------------------------------------------
+
+DEFINIÇÃO TÉCNICA:
+Prescrição: perda da pretensão executória pelo decurso do prazo legal sem seu exercício.
+Decadência: perda do próprio direito potestativo pelo decurso do prazo legal ou convencional.
+
+EXPLICAÇÃO DIDÁTICA:
+Prescrição: você perde o direito de cobrar judicialmente uma dívida se não agir no prazo (geralmente 3 a 10 anos). O direito continua existindo, mas não pode mais ser exigido na Justiça.
+Decadência: o próprio direito acaba. Exemplo: prazo para anular contrato por vício. Passado o prazo, não pode mais anular, acabou.
+
+RELAÇÕES JURÍDICAS:
+- Prescrição atinge: pretensão, ação
+- Decadência atinge: direito potestativo
+- Relacionam-se com: inércia, segurança jurídica, estabilização de relações
+- Distinguem-se por: objeto (pretensão x direito), suspensão/interrupção
+
+INCIDÊNCIA NA OAB:
+- Direito Civil: prazos de 3, 5, 10 anos (CC, art. 205 e 206)
+- Direito do Consumidor: 30, 90 dias (reclamação); 5 anos (ação)
+- Direito Penal: prescrição da pretensão punitiva e executória
+- Direito Tributário: 5 anos para constituir e cobrar crédito
+
+APLICAÇÃO PRÁTICA:
+- Calcular prazo prescricional antes de ajuizar ação
+- Alegar prescrição em contestação
+- Identificar causas de suspensão/interrupção
+- Distinguir quando é prescrição ou decadência
+
+ERROS COMUNS:
+- Confundir prescrição com decadência: objeto é diferente
+- Não verificar causa de suspensão/interrupção
+- Ignorar que decadência pode ser conhecida de ofício
+- Não atentar para prazos especiais (CDC, CTN, CP)
+
+--------------------------------------------------
+INSTITUTO: RESPONSABILIDADE CIVIL
+--------------------------------------------------
+
+DEFINIÇÃO TÉCNICA:
+Obrigação de reparar dano injusto causado a outrem, fundada em ato ilícito (responsabilidade subjetiva, exigindo culpa) ou em risco da atividade (responsabilidade objetiva, independente de culpa), pressupondo dano, nexo causal e, conforme o caso, culpa ou risco.
+
+EXPLICAÇÃO DIDÁTICA:
+Se você causar dano a alguém, tem que indenizar. A regra geral exige culpa (você agiu mal). Mas em alguns casos (acidente de consumo, dano ambiental), você indeniza mesmo sem culpa: é responsabilidade objetiva.
+
+RELAÇÕES JURÍDICAS:
+- Elementos: dano, nexo causal, culpa (subjetiva) ou risco (objetiva)
+- Relaciona-se com: ato ilícito, dano material, dano moral, lucro cessante
+- Distingue-se de: responsabilidade penal, responsabilidade contratual
+- Exclui-se por: culpa exclusiva da vítima, fato de terceiro, caso fortuito, força maior
+
+INCIDÊNCIA NA OAB:
+- Direito Civil: arts. 186, 187, 927 e ss. do CC
+- Direito do Consumidor: CDC, arts. 12 a 14 (objetiva)
+- Direito Ambiental: objetiva
+- Direito Administrativo: objetiva (CF, art. 37, § 6º)
+
+APLICAÇÃO PRÁTICA:
+- Elaborar pedido de indenização
+- Calcular danos materiais e morais
+- Defender arguindo excludentes
+- Provar nexo causal ou romper nexo
+
+ERROS COMUNS:
+- Confundir responsabilidade objetiva com subjetiva
+- Não distinguir dano material de dano moral
+- Ignorar excludentes: culpa exclusiva, caso fortuito
+- Não fundamentar pedido de dano moral: tem que demonstrar
+
+--------------------------------------------------
+INSTITUTO: CONTRATOS
+--------------------------------------------------
+
+DEFINIÇÃO TÉCNICA:
+Negócio jurídico bilateral ou plurilateral que cria, modifica ou extingue direitos e obrigações de cunho patrimonial, fundado na autonomia privada, consenso, boa-fé objetiva e função social.
+
+EXPLICAÇÃO DIDÁTICA:
+Contrato é acordo entre pessoas para criar obrigações. Exemplo: você promete pagar R$ 1.000, eu prometo entregar um notebook. Ambos estão obrigados a cumprir.
+
+RELAÇÕES JURÍDICAS:
+- Elementos: agente capaz, objeto lícito, forma prescrita ou não defesa
+- Princípios: autonomia privada, força obrigatória, boa-fé, função social
+- Relaciona-se com: obrigação, negócio jurídico, vícios, revisão contratual
+- Espécies: compra e venda, locação, prestação de serviço, empreitada, mandato, comodato, mútuo
+
+INCIDÊNCIA NA OAB:
+- Direito Civil: formação, efeitos, extinção, vícios, revisão
+- Direito do Consumidor: contratos de consumo, cláusulas abusivas
+- Direito Empresarial: contratos empresariais
+- Temas: onerosidade excessiva, resolução, rescisão, revisão
+
+APLICAÇÃO PRÁTICA:
+- Redigir contratos
+- Revisar cláusulas abusivas
+- Pleitear revisão por onerosidade excessiva
+- Rescindir contratos
+
+ERROS COMUNS:
+- Confundir resolução com rescisão: fundamentos diferentes
+- Ignorar princípio da boa-fé objetiva: limita autonomia privada
+- Não observar forma exigida: ex: compra de imóvel exige escritura
+- Confundir vício com defeito do produto
+
+--------------------------------------------------
+INSTITUTO: POSSE E PROPRIEDADE
+--------------------------------------------------
+
+DEFINIÇÃO TÉCNICA:
+Posse: poder de fato sobre a coisa, manifestado por atos de uso, gozo e disposição.
+Propriedade: direito real que confere ao titular poderes de usar, gozar, dispor e reivindicar a coisa, garantido constitucionalmente e condicionado à função social.
+
+EXPLICAÇÃO DIDÁTICA:
+Posse: você está na coisa, usa ela, cuida dela. É situação de fato.
+Propriedade: você é dono, tem documento, registro. É situação de direito.
+Dá para ter posse sem propriedade (inquilino) e propriedade sem posse (dono que não usa).
+
+RELAÇÕES JURÍDICAS:
+- Posse: classificações (direta/indireta, justa/injusta, boa-fé/má-fé)
+- Propriedade: aquisição, perda, restrições, função social
+- Ações: reintegração, manutenção, interdito, reivindicatória, usucapião
+- Distingue-se: detenção (sem animus domini)
+
+INCIDÊNCIA NA OAB:
+- Ações possessórias: prazos, requisitos, liminar
+- Usucapião: requisitos, prazos
+- Desapropriação
+- Função social da propriedade
+
+APLICAÇÃO PRÁTICA:
+- Ajuizar ação possessória
+- Pleitear usucapião
+- Defender posse
+- Reivindicar propriedade
+
+ERROS COMUNS:
+- Confundir posse com propriedade
+- Não verificar prazo para ação possessória: ano e dia para força nova
+- Ignorar que possuidor tem direitos mesmo sem ser dono
+- Confundir ação possessória com petitória
+
+--------------------------------------------------
+INSTITUTO: FAMÍLIA E SUCESSÕES
+--------------------------------------------------
+
+DEFINIÇÃO TÉCNICA:
+Família: entidade social fundada em vínculos afetivos, consanguíneos ou civis, protegida constitucionalmente em suas diversas formas (casamento, união estável, monoparental).
+Sucessões: conjunto de normas que disciplinam transmissão de bens, direitos e obrigações do falecido (de cujus) aos herdeiros, mediante sucessão legítima ou testamentária.
+
+EXPLICAÇÃO DIDÁTICA:
+Família: grupo de pessoas unidas por laço afetivo, sangue ou casamento. Direito protege casamento, união estável, relação entre pais e filhos.
+Sucessões: quando alguém morre, seus bens vão para herdeiros. Pode ser por lei (sucessão legítima) ou por testamento.
+
+RELAÇÕES JURÍDICAS:
+- Família: casamento, união estável, parentesco, filiação, guarda, alimentos
+- Sucessões: ordem de vocação hereditária, legítima, testamento, inventário, partilha
+- Relaciona-se com: capacidade, regime de bens, meação, herança
+
+INCIDÊNCIA NA OAB:
+- Casamento: impedimentos, regime de bens, dissolução
+- Alimentos: requisitos, valores, revisão
+- Inventário: abertura, declaração de herdeiros, partilha
+- Legítima e parte disponível
+- Colação
+
+APLICAÇÃO PRÁTICA:
+- Ação de divórcio
+- Ação de alimentos
+- Inventário judicial ou extrajudicial
+- Reconhecimento de união estável
+
+ERROS COMUNS:
+- Confundir meação com herança: cônjuge tem direito a ambas (mas dependem do regime de bens)
+- Não dominar regimes de bens: comunhão parcial é o legal
+- Ignorar ordem de vocação: descendentes excluem ascendentes
+- Confundir legítima (50%) com parte disponível (50%)
+
+============================================================
+NÍVEL 4 - HIERARQUIA NORMATIVA E FONTES DO DIREITO
+============================================================
+
+--------------------------------------------------
+HIERARQUIA NORMATIVA (PIRÂMIDE DE KELSEN)
+--------------------------------------------------
+
+ESTRUTURA:
+
+NÍVEL 1: CONSTITUIÇÃO FEDERAL
+- Norma fundamental do ordenamento
+- Todas as normas devem estar compatíveis com ela
+- Controle de constitucionalidade garante supremacia
+
+NÍVEL 2: EMENDAS CONSTITUCIONAIS
+- Modificam a CF, mas não podem violar cláusulas pétreas
+- Controle de constitucionalidade também incide sobre elas
+
+NÍVEL 3: LEIS COMPLEMENTARES
+- Exigem quórum qualificado (maioria absoluta)
+- Matérias reservadas pela CF
+
+NÍVEL 4: LEIS ORDINÁRIAS
+- Maioria simples
+- Disciplinam matérias não reservadas à LC
+
+NÍVEL 5: LEIS DELEGADAS
+- Elaboradas pelo Presidente por delegação do Congresso
+
+NÍVEL 6: MEDIDAS PROVISÓRIAS
+- Força de lei, mas provisórias
+- Devem ser convertidas em lei em 120 dias
+
+NÍVEL 7: DECRETOS LEGISLATIVOS E RESOLUÇÕES
+- Atos do Congresso ou de suas Casas
+
+NÍVEL 8: DECRETOS REGULAMENTARES
+- Editados pelo Executivo para regulamentar leis
+- Não podem inovar: só detalham a lei
+
+NÍVEL 9: NORMAS INFRALEGAIS
+- Portarias, instruções normativas, resoluções administrativas
+
+APLICAÇÃO PRÁTICA:
+- Verificar compatibilidade vertical: norma inferior não pode contrariar superior
+- Alegar inconstitucionalidade de leis
+- Alegar ilegalidade de decretos que extrapolam lei
+- Uso da ADI, ADC, ADPF no controle concentrado
+
+INCIDÊNCIA NA OAB:
+- Conhecer hierarquia é essencial para identificar invalidades
+- Questões sobre controle de constitucionalidade sempre cobram isso
+- Saber quando cabe lei complementar x lei ordinária
+
+ERROS COMUNS:
+- Achar que toda lei é constitucional: cabe controle
+- Confundir hierarquia com especialidade: lei especial prevalece sobre geral no mesmo nível
+- Ignorar que decreto não pode criar obrigação não prevista em lei
+- Não saber que tratados de direitos humanos aprovados pelo rito do § 3º do art. 5º têm status de EC
+
+--------------------------------------------------
+FONTES DO DIREITO
+--------------------------------------------------
+
+FONTES MATERIAIS:
+- Fatos sociais, econômicos, políticos que influenciam criação de normas
+- Exemplos: revoluções, crises, mudanças culturais
+
+FONTES FORMAIS:
+
+1. LEI (FONTE PRIMÁRIA)
+- Lei em sentido estrito: atos do Poder Legislativo
+- Características: generalidade, abstração, imperatividade
+
+2. COSTUME JURÍDICO
+- Prática reiterada, uniforme, obrigatória
+- Elementos: uso prolongado + convicção de obrigatoriedade (opinio juris)
+- Integra lacunas
+
+3. JURISPRUDÊNCIA
+- Conjunto de decisões reiteradas dos tribunais
+- Súmulas, precedentes vinculantes, teses de repercussão geral
+- Força normativa crescente no Brasil
+
+4. DOUTRINA
+- Estudos de juristas
+- Fonte indireta: orienta interpretação
+- Influencia legislador e juiz
+
+5. PRINCÍPIOS GERAIS DO DIREITO
+- Usados na ausência de lei, costume ou jurisprudência
+- Exemplos: ninguém pode se beneficiar da própria torpeza; princípio da boa-fé
+
+6. ANALOGIA
+- Aplicação de norma de caso semelhante a caso não previsto
+- Não se aplica em Direito Penal (nullum crimen sine lege)
+
+7. EQUIDADE
+- Justiça do caso concreto
+- Só aplicável quando a lei autoriza
+
+INCIDÊNCIA NA OAB:
+- Lei é principal fonte: domine legislação seca
+- Súmulas dos tribunais superiores são essenciais
+- Analogia e princípios gerais: integração de lacunas
+- Costume: direito empresarial, internacional
+
+APLICAÇÃO PRÁTICA:
+- Fundamentar petições em lei, jurisprudência, doutrina
+- Usar analogia em lacunas
+- Invocar princípios gerais quando não há norma específica
+- Citar súmulas vinculantes
+
+ERROS COMUNS:
+- Ignorar jurisprudência: crescente força normativa
+- Não citar legislação: fundamento essencial
+- Usar analogia em Direito Penal para prejudicar o réu: vedado
+- Confundir equidade com subjetivismo: deve ser fundamentada
+
+============================================================
+NÍVEL 5 - INTERPRETAÇÃO E HERMENÊUTICA JURÍDICA
+============================================================
+
+--------------------------------------------------
+MÉTODOS DE INTERPRETAÇÃO
+--------------------------------------------------
+
+1. INTERPRETAÇÃO LITERAL (GRAMATICAL)
+- Análise do texto da norma conforme gramática e linguagem
+- Limitação: norma pode ter sentido além das palavras
+
+2. INTERPRETAÇÃO LÓGICA
+- Busca coerência interna da norma e do sistema
+- Usa argumentos a contrario sensu, a fortiori, ad absurdum
+
+3. INTERPRETAÇÃO SISTEMÁTICA
+- Insere norma no contexto do ordenamento
+- Evita contradições e busca harmonia
+
+4. INTERPRETAÇÃO HISTÓRICA
+- Considera contexto de criação da norma
+- Usa exposição de motivos, debates legislativos
+
+5. INTERPRETAÇÃO TELEOLÓGICA (FINALÍSTICA)
+- Busca finalidade da norma (ratio legis)
+- Adapta aplicação ao fim social pretendido
+
+6. INTERPRETAÇÃO CONFORME A CONSTITUIÇÃO
+- Dentre interpretações possíveis, escolhe a compatível com a CF
+- Preserva norma ao invés de declará-la inconstitucional
+
+PRINCÍPIOS HERMENÊUTICOS:
+- Princípio da supremacia da Constituição
+- Princípio da unidade da Constituição
+- Princípio da máxima efetividade
+- Princípio da harmonização (concordância prática)
+- Princípio da proporcionalidade
+
+INCIDÊNCIA NA OAB:
+- Interpretação conforme: questões de Constitucional
+- Proporcionalidade: colisão de direitos fundamentais
+- Analogia e princípios: lacunas
+
+APLICAÇÃO PRÁTICA:
+- Fundamentar teses interpretativas
+- Sustentar interpretação mais favorável ao cliente
+- Arguir interpretação conforme para salvar norma
+
+ERROS COMUNS:
+- Apegar-se só à literalidade: lei pode ter sentido amplo
+- Não usar interpretação sistemática: norma isolada pode gerar contradição
+- Ignorar finalidade da norma: teleologia importa
+- Não invocar interpretação conforme para evitar inconstitucionalidade
+
+============================================================
+OBSERVAÇÕES FINAIS DA ONTOLOGIA BASE
+============================================================
+
+Este documento constitui a BASE ONTOLÓGICA do JURIS_IA_CORE_V1. Ele deve ser expandido continuamente com:
+
+- Novos institutos jurídicos
+- Aprofundamento de cada ramo
+- Correlações entre conceitos
+- Padrões de cobrança OAB atualizados
+- Mudanças legislativas e jurisprudenciais
+
+A ontologia é VIVA e deve ser constantemente alimentada para manter o sistema como o maior aprovador de OAB do Brasil.
+
+============================================================
+FIM DO DOCUMENTO DE ONTOLOGIA BASE
+Próximo: ONTOLOGIA_JURIDICA_RAMOS_ESPECIFICOS.txt
+============================================================

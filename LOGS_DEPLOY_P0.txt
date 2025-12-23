@@ -1,0 +1,194 @@
+================================================================================
+DEPLOY CONTROLADO P0 - DOUTORA IA/OAB
+JURIS_IA_CORE_V1
+================================================================================
+Data Início: 2025-12-18
+Engenheiro: Claude Sonnet 4.5 (Deploy Automation)
+================================================================================
+
+================================================================================
+ETAPA 13.1 - PREPARO DE AMBIENTE
+================================================================================
+Início: 2025-12-18
+
+---
+13.1.1 - VALIDAÇÃO DE ESTRUTURA DE PROJETO
+---
+Status: ✓ CONCLUÍDO
+
+Arquivos localizados:
+- docker-compose.yml: ✓ OK
+- .env: ✓ OK (INCOMPLETO - apenas 2 variáveis)
+- .env.docker: ✓ OK (COMPLETO)
+- migrations/003_create_auth_tables.sql: ✓ OK
+- migrations/004_create_subscription_tables.sql: ✓ OK
+
+Documentação localizada:
+- GUIA_DEPLOY_DOCKER_RTX3090.txt: ✓ OK
+- RELATORIO_GO_LIVE_CONTROLADO.txt: ✓ OK
+- RESUMO_IMPLEMENTACAO_P0_OLLAMA.txt: ✓ OK
+
+---
+13.1.2 - VALIDAÇÃO DE VARIÁVEIS DE AMBIENTE
+---
+Status: ⚠ ATENÇÃO REQUERIDA
+
+Arquivo .env ATUAL (incompleto):
+  - LLM_MODEL=llama3.1:8b
+  - LLM_INSTRUCT_MODEL=llama3.1:8b-instruct-q8_0
+
+Arquivo .env.docker (referência completa):
+  ✓ DATABASE_URL=postgresql://juris_ia_user:changeme123@postgres:5432/juris_ia
+  ✓ REDIS_URL=redis://redis:6379/0
+  ✓ OLLAMA_HOST=http://ollama:11434
+  ✓ EMBEDDING_MODEL=nomic-embed-text
+  ✓ LLM_MODEL=llama3.1:8b-instruct-q8_0
+  ✓ JWT_SECRET_KEY=your-secret-key-here-change-in-production
+  ✓ JWT_ALGORITHM=HS256
+  ✓ API_HOST=0.0.0.0
+  ✓ API_PORT=8000
+
+Variáveis AUSENTES no briefing (não aplicáveis):
+  ✗ OPENAI_API_KEY - NÃO NECESSÁRIO (usando Ollama/Llama local)
+  ✗ JWT_REFRESH_SECRET - NÃO DEFINIDO (usando apenas JWT_SECRET_KEY)
+  ✗ STRIPE_SECRET_KEY - NÃO IMPLEMENTADO (fase futura)
+  ✗ STRIPE_WEBHOOK_SECRET - NÃO IMPLEMENTADO (fase futura)
+
+AÇÃO REQUERIDA:
+  → .env precisa ser atualizado com variáveis completas de .env.docker
+  → JWT_SECRET_KEY precisa ser alterado de valor padrão em produção
+
+---
+13.1.3 - VALIDAÇÃO DE DOCKER
+---
+Status: ✗ BLOQUEADOR CRÍTICO
+
+Docker Desktop: NÃO ESTÁ RODANDO
+
+Erro detectado:
+  error during connect: Get "http://%2F%2F.%2Fpipe%2FdockerDesktopLinuxEngine/v1.51/containers/json?all=1":
+  open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified.
+
+AÇÃO REQUERIDA:
+  → Iniciar Docker Desktop manualmente
+  → Aguardar inicialização completa (pode levar 1-2 minutos)
+  → Verificar status com: docker ps
+
+BLOQUEADOR: Impossível continuar sem Docker em execução.
+
+---
+13.1.4 - CORREÇÃO DE VARIÁVEIS DE AMBIENTE
+---
+Status: ✓ CONCLUÍDO
+
+Ação realizada:
+  → Arquivo .env atualizado com configuração completa de .env.docker
+  → Todas as variáveis críticas configuradas
+  → Documentação inline adicionada
+
+Variáveis configuradas:
+  ✓ DATABASE_URL
+  ✓ REDIS_URL
+  ✓ OLLAMA_HOST
+  ✓ EMBEDDING_MODEL=nomic-embed-text
+  ✓ LLM_MODEL=llama3.1:8b-instruct-q8_0
+  ✓ JWT_SECRET_KEY (⚠ valor padrão - ALTERAR EM PRODUÇÃO!)
+  ✓ JWT_ALGORITHM=HS256
+  ✓ API_HOST, API_PORT, API_WORKERS
+  ✓ Feature flags (P0): MODO_OAB_ENABLED=true
+  ✓ Limites: SESSOES_POR_DIA=3, QUESTOES_POR_SESSAO=20
+  ✓ LOG_LEVEL=INFO, ENVIRONMENT=production
+
+---
+13.1.5 - CRIAÇÃO DE SCRIPTS AUTOMATIZADOS
+---
+Status: ✓ CONCLUÍDO
+
+Scripts criados:
+  ✓ scripts/deploy_p0_init.sh
+    - Valida Docker daemon
+    - Inicia PostgreSQL, Redis, Ollama
+    - Download de modelos IA
+    - Valida conectividade de todos os serviços
+
+  ✓ scripts/deploy_p0_migrations.sh
+    - Executa migrations 003 e 004
+    - Valida integridade do schema
+    - Testa funções SQL
+    - Gera relatório de validação
+
+  ✓ INSTRUCOES_DEPLOY_P0.txt
+    - Manual completo de deploy
+    - Comandos úteis
+    - Troubleshooting
+
+  ✓ CHECKLIST_VALIDACAO_P0.txt
+    - Checklist detalhado de todas as etapas
+    - Critérios de aceitação
+
+Permissões de execução: ✓ Configuradas
+
+---
+PRÓXIMOS PASSOS (APÓS RESOLVER BLOQUEADOR)
+---
+1. ⚠ BLOQUEADOR: Iniciar Docker Desktop manualmente
+2. Aguardar até Docker Desktop ficar 100% inicializado
+3. Validar com: docker ps
+4. Executar: bash scripts/deploy_p0_init.sh
+5. Executar: bash scripts/deploy_p0_migrations.sh
+6. Continuar para ETAPA 13.3 (Ingestão de dados)
+
+Ver arquivo INSTRUCOES_DEPLOY_P0.txt para detalhes completos.
+
+================================================================================
+CHECKLIST - ETAPA 13.1
+================================================================================
+[✓] Estrutura de projeto validada
+[✓] Migrations localizadas (003, 004)
+[✓] docker-compose.yml validado
+[✓] .env completo e configurado
+[✓] Scripts de deploy criados (init, migrations)
+[✓] Documentação de deploy gerada
+[✓] Checklist de validação criado
+[⚠] JWT_SECRET_KEY com valor padrão (alterar em produção)
+[✗] Docker Desktop não totalmente inicializado - BLOQUEADOR
+
+Status Geral: PREPARADO - AGUARDANDO DOCKER DESKTOP
+
+Ações de preparação concluídas: 8/9 (89%)
+Bloqueadores: 1 (Docker Desktop)
+
+================================================================================
+RESUMO DA SESSÃO
+================================================================================
+Início: 2025-12-18
+Duração: ~15 minutos
+
+Atividades realizadas:
+  ✓ Validação completa da estrutura do projeto
+  ✓ Leitura e análise das migrations SQL (003, 004)
+  ✓ Correção do arquivo .env
+  ✓ Criação de scripts automatizados de deploy
+  ✓ Geração de documentação completa (instruções, checklist)
+  ✓ Preparação de todos os artefatos necessários
+
+Bloqueador identificado:
+  ⚠ Docker Desktop não está completamente inicializado
+  → Docker Client OK (versão 28.4.0)
+  → Docker Daemon NÃO RESPONDENDO
+  → Pipe não disponível: //./pipe/dockerDesktopLinuxEngine
+
+Resolução do bloqueador:
+  1. Abrir Docker Desktop manualmente
+  2. Aguardar ícone ficar verde (1-2 minutos)
+  3. Executar scripts/deploy_p0_init.sh
+
+Estado do ambiente:
+  ✓ Tudo preparado para deploy
+  ✓ Scripts prontos para execução automática
+  ✓ Validações configuradas
+  ⚠ Aguardando apenas Docker Desktop
+
+Próxima etapa: 13.2 (Migrations) - pronto para executar após Docker
+
+================================================================================

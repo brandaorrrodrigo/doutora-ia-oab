@@ -1,0 +1,1422 @@
+╔════════════════════════════════════════════════════════════════════════════════╗
+║                                                                                ║
+║                    JURIS_IA_CORE_V1 - ETAPA 4                                 ║
+║                        SNAPSHOTS COGNITIVOS                                    ║
+║                                                                                ║
+║  Sistema de captura pontual do estado cognitivo completo do estudante         ║
+║  para análise longitudinal, detecção de regressão e adaptação pedagógica      ║
+║                                                                                ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+
+Autor: ARQUITETO DE DADOS E COGNIÇÃO JURÍDICA
+Data: 2025-12-17
+Versão: 1.0
+
+
+═══════════════════════════════════════════════════════════════════════════════
+ 1. CONCEITO DE SNAPSHOT COGNITIVO
+═══════════════════════════════════════════════════════════════════════════════
+
+1.1 DEFINIÇÃO TÉCNICA
+─────────────────────────────────────────────────────────────────────────────
+
+Um SNAPSHOT COGNITIVO é uma fotografia imutável e completa do estado cognitivo,
+emocional, comportamental e de desempenho de um estudante em um MOMENTO ESPECÍFICO
+do tempo.
+
+Diferente do perfil_juridico (que é MUTÁVEL e representa o estado ATUAL), o snapshot
+é IMUTÁVEL e representa o estado em um INSTANTE PASSADO, permitindo:
+
+1. Análise longitudinal (evolução ao longo do tempo)
+2. Detecção de regressão cognitiva
+3. Validação de hipóteses pedagógicas
+4. Comparação entre períodos
+5. Reconstrução histórica do percurso de aprendizagem
+6. Auditoria e conformidade (LGPD - prova de consentimento e dados em momento X)
+
+
+1.2 PRINCÍPIOS FUNDAMENTAIS
+─────────────────────────────────────────────────────────────────────────────
+
+PRINCÍPIO 1: IMUTABILIDADE
+- Um snapshot NUNCA é alterado após criação
+- Se houver correção, cria-se NOVO snapshot com flag de correção
+
+PRINCÍPIO 2: COMPLETUDE
+- Contém TODOS os dados necessários para reconstruir o estado cognitivo do momento
+- Não depende de outras tabelas para interpretação (autocontido)
+
+PRINCÍPIO 3: CONTEXTO TEMPORAL
+- Sempre vinculado a um timestamp preciso
+- Inclui contexto do que estava acontecendo (sessão, simulado, revisão)
+
+PRINCÍPIO 4: COMPARABILIDADE
+- Estrutura consistente permite comparação direta entre snapshots
+- Métricas normalizadas (0-100, 0-1) facilitam análise temporal
+
+PRINCÍPIO 5: RELEVÂNCIA
+- Gerado apenas em momentos SIGNIFICATIVOS (não a cada interação)
+- Balanceia custo de armazenamento com valor analítico
+
+
+1.3 DIFERENÇA: SNAPSHOT vs PERFIL_JURIDICO vs METRICAS_TEMPORAIS
+─────────────────────────────────────────────────────────────────────────────
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                            PERFIL_JURIDICO                                  │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ • ESTADO ATUAL                                                              │
+│ • MUTÁVEL (atualizado continuamente)                                        │
+│ • 1 REGISTRO por aluno (sempre o mesmo registro, campos atualizados)        │
+│ • Usado para: decisões em tempo real, próxima ação, personalização          │
+│ • Exemplo: "João AGORA tem confiança 0.72"                                  │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         SNAPSHOT_COGNITIVO                                  │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ • ESTADO EM MOMENTO PASSADO                                                 │
+│ • IMUTÁVEL (foto congelada)                                                 │
+│ • N REGISTROS por aluno (1 por momento relevante)                           │
+│ • Usado para: evolução, regressão, comparação, auditoria                    │
+│ • Exemplo: "João em 10/12/2024 18:30 tinha confiança 0.68"                 │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                        METRICAS_TEMPORAIS                                   │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ • AGREGAÇÕES PRÉ-CALCULADAS                                                 │
+│ • ATUALIZÁVEL (recalculado diariamente)                                     │
+│ • N REGISTROS por aluno (1 por período: dia, semana, mês)                   │
+│ • Usado para: dashboards, relatórios, análise de tendência                  │
+│ • Exemplo: "João na semana 10/12 a 17/12 fez 45 questões, 73% acerto"      │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════════════════
+ 2. QUANDO É GERADO (TRIGGERS DE SNAPSHOT)
+═══════════════════════════════════════════════════════════════════════════════
+
+2.1 TRIGGERS OBRIGATÓRIOS (SEMPRE GERA SNAPSHOT)
+─────────────────────────────────────────────────────────────────────────────
+
+TRIGGER 1: FIM_SESSAO_ESTUDO
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Quando: Ao finalizar QUALQUER sessão de estudo                             │
+│ Motivo: Captura estado pós-aprendizagem e fadiga                            │
+│ Tipo: "pos_sessao"                                                          │
+│ Contexto: sessao_id, disciplina, tipo_sessao, duração                       │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+TRIGGER 2: FIM_SIMULADO
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Quando: Ao concluir simulado oficial (1ª fase ou 2ª fase)                  │
+│ Motivo: Momento crítico de avaliação do preparo                             │
+│ Tipo: "pos_simulado"                                                        │
+│ Contexto: simulado_id, nota, aprovado (sim/não), ranking                    │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+TRIGGER 3: MUDANCA_NIVEL
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Quando: Estudante muda de nível (INICIANTE → INTERMEDIÁRIO, etc)           │
+│ Motivo: Marco importante na jornada                                         │
+│ Tipo: "mudanca_nivel"                                                       │
+│ Contexto: nivel_anterior, nivel_novo, data_mudanca                          │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+TRIGGER 4: MILESTONE_QUESTOES
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Quando: Atingir marcos: 100, 500, 1000, 2000, 5000 questões                │
+│ Motivo: Marcos de volume permitem avaliar evolução em pontos comparáveis   │
+│ Tipo: "milestone_volume"                                                    │
+│ Contexto: total_questoes, total_acertos, taxa_acerto_historica             │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+TRIGGER 5: SNAPSHOT_SEMANAL
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Quando: Todo domingo 23:59 (se houve atividade na semana)                  │
+│ Motivo: Permite análise semanal consistente                                 │
+│ Tipo: "semanal"                                                             │
+│ Contexto: semana_iso, ano, total_atividades_semana                          │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+TRIGGER 6: PRE_PROVA_REAL
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Quando: Estudante registra data de prova real OAB (D-30, D-7, D-1)         │
+│ Motivo: Captura estado de preparo em momentos críticos pré-prova           │
+│ Tipo: "pre_prova"                                                           │
+│ Contexto: dias_ate_prova, prova_id, fase_prova                             │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+TRIGGER 7: POS_PROVA_REAL
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Quando: Estudante registra resultado de prova real OAB                     │
+│ Motivo: Valida predição do sistema vs resultado real                       │
+│ Tipo: "pos_prova_real"                                                      │
+│ Contexto: prova_id, resultado_real, nota_real, predição_sistema            │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+
+2.2 TRIGGERS CONDICIONAIS (GERA SE CONDIÇÃO ATENDIDA)
+─────────────────────────────────────────────────────────────────────────────
+
+TRIGGER C1: REGRESSAO_DETECTADA
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Condição: Taxa de acerto cai > 15 pontos percentuais em disciplina         │
+│ Motivo: Captura momento de regressão para análise posterior                │
+│ Tipo: "regressao"                                                           │
+│ Contexto: disciplina_afetada, taxa_anterior, taxa_atual, delta             │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+TRIGGER C2: BREAKTHROUGH_DETECTADO
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Condição: Taxa de acerto sobe > 20 pontos em disciplina (antes < 60%)      │
+│ Motivo: Captura momento de "click" de compreensão                           │
+│ Tipo: "breakthrough"                                                        │
+│ Contexto: disciplina_afetada, taxa_anterior, taxa_atual, delta             │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+TRIGGER C3: MUDANCA_COMPORTAMENTAL
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Condição: Padrão de estudo muda drasticamente (ex: tempo/questão 2x)       │
+│ Motivo: Mudança de estratégia pode indicar nova fase de aprendizagem       │
+│ Tipo: "mudanca_comportamental"                                              │
+│ Contexto: metrica_mudada, valor_anterior, valor_novo, percentual_mudanca   │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+TRIGGER C4: RISCO_ALTO_EVASAO
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Condição: Risco de evasão sobe para > 0.70                                 │
+│ Motivo: Documentar momento de risco para análise de intervenção            │
+│ Tipo: "risco_evasao"                                                        │
+│ Contexto: risco_calculado, fatores_contribuintes, dias_inativo             │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+
+═══════════════════════════════════════════════════════════════════════════════
+ 3. O QUE CONTÉM (ESTRUTURA DO SNAPSHOT)
+═══════════════════════════════════════════════════════════════════════════════
+
+3.1 ESTRUTURA DA TABELA snapshot_cognitivo
+─────────────────────────────────────────────────────────────────────────────
+
+CREATE TABLE snapshot_cognitivo (
+    -- IDENTIFICAÇÃO
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+
+    -- TEMPORALIDADE
+    momento TIMESTAMPTZ NOT NULL,  -- Momento EXATO do snapshot
+    tipo_trigger VARCHAR(50) NOT NULL,  -- Ex: "pos_sessao", "semanal", "pre_prova"
+    contexto_trigger JSONB,  -- Dados específicos do que gerou o snapshot
+
+    -- METADADOS
+    versao_snapshot VARCHAR(10) DEFAULT '1.0',  -- Versionamento do schema do snapshot
+    criado_em TIMESTAMPTZ DEFAULT NOW(),
+
+    -- ═════════════════════════════════════════════════════════════════════
+    -- BLOCO 1: PERFIL COGNITIVO COMPLETO (cópia do perfil_juridico)
+    -- ═════════════════════════════════════════════════════════════════════
+
+    perfil_completo JSONB NOT NULL,
+    /*
+    Estrutura:
+    {
+        "nivel_geral": "INTERMEDIARIO",
+        "pontuacao_global": 425,
+        "taxa_acerto_global": 68.5,
+        "estado_emocional": {
+            "confianca": 0.72,
+            "stress": 0.45,
+            "motivacao": 0.83,
+            "fadiga": 0.30
+        },
+        "maturidade_juridica": {
+            "pensamento_sistemico": 0.65,
+            "capacidade_abstracao": 0.58,
+            "dominio_terminologia": 0.71,
+            "raciocinio_analogico": 0.62,
+            "interpretacao_juridica": 0.69
+        },
+        "padroes_aprendizagem": {
+            "estilo_predominante": "VISUAL_PRATICO",
+            "velocidade_leitura_wpm": 185,
+            "nivel_explicacao_preferido": 2,
+            "necessita_analogias": true
+        },
+        "riscos": {
+            "risco_evasao": 0.12,
+            "risco_burnout": 0.25,
+            "dias_streak_atual": 14
+        }
+    }
+    */
+
+    -- ═════════════════════════════════════════════════════════════════════
+    -- BLOCO 2: DESEMPENHO CONSOLIDADO
+    -- ═════════════════════════════════════════════════════════════════════
+
+    desempenho JSONB NOT NULL,
+    /*
+    Estrutura:
+    {
+        "total_questoes_resolvidas": 847,
+        "total_acertos": 580,
+        "taxa_acerto_geral": 68.5,
+
+        "por_disciplina": {
+            "Direito Penal": {
+                "questoes": 145,
+                "acertos": 98,
+                "taxa": 67.6,
+                "nivel_dominio": "INTERMEDIARIO",
+                "ultima_atividade": "2024-12-15T18:30:00Z"
+            },
+            "Direito Civil": {
+                "questoes": 178,
+                "acertos": 134,
+                "taxa": 75.3,
+                "nivel_dominio": "AVANCADO",
+                "ultima_atividade": "2024-12-17T10:15:00Z"
+            }
+            // ... outras disciplinas
+        },
+
+        "por_dificuldade": {
+            "facil": {"questoes": 215, "acertos": 198, "taxa": 92.1},
+            "media": {"questoes": 478, "acertos": 312, "taxa": 65.3},
+            "dificil": {"questoes": 154, "acertos": 70, "taxa": 45.5}
+        },
+
+        "tempo_estudo_total_horas": 127.5,
+        "tempo_medio_por_questao_segundos": 185,
+
+        "simulados": {
+            "realizados": 4,
+            "aprovado_em": 2,
+            "media_notas": 62.5,
+            "ultimo_simulado": {
+                "data": "2024-12-10T09:00:00Z",
+                "nota": 68.0,
+                "aprovado": true
+            }
+        }
+    }
+    */
+
+    -- ═════════════════════════════════════════════════════════════════════
+    -- BLOCO 3: PADRÕES DE ERRO (snapshot dos erros predominantes)
+    -- ═════════════════════════════════════════════════════════════════════
+
+    padroes_erro JSONB NOT NULL,
+    /*
+    Estrutura:
+    {
+        "distribuicao_categorias": {
+            "ERRO_CONCEITUAL": 42,  // quantidade de ocorrências
+            "ERRO_INTERPRETACAO": 31,
+            "CONFUSAO_INSTITUTOS": 28,
+            "ERRO_LEITURA_ATENCAO": 19,
+            "FALTA_BASE_JURIDICA": 15,
+            "ERRO_TRAP": 12,
+            "ERRO_ESTRATEGICO_2FASE": 5
+        },
+
+        "tipo_predominante": "ERRO_CONCEITUAL",
+        "percentual_predominante": 27.3,
+
+        "top_5_erros_especificos": [
+            {
+                "tipo": "CONCEITO_NAO_COMPREENDIDO",
+                "categoria": "ERRO_CONCEITUAL",
+                "ocorrencias": 18,
+                "taxa_ocorrencia": 11.7,
+                "disciplinas_afetadas": ["Direito Penal", "Direito Processual Penal"]
+            },
+            {
+                "tipo": "TRAP_TEXTO_SIMILAR_INVERSO",
+                "categoria": "ERRO_TRAP",
+                "ocorrencias": 12,
+                "taxa_ocorrencia": 7.8,
+                "disciplinas_afetadas": ["Direito Constitucional"]
+            }
+            // ... mais 3
+        ],
+
+        "conceitos_deficientes": [
+            {
+                "conceito": "Legítima defesa vs Estado de necessidade",
+                "disciplina": "Direito Penal",
+                "erros": 7,
+                "taxa_erro_quando_aparece": 87.5
+            }
+            // ... mais conceitos
+        ],
+
+        "evolucao_ultimos_30_dias": {
+            "erros_totais": 152,
+            "erros_conceituais": 42,
+            "tendencia": "DECRESCENTE",  // CRESCENTE | ESTAVEL | DECRESCENTE
+            "variacao_percentual": -12.3
+        }
+    }
+    */
+
+    -- ═════════════════════════════════════════════════════════════════════
+    -- BLOCO 4: MEMÓRIA E RETENÇÃO
+    -- ═════════════════════════════════════════════════════════════════════
+
+    estado_memoria JSONB NOT NULL,
+    /*
+    Estrutura:
+    {
+        "total_conceitos_aprendidos": 247,
+        "conceitos_dominados": 182,  // forca_memoria >= 0.80
+        "conceitos_em_consolidacao": 48,  // 0.50 <= forca < 0.80
+        "conceitos_frageis": 17,  // forca < 0.50
+
+        "taxa_retencao_global": 73.7,
+
+        "por_ciclo_revisao": {
+            "ciclo_1_24h": {
+                "pendentes": 12,
+                "atrasadas": 3,
+                "taxa_acerto_media": 78.5
+            },
+            "ciclo_7_dias": {
+                "pendentes": 8,
+                "atrasadas": 1,
+                "taxa_acerto_media": 82.3
+            },
+            "ciclo_30_dias": {
+                "pendentes": 5,
+                "atrasadas": 0,
+                "taxa_acerto_media": 91.2
+            }
+        },
+
+        "esquecimento_detectado": [
+            {
+                "topico": "Dos Crimes contra o Patrimônio",
+                "disciplina": "Direito Penal",
+                "forca_anterior": 0.85,
+                "forca_atual": 0.52,
+                "dias_sem_revisar": 47,
+                "gravidade": "ALTA"
+            }
+            // ... mais casos
+        ],
+
+        "proximas_revisoes_urgentes": [
+            {
+                "topico": "Princípios do Processo Penal",
+                "disciplina": "Direito Processual Penal",
+                "data_ideal": "2024-12-18",
+                "dias_atraso": 2,
+                "forca_memoria": 0.48
+            }
+            // ... mais revisões
+        ]
+    }
+    */
+
+    -- ═════════════════════════════════════════════════════════════════════
+    -- BLOCO 5: PREDIÇÃO E PROGNÓSTICO
+    -- ═════════════════════════════════════════════════════════════════════
+
+    predicao JSONB NOT NULL,
+    /*
+    Estrutura:
+    {
+        "probabilidade_aprovacao_1fase": 0.73,  // 0 a 1
+        "confianca_predicao": 0.82,  // quão confiável é a predição
+
+        "nota_estimada_1fase": 67.5,  // 0 a 100
+        "margem_erro": 8.2,
+
+        "disciplinas_criticas": [
+            {
+                "disciplina": "Direito Empresarial",
+                "taxa_acerto_atual": 52.3,
+                "taxa_necessaria": 65.0,
+                "gap": -12.7,
+                "risco": "ALTO"
+            },
+            {
+                "disciplina": "Direito Tributário",
+                "taxa_acerto_atual": 58.1,
+                "taxa_necessaria": 65.0,
+                "gap": -6.9,
+                "risco": "MEDIO"
+            }
+        ],
+
+        "tempo_estimado_ate_aprovacao": {
+            "dias": 67,
+            "horas_estudo_necessarias": 145,
+            "ritmo_atual_horas_semana": 15.2,
+            "ritmo_necessario_horas_semana": 18.5
+        },
+
+        "recomendacao_geral": "Estudante em trajetória de aprovação, mas precisa intensificar estudo em Direito Empresarial e Tributário. Ritmo atual é insuficiente para meta de 90 dias.",
+
+        "probabilidade_desistencia": 0.08,  // baixo risco
+        "fatores_risco_desistencia": []
+    }
+    */
+
+    -- ═════════════════════════════════════════════════════════════════════
+    -- BLOCO 6: CONTEXTO E METADATA DO MOMENTO
+    -- ═════════════════════════════════════════════════════════════════════
+
+    contexto_momento JSONB NOT NULL,
+    /*
+    Estrutura:
+    {
+        "fase_preparacao": "PREPARACAO_INTENSIVA",  // INICIAL | DESENVOLVIMENTO | PREPARACAO_INTENSIVA | PRE_PROVA | POS_PROVA
+
+        "dias_desde_inicio": 87,
+        "dias_ate_prova": 45,  // null se não há prova agendada
+
+        "atividade_recente": {
+            "ultima_sessao": "2024-12-17T18:30:00Z",
+            "dias_desde_ultima_atividade": 0,
+            "media_sessoes_por_semana": 4.2,
+            "streak_atual": 14
+        },
+
+        "evento_gerador": {
+            "tipo": "FIM_SESSAO_ESTUDO",
+            "sessao_id": "uuid-da-sessao",
+            "disciplina": "Direito Penal",
+            "tipo_sessao": "drill",
+            "duracao_minutos": 45,
+            "questoes_resolvidas": 12,
+            "acertos": 8
+        },
+
+        "comparacao_snapshot_anterior": {
+            "snapshot_anterior_id": "uuid-do-snapshot-anterior",
+            "dias_entre_snapshots": 7,
+            "tipo_anterior": "semanal",
+
+            "evolucao": {
+                "taxa_acerto": {
+                    "anterior": 65.2,
+                    "atual": 68.5,
+                    "delta": +3.3,
+                    "tendencia": "MELHORA"
+                },
+                "confianca": {
+                    "anterior": 0.68,
+                    "atual": 0.72,
+                    "delta": +0.04,
+                    "tendencia": "MELHORA"
+                },
+                "stress": {
+                    "anterior": 0.52,
+                    "atual": 0.45,
+                    "delta": -0.07,
+                    "tendencia": "MELHORA"
+                }
+            }
+        }
+    }
+    */
+
+    -- ÍNDICES
+    CREATE INDEX idx_snapshot_user_momento ON snapshot_cognitivo(user_id, momento DESC);
+    CREATE INDEX idx_snapshot_tipo_trigger ON snapshot_cognitivo(tipo_trigger);
+    CREATE INDEX idx_snapshot_momento ON snapshot_cognitivo(momento DESC);
+
+    -- Índice GIN para busca em JSONB
+    CREATE INDEX idx_snapshot_perfil_gin ON snapshot_cognitivo USING gin(perfil_completo);
+    CREATE INDEX idx_snapshot_desempenho_gin ON snapshot_cognitivo USING gin(desempenho);
+);
+
+
+═══════════════════════════════════════════════════════════════════════════════
+ 4. COMO É USADO (OPERAÇÕES E ANÁLISES)
+═══════════════════════════════════════════════════════════════════════════════
+
+4.1 ANÁLISE LONGITUDINAL (EVOLUÇÃO NO TEMPO)
+─────────────────────────────────────────────────────────────────────────────
+
+CASO DE USO 1: "Como evoluiu a taxa de acerto nos últimos 3 meses?"
+
+```sql
+SELECT
+    momento::date as data,
+    tipo_trigger,
+    desempenho->>'taxa_acerto_geral' as taxa_acerto,
+    perfil_completo->'estado_emocional'->>'confianca' as confianca
+FROM snapshot_cognitivo
+WHERE user_id = 'uuid-do-aluno'
+  AND momento >= NOW() - INTERVAL '3 months'
+ORDER BY momento;
+```
+
+VISUALIZAÇÃO: Gráfico de linha mostrando taxa de acerto + confiança ao longo do tempo
+
+
+CASO DE USO 2: "Comparar estado atual vs 30 dias atrás"
+
+```sql
+WITH snapshot_atual AS (
+    SELECT * FROM snapshot_cognitivo
+    WHERE user_id = 'uuid-do-aluno'
+    ORDER BY momento DESC
+    LIMIT 1
+),
+snapshot_30d AS (
+    SELECT * FROM snapshot_cognitivo
+    WHERE user_id = 'uuid-do-aluno'
+      AND momento >= NOW() - INTERVAL '30 days'
+      AND momento <= NOW() - INTERVAL '30 days' + INTERVAL '1 day'
+    ORDER BY momento
+    LIMIT 1
+)
+SELECT
+    (sa.desempenho->>'taxa_acerto_geral')::float -
+    (s30.desempenho->>'taxa_acerto_geral')::float as evolucao_taxa_acerto,
+
+    (sa.desempenho->>'total_questoes_resolvidas')::int -
+    (s30.desempenho->>'total_questoes_resolvidas')::int as questoes_no_periodo,
+
+    sa.padroes_erro->>'tipo_predominante' as erro_predominante_atual,
+    s30.padroes_erro->>'tipo_predominante' as erro_predominante_30d_atras
+FROM snapshot_atual sa, snapshot_30d s30;
+```
+
+
+4.2 DETECÇÃO DE REGRESSÃO
+─────────────────────────────────────────────────────────────────────────────
+
+CASO DE USO 3: "Detectar disciplinas em regressão"
+
+```sql
+WITH snapshots_comparacao AS (
+    SELECT
+        s1.id as snapshot_recente_id,
+        s1.momento as momento_recente,
+        s2.id as snapshot_anterior_id,
+        s2.momento as momento_anterior,
+        disc.key as disciplina,
+        (disc.value->>'taxa')::float as taxa_recente,
+        (disc_ant.value->>'taxa')::float as taxa_anterior
+    FROM snapshot_cognitivo s1
+    CROSS JOIN LATERAL jsonb_each(s1.desempenho->'por_disciplina') disc
+    JOIN LATERAL (
+        SELECT * FROM snapshot_cognitivo s2_inner
+        WHERE s2_inner.user_id = s1.user_id
+          AND s2_inner.momento < s1.momento
+        ORDER BY s2_inner.momento DESC
+        LIMIT 1
+    ) s2 ON true
+    CROSS JOIN LATERAL jsonb_each(s2.desempenho->'por_disciplina') disc_ant
+    WHERE s1.user_id = 'uuid-do-aluno'
+      AND s1.momento = (SELECT MAX(momento) FROM snapshot_cognitivo WHERE user_id = 'uuid-do-aluno')
+      AND disc.key = disc_ant.key
+)
+SELECT
+    disciplina,
+    taxa_recente,
+    taxa_anterior,
+    taxa_recente - taxa_anterior as delta,
+    CASE
+        WHEN taxa_recente - taxa_anterior < -15 THEN 'REGRESSÃO GRAVE'
+        WHEN taxa_recente - taxa_anterior < -8 THEN 'REGRESSÃO MODERADA'
+        WHEN taxa_recente - taxa_anterior < -3 THEN 'REGRESSÃO LEVE'
+        ELSE 'SEM REGRESSÃO'
+    END as gravidade
+FROM snapshots_comparacao
+WHERE taxa_recente - taxa_anterior < -3
+ORDER BY delta;
+```
+
+
+4.3 VALIDAÇÃO DE PREDIÇÕES
+─────────────────────────────────────────────────────────────────────────────
+
+CASO DE USO 4: "O sistema previu aprovação? O aluno foi aprovado?"
+
+```sql
+SELECT
+    s_pre.momento as momento_predicao,
+    s_pre.predicao->>'probabilidade_aprovacao_1fase' as prob_prevista,
+    s_pre.predicao->>'nota_estimada_1fase' as nota_prevista,
+
+    s_pos.contexto_trigger->>'resultado_real' as resultado_real,
+    s_pos.contexto_trigger->>'nota_real' as nota_real,
+
+    ABS(
+        (s_pre.predicao->>'nota_estimada_1fase')::float -
+        (s_pos.contexto_trigger->>'nota_real')::float
+    ) as erro_predicao,
+
+    CASE
+        WHEN (s_pre.predicao->>'probabilidade_aprovacao_1fase')::float >= 0.70
+             AND s_pos.contexto_trigger->>'resultado_real' = 'APROVADO'
+        THEN 'ACERTOU - PREVIU APROVAÇÃO'
+
+        WHEN (s_pre.predicao->>'probabilidade_aprovacao_1fase')::float < 0.50
+             AND s_pos.contexto_trigger->>'resultado_real' = 'REPROVADO'
+        THEN 'ACERTOU - PREVIU REPROVAÇÃO'
+
+        ELSE 'ERROU'
+    END as acuracia_predicao
+FROM snapshot_cognitivo s_pre
+JOIN snapshot_cognitivo s_pos ON s_pos.user_id = s_pre.user_id
+WHERE s_pre.user_id = 'uuid-do-aluno'
+  AND s_pre.tipo_trigger = 'pre_prova'
+  AND s_pos.tipo_trigger = 'pos_prova_real'
+  AND s_pos.momento > s_pre.momento
+ORDER BY s_pre.momento DESC
+LIMIT 1;
+```
+
+MÉTRICA DE QUALIDADE DO SISTEMA:
+Calcular acurácia das predições em TODOS os alunos que fizeram prova real:
+
+```sql
+SELECT
+    COUNT(*) as total_predicoes,
+    SUM(CASE WHEN acuracia_predicao LIKE 'ACERTOU%' THEN 1 ELSE 0 END) as acertos,
+    ROUND(
+        100.0 * SUM(CASE WHEN acuracia_predicao LIKE 'ACERTOU%' THEN 1 ELSE 0 END) / COUNT(*),
+        2
+    ) as taxa_acuracia_sistema,
+    AVG(erro_predicao) as erro_medio_nota
+FROM (
+    -- subquery do caso de uso 4 aplicada a TODOS os alunos
+) validacoes;
+```
+
+
+4.4 IDENTIFICAÇÃO DE PADRÕES DE SUCESSO
+─────────────────────────────────────────────────────────────────────────────
+
+CASO DE USO 5: "Qual era o perfil cognitivo dos aprovados 30 dias antes da prova?"
+
+```sql
+SELECT
+    AVG((s_pre.desempenho->>'taxa_acerto_geral')::float) as taxa_acerto_media,
+    AVG((s_pre.desempenho->>'total_questoes_resolvidas')::int) as questoes_media,
+    AVG((s_pre.perfil_completo->'estado_emocional'->>'confianca')::float) as confianca_media,
+    AVG((s_pre.perfil_completo->'maturidade_juridica'->>'pensamento_sistemico')::float) as pensamento_sistemico_medio,
+
+    MODE() WITHIN GROUP (ORDER BY s_pre.padroes_erro->>'tipo_predominante') as erro_predominante_comum,
+
+    AVG((s_pre.predicao->>'probabilidade_aprovacao_1fase')::float) as prob_aprovacao_media
+FROM snapshot_cognitivo s_pre
+JOIN snapshot_cognitivo s_pos ON s_pos.user_id = s_pre.user_id
+WHERE s_pre.tipo_trigger = 'pre_prova'
+  AND s_pre.contexto_momento->>'dias_ate_prova' BETWEEN '28' AND '32'
+  AND s_pos.tipo_trigger = 'pos_prova_real'
+  AND s_pos.contexto_trigger->>'resultado_real' = 'APROVADO'
+  AND s_pos.momento > s_pre.momento;
+```
+
+INSIGHT: "Alunos aprovados tinham, 30 dias antes da prova:
+- Taxa de acerto média: 72.3%
+- 1.247 questões resolvidas em média
+- Confiança média: 0.78
+- Pensamento sistêmico: 0.71
+- Erro predominante: ERRO_LEITURA_ATENCAO (não mais erros conceituais!)
+- Probabilidade prevista pelo sistema: 0.82"
+
+
+4.5 AJUSTE PEDAGÓGICO PERSONALIZADO
+─────────────────────────────────────────────────────────────────────────────
+
+CASO DE USO 6: "Aluno X está na mesma trajetória dos aprovados?"
+
+```python
+def comparar_com_benchmark_aprovados(user_id: str):
+    """
+    Compara snapshot atual do aluno com perfil médio de aprovados
+    no mesmo estágio de preparação
+    """
+
+    # 1. Pega snapshot mais recente do aluno
+    snapshot_aluno = get_snapshot_mais_recente(user_id)
+    dias_ate_prova = snapshot_aluno['contexto_momento']['dias_ate_prova']
+
+    # 2. Busca perfil médio de aprovados no mesmo estágio
+    benchmark = calcular_benchmark_aprovados(dias_ate_prova)
+
+    # 3. Compara dimensões
+    comparacao = {
+        "taxa_acerto": {
+            "aluno": snapshot_aluno['desempenho']['taxa_acerto_geral'],
+            "benchmark": benchmark['taxa_acerto_media'],
+            "gap": snapshot_aluno['desempenho']['taxa_acerto_geral'] - benchmark['taxa_acerto_media'],
+            "status": "ABAIXO" if gap < -5 else "DENTRO" if gap < 5 else "ACIMA"
+        },
+        "total_questoes": {
+            "aluno": snapshot_aluno['desempenho']['total_questoes_resolvidas'],
+            "benchmark": benchmark['questoes_media'],
+            "gap": snapshot_aluno['desempenho']['total_questoes_resolvidas'] - benchmark['questoes_media'],
+            "status": "ABAIXO" if gap < -100 else "DENTRO" if gap < 100 else "ACIMA"
+        },
+        "confianca": {
+            "aluno": snapshot_aluno['perfil_completo']['estado_emocional']['confianca'],
+            "benchmark": benchmark['confianca_media'],
+            "gap": snapshot_aluno['perfil_completo']['estado_emocional']['confianca'] - benchmark['confianca_media'],
+            "status": "ABAIXO" if gap < -0.10 else "DENTRO" if gap < 0.10 else "ACIMA"
+        }
+    }
+
+    # 4. Gera recomendações
+    recomendacoes = []
+
+    if comparacao['taxa_acerto']['status'] == "ABAIXO":
+        recomendacoes.append({
+            "tipo": "INTENSIFICAR_DRILLS",
+            "justificativa": f"Taxa de acerto {comparacao['taxa_acerto']['gap']:.1f} pontos abaixo do benchmark de aprovados",
+            "meta": f"Atingir {benchmark['taxa_acerto_media']:.1f}% nos próximos 14 dias"
+        })
+
+    if comparacao['total_questoes']['status'] == "ABAIXO":
+        gap_questoes = abs(comparacao['total_questoes']['gap'])
+        dias_restantes = dias_ate_prova
+        questoes_por_dia = gap_questoes / dias_restantes
+
+        recomendacoes.append({
+            "tipo": "AUMENTAR_VOLUME",
+            "justificativa": f"Faltam {gap_questoes} questões para atingir volume de aprovados",
+            "meta": f"Resolver {questoes_por_dia:.0f} questões/dia até a prova"
+        })
+
+    return {
+        "comparacao": comparacao,
+        "recomendacoes": recomendacoes,
+        "probabilidade_aprovacao_atual": snapshot_aluno['predicao']['probabilidade_aprovacao_1fase'],
+        "probabilidade_se_atingir_benchmark": benchmark['prob_aprovacao_media']
+    }
+```
+
+
+4.6 AUDITORIA E LGPD
+─────────────────────────────────────────────────────────────────────────────
+
+CASO DE USO 7: "Recuperar estado cognitivo em data específica (requisito legal)"
+
+```sql
+-- Cenário: Aluno solicita dados que o sistema tinha sobre ele em 01/10/2024
+SELECT
+    momento,
+    tipo_trigger,
+    perfil_completo,
+    desempenho,
+    contexto_momento
+FROM snapshot_cognitivo
+WHERE user_id = 'uuid-do-aluno'
+  AND momento::date = '2024-10-01'
+ORDER BY momento
+LIMIT 1;
+```
+
+LGPD - DIREITO À EXPLICAÇÃO:
+"Por que o sistema me recomendou focar em Direito Empresarial em 15/11/2024?"
+
+Resposta: Buscar snapshot de 15/11/2024 e mostrar:
+- Taxa de acerto em Empresarial naquele momento
+- Comparação com outras disciplinas
+- Predição de aprovação COM e SEM melhora em Empresarial
+
+
+═══════════════════════════════════════════════════════════════════════════════
+ 5. ALGORITMO DE GERAÇÃO DE SNAPSHOT
+═══════════════════════════════════════════════════════════════════════════════
+
+5.1 PSEUDOCÓDIGO DE GERAÇÃO
+─────────────────────────────────────────────────────────────────────────────
+
+```python
+def gerar_snapshot_cognitivo(
+    user_id: str,
+    tipo_trigger: str,
+    contexto_trigger: dict
+) -> str:
+    """
+    Gera snapshot cognitivo completo do estudante
+
+    Returns:
+        snapshot_id (UUID)
+    """
+
+    # 1. VERIFICAR SE DEVE GERAR
+    if not deve_gerar_snapshot(user_id, tipo_trigger):
+        return None  # Ex: snapshot semanal mas aluno não teve atividade
+
+    # 2. BUSCAR PERFIL ATUAL
+    perfil_atual = db.query("""
+        SELECT * FROM perfil_juridico WHERE user_id = %s
+    """, [user_id])
+
+    # 3. CALCULAR DESEMPENHO CONSOLIDADO
+    desempenho = calcular_desempenho_consolidado(user_id)
+    # Acessa: interacao_questao, pratica_peca, sessao_estudo
+
+    # 4. ANALISAR PADRÕES DE ERRO
+    padroes_erro = analisar_padroes_erro(user_id)
+    # Acessa: analise_erro, interacao_questao
+
+    # 5. ANALISAR ESTADO DE MEMÓRIA
+    estado_memoria = analisar_estado_memoria(user_id)
+    # Acessa: revisao_agendada, progresso_topico
+
+    # 6. GERAR PREDIÇÃO
+    predicao = gerar_predicao(user_id, perfil_atual, desempenho, estado_memoria)
+
+    # 7. BUSCAR SNAPSHOT ANTERIOR PARA COMPARAÇÃO
+    snapshot_anterior = db.query("""
+        SELECT id, momento, tipo_trigger, desempenho, perfil_completo
+        FROM snapshot_cognitivo
+        WHERE user_id = %s
+        ORDER BY momento DESC
+        LIMIT 1
+    """, [user_id])
+
+    # 8. CALCULAR CONTEXTO DO MOMENTO
+    contexto_momento = {
+        "fase_preparacao": determinar_fase_preparacao(user_id),
+        "dias_desde_inicio": (datetime.now() - perfil_atual['criado_em']).days,
+        "dias_ate_prova": calcular_dias_ate_prova(user_id),
+        "atividade_recente": calcular_atividade_recente(user_id),
+        "evento_gerador": contexto_trigger,
+        "comparacao_snapshot_anterior": None  # será preenchido abaixo
+    }
+
+    # 9. COMPARAR COM SNAPSHOT ANTERIOR
+    if snapshot_anterior:
+        contexto_momento['comparacao_snapshot_anterior'] = {
+            "snapshot_anterior_id": snapshot_anterior['id'],
+            "dias_entre_snapshots": (datetime.now() - snapshot_anterior['momento']).days,
+            "tipo_anterior": snapshot_anterior['tipo_trigger'],
+            "evolucao": calcular_evolucao(
+                snapshot_anterior['desempenho'],
+                desempenho,
+                snapshot_anterior['perfil_completo'],
+                perfil_atual
+            )
+        }
+
+    # 10. CRIAR SNAPSHOT
+    snapshot_id = db.insert("""
+        INSERT INTO snapshot_cognitivo (
+            user_id,
+            momento,
+            tipo_trigger,
+            contexto_trigger,
+            versao_snapshot,
+            perfil_completo,
+            desempenho,
+            padroes_erro,
+            estado_memoria,
+            predicao,
+            contexto_momento
+        ) VALUES (%s, NOW(), %s, %s, '1.0', %s, %s, %s, %s, %s, %s)
+        RETURNING id
+    """, [
+        user_id,
+        tipo_trigger,
+        json.dumps(contexto_trigger),
+        json.dumps(perfil_atual.to_dict()),
+        json.dumps(desempenho),
+        json.dumps(padroes_erro),
+        json.dumps(estado_memoria),
+        json.dumps(predicao),
+        json.dumps(contexto_momento)
+    ])
+
+    # 11. VERIFICAR SE GEROU ALERTA
+    verificar_alertas_snapshot(snapshot_id, predicao, padroes_erro)
+
+    return snapshot_id
+```
+
+
+5.2 FUNÇÃO: calcular_desempenho_consolidado()
+─────────────────────────────────────────────────────────────────────────────
+
+```python
+def calcular_desempenho_consolidado(user_id: str) -> dict:
+    """
+    Consolida todas as métricas de desempenho do estudante
+    """
+
+    # Total geral
+    total_questoes = db.query("""
+        SELECT COUNT(*) as total,
+               SUM(CASE WHEN resultado = 'ACERTO' THEN 1 ELSE 0 END) as acertos
+        FROM interacao_questao
+        WHERE user_id = %s
+    """, [user_id])
+
+    # Por disciplina
+    por_disciplina = {}
+    disciplinas = db.query("""
+        SELECT
+            disciplina,
+            COUNT(*) as questoes,
+            SUM(CASE WHEN resultado = 'ACERTO' THEN 1 ELSE 0 END) as acertos,
+            MAX(respondido_em) as ultima_atividade
+        FROM interacao_questao
+        WHERE user_id = %s
+        GROUP BY disciplina
+    """, [user_id])
+
+    for disc in disciplinas:
+        taxa = (disc['acertos'] / disc['questoes'] * 100) if disc['questoes'] > 0 else 0
+        nivel = determinar_nivel_dominio(taxa, disc['questoes'])
+
+        por_disciplina[disc['disciplina']] = {
+            "questoes": disc['questoes'],
+            "acertos": disc['acertos'],
+            "taxa": round(taxa, 1),
+            "nivel_dominio": nivel,
+            "ultima_atividade": disc['ultima_atividade'].isoformat()
+        }
+
+    # Por dificuldade
+    por_dificuldade = {}
+    dificuldades = db.query("""
+        SELECT
+            q.dificuldade,
+            COUNT(*) as questoes,
+            SUM(CASE WHEN iq.resultado = 'ACERTO' THEN 1 ELSE 0 END) as acertos
+        FROM interacao_questao iq
+        JOIN questoes_banco q ON q.id = iq.questao_id
+        WHERE iq.user_id = %s
+        GROUP BY q.dificuldade
+    """, [user_id])
+
+    for dif in dificuldades:
+        taxa = (dif['acertos'] / dif['questoes'] * 100) if dif['questoes'] > 0 else 0
+        por_dificuldade[dif['dificuldade']] = {
+            "questoes": dif['questoes'],
+            "acertos": dif['acertos'],
+            "taxa": round(taxa, 1)
+        }
+
+    # Tempo de estudo
+    tempo_total = db.query("""
+        SELECT SUM(tempo_resposta_segundos) as total_segundos,
+               AVG(tempo_resposta_segundos) as media_segundos
+        FROM interacao_questao
+        WHERE user_id = %s
+    """, [user_id])
+
+    # Simulados
+    simulados = db.query("""
+        SELECT
+            COUNT(*) as realizados,
+            SUM(CASE WHEN aprovado THEN 1 ELSE 0 END) as aprovado_em,
+            AVG(nota_final) as media_notas
+        FROM sessao_estudo
+        WHERE user_id = %s AND tipo = 'simulado'
+    """, [user_id])
+
+    ultimo_simulado = db.query("""
+        SELECT finalizado_em as data, nota_final as nota, aprovado
+        FROM sessao_estudo
+        WHERE user_id = %s AND tipo = 'simulado'
+        ORDER BY finalizado_em DESC
+        LIMIT 1
+    """, [user_id])
+
+    return {
+        "total_questoes_resolvidas": total_questoes['total'],
+        "total_acertos": total_questoes['acertos'],
+        "taxa_acerto_geral": round(
+            (total_questoes['acertos'] / total_questoes['total'] * 100)
+            if total_questoes['total'] > 0 else 0,
+            1
+        ),
+        "por_disciplina": por_disciplina,
+        "por_dificuldade": por_dificuldade,
+        "tempo_estudo_total_horas": round(tempo_total['total_segundos'] / 3600, 1),
+        "tempo_medio_por_questao_segundos": int(tempo_total['media_segundos']),
+        "simulados": {
+            "realizados": simulados['realizados'],
+            "aprovado_em": simulados['aprovado_em'],
+            "media_notas": round(simulados['media_notas'], 1) if simulados['media_notas'] else 0,
+            "ultimo_simulado": {
+                "data": ultimo_simulado['data'].isoformat() if ultimo_simulado else None,
+                "nota": ultimo_simulado['nota'] if ultimo_simulado else 0,
+                "aprovado": ultimo_simulado['aprovado'] if ultimo_simulado else False
+            } if ultimo_simulado else None
+        }
+    }
+```
+
+
+5.3 FUNÇÃO: gerar_predicao()
+─────────────────────────────────────────────────────────────────────────────
+
+```python
+def gerar_predicao(user_id: str, perfil: dict, desempenho: dict, memoria: dict) -> dict:
+    """
+    Gera predição de aprovação baseada em modelo estatístico
+    """
+
+    # MODELO SIMPLIFICADO (em produção, usar ML)
+    # Baseado em análise de aprovados vs reprovados
+
+    # Fatores de peso
+    PESO_TAXA_ACERTO = 0.40
+    PESO_VOLUME_QUESTOES = 0.20
+    PESO_MATURIDADE_JURIDICA = 0.15
+    PESO_ESTADO_EMOCIONAL = 0.10
+    PESO_RETENCAO_MEMORIA = 0.10
+    PESO_TEMPO_PREPARACAO = 0.05
+
+    # 1. TAXA DE ACERTO (0 a 1)
+    taxa_acerto = desempenho['taxa_acerto_geral'] / 100
+    score_taxa = taxa_acerto * PESO_TAXA_ACERTO
+
+    # 2. VOLUME DE QUESTÕES (normalizado)
+    # Benchmark: 2000 questões = 100%
+    volume = min(desempenho['total_questoes_resolvidas'] / 2000, 1.0)
+    score_volume = volume * PESO_VOLUME_QUESTOES
+
+    # 3. MATURIDADE JURÍDICA (média das 5 dimensões)
+    maturidade = perfil['maturidade_juridica']
+    media_maturidade = (
+        maturidade['pensamento_sistemico'] +
+        maturidade['capacidade_abstracao'] +
+        maturidade['dominio_terminologia'] +
+        maturidade['raciocinio_analogico'] +
+        maturidade['interpretacao_juridica']
+    ) / 5
+    score_maturidade = media_maturidade * PESO_MATURIDADE_JURIDICA
+
+    # 4. ESTADO EMOCIONAL (confiança alta, stress baixo)
+    emocional = perfil['estado_emocional']
+    score_emocional = (
+        (emocional['confianca'] * 0.5) +
+        ((1 - emocional['stress']) * 0.3) +
+        (emocional['motivacao'] * 0.2)
+    ) * PESO_ESTADO_EMOCIONAL
+
+    # 5. RETENÇÃO DE MEMÓRIA
+    taxa_retencao = memoria['taxa_retencao_global'] / 100
+    score_memoria = taxa_retencao * PESO_RETENCAO_MEMORIA
+
+    # 6. TEMPO DE PREPARAÇÃO
+    dias_preparacao = (datetime.now() - perfil['criado_em']).days
+    # Ideal: 90 dias+
+    score_tempo = min(dias_preparacao / 90, 1.0) * PESO_TEMPO_PREPARACAO
+
+    # SCORE FINAL
+    score_final = (
+        score_taxa +
+        score_volume +
+        score_maturidade +
+        score_emocional +
+        score_memoria +
+        score_tempo
+    )
+
+    # Probabilidade de aprovação (ajustada com curva logística)
+    probabilidade = 1 / (1 + math.exp(-10 * (score_final - 0.6)))
+
+    # Confiança da predição (baseada em volume de dados)
+    confianca = min(desempenho['total_questoes_resolvidas'] / 1000, 0.95)
+
+    # Nota estimada (correlação: score_final * 100)
+    nota_estimada = score_final * 100
+    margem_erro = 15 * (1 - confianca)  # Menor margem com mais dados
+
+    # Disciplinas críticas (taxa < 65%)
+    disciplinas_criticas = []
+    for disc, dados in desempenho['por_disciplina'].items():
+        if dados['taxa'] < 65:
+            disciplinas_criticas.append({
+                "disciplina": disc,
+                "taxa_acerto_atual": dados['taxa'],
+                "taxa_necessaria": 65.0,
+                "gap": dados['taxa'] - 65.0,
+                "risco": "ALTO" if dados['taxa'] < 55 else "MEDIO"
+            })
+
+    # Tempo estimado até aprovação
+    dias_ate_prova = calcular_dias_ate_prova(user_id)
+    questoes_faltantes = max(2000 - desempenho['total_questoes_resolvidas'], 0)
+
+    # Ritmo atual (últimas 4 semanas)
+    ritmo_atual = calcular_ritmo_semanal(user_id, semanas=4)
+    questoes_por_semana = ritmo_atual['questoes_por_semana']
+    horas_por_semana = ritmo_atual['horas_por_semana']
+
+    # Ritmo necessário
+    semanas_disponiveis = dias_ate_prova / 7 if dias_ate_prova else 12
+    questoes_por_semana_necessarias = questoes_faltantes / semanas_disponiveis if semanas_disponiveis > 0 else 0
+
+    return {
+        "probabilidade_aprovacao_1fase": round(probabilidade, 2),
+        "confianca_predicao": round(confianca, 2),
+        "nota_estimada_1fase": round(nota_estimada, 1),
+        "margem_erro": round(margem_erro, 1),
+        "disciplinas_criticas": sorted(disciplinas_criticas, key=lambda x: x['gap']),
+        "tempo_estimado_ate_aprovacao": {
+            "dias": dias_ate_prova,
+            "horas_estudo_necessarias": int(questoes_faltantes * 3 / 60),  # 3min/questão
+            "ritmo_atual_horas_semana": round(horas_por_semana, 1),
+            "ritmo_necessario_horas_semana": round(questoes_por_semana_necessarias * 3 / 60, 1)
+        },
+        "recomendacao_geral": gerar_recomendacao_textual(
+            probabilidade,
+            disciplinas_criticas,
+            questoes_por_semana,
+            questoes_por_semana_necessarias
+        ),
+        "probabilidade_desistencia": perfil['riscos']['risco_evasao'],
+        "fatores_risco_desistencia": identificar_fatores_risco(perfil, desempenho)
+    }
+```
+
+
+═══════════════════════════════════════════════════════════════════════════════
+ 6. POLÍTICAS DE RETENÇÃO E ARQUIVAMENTO
+═══════════════════════════════════════════════════════════════════════════════
+
+6.1 POLÍTICA DE RETENÇÃO
+─────────────────────────────────────────────────────────────────────────────
+
+REGRA 1: ALUNO ATIVO
+- Manter TODOS os snapshots enquanto aluno ativo (último acesso < 180 dias)
+- Não há limite de armazenamento para alunos ativos
+
+REGRA 2: ALUNO INATIVO (180 dias sem acesso)
+- Manter snapshots:
+  * Todos os snapshots tipo "pre_prova" e "pos_prova_real" (INDEFINIDAMENTE)
+  * Snapshot mais antigo (primeiro dia)
+  * Snapshot de mudanças de nível
+  * Snapshots mensais (1 por mês)
+  * Último snapshot antes de ficar inativo
+- Arquivar demais snapshots (compactar e mover para cold storage)
+
+REGRA 3: ALUNO SOLICITOU EXCLUSÃO (LGPD)
+- Manter por 90 dias (prazo legal para arrependimento)
+- Após 90 dias: ANONIMIZAR (não deletar)
+  * Remover user_id (substituir por hash anônimo)
+  * Remover dados pessoais de contexto
+  * Manter dados agregados para ciência de dados
+  * Flag: anonimizado = true
+
+REGRA 4: ALUNO APROVOU NA OAB
+- Manter TODOS os snapshots por 5 anos (valor histórico + auditoria)
+- Após 5 anos: aplicar REGRA 2
+
+
+6.2 QUERY DE ARQUIVAMENTO AUTOMÁTICO
+─────────────────────────────────────────────────────────────────────────────
+
+```sql
+-- Executar mensalmente (job agendado)
+WITH alunos_inativos AS (
+    SELECT id FROM users
+    WHERE ultimo_acesso < NOW() - INTERVAL '180 days'
+),
+snapshots_a_arquivar AS (
+    SELECT s.id
+    FROM snapshot_cognitivo s
+    JOIN alunos_inativos ai ON ai.id = s.user_id
+    WHERE s.tipo_trigger NOT IN ('pre_prova', 'pos_prova_real', 'mudanca_nivel')
+      AND s.id NOT IN (
+          -- Primeiro snapshot
+          SELECT MIN(id) FROM snapshot_cognitivo WHERE user_id = s.user_id
+          UNION ALL
+          -- Último snapshot
+          SELECT MAX(id) FROM snapshot_cognitivo WHERE user_id = s.user_id
+          UNION ALL
+          -- 1 snapshot por mês
+          SELECT DISTINCT ON (user_id, DATE_TRUNC('month', momento))
+              id
+          FROM snapshot_cognitivo
+          WHERE user_id = s.user_id
+          ORDER BY user_id, DATE_TRUNC('month', momento), momento DESC
+      )
+)
+-- Marcar para arquivamento
+UPDATE snapshot_cognitivo
+SET arquivado = true,
+    arquivado_em = NOW()
+WHERE id IN (SELECT id FROM snapshots_a_arquivar);
+
+-- Mover para tabela de cold storage
+INSERT INTO snapshot_cognitivo_archive
+SELECT * FROM snapshot_cognitivo WHERE arquivado = true;
+
+-- Deletar da tabela principal (opcional - manter se storage não for problema)
+-- DELETE FROM snapshot_cognitivo WHERE arquivado = true;
+```
+
+
+═══════════════════════════════════════════════════════════════════════════════
+ 7. CASOS DE USO AVANÇADOS
+═══════════════════════════════════════════════════════════════════════════════
+
+7.1 ANÁLISE DE COORTE
+─────────────────────────────────────────────────────────────────────────────
+
+"Comparar evolução de alunos que começaram no mesmo mês"
+
+```sql
+WITH coorte_jan_2024 AS (
+    SELECT user_id
+    FROM users
+    WHERE DATE_TRUNC('month', criado_em) = '2024-01-01'
+),
+snapshots_coorte AS (
+    SELECT
+        s.user_id,
+        s.momento,
+        (s.momento::date - u.criado_em::date) as dias_desde_inicio,
+        s.desempenho->>'taxa_acerto_geral' as taxa_acerto,
+        s.perfil_completo->'estado_emocional'->>'confianca' as confianca
+    FROM snapshot_cognitivo s
+    JOIN users u ON u.id = s.user_id
+    WHERE s.user_id IN (SELECT user_id FROM coorte_jan_2024)
+      AND s.tipo_trigger = 'semanal'
+)
+SELECT
+    dias_desde_inicio,
+    COUNT(DISTINCT user_id) as alunos_ativos,
+    AVG(taxa_acerto::float) as taxa_acerto_media,
+    AVG(confianca::float) as confianca_media
+FROM snapshots_coorte
+GROUP BY dias_desde_inicio
+ORDER BY dias_desde_inicio;
+```
+
+VISUALIZAÇÃO: Gráfico de linha mostrando curva de evolução da coorte ao longo do tempo
+
+
+7.2 DETECÇÃO DE PLATÔ DE APRENDIZAGEM
+─────────────────────────────────────────────────────────────────────────────
+
+"Identificar alunos que pararam de evoluir"
+
+```python
+def detectar_plato_aprendizagem(user_id: str, janela_dias: int = 30) -> dict:
+    """
+    Detecta se aluno está em platô (sem melhora significativa)
+    """
+
+    snapshots = db.query("""
+        SELECT
+            momento,
+            desempenho->>'taxa_acerto_geral' as taxa_acerto,
+            desempenho->>'total_questoes_resolvidas' as total_questoes
+        FROM snapshot_cognitivo
+        WHERE user_id = %s
+          AND momento >= NOW() - INTERVAL '%s days'
+          AND tipo_trigger IN ('pos_sessao', 'semanal')
+        ORDER BY momento
+    """, [user_id, janela_dias])
+
+    if len(snapshots) < 4:
+        return {"plato_detectado": False, "dados_insuficientes": True}
+
+    # Calcular variação de taxa de acerto
+    taxas = [float(s['taxa_acerto']) for s in snapshots]
+    variacao_max = max(taxas) - min(taxas)
+
+    # Calcular tendência (regressão linear simples)
+    x = list(range(len(taxas)))
+    coef_angular = calcular_coef_angular(x, taxas)
+
+    plato_detectado = False
+    tipo_plato = None
+
+    # Critérios de platô
+    if variacao_max < 3 and abs(coef_angular) < 0.1:
+        plato_detectado = True
+        tipo_plato = "ESTAGNACAO"
+    elif coef_angular < -0.2:
+        plato_detectado = True
+        tipo_plato = "REGRESSAO"
+
+    if plato_detectado:
+        recomendacoes = gerar_recomendacoes_plato(
+            user_id,
+            tipo_plato,
+            taxas[-1],  # taxa atual
+            snapshots[-1]  # último snapshot
+        )
+    else:
+        recomendacoes = []
+
+    return {
+        "plato_detectado": plato_detectado,
+        "tipo_plato": tipo_plato,
+        "variacao_taxa_acerto": variacao_max,
+        "tendencia": "CRESCENTE" if coef_angular > 0.1 else "DECRESCENTE" if coef_angular < -0.1 else "ESTAVEL",
+        "coef_angular": coef_angular,
+        "recomendacoes": recomendacoes
+    }
+```
+
+
+═══════════════════════════════════════════════════════════════════════════════
+ 8. INTEGRAÇÃO COM ENGINES
+═══════════════════════════════════════════════════════════════════════════════
+
+8.1 COMO AS ENGINES USAM SNAPSHOTS
+─────────────────────────────────────────────────────────────────────────────
+
+DECISION ENGINE:
+- Consulta último snapshot para decidir próxima ação
+- Compara snapshot atual com benchmark de aprovados
+- Detecta mudanças drásticas comparando snapshots consecutivos
+
+MEMORY ENGINE:
+- Usa snapshots para validar se revisões estão funcionando
+- Compara força de memória entre snapshots para detectar esquecimento
+
+QUESTION ENGINE:
+- Ajusta dificuldade baseado em evolução detectada nos snapshots
+- Se último snapshot mostra breakthrough em disciplina, aumenta dificuldade
+
+EXPLANATION ENGINE:
+- Analisa snapshots históricos para identificar evolução de compreensão
+- Adapta nível de explicação baseado em maturidade jurídica do último snapshot
+
+PIECE ENGINE (2ª FASE):
+- Compara performance em peças ao longo do tempo via snapshots
+- Identifica se aluno regrediu em alguma competência específica
+
+
+═══════════════════════════════════════════════════════════════════════════════
+ RESUMO EXECUTIVO
+═══════════════════════════════════════════════════════════════════════════════
+
+SNAPSHOT COGNITIVO é:
+✓ Fotografia IMUTÁVEL do estado completo do estudante em momento específico
+✓ Gerado em momentos RELEVANTES (fim sessão, simulado, marcos, semanal)
+✓ Contém: perfil cognitivo + desempenho + erros + memória + predição + contexto
+✓ Permite: análise longitudinal, detecção regressão, validação predições, auditoria
+✓ Base para: evolução temporal, comparação com benchmark, ajuste pedagógico
+
+DIFERENÇAS FUNDAMENTAIS:
+- perfil_juridico: estado ATUAL, mutável, 1 registro
+- snapshot_cognitivo: estado PASSADO, imutável, N registros
+- metricas_temporais: agregações, atualizável, para dashboards
+
+ARMAZENAMENTO:
+- Aluno ativo: todos os snapshots
+- Aluno inativo: snapshots críticos + mensais
+- Aluno exclusão: anonimizar após 90 dias
+- Aluno aprovado: manter 5 anos
+
+
+╔════════════════════════════════════════════════════════════════════════════╗
+║                         FIM DA ETAPA 4                                     ║
+║                                                                            ║
+║  PRÓXIMA ETAPA: GOVERNANÇA DE DADOS                                        ║
+║  Aguardando confirmação para prosseguir...                                 ║
+╚════════════════════════════════════════════════════════════════════════════╝

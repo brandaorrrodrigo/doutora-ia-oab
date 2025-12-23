@@ -1,0 +1,210 @@
+================================================================================
+CHECKLIST DE VALIDAÇÃO - DEPLOY P0
+DOUTORA IA/OAB - JURIS_IA_CORE_V1
+================================================================================
+Data: 2025-12-18
+================================================================================
+
+ETAPA 13.1 - PREPARO DE AMBIENTE
+================================================================================
+
+□ PRÉ-REQUISITOS
+  ├─ [✓] Docker Desktop instalado
+  ├─ [✗] Docker Desktop em execução
+  ├─ [✓] GPU NVIDIA RTX 3090 disponível
+  └─ [✓] Drivers NVIDIA + CUDA toolkit configurados
+
+□ ESTRUTURA DE ARQUIVOS
+  ├─ [✓] docker-compose.yml
+  ├─ [✓] .env.docker (referência)
+  ├─ [⚠] .env (incompleto - requer atualização)
+  ├─ [✓] Dockerfile.backend
+  ├─ [✓] migrations/003_create_auth_tables.sql
+  ├─ [✓] migrations/004_create_subscription_tables.sql
+  └─ [✓] Documentação de deploy
+
+□ VARIÁVEIS DE AMBIENTE CRÍTICAS
+  ├─ [✓] DATABASE_URL
+  ├─ [✓] REDIS_URL
+  ├─ [✓] OLLAMA_HOST
+  ├─ [✓] EMBEDDING_MODEL (nomic-embed-text)
+  ├─ [✓] LLM_MODEL (llama3.1:8b-instruct-q8_0)
+  ├─ [⚠] JWT_SECRET_KEY (usar valor único em produção!)
+  ├─ [✓] JWT_ALGORITHM
+  ├─ [✓] API_HOST
+  ├─ [✓] API_PORT
+  ├─ [✓] LOG_LEVEL
+  └─ [✓] ENVIRONMENT
+
+□ VARIÁVEIS NÃO APLICÁVEIS (P0)
+  ├─ [N/A] OPENAI_API_KEY (usando Ollama local)
+  ├─ [N/A] STRIPE_SECRET_KEY (fase futura)
+  └─ [N/A] STRIPE_WEBHOOK_SECRET (fase futura)
+
+□ CONECTIVIDADE (pendente Docker)
+  ├─ [PENDENTE] PostgreSQL (porta 5432)
+  ├─ [PENDENTE] Redis (porta 6379)
+  ├─ [PENDENTE] Ollama (porta 11434)
+  └─ [PENDENTE] Backend API (porta 8000)
+
+
+ETAPA 13.2 - MIGRATIONS
+================================================================================
+
+□ PREPARAÇÃO
+  ├─ [ ] Backup do banco (se houver dados)
+  ├─ [ ] Validar conexão PostgreSQL
+  └─ [ ] Verificar extensão pgvector habilitada
+
+□ EXECUÇÃO DE MIGRATIONS
+  ├─ [ ] 003_create_auth_tables.sql
+  │   ├─ [ ] Tabela: usuario
+  │   ├─ [ ] Tabela: token_refresh
+  │   ├─ [ ] Tabela: sessao_usuario
+  │   ├─ [ ] Tabela: log_autenticacao
+  │   ├─ [ ] Tabela: jwt_secret
+  │   ├─ [ ] Função: limpar_tokens_expirados()
+  │   ├─ [ ] Função: revogar_tokens_usuario()
+  │   ├─ [ ] Constraint: check_role_valido
+  │   └─ [ ] Usuário admin criado
+  │
+  └─ [ ] 004_create_subscription_tables.sql
+      ├─ [ ] Tabela: plano
+      ├─ [ ] Tabela: assinatura
+      ├─ [ ] Tabela: uso_diario
+      ├─ [ ] Tabela: evento_uso
+      ├─ [ ] Tabela: historico_plano
+      ├─ [ ] Função: obter_assinatura_ativa()
+      ├─ [ ] Função: obter_uso_dia()
+      ├─ [ ] Função: incrementar_uso()
+      ├─ [ ] Função: verificar_limite()
+      ├─ [ ] View: v_assinaturas_ativas
+      └─ [ ] Planos: FREE, BASIC, PRO criados
+
+□ VALIDAÇÃO PÓS-MIGRATION
+  ├─ [ ] Contar tabelas criadas (esperado: 10+)
+  ├─ [ ] Validar foreign keys
+  ├─ [ ] Validar índices criados
+  ├─ [ ] Testar funções SQL
+  └─ [ ] Verificar planos iniciais (3 planos)
+
+
+ETAPA 13.3 - POPULAÇÃO DE EMBEDDINGS
+================================================================================
+
+□ PREPARAÇÃO
+  ├─ [ ] Ollama rodando e responsivo
+  ├─ [ ] Modelo nomic-embed-text baixado
+  ├─ [ ] Modelo llama3.1:8b-instruct-q8_0 baixado
+  └─ [ ] Validar memória GPU disponível
+
+□ INGESTÃO: LEI SECA
+  ├─ [ ] Localizar arquivos em lei_seca/
+  ├─ [ ] Executar script de ingestão
+  ├─ [ ] Validar embeddings gerados
+  ├─ [ ] Contar documentos ingeridos
+  └─ [ ] Testar consulta de amostra
+
+□ INGESTÃO: QUESTÕES OAB
+  ├─ [ ] Localizar arquivos em oab_1fase/
+  ├─ [ ] Executar script de ingestão
+  ├─ [ ] Validar embeddings gerados
+  ├─ [ ] Contar questões ingeridas
+  └─ [ ] Testar recuperação de questão
+
+□ VALIDAÇÃO DE PERFORMANCE
+  ├─ [ ] Medir latência de embedding (esperado: <500ms)
+  ├─ [ ] Medir latência de busca vetorial (esperado: <200ms)
+  ├─ [ ] Medir latência de geração LLM (esperado: <3s)
+  └─ [ ] Validar uso de GPU (esperado: >70%)
+
+
+ETAPA 13.4 - TESTES END-TO-END
+================================================================================
+
+□ FLUXO DE AUTENTICAÇÃO
+  ├─ [ ] POST /auth/register (criar usuário teste)
+  ├─ [ ] POST /auth/login (obter tokens)
+  ├─ [ ] GET /auth/me (validar token)
+  ├─ [ ] POST /auth/refresh (renovar token)
+  └─ [ ] POST /auth/logout (finalizar sessão)
+
+□ FLUXO DE ESTUDO (MODO PEDAGÓGICO)
+  ├─ [ ] POST /sessao/iniciar (iniciar sessão de estudo)
+  ├─ [ ] GET /questao/proxima (obter questão)
+  ├─ [ ] POST /questao/responder (enviar resposta)
+  ├─ [ ] GET /questao/explicacao (obter feedback IA)
+  ├─ [ ] GET /sessao/relatorio (obter relatório final)
+  └─ [ ] POST /sessao/finalizar (finalizar sessão)
+
+□ VALIDAÇÃO DE LIMITES (PAYWALL)
+  ├─ [ ] Usuário FREE: limite 10 questões/dia
+  ├─ [ ] Bloqueio após atingir limite
+  ├─ [ ] Mensagem de upgrade apresentada
+  └─ [ ] Reset de limite diário (00:00)
+
+□ TESTES DE INTEGRAÇÃO
+  ├─ [ ] Consulta RAG funcional (lei seca)
+  ├─ [ ] Geração de explicação com LLM
+  ├─ [ ] Cache Redis funcionando
+  ├─ [ ] Métricas sendo registradas
+  └─ [ ] Logs sendo gravados
+
+
+ETAPA 13.5 - MONITORAMENTO
+================================================================================
+
+□ HEALTH CHECKS
+  ├─ [ ] GET /health (API)
+  ├─ [ ] PostgreSQL health check
+  ├─ [ ] Redis health check
+  ├─ [ ] Ollama health check
+  └─ [ ] Health check geral (todos os serviços)
+
+□ MÉTRICAS BÁSICAS
+  ├─ [ ] Latência média de requests
+  ├─ [ ] Taxa de erro (5xx)
+  ├─ [ ] Pool de conexões DB
+  ├─ [ ] Uso de memória Redis
+  └─ [ ] Uso de GPU (Ollama)
+
+□ ALERTAS CONFIGURADOS
+  ├─ [ ] Taxa de erro >5%
+  ├─ [ ] Latência >5s (P95)
+  ├─ [ ] DB pool saturation >90%
+  ├─ [ ] Redis memory >80%
+  └─ [ ] GPU error detection
+
+□ DASHBOARDS
+  ├─ [ ] Dashboard principal (Grafana/similar)
+  ├─ [ ] Métricas de usuário
+  ├─ [ ] Métricas de sistema
+  └─ [ ] Logs centralizados
+
+
+ETAPA 13.6 - RELATÓRIO FINAL
+================================================================================
+
+□ DOCUMENTAÇÃO
+  ├─ [ ] Todas as etapas concluídas
+  ├─ [ ] Tempos de execução registrados
+  ├─ [ ] Métricas de performance coletadas
+  ├─ [ ] Problemas identificados documentados
+  └─ [ ] Riscos residuais listados
+
+□ DECISÃO GO/NO-GO
+  ├─ [ ] Todos os testes end-to-end PASS
+  ├─ [ ] Zero erros críticos
+  ├─ [ ] Latência dentro do esperado
+  ├─ [ ] Limites de plano funcionando
+  └─ [ ] Health checks OK
+
+□ RELATÓRIO FINAL
+  └─ [ ] RELATORIO_DEPLOY_P0.txt gerado
+
+
+================================================================================
+STATUS ATUAL: BLOQUEADO - AGUARDANDO DOCKER DESKTOP
+================================================================================
+Próxima ação: Iniciar Docker Desktop e executar: docker ps
+================================================================================

@@ -1,0 +1,16 @@
+# JURIS_IA_CORE_V1 - Database Requirements
+# =========================================
+# Dependências do sistema de banco de dados PostgreSQL
+
+# SQLAlchemy - ORM
+sqlalchemy>=2.0.23
+sqlalchemy[asyncio]>=2.0.23
+
+# PostgreSQL Driver
+psycopg2-binary>=2.9.9
+
+# Alembic - Database Migrations
+alembic>=1.13.0
+
+# Additional utilities
+python-dotenv>=1.0.0  # Para carregar variáveis de ambiente

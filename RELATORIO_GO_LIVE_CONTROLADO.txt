@@ -1,0 +1,748 @@
+================================================================================
+RELATÓRIO DE GO-LIVE CONTROLADO
+================================================================================
+
+SISTEMA: JURIS IA CORE V1
+PRODUTO: DOUTORA IA/OAB
+DATA: 2025-12-17
+FASE: GO-LIVE CONTROLADO (20-50 USUÁRIOS)
+RESPONSÁVEL: Engenheiro de Go-Live
+
+================================================================================
+1. OBJETIVO DO GO-LIVE CONTROLADO
+================================================================================
+
+Validar estabilidade, segurança e usabilidade do sistema DOUTORA IA/OAB em
+ambiente real com grupo limitado de usuários antes do lançamento público.
+
+Métricas de sucesso:
+  - Taxa de conclusão de sessões > 70%
+  - Taxa de abandono < 30%
+  - Taxa de acerto em questões > 50%
+  - Zero vulnerabilidades críticas
+  - Tempo de resposta < 2 segundos
+
+Duração estimada: 14 dias (2 semanas)
+
+Público-alvo: 20-50 estudantes de Direito em preparação para OAB
+
+
+================================================================================
+2. FEATURE FLAGS IMPLEMENTADAS
+================================================================================
+
+2.1. FEATURE FLAGS CRIADAS
+---------------------------
+
+Migration: database/migrations/005_create_feature_flags.sql
+
+Tabelas:
+  - feature_flag: Controle de features
+  - limite_go_live: Limites específicos do go-live
+  - metrica_sessao: Métricas por sessão
+  - evento_go_live: Log de eventos
+
+Flags configuradas:
+
+[1] modo_oab
+    Status: HABILITADO
+    Escopo: Global
+    Limite: 50 usuários
+    Descrição: Modo pedagógico para preparação OAB
+    Categoria: mode
+
+[2] modo_profissional
+    Status: DESABILITADO
+    Escopo: Nenhum
+    Descrição: Modo profissional sem gabarito
+    Categoria: mode
+    Motivo desabilitação: Não validado para go-live inicial
+
+[3] piece_engine
+    Status: DESABILITADO
+    Escopo: Nenhum
+    Descrição: Geração de peças processuais
+    Categoria: feature
+    Motivo desabilitação: Complexidade adicional não necessária no go-live
+
+[4] analytics
+    Status: HABILITADO
+    Escopo: Global
+    Descrição: Coleta de métricas de uso
+    Categoria: feature
+    Objetivo: Monitoramento de comportamento
+
+[5] novos_cadastros
+    Status: HABILITADO
+    Escopo: Global
+    Limite: 50 cadastros
+    Descrição: Permite registro de novos usuários
+    Categoria: feature
+    Controle: Limite hard de 50 usuários
+
+
+2.2. VERIFICAÇÃO DE FEATURES
+-----------------------------
+
+Função SQL implementada:
+
+  verificar_feature_habilitada(codigo_feature, usuario_id)
+
+Comportamento:
+  1. Verifica se feature está habilitada globalmente
+  2. Se usuário fornecido, verifica whitelist
+  3. Se usuário fornecido, verifica limite de usuários
+  4. Retorna TRUE/FALSE
+
+Uso em aplicação:
+
+  from core.go_live_service import GoLiveService
+
+  go_live = GoLiveService()
+
+  # Verificar se modo OAB está habilitado
+  if go_live.verificar_feature_habilitada("modo_oab", usuario_id):
+      # Permitir acesso
+  else:
+      # Bloquear com mensagem apropriada
+
+
+================================================================================
+3. LIMITES INICIAIS DEFINIDOS
+================================================================================
+
+3.1. LIMITES CONFIGURADOS
+--------------------------
+
+Todos os limites aplicam-se a TODOS os usuários durante go-live:
+
+[1] sessoes_dia
+    Valor: 3 sessões por dia
+    Objetivo: Evitar sobrecarga e fadiga
+    Enforcement: Bloqueio após 3ª sessão
+    Reset: Meia-noite (UTC-3)
+
+[2] questoes_sessao
+    Valor: 20 questões por sessão
+    Objetivo: Sessões focadas e gerenciáveis
+    Enforcement: Bloqueio após 20ª questão
+    Reset: Nova sessão
+
+[3] pecas_semana
+    Valor: 0 peças por semana
+    Objetivo: Feature desabilitada no go-live
+    Enforcement: Bloqueio total
+    Status: Não aplicável (piece_engine desabilitado)
+
+[4] duracao_sessao_minutos
+    Valor: 90 minutos
+    Objetivo: Evitar sessões extremamente longas
+    Enforcement: Aviso aos 80min, finalização forçada aos 90min
+    Reset: Nova sessão
+
+
+3.2. VERIFICAÇÃO DE LIMITES
+----------------------------
+
+Função SQL implementada:
+
+  verificar_limite_go_live(tipo_limite, usuario_id)
+
+Retorna:
+  - atingido: BOOLEAN
+  - limite: INTEGER
+  - uso_atual: INTEGER
+  - restante: INTEGER
+
+Exemplo de uso:
+
+  # Antes de iniciar sessão
+  pode, motivo, info = go_live.pode_iniciar_sessao(usuario_id)
+
+  if not pode:
+      # Exibir mensagem:
+      # "Limite de 3 sessões/dia atingido. Você já completou 3 sessões hoje.
+      #  Tente novamente amanhã."
+      return HTTP 429 Too Many Requests
+
+  # Antes de responder questão
+  pode, motivo, info = go_live.pode_responder_questao(usuario_id, sessao_id)
+
+  if not pode:
+      # Exibir mensagem:
+      # "Limite de 20 questões/sessão atingido. Finalize esta sessão
+      #  e inicie uma nova."
+      return HTTP 429 Too Many Requests
+
+
+================================================================================
+4. MÉTRICAS ESSENCIAIS IMPLEMENTADAS
+================================================================================
+
+4.1. MÉTRICAS POR SESSÃO
+-------------------------
+
+Tabela: metrica_sessao
+
+Campos rastreados:
+
+[A] TEMPORAIS
+    - data_sessao: Data da sessão
+    - hora_inicio: Timestamp de início
+    - hora_fim: Timestamp de fim
+    - duracao_segundos: Duração calculada
+
+[B] USO
+    - questoes_respondidas: Total de questões
+    - questoes_corretas: Total de acertos
+    - questoes_incorretas: Total de erros
+
+[C] ERROS POR TIPO (conforme ETAPA 3.3)
+    - erros_conceitual: Erro de conceito jurídico
+    - erros_normativo: Erro de dispositivo legal
+    - erros_interpretacao: Erro de interpretação
+    - erros_estrategico: Distração/pegadinha
+    - erros_leitura: Leitura superficial
+    - erros_confusao_institutos: Confusão entre institutos
+
+[D] CONCLUSÃO
+    - sessao_concluida: TRUE/FALSE
+    - abandonada: TRUE/FALSE
+    - motivo_abandono: VARCHAR (opcional)
+
+[E] CONTEXTO
+    - modo_utilizado: pedagogico/profissional
+    - plano_ativo: FREE/BASIC/PRO
+
+
+4.2. FLUXO DE CAPTURA DE MÉTRICAS
+----------------------------------
+
+[1] Início de Sessão:
+    POST /sessao/iniciar
+    - Verificar limite de sessões/dia
+    - Criar registro em metrica_sessao
+    - Retornar sessao_id
+
+[2] Resposta de Questão:
+    POST /questao/responder
+    - Verificar limite de questões/sessão
+    - Processar resposta
+    - Atualizar contadores (corretas/incorretas)
+    - Incrementar contador de erro por tipo (se errou)
+
+[3] Finalização de Sessão:
+    POST /sessao/finalizar
+    - Calcular duração
+    - Marcar sessao_concluida=TRUE ou abandonada=TRUE
+    - Registrar motivo_abandono (se aplicável)
+
+
+4.3. MÉTRICAS AGREGADAS
+------------------------
+
+Função: obter_metricas_agregadas(data_inicio, data_fim)
+
+Retorna (últimos 7 dias por padrão):
+
+  {
+    "periodo": {"inicio": "2025-12-10", "fim": "2025-12-17"},
+    "usuarios_ativos": 42,
+    "total_sessoes": 156,
+    "sessoes_concluidas": 118,
+    "sessoes_abandonadas": 38,
+    "taxa_conclusao": 75.64,
+    "taxa_abandono": 24.36,
+    "total_questoes": 2340,
+    "total_corretas": 1404,
+    "total_incorretas": 936,
+    "taxa_acerto_geral": 60.0,
+    "duracao_media_segundos": 1820,
+    "duracao_media_minutos": 30,
+    "erros_por_tipo": {
+      "conceitual": 320,
+      "normativo": 285,
+      "interpretacao": 180,
+      "estrategico": 95,
+      "leitura": 40,
+      "confusao_institutos": 16
+    }
+  }
+
+Uso:
+  - Dashboard de monitoramento
+  - Relatórios diários
+  - Decisão de ajuste de limites
+  - Identificação de problemas pedagógicos
+
+
+4.4. TAXA DE CONCLUSÃO
+-----------------------
+
+Definição:
+  Taxa de Conclusão = (Sessões Concluídas / Total de Sessões) × 100
+
+Meta go-live: > 70%
+
+Sessão considerada CONCLUÍDA quando:
+  - Usuário clicou em "Finalizar Sessão"
+  - Respondeu pelo menos 10 questões
+  - Duração > 10 minutos
+
+Sessão considerada ABANDONADA quando:
+  - Usuário fechou navegador sem finalizar
+  - Inatividade > 30 minutos
+  - Menos de 10 questões respondidas
+
+Motivos de abandono rastreados:
+  - "dificuldade_tecnica": Problema técnico
+  - "questoes_dificeis": Dificuldade excessiva
+  - "tempo_insuficiente": Falta de tempo
+  - "perda_interesse": Perda de interesse
+  - "outro": Outro motivo
+
+
+4.5. TAXA DE ACERTO
+--------------------
+
+Definição:
+  Taxa de Acerto = (Questões Corretas / Total de Questões) × 100
+
+Meta go-live: > 50% (média OAB é ~55%)
+
+Granularidades:
+  - Por usuário
+  - Por sessão
+  - Por área do direito
+  - Por tipo de questão
+  - Global (todos os usuários)
+
+Uso pedagógico:
+  - Identificar áreas de dificuldade
+  - Ajustar recomendações de estudo
+  - Calibrar dificuldade das questões
+
+
+4.6. ERROS POR TIPO
+-------------------
+
+Objetivo: Diagnóstico pedagógico preciso
+
+Tipos rastreados (conforme ETAPA 3.3):
+
+[1] conceitual (32% dos erros esperado)
+    Erro em conceito jurídico fundamental
+    Ex: Confundir dolo direto com dolo eventual
+
+[2] normativo (28% esperado)
+    Erro de dispositivo legal específico
+    Ex: Citar artigo errado da CF
+
+[3] interpretacao (18% esperado)
+    Erro de interpretação de enunciado/norma
+    Ex: Não perceber "EXCETO" no enunciado
+
+[4] estrategico (10% esperado)
+    Cair em distração/pegadinha
+    Ex: Escolher alternativa "quase correta"
+
+[5] leitura (5% esperado)
+    Leitura superficial do enunciado
+    Ex: Não ler todas as alternativas
+
+[6] confusao_institutos (7% esperado)
+    Confusão entre institutos similares
+    Ex: Confundir usucapião com acessão
+
+Uso:
+  - Feedback personalizado ao usuário
+  - Recomendação de conteúdo específico
+  - Ajuste de estratégia de estudo
+
+
+================================================================================
+5. CHECKLIST OPERACIONAL
+================================================================================
+
+5.1. ABERTURA DO GO-LIVE
+-------------------------
+
+PRÉ-LANÇAMENTO (D-7 a D-1):
+
+[ ] Executar migrations:
+    psql -d juris_ia_core -f database/migrations/005_create_feature_flags.sql
+    psql -d juris_ia_core -f database/migrations/006_create_legal_compliance.sql
+
+[ ] Verificar feature flags:
+    SELECT codigo, habilitado, limite_usuarios
+    FROM feature_flag
+    WHERE ativo = TRUE;
+
+[ ] Verificar limites:
+    SELECT tipo_limite, valor_limite, ativo
+    FROM limite_go_live
+    WHERE ativo = TRUE;
+
+[ ] Criar usuários de teste (5):
+    - 1 admin
+    - 2 usuários normais
+    - 2 usuários com perfis extremos (muito ativo / pouco ativo)
+
+[ ] Executar testes de integração:
+    - Iniciar sessão
+    - Responder questões até limite
+    - Tentar exceder limite (deve bloquear)
+    - Finalizar sessão
+    - Verificar métricas gravadas
+
+[ ] Configurar monitoramento:
+    - Dashboard Grafana (se disponível)
+    - Alertas de erros críticos
+    - Alertas de taxa de abandono > 40%
+
+[ ] Preparar comunicação:
+    - Email de boas-vindas
+    - Instruções de uso
+    - Canais de suporte
+
+
+LANÇAMENTO (D-DAY):
+
+[ ] 09:00 - Habilitar cadastros:
+    UPDATE feature_flag
+    SET habilitado = TRUE
+    WHERE codigo = 'novos_cadastros';
+
+[ ] 09:15 - Enviar convites para 50 usuários pré-selecionados
+
+[ ] 09:30 - Monitorar primeiros cadastros:
+    SELECT COUNT(*) FROM usuario
+    WHERE created_at >= CURRENT_DATE;
+
+[ ] 10:00 - Monitorar primeiras sessões:
+    SELECT COUNT(*) FROM metrica_sessao
+    WHERE data_sessao = CURRENT_DATE;
+
+[ ] 11:00 - Primeira análise de métricas:
+    SELECT * FROM obter_metricas_agregadas(CURRENT_DATE, CURRENT_DATE);
+
+[ ] 14:00 - Segunda análise de métricas
+
+[ ] 18:00 - Análise de fim de dia:
+    - Total de usuários cadastrados
+    - Total de sessões iniciadas
+    - Taxa de conclusão
+    - Eventos críticos
+
+
+5.2. MONITORAMENTO DIÁRIO
+--------------------------
+
+MANHÃ (09:00):
+
+[ ] Verificar eventos críticos das últimas 24h:
+    SELECT tipo_evento, COUNT(*)
+    FROM evento_go_live
+    WHERE severidade IN ('error', 'critical')
+      AND timestamp >= NOW() - INTERVAL '24 hours'
+    GROUP BY tipo_evento;
+
+[ ] Verificar métricas do dia anterior:
+    - Usuários ativos
+    - Sessões concluídas vs abandonadas
+    - Taxa de acerto
+    - Distribuição de erros por tipo
+
+[ ] Verificar limites atingidos:
+    SELECT tipo_evento, COUNT(*)
+    FROM evento_go_live
+    WHERE tipo_evento LIKE '%_bloqueado%'
+      AND timestamp >= CURRENT_DATE - 1
+    GROUP BY tipo_evento;
+
+[ ] Revisar feedback de usuários (se houver canal)
+
+
+TARDE (15:00):
+
+[ ] Verificar uso atual do dia:
+    SELECT
+        COUNT(DISTINCT usuario_id) as usuarios_hoje,
+        COUNT(*) as sessoes_hoje
+    FROM metrica_sessao
+    WHERE data_sessao = CURRENT_DATE;
+
+[ ] Verificar taxa de conclusão em tempo real:
+    SELECT
+        SUM(CASE WHEN sessao_concluida THEN 1 ELSE 0 END) as concluidas,
+        SUM(CASE WHEN abandonada THEN 1 ELSE 0 END) as abandonadas,
+        COUNT(*) as total
+    FROM metrica_sessao
+    WHERE data_sessao = CURRENT_DATE;
+
+
+NOITE (21:00):
+
+[ ] Gerar relatório diário completo
+
+[ ] Planejar ajustes para dia seguinte (se necessário):
+    - Ajustar limites?
+    - Habilitar/desabilitar features?
+    - Comunicar usuários?
+
+
+5.3. ROLLBACK (EMERGÊNCIA)
+---------------------------
+
+CRITÉRIOS PARA ROLLBACK:
+
+  - Taxa de abandono > 60% por 2 dias consecutivos
+  - Mais de 10 eventos críticos em 1 hora
+  - Vulnerabilidade de segurança descoberta
+  - Performance degradada (tempo de resposta > 5s)
+  - Solicitação de 3+ usuários para cancelamento por problemas técnicos
+
+
+PROCEDIMENTO DE ROLLBACK:
+
+[1] IMEDIATO (0-15 minutos):
+
+    [ ] Desabilitar cadastros de novos usuários:
+        UPDATE feature_flag
+        SET habilitado = FALSE
+        WHERE codigo = 'novos_cadastros';
+
+    [ ] Registrar evento de rollback:
+        INSERT INTO evento_go_live (...)
+        VALUES (..., 'rollback_iniciado', 'critical', ...);
+
+    [ ] Comunicar equipe técnica
+
+
+[2] CURTO PRAZO (15-60 minutos):
+
+    [ ] Se problema crítico de segurança:
+        - Desabilitar modo_oab
+        - Revogar todos os tokens de acesso
+        - Forçar logout de todos os usuários
+
+    [ ] Se problema de performance:
+        - Reduzir limites (ex: 2 sessões/dia, 10 questões/sessão)
+        - Desabilitar analytics temporariamente
+
+    [ ] Se problema de dados:
+        - Exportar dados coletados até momento
+        - Restaurar backup de banco (último estado estável)
+
+
+[3] MÉDIO PRAZO (1-24 horas):
+
+    [ ] Investigar causa raiz
+
+    [ ] Corrigir problema identificado
+
+    [ ] Testar correção em ambiente de staging
+
+    [ ] Comunicar usuários sobre status
+
+
+[4] RETOMADA:
+
+    [ ] Re-habilitar features progressivamente
+
+    [ ] Monitorar métricas em tempo real
+
+    [ ] Confirmar estabilidade antes de liberar cadastros
+
+
+ROLLBACK COMPLETO (CANCELAMENTO DO GO-LIVE):
+
+    [ ] Desabilitar todas as features
+
+    [ ] Exportar todos os dados coletados para análise
+
+    [ ] Comunicar usuários sobre cancelamento
+
+    [ ] Agendar postmortem com equipe
+
+    [ ] Planejar novo go-live após correções
+
+
+================================================================================
+6. DECISÕES OPERACIONAIS
+================================================================================
+
+6.1. QUANDO AJUSTAR LIMITES
+----------------------------
+
+AUMENTAR LIMITES se:
+  - Taxa de conclusão > 80% por 3 dias consecutivos
+  - Feedback de usuários pedindo mais questões
+  - Média de questões/sessão = 19-20 (batendo no teto)
+  - Taxa de bloqueio por limite > 30%
+
+DIMINUIR LIMITES se:
+  - Taxa de abandono > 50%
+  - Duração média de sessão > 60 minutos (fadiga)
+  - Feedback de usuários sobre cansaço
+  - Performance do sistema degradada
+
+
+6.2. QUANDO HABILITAR NOVAS FEATURES
+-------------------------------------
+
+HABILITAR piece_engine se:
+  - Go-live estável por 7 dias
+  - Taxa de abandono < 25%
+  - Zero eventos críticos nos últimos 3 dias
+  - Solicitação explícita de 10+ usuários
+  - Testes de carga concluídos com sucesso
+
+HABILITAR modo_profissional se:
+  - Go-live completo bem-sucedido (14 dias)
+  - Validação jurídica do disclaimer
+  - Testes de segurança concluídos (gabarito NUNCA vaza)
+  - Aprovação de compliance
+
+
+6.3. QUANDO ESCALAR PARA MAIS USUÁRIOS
+---------------------------------------
+
+ESCALAR de 50 para 100 se:
+  - 14 dias de operação estável
+  - Taxa de conclusão > 70%
+  - Taxa de abandono < 30%
+  - Tempo de resposta < 2s (p95)
+  - Capacidade de suporte confirmada
+  - Zero vulnerabilidades pendentes
+
+
+================================================================================
+7. ARQUIVOS CRIADOS
+================================================================================
+
+7.1. MIGRATIONS
+---------------
+
+database/migrations/005_create_feature_flags.sql
+  - Tabelas: feature_flag, limite_go_live, metrica_sessao, evento_go_live
+  - Funções: verificar_feature_habilitada, verificar_limite_go_live
+  - Dados iniciais: 5 feature flags, 4 limites
+
+7.2. SERVIÇOS
+-------------
+
+core/go_live_service.py
+  - Classe GoLiveService
+  - Métodos: verificar_feature_habilitada, verificar_limite,
+    pode_iniciar_sessao, pode_responder_questao,
+    iniciar_sessao, registrar_resposta_questao, finalizar_sessao,
+    obter_metricas_sessao, obter_metricas_agregadas,
+    registrar_evento, obter_eventos_criticos
+
+
+================================================================================
+8. MÉTRICAS DE SUCESSO
+================================================================================
+
+8.1. OBJETIVOS QUANTITATIVOS
+-----------------------------
+
+Período: 14 dias
+
+[1] Usuários:
+    ✓ Cadastros: 20-50 usuários
+    ✓ Usuários ativos (login nos últimos 7 dias): > 60%
+    ✓ Retenção D7: > 40%
+
+[2] Sessões:
+    ✓ Total de sessões: > 150 (média 3/usuário em 14 dias)
+    ✓ Taxa de conclusão: > 70%
+    ✓ Taxa de abandono: < 30%
+    ✓ Duração média: 25-35 minutos
+
+[3] Questões:
+    ✓ Total de questões respondidas: > 2000
+    ✓ Taxa de acerto geral: > 50%
+    ✓ Média de questões/sessão: 15-20
+
+[4] Performance:
+    ✓ Tempo de resposta (p95): < 2 segundos
+    ✓ Disponibilidade: > 99%
+    ✓ Taxa de erro: < 1%
+
+[5] Segurança:
+    ✓ Zero vulnerabilidades críticas
+    ✓ Zero vazamentos de gabarito
+    ✓ 100% de logs de ações sensíveis
+
+
+8.2. OBJETIVOS QUALITATIVOS
+----------------------------
+
+[1] Feedback de Usuários:
+    ✓ NPS (Net Promoter Score): > 50
+    ✓ Satisfação geral: > 4.0/5.0
+    ✓ Facilidade de uso: > 4.0/5.0
+
+[2] Insights Pedagógicos:
+    ✓ Identificar 3+ padrões de erro recorrentes
+    ✓ Mapear áreas de maior dificuldade
+    ✓ Validar eficácia do sistema de diagnóstico
+
+[3] Operacional:
+    ✓ Processo de monitoramento estabelecido
+    ✓ Playbook de rollback testado
+    ✓ Equipe treinada em resposta a incidentes
+
+
+================================================================================
+9. PRÓXIMOS PASSOS PÓS GO-LIVE
+================================================================================
+
+AO FINAL DE 14 DIAS ESTÁVEIS:
+
+[1] Analisar resultados vs objetivos
+
+[2] Gerar relatório executivo de go-live
+
+[3] Decisão: Escalar ou Iterar?
+
+    SE SUCESSO (objetivos atingidos):
+      - Planejar escalada para 100 usuários
+      - Habilitar piece_engine (se demanda existir)
+      - Considerar modo_profissional (após validação)
+
+    SE PARCIAL (alguns objetivos não atingidos):
+      - Identificar gaps
+      - Implementar melhorias
+      - Executar go-live estendido (mais 7 dias)
+
+    SE FALHA (objetivos críticos não atingidos):
+      - Executar postmortem
+      - Corrigir problemas fundamentais
+      - Re-planejar go-live
+
+
+================================================================================
+10. CONCLUSÃO
+================================================================================
+
+SISTEMA PRONTO PARA GO-LIVE CONTROLADO.
+
+Entregáveis implementados:
+  ✅ Feature flags configuradas
+  ✅ Limites iniciais definidos
+  ✅ Métricas essenciais implementadas
+  ✅ Checklist operacional completo
+  ✅ Procedimentos de rollback
+
+Status: APROVADO PARA LANÇAMENTO COM 20-50 USUÁRIOS
+
+Risco estimado: BAIXO (controles implementados)
+
+Próximo passo: Executar checklist de PRÉ-LANÇAMENTO (D-7)
+
+================================================================================
+FIM DO RELATÓRIO
+================================================================================

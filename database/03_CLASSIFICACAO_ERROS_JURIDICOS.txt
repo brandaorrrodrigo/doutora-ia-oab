@@ -1,0 +1,722 @@
+JURIS_IA_CORE_V1 - TAXONOMIA DE ERROS
+ETAPA 3: CLASSIFICAÇÃO DE ERROS JURÍDICOS
+Data: 2025-12-17
+============================================================
+
+FUNDAMENTOS DA TAXONOMIA DE ERROS
+============================================================
+
+PRINCÍPIO CENTRAL:
+"Não basta saber QUE errou. É preciso saber POR QUE errou."
+
+OBJETIVOS:
+1. Diagnosticar raiz cognitiva do erro
+2. Prescrever intervenção específica
+3. Evitar generalização ("estude mais")
+4. Rastrear padrões de erro
+5. Detectar gaps conceituais
+
+NÍVEIS DE CLASSIFICAÇÃO:
+- PRIMÁRIO: Categoria geral (conceitual, leitura, etc)
+- SECUNDÁRIO: Subcategoria específica
+- TERCIÁRIO: Raiz cognitiva profunda
+
+============================================================
+CATEGORIA 1: ERRO CONCEITUAL
+============================================================
+
+DEFINIÇÃO:
+Não domina o conceito jurídico testado.
+Gap de conhecimento, não de habilidade.
+
+TIPO: erro_conceitual = TRUE
+
+SUBCATEGORIAS:
+
+1.1 - DESCONHECIMENTO TOTAL
+Nunca viu o conceito.
+
+INDICADORES:
+- Primeira exposição ao tópico
+- Tempo de resposta normal (não é pressa)
+- Resposta aleatória (não tentou raciocinar)
+- Não marcou revisão
+
+EXEMPLO:
+Questão sobre "dolo eventual" para quem nunca estudou.
+Não sabe o que é, chuta.
+
+INTERVENÇÃO:
+- Explicação nível 4 (exemplo prático)
+- Adicionar conceito a "nunca vistos"
+- Gerar drill básico sobre conceito
+- Agendar revisão 1h
+
+1.2 - CONHECIMENTO SUPERFICIAL
+Viu o conceito mas não fixou.
+
+INDICADORES:
+- Já respondeu questões do tópico antes
+- Taxa de acerto < 30% no tópico
+- Confunde elementos essenciais
+- Tempo de resposta longo (tentou lembrar)
+
+EXEMPLO:
+Sabe que "homicídio qualificado" existe, mas não sabe as qualificadoras.
+
+INTERVENÇÃO:
+- Explicação nível 2 (didática)
+- Revisitar lei seca estruturada
+- Drill focado no conceito
+- Revisão 24h
+
+1.3 - CONHECIMENTO PARCIAL
+Domina parte, erra em detalhe/exceção.
+
+INDICADORES:
+- Taxa de acerto 30-60% no tópico
+- Acerta questões fáceis, erra médias
+- Conhece regra geral, não exceções
+- Surpresa ao ver explicação
+
+EXEMPLO:
+Sabe as excludentes de ilicitude, mas não sabe limites da legítima defesa.
+
+INTERVENÇÃO:
+- Explicação nível 1 (técnica)
+- Foco em exceções e limites
+- Questões de nível médio no tópico
+- Revisão 7d
+
+1.4 - CONCEITO MAL COMPREENDIDO
+Aprendeu errado, tem concepção incorreta.
+
+INDICADORES:
+- Erro consistente (sempre erra da mesma forma)
+- Confiança alta na resposta errada
+- Surpresa e resistência à explicação correta
+- Confusão com linguagem popular
+
+EXEMPLO:
+Acha que "dolo eventual" é "querer um pouco".
+Confundiu com significado comum de "eventual".
+
+INTERVENÇÃO:
+- Desconstrução do conceito errado
+- Explicação nível 3 (analogia)
+- Contraste com conceito correto
+- Múltiplas exposições (drill intensivo)
+
+1.5 - GAP DE CONCEITO PRÉVIO
+Falta conceito fundamental que é base.
+
+INDICADORES:
+- Erro em conceito avançado
+- Acerto em conceitos do mesmo nível
+- Análise detecta falta de pré-requisito
+- Curva de aprendizado anormal
+
+EXEMPLO:
+Erra questões de "tentativa" porque não domina "tipo subjetivo".
+
+INTERVENÇÃO:
+- Regressão didática (ensinar pré-requisito)
+- Sequência de conceitos (A → B → C)
+- Bloqueio de avanço até fixar base
+- Drill do conceito prévio
+
+============================================================
+CATEGORIA 2: ERRO DE INTERPRETAÇÃO
+============================================================
+
+DEFINIÇÃO:
+Domina o conceito, mas não interpretou corretamente o enunciado,
+alternativa ou situação hipotética.
+
+TIPO: erro_interpretacao = TRUE
+
+SUBCATEGORIAS:
+
+2.1 - MÁ INTERPRETAÇÃO DO ENUNCIADO
+Entendeu errado o que a questão pede.
+
+INDICADORES:
+- Domina o conceito testado
+- Respondeu questão "diferente"
+- Marcou alternativa sobre outro tema
+- Tempo de resposta normal
+
+EXEMPLO:
+Questão pergunta "qual NÃO é excludente?"
+Marca uma excludente (leu como afirmativa).
+
+INTERVENÇÃO:
+- Técnica de leitura estratégica
+- Destacar palavras-chave (NÃO, EXCETO, APENAS)
+- Drill de atenção
+- Redução de velocidade
+
+2.2 - MÁ INTERPRETAÇÃO DA ALTERNATIVA
+Entendeu alternativa de forma não pretendida.
+
+INDICADORES:
+- Entendeu enunciado corretamente
+- Raciocínio correto, escolha errada
+- "Leu o que não estava escrito"
+- Surpresa ao ver alternativa correta
+
+EXEMPLO:
+Alternativa diz "sempre" e aluno interpretou como "geralmente".
+
+INTERVENÇÃO:
+- Leitura literal de alternativas
+- Atenção a absolutos (sempre, nunca, todo)
+- Técnica de eliminação rigorosa
+
+2.3 - MÁ INTERPRETAÇÃO DO CASO HIPOTÉTICO
+Compreendeu fatos de forma diferente.
+
+INDICADORES:
+- Questão com caso prático
+- Raciocínio jurídico correto
+- Aplicou a fatos inexistentes
+- Adicionou premissas
+
+EXEMPLO:
+Caso menciona "João bateu em Maria" (lesão corporal).
+Aluno interpretou que "João queria matar" (tentativa homicídio).
+
+INTERVENÇÃO:
+- Leitura sem adicionar fatos
+- Ater-se ao que está escrito
+- Prática com casos hipotéticos
+- Drill de interpretação factual
+
+2.4 - ERRO DE RACIOCÍNIO LÓGICO
+Conclusão lógica inválida.
+
+INDICADORES:
+- Compreendeu conceito e enunciado
+- Aplicou regra errada ao caso
+- Falha no silogismo jurídico
+- Se A e B, então C (mas C não segue)
+
+EXEMPLO:
+"Todo homicídio qualificado é hediondo" (V)
+"Este é crime hediondo" (V)
+Logo, "Este é homicídio qualificado" (F - falácia afirmação consequente)
+
+INTERVENÇÃO:
+- Treino de lógica jurídica
+- Exercícios de silogismo
+- Identificação de falácias
+- Raciocínio passo a passo
+
+============================================================
+CATEGORIA 3: ERRO DE CONFUSÃO ENTRE INSTITUTOS
+============================================================
+
+DEFINIÇÃO:
+Conhece ambos os institutos isoladamente,
+mas confunde quando aparecem juntos.
+
+TIPO: erro_confusao_institutos = TRUE
+
+SUBCATEGORIAS:
+
+3.1 - CONFUSÃO POR SIMILARIDADE TERMINOLÓGICA
+Institutos com nomes parecidos.
+
+INDICADORES:
+- Domina cada instituto separadamente
+- Erra quando aparecem na mesma questão
+- Confusão terminológica identificada
+- Erro recorrente no par
+
+EXEMPLOS:
+- Dolo eventual X Culpa consciente
+- Legítima defesa X Estado de necessidade
+- Prescrição X Decadência
+- Busca X Apreensão
+
+INTERVENÇÃO:
+- Quadro comparativo (lado a lado)
+- Explicação de diferenças sutis
+- Drill com ambos juntos
+- Mnemônicos diferenciadores
+
+3.2 - CONFUSÃO POR SIMILARIDADE CONCEITUAL
+Institutos que servem propósitos parecidos.
+
+EXEMPLOS:
+- Habeas Corpus X Habeas Data
+- Mandado de Segurança X Ação Popular
+- Revisão Criminal X Habeas Corpus
+
+INTERVENÇÃO:
+- Foco na FUNÇÃO de cada instituto
+- Quando usar cada um
+- Casos práticos diferenciadores
+
+3.3 - CONFUSÃO POR HIERARQUIA
+Institutos em relação de gênero-espécie.
+
+EXEMPLOS:
+- Homicídio (gênero) X Homicídio qualificado (espécie)
+- Crime (gênero) X Contravenção (espécie)
+- Ação (gênero) X Ação de cobrança (espécie)
+
+INTERVENÇÃO:
+- Mapa hierárquico
+- Relação de continência
+- Drill de classificação
+
+3.4 - CONFUSÃO POR CONTEXTO
+Aplica instituto de área errada.
+
+EXEMPLO:
+Usa conceito de Direito Civil em questão de Direito Penal.
+
+INTERVENÇÃO:
+- Reforço de contexto disciplinar
+- Separação mental de áreas
+- Drill multi-disciplinar
+
+============================================================
+CATEGORIA 4: ERRO DE LEITURA E ATENÇÃO
+============================================================
+
+DEFINIÇÃO:
+Domina conceito, mas errou por falta de atenção,
+pressa, fadiga ou leitura superficial.
+
+TIPO: erro_leitura = TRUE
+
+SUBCATEGORIAS:
+
+4.1 - LEITURA SUPERFICIAL
+Não leu enunciado/alternativa completamente.
+
+INDICADORES:
+- Tempo de resposta muito rápido (< 50% ideal)
+- Domina o conceito
+- Erro "bobo" (óbvio em retrospecto)
+- Arrependimento imediato ao ver explicação
+
+EXEMPLO:
+Leu só começo da alternativa, marcou sem ler final.
+
+INTERVENÇÃO:
+- Forçar tempo mínimo de leitura
+- Técnica de leitura completa
+- Penalidade (não ganhar pontos) em respostas muito rápidas
+
+4.2 - FALTA DE ATENÇÃO A PALAVRAS-CHAVE
+Não percebeu "NÃO", "EXCETO", "APENAS", etc.
+
+INDICADORES:
+- Marcou alternativa oposta ao pedido
+- Confiança alta (não percebeu erro)
+- Tempo normal
+- Domina conceito
+
+EXEMPLO:
+Questão: "Qual NÃO é direito fundamental?"
+Marca um direito fundamental.
+
+INTERVENÇÃO:
+- Highlight automático de palavras-chave
+- Treino de atenção seletiva
+- Checklist mental antes de responder
+
+4.3 - ERRO POR FADIGA
+Falha cognitiva por cansaço.
+
+INDICADORES:
+- Erro em questão fácil
+- Tarde na sessão (questão 20+)
+- Tempo de resposta errático
+- Taxa de acerto caindo na sessão
+- Fadiga cognitiva > 0.60
+
+EXEMPLO:
+Acerta 15 questões seguidas, erra 3 fáceis no final.
+
+INTERVENÇÃO:
+- Forçar pausa
+- Encerrar sessão
+- Redu
+
+zir tamanho de drills
+
+4.4 - ERRO POR PRESSA/ANSIEDADE
+Resposta apressada por pressão temporal.
+
+INDICADORES:
+- Stress nível > 0.70
+- Mudança de resposta
+- Tempo muito curto
+- Proximidade de fim de simulado
+
+INTERVENÇÃO:
+- Técnicas de gerenciamento de tempo
+- Exercícios de respiração
+- Simulados sem tempo (treino)
+
+============================================================
+CATEGORIA 5: ERRO DE FALTA DE BASE LEGAL
+============================================================
+
+DEFINIÇÃO:
+Não domina texto da lei, jurisprudência ou doutrina.
+
+TIPO: erro_falta_base_legal = TRUE
+
+SUBCATEGORIAS:
+
+5.1 - DESCONHECIMENTO DE ARTIGO
+Não sabe texto literal da lei.
+
+INDICADORES:
+- Questão exige conhecimento de artigo específico
+- Nunca leu artigo estruturado
+- Resposta sem fundamento legal
+
+EXEMPLO:
+Não sabe art. 121 CP (homicídio).
+
+INTERVENÇÃO:
+- Leitura de lei seca estruturada
+- Memorização de artigos essenciais
+- Associação artigo-conceito
+
+5.2 - DESCONHECIMENTO DE SÚMULA
+Não conhece jurisprudência consolidada.
+
+INDICADORES:
+- Questão menciona súmula
+- Resposta contrária a súmula conhecida
+- Área com súmulas relevantes
+
+EXEMPLO:
+Desconhece Súmula 343 STF sobre confissão.
+
+INTERVENÇÃO:
+- Leitura de súmulas essenciais
+- Integração súmula-conceito
+- Drill de jurisprudência
+
+5.3 - DESCONHECIMENTO DE EXCEÇÃO/RESSALVA
+Sabe regra geral, não sabe exceção legal.
+
+INDICADORES:
+- Acerto em questões de regra geral
+- Erro em questões de exceção
+- "Mas e se..." não respondido
+
+EXEMPLO:
+Sabe regra de prescrição, não sabe causas de interrupção.
+
+INTERVENÇÃO:
+- Foco em "salvo", "exceto", "ressalvado"
+- Mapa de exceções
+- Drill de casos excepcionais
+
+============================================================
+CATEGORIA 6: ERRO ESTRATÉGICO (2ª FASE)
+============================================================
+
+DEFINIÇÃO:
+Específico de peças processuais.
+Domina direito material, falha em direito processual/estratégia.
+
+TIPO: erro_estrategico_peca = TRUE
+
+SUBCATEGORIAS:
+
+6.1 - ERRO DE ESCOLHA DE PEÇA
+Escolheu instrumento processual errado.
+
+EXEMPLO:
+Deveria usar Mandado de Segurança, usou Habeas Corpus.
+
+INTERVENÇÃO:
+- Tabela de cabimento
+- Drill "qual peça usar?"
+
+6.2 - ERRO DE ESTRUTURA
+Peça sem parte obrigatória.
+
+EXEMPLO:
+Petição inicial sem causa de pedir.
+
+INTERVENÇÃO:
+- Checklist rigoroso
+- Template mental
+- Revisão de estrutura
+
+6.3 - ERRO DE FUNDAMENTAÇÃO
+Fundamento jurídico incorreto ou ausente.
+
+EXEMPLO:
+Não citou artigo de lei aplicável.
+
+INTERVENÇÃO:
+- Prática de fundamentação
+- Banco de fundamentos comuns
+
+6.4 - ERRO DE PEDIDO
+Pedido inadequado, impossível ou contraditório.
+
+EXEMPLO:
+Pediu dano moral em ação que não cabe.
+
+INTERVENÇÃO:
+- Estudo de pedidos típicos
+- Coerência pedido-causa
+
+============================================================
+CATEGORIA 7: ERRO DE PEGADINHA
+============================================================
+
+DEFINIÇÃO:
+Caiu em armadilha intencional da banca examinadora.
+
+TIPO: erro_pegadinha = TRUE
+
+SUBCATEGORIAS:
+
+7.1 - PEGADINHA DE INVERSÃO
+Alternativa inverte conceito verdadeiro.
+
+EXEMPLO:
+"Dolo é a vontade de não produzir o resultado" (inverteu)
+
+INTERVENÇÃO:
+- Atenção a inversões
+- Leitura cuidadosa de conectivos
+
+7.2 - PEGADINHA DE ADIÇÃO
+Alternativa adiciona elemento inexistente.
+
+EXEMPLO:
+"Homicídio exige premeditação" (adicionou requisito)
+
+INTERVENÇÃO:
+- Identificar adições indevidas
+- Conferir com lei seca
+
+7.3 - PEGADINHA DE EXCEÇÃO COMO REGRA
+Apresenta exceção como se fosse regra geral.
+
+EXEMPLO:
+"Crime é sempre punível" (ignora excludentes)
+
+INTERVENÇÃO:
+- Atenção a absolutos
+- Lembrar exceções
+
+7.4 - PEGADINHA DE MISTURA DE INSTITUTOS
+Mistura elementos de institutos diferentes.
+
+EXEMPLO:
+"Legítima defesa exige perigo atual" (é de estado de necessidade)
+
+INTERVENÇÃO:
+- Pureza conceitual
+- Separação rigorosa
+
+============================================================
+DETECÇÃO AUTOMÁTICA DE TIPO DE ERRO
+============================================================
+
+ALGORITMO DE CLASSIFICAÇÃO:
+
+```
+FUNÇÃO classificar_erro(interacao_questao):
+
+    erro_tipos = []
+
+    # 1. Verifica erro conceitual
+    if usuario.taxa_acerto_topico < 0.30:
+        erro_tipos.append("CONCEITUAL_DESCONHECIMENTO")
+
+    elif usuario.taxa_acerto_topico < 0.60:
+        erro_tipos.append("CONCEITUAL_SUPERFICIAL")
+
+    # 2. Verifica erro de leitura
+    if interacao.tempo_resposta < tempo_ideal * 0.50:
+        erro_tipos.append("LEITURA_SUPERFICIAL")
+
+    if "NÃO" in enunciado OR "EXCETO" in enunciado:
+        if alternativa_escolhida == oposto(alternativa_correta):
+            erro_tipos.append("LEITURA_PALAVRA_CHAVE")
+
+    # 3. Verifica erro de interpretação
+    if usuario.domina_conceito(topico):
+        if alternativa_escolhida.tema != enunciado.tema:
+            erro_tipos.append("INTERPRETACAO_ENUNCIADO")
+
+    # 4. Verifica confusão de institutos
+    institutos_confundiveis = obter_pares_confusao(topico)
+    if alternativa_escolhida.conceito in institutos_confundiveis:
+        erro_tipos.append("CONFUSAO_INSTITUTOS")
+
+    # 5. Verifica fadiga
+    if sessao.fadiga > 0.60:
+        erro_tipos.append("FADIGA_COGNITIVA")
+
+    # 6. Verifica pegadinha
+    if questao.pegadinha_catalogada:
+        if alternativa_escolhida == questao.alternativa_pegadinha:
+            erro_tipos.append("PEGADINHA_" + questao.tipo_pegadinha)
+
+    # 7. Verifica erro recorrente
+    if count_erros_similar(usuario, topico) >= 3:
+        erro_tipos.append("ERRO_RECORRENTE")
+
+    return classificar_primario_secundario(erro_tipos)
+```
+
+PRIORIZAÇÃO:
+1. Pegadinha (se detectada)
+2. Fadiga (se confirmada)
+3. Leitura (se tempo muito curto)
+4. Confusão institutos (se padrão identificado)
+5. Conceitual (padrão)
+
+============================================================
+INTERVENÇÃO BASEADA EM TIPO DE ERRO
+============================================================
+
+MATRIZ DE INTERVENÇÃO:
+
+ERRO CONCEITUAL:
+→ Explicação nível 4 (prática)
+→ Drill focado no conceito
+→ Revisão em 1h
+→ Bloqueio de avanço até fixar
+
+ERRO INTERPRETAÇÃO:
+→ Explicação nível 2 (didática)
+→ Técnica de leitura estratégica
+→ Drill de interpretação
+→ Redução de velocidade
+
+ERRO CONFUSÃO:
+→ Explicação nível 3 (analogia + contraste)
+→ Quadro comparativo
+→ Drill com ambos institutos juntos
+→ Mnemônico diferenciador
+
+ERRO LEITURA:
+→ Alerta de atenção
+→ Forçar tempo mínimo
+→ Highlight de palavras-chave
+→ Penalidade em pontos
+
+ERRO FADIGA:
+→ Pausa forçada (10 min)
+→ Ou encerramento de sessão
+→ Redução de drill size
+→ Sugestão de descanso
+
+ERRO PEGADINHA:
+→ Explicação detalhada da armadilha
+→ Catalogar pegadinha
+→ Drill anti-pegadinha
+→ Revisão em 24h
+
+============================================================
+ANÁLISE LONGITUDINAL DE ERROS
+============================================================
+
+PADRÃO DE ERRO:
+
+```
+FUNÇÃO detectar_padrao_erro(usuario):
+
+    erros_30d = obter_erros_ultimos_30_dias(usuario)
+
+    # Agrupa por tipo
+    tipos_erro = agrupar_por_tipo(erros_30d)
+
+    # Identifica predominante
+    tipo_predominante = max(tipos_erro, key=count)
+
+    # Calcula percentual
+    pct_predominante = count(tipo_predominante) / count(erros_30d)
+
+    if pct_predominante > 0.60:
+        # Padrão CLARO identificado
+        return {
+            "tipo": tipo_predominante,
+            "percentual": pct_predominante,
+            "gravidade": "ALTA",
+            "intervencao_urgente": True
+        }
+
+    elif pct_predominante > 0.40:
+        # Padrão MODERADO
+        return {
+            "tipo": tipo_predominante,
+            "percentual": pct_predominante,
+            "gravidade": "MEDIA",
+            "intervencao_urgente": False
+        }
+
+    else:
+        # Sem padrão claro (erros variados)
+        return {
+            "tipo": "MISTO",
+            "gravidade": "BAIXA"
+        }
+```
+
+EVOLUÇÃO DO PADRÃO:
+
+Tracking mensal:
+- Mês 1: 70% erros conceituais → INICIANTE
+- Mês 2: 50% erros conceituais, 30% interpretação → EVOLUINDO
+- Mês 3: 30% conceituais, 40% pegadinhas → AVANÇADO
+- Mês 4: 60% pegadinhas → EXPERT (só erra no difícil)
+
+============================================================
+CONCLUSÃO DA ETAPA 3
+============================================================
+
+TAXONOMIA COMPLETA:
+
+7 CATEGORIAS PRIMÁRIAS:
+1. Erro Conceitual (5 subcategorias)
+2. Erro de Interpretação (4 subcategorias)
+3. Erro de Confusão entre Institutos (4 subcategorias)
+4. Erro de Leitura e Atenção (4 subcategorias)
+5. Erro de Falta de Base Legal (3 subcategorias)
+6. Erro Estratégico - 2ª Fase (4 subcategorias)
+7. Erro de Pegadinha (4 subcategorias)
+
+TOTAL: 28 tipos específicos de erro
+
+DETECÇÃO:
+- Automática (por algoritmo)
+- Baseada em múltiplos indicadores
+- Priorização inteligente
+
+INTERVENÇÃO:
+- Específica para cada tipo
+- Cirúrgica, não genérica
+- Comprovadamente eficaz
+
+IMPACTO:
+- Diagnóstico preciso
+- Tratamento direcionado
+- Aceleração de aprendizado
+- Prevenção de erros futuros
+
+============================================================
+FIM DA ETAPA 3
+============================================================
+
+PRÓXIMA ETAPA: SNAPSHOTS COGNITIVOS
+Aguardando confirmação para prosseguir.

@@ -1,0 +1,2326 @@
+╔════════════════════════════════════════════════════════════════════════════════╗
+║                                                                                ║
+║                          RELATÓRIO TÉCNICO                                    ║
+║                ARQUITETURA DE DADOS E COGNIÇÃO JURÍDICA                       ║
+║                        JURIS_IA_CORE_V1                                       ║
+║                                                                                ║
+║  Documentação Oficial do Sistema de Preparação para OAB                       ║
+║  com Inteligência Artificial Adaptativa                                       ║
+║                                                                                ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+
+Documento: JURIS_IA_ARQ_DADOS_001
+Versão: 1.0.0
+Data: 17 de dezembro de 2025
+Classificação: Documentação Técnica Interna
+Autor: Arquiteto de Dados e Cognição Jurídica
+
+
+═══════════════════════════════════════════════════════════════════════════════
+1. VISÃO GERAL DO SISTEMA
+═══════════════════════════════════════════════════════════════════════════════
+
+1.1 OBJETIVO DO JURIS_IA_CORE_V1
+
+O JURIS_IA_CORE_V1 é um sistema de inteligência artificial projetado para preparar
+candidatos ao Exame de Ordem dos Advogados do Brasil (OAB), tanto na primeira fase
+(questões objetivas) quanto na segunda fase (peças processuais e questões práticas).
+
+O sistema diferencia-se de plataformas convencionais de ensino ao implementar um
+modelo de cognição jurídica que adapta conteúdo, explicações e estratégias pedagógicas
+ao perfil individual de cada estudante. Esta adaptação não se baseia apenas em métricas
+superficiais de desempenho (taxa de acerto), mas em uma análise multidimensional que
+considera maturidade jurídica, padrões de erro, estado cognitivo-emocional, e retenção
+de conhecimento ao longo do tempo.
+
+O objetivo declarado do sistema é maximizar a probabilidade de aprovação dos estudantes
+através de personalização profunda, baseada em dados estruturados e algoritmos de
+decisão pedagógica.
+
+
+1.2 PAPEL DA ARQUITETURA DE DADOS NO SISTEMA
+
+A arquitetura de dados é o alicerce sobre o qual todas as funcionalidades de adaptação,
+predição e personalização do JURIS_IA são construídas. Ao contrário de sistemas baseados
+em conversação (chatbots jurídicos), o JURIS_IA prioriza a persistência estruturada de:
+
+a) Histórico completo de interações com questões jurídicas
+b) Perfil cognitivo multidimensional do estudante
+c) Evolução temporal do conhecimento e competências
+d) Padrões de erro classificados taxonomicamente
+e) Estado de memória e necessidades de revisão
+
+Esta persistência permite ao sistema "lembrar" não apenas o que o estudante fez, mas
+compreender como ele pensa juridicamente, quais são suas deficiências conceituais
+específicas, e qual trajetória pedagógica otimiza sua preparação.
+
+A arquitetura de dados foi projetada para suportar análises longitudinais (evolução
+ao longo de meses), detecção precoce de risco de evasão ou burnout, e validação
+estatística da eficácia pedagógica do próprio sistema.
+
+
+1.3 PRINCÍPIOS ARQUITETURAIS ADOTADOS
+
+1.3.1 Semi-Stateful
+
+O sistema mantém estado cognitivo persistente entre sessões. Cada interação do estudante
+com o sistema altera seu perfil cognitivo de forma incremental e acumulativa. Esta
+característica contrasta com sistemas stateless (sem memória entre sessões) e permite
+personalização profunda e de longo prazo.
+
+1.3.2 Perfil Cognitivo como Fonte de Verdade
+
+O perfil cognitivo do estudante (armazenado na entidade perfil_juridico) é a fonte de
+verdade para todas as decisões pedagógicas. Ele é constantemente atualizado com base em
+novas evidências (respostas a questões, tempo de resolução, padrões de erro) e serve
+como entrada para algoritmos de recomendação, ajuste de dificuldade, e predição de
+aprovação.
+
+1.3.3 Dados Jurídicos Prioritários sobre Dados Conversacionais
+
+O sistema não armazena histórico de conversas ou mensagens de chat. Toda a persistência
+é orientada a dados jurídicos estruturados: questões respondidas, erros cometidos,
+peças escritas, conceitos revisados. Esta escolha reflete a filosofia de que o valor
+pedagógico reside na análise estruturada de desempenho, não em interações textuais livres.
+
+1.3.4 RAG-Ready
+
+A estrutura de dados foi projetada para facilitar Retrieval-Augmented Generation (RAG).
+Conceitos jurídicos, artigos de lei, e explicações são armazenados de forma estruturada
+e podem ser recuperados contextualmente para alimentar modelos de linguagem quando
+necessário. O banco de dados funciona como base de conhecimento jurídico vetorizável.
+
+1.3.5 LGPD by Design
+
+A conformidade com a Lei Geral de Proteção de Dados (LGPD) não foi adaptação posterior,
+mas requisito arquitetural desde o início. Cada entidade foi projetada considerando
+finalidade de tratamento, base legal, retenção apropriada, e capacidade de anonimização.
+
+
+
+═══════════════════════════════════════════════════════════════════════════════
+2. VISÃO MACRO DA ARQUITETURA DE DADOS
+═══════════════════════════════════════════════════════════════════════════════
+
+2.1 FILOSOFIA DE PERSISTÊNCIA DE DADOS
+
+O JURIS_IA adota uma filosofia de persistência abrangente mas seletiva. Persiste-se
+tudo que é relevante para compreender o estado cognitivo do estudante e a eficácia
+pedagógica do sistema, mas evita-se persistência de dados voláteis ou de baixo valor
+analítico.
+
+Dados persistidos incluem:
+- Cada resposta a cada questão (com contexto temporal e emocional)
+- Cada erro cometido (com classificação detalhada)
+- Cada sessão de estudo (com configuração e resultados)
+- Snapshots periódicos do estado cognitivo completo
+- Cronograma de revisões espaçadas (spaced repetition)
+- Prática de peças processuais e erros identificados
+
+Dados não persistidos propositalmente:
+- Mensagens de chat ou conversas livres
+- Cliques ou interações de interface (exceto quando relevantes para análise cognitiva)
+- Tentativas de resposta descartadas (apenas a resposta final é registrada)
+- Dados de navegação genéricos
+
+
+2.2 SEPARAÇÃO ENTRE DADOS JURÍDICOS, COGNITIVOS E OPERACIONAIS
+
+A arquitetura segrega dados em três camadas conceituais:
+
+2.2.1 Camada Jurídica (Conteúdo)
+Entidades: questoes_banco
+
+Esta camada armazena o conteúdo jurídico puro: questões de OAB com enunciados,
+alternativas, explicações multinível, artigos de lei relacionados, jurisprudência,
+e metadados de classificação (disciplina, tópico, dificuldade). Estes dados são
+independentes de estudantes específicos e servem como repositório de conhecimento
+jurídico do sistema.
+
+2.2.2 Camada Cognitiva (Perfil e Aprendizagem)
+Entidades: perfil_juridico, progresso_disciplina, progresso_topico, analise_erro,
+snapshot_cognitivo, revisao_agendada
+
+Esta é a camada de maior valor estratégico. Ela captura não apenas o que o estudante
+fez, mas como ele pensa juridicamente. O perfil cognitivo é multidimensional, incluindo:
+- Nível de domínio geral e por disciplina
+- Maturidade jurídica (pensamento sistêmico, abstração, terminologia)
+- Estado emocional (confiança, stress, motivação, fadiga)
+- Padrões de aprendizagem (estilo, velocidade de leitura, preferências)
+- Riscos (evasão, burnout)
+
+A camada cognitiva é atualizada em tempo real durante o uso do sistema e serve como
+base para todas as decisões de personalização.
+
+2.2.3 Camada Operacional (Eventos e Interações)
+Entidades: users, sessao_estudo, interacao_questao, pratica_peca, erro_peca,
+metricas_temporais, log_sistema, consentimentos
+
+Esta camada registra eventos concretos: um usuário iniciou uma sessão, respondeu uma
+questão, escreveu uma peça. Estes eventos são a matéria-prima que alimenta a camada
+cognitiva. A entidade interacao_questao é particularmente crítica, pois cada registro
+representa uma evidência de aprendizagem que será analisada para atualizar o perfil
+cognitivo.
+
+
+2.3 PAPEL DO BANCO DE DADOS RELACIONAL (POSTGRESQL)
+
+A escolha de PostgreSQL como sistema de gerenciamento de banco de dados foi fundamentada
+em requisitos específicos do JURIS_IA:
+
+a) Transações ACID: Garantia de consistência em atualizações complexas do perfil
+   cognitivo que envolvem múltiplas tabelas.
+
+b) JSONB: Flexibilidade para armazenar estruturas semiestruturadas (perfil cognitivo,
+   snapshots) sem sacrificar capacidade de query e indexação.
+
+c) Índices GIN: Busca eficiente em campos JSONB, permitindo queries complexas em
+   perfis cognitivos.
+
+d) Integridade referencial: Constraints de chave estrangeira garantem que não existam
+   interações de questões órfãs ou perfis sem usuário correspondente.
+
+e) Triggers e funções: Automatização de lógica de negócio no nível de banco (atualização
+   automática de timestamps, validações).
+
+f) Análise de dados: PostgreSQL oferece capacidades analíticas avançadas (window
+   functions, CTEs, agregações complexas) necessárias para cálculos de evolução
+   temporal e benchmarks estatísticos.
+
+g) Conformidade e auditoria: Logs estruturados e imutabilidade de snapshots facilitam
+   auditoria LGPD e demonstração de conformidade.
+
+
+2.4 O QUE NÃO É ARMAZENADO PROPOSITALMENTE
+
+A arquitetura adota minimalismo intencional em certas áreas:
+
+a) Histórico de conversas: O sistema não é um chatbot. Interações textuais livres,
+   se existirem, não são persistidas. Apenas dados estruturados são armazenados.
+
+b) Tentativas parciais: Se o estudante começou a responder uma questão mas abandonou,
+   esta tentativa não é registrada. Apenas respostas finalizadas geram registro.
+
+c) Cliques e métricas de UI: Dados de usabilidade de interface (clicks, scrolls,
+   hover) não são persistidos, exceto quando diretamente relacionados a cognição
+   (exemplo: tempo de leitura do enunciado).
+
+d) Dados de terceiros: Não são armazenados dados de redes sociais, histórico de
+   navegação externa, ou informações não relacionadas ao domínio jurídico-educacional.
+
+Esta contenção de escopo reduz complexidade, facilita conformidade LGPD (menos dados
+pessoais a proteger), e mantém foco no objetivo pedagógico primário.
+
+
+
+═══════════════════════════════════════════════════════════════════════════════
+3. ENTIDADES PRINCIPAIS DO BANCO DE DADOS
+═══════════════════════════════════════════════════════════════════════════════
+
+O banco de dados do JURIS_IA é composto por 15 entidades principais, cada uma com
+finalidade específica na arquitetura geral do sistema. Esta seção descreve cada
+entidade em termos de finalidade, tipo de dados, relações e importância estratégica.
+
+
+3.1 USERS (Usuários)
+
+Finalidade:
+Armazenar dados de identificação e autenticação dos usuários do sistema.
+
+Descrição funcional:
+Entidade central que representa cada estudante. Contém dados pessoais mínimos
+necessários para identificação (nome, email, CPF), credenciais de autenticação
+(password_hash), e metadados de controle (status, último acesso).
+
+Tipo de dados armazenados:
+- Dados pessoais não sensíveis (LGPD Art. 5º, I): nome, email, telefone, CPF
+- Credenciais de autenticação: password_hash
+- Status operacional: ATIVO, INATIVO, EXCLUSAO_SOLICITADA, ANONIMIZADO, APROVADO_OAB
+- Metadados LGPD: flags de anonimização, datas de solicitação de exclusão, hash anônimo
+
+Relações:
+Relacionamento 1:1 com perfil_juridico (cada usuário tem exatamente um perfil).
+Relacionamento 1:N com todas as demais entidades operacionais (sessoes, interacoes,
+praticas, etc).
+
+Importância estratégica:
+Ponto de partida para toda análise de estudante. O campo status controla o ciclo de
+vida do usuário (ativo → inativo → anonimizado) conforme políticas de retenção LGPD.
+
+
+3.2 PERFIL_JURIDICO (Perfil Cognitivo Jurídico)
+
+Finalidade:
+Armazenar o estado cognitivo completo e atual do estudante em 8 dimensões.
+
+Descrição funcional:
+Esta é a entidade de maior importância estratégica do sistema. Ela representa a
+"compreensão" que o sistema tem sobre o estudante. O perfil é mutável e atualizado
+continuamente à medida que o estudante interage com o sistema. Cada dimensão do perfil
+influencia decisões pedagógicas específicas.
+
+Tipo de dados armazenados:
+- Dimensão 1 (Nível Geral): ENUM nivel_dominio (INICIANTE a EXPERT)
+- Dimensão 2 (Pontuação Global): INTEGER 0-1000 (gamificação)
+- Dimensão 3 (Taxa de Acerto Global): DECIMAL ponderada por dificuldade e recência
+- Dimensão 4 (Estado Emocional): JSONB com confiança, stress, motivação, fadiga (0-1)
+- Dimensão 5 (Maturidade Jurídica): JSONB com 5 sub-dimensões (0-1)
+- Dimensão 6 (Padrões de Aprendizagem): JSONB com estilo, velocidade, preferências
+- Dimensão 7 (Riscos): JSONB com risco_evasao, risco_burnout, streak
+- Dimensão 8 (Metas): JSONB com data_prova, dias_até_prova, probabilidade_aprovacao
+
+Relações:
+Relacionamento 1:1 com users (constraint unique_perfil_por_usuario).
+Não possui relações diretas com outras entidades, mas é consultado por todas as
+engines de decisão.
+
+Importância estratégica:
+Fonte de verdade para personalização. Algoritmos de recommendation, ajuste de
+dificuldade, seleção de nível de explicação, e predição de aprovação consultam
+este perfil. A precisão e atualização deste perfil determinam a qualidade da
+personalização do sistema.
+
+
+3.3 PROGRESSO_DISCIPLINA (Progresso por Disciplina Jurídica)
+
+Finalidade:
+Rastrear o progresso do estudante em cada disciplina jurídica (Direito Penal, Civil,
+Constitucional, etc).
+
+Descrição funcional:
+Enquanto perfil_juridico representa visão global, progresso_disciplina oferece
+granularidade por área do direito. Permite identificar disciplinas críticas (taxa
+baixa) que requerem foco adicional.
+
+Tipo de dados armazenados:
+- Disciplina: VARCHAR (ex: "Direito Penal")
+- Métricas: questoes_resolvidas, questoes_acertadas, taxa_acerto
+- Nível de domínio: ENUM nivel_dominio específico da disciplina
+- Tempo investido: INTEGER minutos
+- Predição: probabilidade_aprovacao (0-100%) na disciplina
+
+Relações:
+Relacionamento N:1 com users (um usuário tem N disciplinas).
+Constraint unique (user_id, disciplina) garante um único registro por disciplina
+por usuário.
+
+Importância estratégica:
+Permite diagnóstico diferencial: estudante pode ser AVANCADO em Penal mas INICIANTE
+em Tributário. Habilita recomendações de foco ("concentre-se em Direito Empresarial
+nas próximas 2 semanas").
+
+
+3.4 PROGRESSO_TOPICO (Progresso Granular por Tópico)
+
+Finalidade:
+Rastrear progresso em tópicos específicos dentro de disciplinas (ex: "Dos Crimes
+contra o Patrimônio" dentro de Direito Penal).
+
+Descrição funcional:
+Nível mais granular de rastreamento de conhecimento. Permite identificar não apenas
+disciplinas fracas, mas conceitos jurídicos específicos não dominados.
+
+Tipo de dados armazenados:
+- Hierarquia: disciplina + topico
+- Métricas de desempenho: questoes_resolvidas, taxa_acerto
+- Memória (spaced repetition): forca_memoria (0-1), ultima_revisao, proxima_revisao
+- Conceitos-chave: ARRAY de conceitos importantes
+- Artigos de lei: ARRAY de artigos relacionados
+
+Relações:
+Relacionamento N:1 com users.
+Relacionamento conceitual com revisao_agendada (tópicos com baixa forca_memoria
+geram revisões agendadas).
+
+Importância estratégica:
+Base para sistema de revisão espaçada. A força de memória por tópico determina quando
+e o que revisar, implementando o algoritmo de esquecimento de Ebbinghaus adaptado ao
+domínio jurídico.
+
+
+3.5 SESSAO_ESTUDO (Sessões de Estudo)
+
+Finalidade:
+Registrar cada sessão de estudo do aluno (drill, simulado, revisão, prova completa).
+
+Descrição funcional:
+Uma sessão é uma unidade temporal de estudo. Pode ser um drill focado em uma disciplina,
+um simulado completo, ou uma sessão de revisão. A sessão agrupa múltiplas interações
+com questões sob um contexto comum.
+
+Tipo de dados armazenados:
+- Tipo: ENUM tipo_sessao (drill, simulado, revisao, prova_completa)
+- Configuração: JSONB com parâmetros da sessão (quantidade, dificuldade, tempo_limite)
+- Métricas: total_questoes, total_acertos, taxa_acerto
+- Tempo: iniciado_em, finalizado_em, duracao_minutos
+- Simulado: aprovado (boolean), nota_final (0-100)
+
+Relações:
+Relacionamento N:1 com users.
+Relacionamento 1:N com interacao_questao (uma sessão contém N interações).
+
+Importância estratégica:
+Permite análise de desempenho por contexto. Estudantes podem ter desempenho diferente
+em simulados (pressão) vs drills (sem pressão). Identifica padrões de fadiga (taxa
+de acerto cai ao longo de sessões longas).
+
+
+3.6 INTERACAO_QUESTAO (Interação com Questão)
+
+Finalidade:
+Registrar cada resposta do estudante a uma questão, com contexto completo.
+
+Descrição funcional:
+Esta é a tabela de maior volume e importância analítica. Cada registro é uma evidência
+de aprendizagem. A análise agregada de milhões de interações alimenta algoritmos de
+perfil cognitivo, detecção de padrões de erro, e predição de aprovação.
+
+Tipo de dados armazenados:
+- Identificadores: user_id, questao_id, sessao_id
+- Contexto: disciplina, topico, dificuldade
+- Resposta: alternativa_escolhida, alternativa_correta, resultado (ACERTO/ERRO/PULOU)
+- Tempo: tempo_resposta_segundos, respondido_em
+- Estado cognitivo no momento: nivel_confianca, nivel_fadiga
+- Explicação: nivel_explicacao_fornecido (1-4), visualizou_explicacao
+
+Relações:
+Relacionamento N:1 com users, questoes_banco, sessao_estudo.
+Relacionamento 1:1 com analise_erro (se resultado = ERRO).
+
+Importância estratégica:
+Matéria-prima de toda análise de aprendizagem. Cada interação atualiza perfil_juridico
+de forma incremental. Análises longitudinais (evolução de taxa de acerto ao longo de
+meses) dependem desta tabela. É a tabela que mais cresce (volume estimado: 20 milhões
+de registros para 10.000 usuários ativos).
+
+
+3.7 ANALISE_ERRO (Análise de Erro)
+
+Finalidade:
+Classificar e armazenar análise profunda de cada erro cometido pelo estudante.
+
+Descrição funcional:
+Não basta saber que o estudante errou; é necessário compreender por que errou. Esta
+entidade classifica cada erro em uma taxonomia de 28 tipos específicos, distribuídos
+em 7 categorias principais. A classificação orienta intervenções pedagógicas específicas.
+
+Tipo de dados armazenados:
+- Classificação: categoria_erro (ENUM), tipo_erro_especifico (VARCHAR)
+- Contexto: disciplina, topico, conceitos_deficientes (ARRAY)
+- Gravidade: BAIXA, MEDIA, ALTA
+- Intervenção: intervencao_recomendada (TEXT), intervencao_aplicada (BOOLEAN)
+
+Relações:
+Relacionamento 1:1 com interacao_questao (cada erro tem uma análise).
+Relacionamento N:1 com users.
+
+Importância estratégica:
+Permite diagnóstico pedagógico de precisão. Exemplo: se 70% dos erros de um aluno são
+ERRO_CONCEITUAL, a intervenção deve ser revisão de fundamentos, não treino de velocidade.
+Se erros são predominantemente ERRO_TRAP, o aluno precisa de treino de atenção, não de
+conteúdo adicional.
+
+
+3.8 PRATICA_PECA (Prática de Peça Processual)
+
+Finalidade:
+Armazenar práticas de peças processuais (2ª fase OAB).
+
+Descrição funcional:
+Segunda fase da OAB exige produção escrita de peças processuais (petições, recursos,
+pareceres). Esta entidade registra cada prática, o enunciado do problema, a peça
+escrita pelo aluno, e a avaliação detalhada.
+
+Tipo de dados armazenados:
+- Tipo: ENUM tipo_peca (PETICAO_INICIAL_CIVEL, HABEAS_CORPUS, etc)
+- Conteúdo: enunciado (TEXT), conteudo_peca (TEXT - removido se anonimizado)
+- Avaliação: nota_final (0-10), aprovado (>= 6.0)
+- Detalhamento: nota_formalizacao_tese, nota_fundamentacao, nota_tecnica_redacional
+- Erros: total_erros_fatais, total_erros_graves, total_erros_medios, total_erros_leves
+- Tempo: tempo_minutos
+
+Relações:
+Relacionamento N:1 com users.
+Relacionamento 1:N com erro_peca.
+
+Importância estratégica:
+Segunda fase OAB tem taxa de aprovação historicamente mais baixa que primeira fase.
+Sistema precisa diagnosticar competências específicas de redação jurídica. Avaliação
+automatizada de peças é desafio técnico complexo que esta entidade suporta.
+
+
+3.9 ERRO_PECA (Erro em Peça Processual)
+
+Finalidade:
+Registrar erros específicos identificados em peças processuais.
+
+Descrição funcional:
+Cada peça pode conter múltiplos erros de diferentes tipos e gravidades. Esta entidade
+detalha cada erro: onde ocorreu, qual a gravidade, quanto impactou a nota, e como
+corrigir.
+
+Tipo de dados armazenados:
+- Tipo e descrição: tipo_erro (VARCHAR), descricao (TEXT)
+- Gravidade: ENUM (FATAL, GRAVE, MEDIO, LEVE)
+- Localização: secao (VARCHAR - ex: "PEDIDOS", "FUNDAMENTAÇÃO")
+- Impacto: pontos_perdidos (DECIMAL)
+- Feedback: explicacao (TEXT), exemplo_correcao (TEXT)
+
+Relações:
+Relacionamento N:1 com pratica_peca.
+
+Importância estratégica:
+Feedback granular. Não basta dizer "nota 5.0, reprovado". É necessário especificar:
+"Erro FATAL na seção PEDIDOS: pedido juridicamente impossível (-3.0 pontos). Correção:
+pedir X ao invés de Y".
+
+
+3.10 REVISAO_AGENDADA (Revisão Espaçada)
+
+Finalidade:
+Implementar sistema de spaced repetition (revisão espaçada) baseado em curva de
+esquecimento.
+
+Descrição funcional:
+Quando o estudante aprende um tópico, o sistema agenda revisões em intervalos
+crescentes: 1 hora, 24 horas, 7 dias, 30 dias. Se o estudante acerta na revisão, a
+força de memória aumenta e o próximo intervalo é maior. Se erra, o intervalo reinicia.
+
+Tipo de dados armazenados:
+- Item: topico, disciplina, conceitos (ARRAY), artigos_lei (ARRAY)
+- Ciclo: INTEGER 1-4 (1=1h, 2=24h, 3=7d, 4=30d)
+- Agendamento: data_revisao (DATE)
+- Status: revisado (BOOLEAN), resultado_revisao (ACERTO/ERRO)
+- Memória: forca_memoria_antes, forca_memoria_depois
+
+Relações:
+Relacionamento N:1 com users.
+Auto-relacionamento: proxima_revisao_id aponta para próxima revisão na cadeia.
+
+Importância estratégica:
+Combate esquecimento. Estudantes frequentemente "esquecem" conteúdo estudado meses
+antes. Revisão espaçada maximiza retenção de longo prazo, crítica para exame que
+abrange todo o espectro do direito.
+
+
+3.11 SNAPSHOT_COGNITIVO (Snapshot do Estado Cognitivo)
+
+Finalidade:
+Capturar fotografia imutável do estado cognitivo completo do estudante em momentos-chave.
+
+Descrição funcional:
+Diferente de perfil_juridico (mutável, estado atual), snapshot_cognitivo é imutável
+(fotografia do passado). Permite análise longitudinal: "Como o estudante evoluiu nos
+últimos 3 meses?" ou "Ele regrediu em alguma disciplina?"
+
+Tipo de dados armazenados (todos em JSONB):
+- perfil_completo: Cópia integral do perfil_juridico no momento
+- desempenho: Métricas consolidadas (total questões, taxa acerto por disciplina, etc)
+- padroes_erro: Distribuição de erros por categoria
+- estado_memoria: Total conceitos aprendidos, taxa retenção
+- predicao: Probabilidade aprovação, nota estimada, disciplinas críticas
+- contexto_momento: Fase preparação, dias até prova, evento que gerou snapshot
+
+Relações:
+Relacionamento N:1 com users.
+Não possui FK para outras entidades (autocontido).
+
+Importância estratégica:
+Permite detecção de regressão (taxa de acerto caiu 15% em Constitucional), validação
+de predições (sistema previu aprovação com 73% de probabilidade; aluno foi aprovado?),
+e benchmarking (comparar estudante atual com perfil de aprovados em mesmo estágio).
+
+
+3.12 METRICAS_TEMPORAIS (Métricas Pré-calculadas)
+
+Finalidade:
+Armazenar métricas agregadas por período (dia, semana, mês) para dashboards.
+
+Descrição funcional:
+Queries agregadas em milhões de registros de interacao_questao são lentas. Esta
+entidade pré-calcula métricas por período, permitindo dashboards responsivos.
+
+Tipo de dados armazenados:
+- Período: tipo_periodo (dia/semana/mes), periodo (DATE)
+- Métricas: questoes_resolvidas, taxa_acerto, tempo_estudo_minutos, sessoes_realizadas
+- Disciplinas: disciplinas_estudadas (ARRAY), disciplina_mais_praticada
+- Evolução: evolucao_taxa_acerto (comparado com período anterior)
+
+Relações:
+Relacionamento N:1 com users.
+Constraint unique (user_id, tipo_periodo, periodo).
+
+Importância estratégica:
+Performance. Dashboard "Resumo Semanal" pode ser gerado em < 100ms consultando
+metricas_temporais ao invés de agregar milhões de registros em tempo real.
+
+
+3.13 QUESTOES_BANCO (Banco de Questões)
+
+Finalidade:
+Armazenar questões de OAB com metadados completos e explicações multinível.
+
+Descrição funcional:
+Repositório de conhecimento jurídico do sistema. Cada questão contém não apenas
+enunciado e alternativas, mas explicações em 4 níveis de complexidade, artigos de lei
+relacionados, jurisprudência, e tags semânticas.
+
+Tipo de dados armazenados:
+- Identificação: codigo_externo (ex: "OAB-XXXIII-2021-Q15")
+- Classificação: disciplina, topico, subtopico, dificuldade
+- Conteúdo: enunciado, alternativa_a até alternativa_e, alternativa_correta
+- Explicações: explicacao_nivel1_tecnico, nivel2_didatico, nivel3_analogia, nivel4_pratico
+- Explicação alternativas erradas: JSONB {A: "Errada porque...", B: "..."}
+- Metadados jurídicos: artigos_lei (ARRAY), jurisprudencia (ARRAY), conceitos_chave (ARRAY)
+- Tags: tags (ARRAY), eh_trap (BOOLEAN), exige_calculo (BOOLEAN)
+- Estatísticas: total_resolucoes, total_acertos, taxa_acerto_geral
+
+Relações:
+Relacionamento 1:N com interacao_questao (uma questão respondida N vezes).
+
+Importância estratégica:
+Qualidade do conteúdo determina qualidade do aprendizado. Explicações multinível
+permitem adaptação: estudante iniciante recebe explicação didática (nível 2), estudante
+avançado recebe explicação técnica (nível 1). Metadados jurídicos habilitam busca
+semântica e RAG.
+
+
+3.14 LOG_SISTEMA (Logs de Auditoria e Segurança)
+
+Finalidade:
+Registrar eventos de auditoria, segurança, e conformidade LGPD.
+
+Descrição funcional:
+Log estruturado de eventos críticos: acessos a dados pessoais, anonimizações, exportações
+de dados, incidentes de segurança, consentimentos. Não é log técnico de aplicação
+(debug, errors), mas log de governança de dados.
+
+Tipo de dados armazenados:
+- Tipo: VARCHAR (ACESSO_DADOS_PESSOAIS, ANONIMIZACAO_DADOS, EXPORTACAO_DADOS, etc)
+- Gravidade: ENUM log_gravidade (DEBUG, INFO, WARNING, ERROR, CRITICAL)
+- Conteúdo: descricao (TEXT), metadata (JSONB)
+- Contexto: user_id, ip_address, user_agent
+
+Relações:
+Relacionamento N:1 com users (pode ser NULL para logs de sistema).
+
+Importância estratégica:
+Conformidade LGPD Art. 52 (accountability). Sistema deve demonstrar que trata dados
+de forma adequada. Logs são evidência de que acessos são autorizados, anonimizações
+são executadas conforme política, e incidentes são registrados.
+
+
+3.15 CONSENTIMENTOS (Consentimentos LGPD)
+
+Finalidade:
+Registrar consentimentos granulares do usuário para diferentes finalidades de tratamento.
+
+Descrição funcional:
+LGPD exige consentimento específico para diferentes finalidades. Esta entidade registra
+quando, como, e para que cada usuário consentiu, permitindo demonstração de conformidade.
+
+Tipo de dados armazenados:
+- Tipos de consentimento (BOOLEAN): servico_basico, personalizacao, dados_emocionais,
+  pesquisa_anonimizada, comunicacao_marketing
+- Metadados: versao_politica (VARCHAR), data_consentimento, ip_address
+- Status: ativo (BOOLEAN), revogado_em (TIMESTAMPTZ)
+
+Relações:
+Relacionamento N:1 com users (múltiplos registros por histórico de versões de política).
+
+Importância estratégica:
+Prova de consentimento. Se usuário revogar consentimento para dados_emocionais, sistema
+deve imediatamente parar de coletar estado emocional. Se houver auditoria ANPD, sistema
+pode demonstrar que tinha consentimento válido no momento do tratamento.
+
+
+
+═══════════════════════════════════════════════════════════════════════════════
+4. PERFIL COGNITIVO JURÍDICO
+═══════════════════════════════════════════════════════════════════════════════
+
+4.1 DEFINIÇÃO FORMAL DO PERFIL COGNITIVO
+
+O perfil cognitivo jurídico é uma representação multidimensional do estado de
+conhecimento, competências, e características cognitivo-emocionais de um estudante
+em relação ao domínio jurídico necessário para aprovação na OAB.
+
+Diferentemente de sistemas que representam estudantes apenas por métricas unidimensionais
+(ex: "taxa de acerto = 68%"), o JURIS_IA modela o estudante em 8 dimensões independentes,
+cada uma capturando aspecto diferente da preparação jurídica.
+
+O perfil não é estático. Ele evolui continuamente através de atualizações incrementais
+baseadas em evidências observadas (respostas a questões, tempo de resolução, padrões
+de erro, práticas de peças). Cada interação do estudante com o sistema é uma oportunidade
+de refinamento do perfil.
+
+
+4.2 COMPONENTES DO PERFIL
+
+4.2.1 Dimensão 1: Nível Geral de Domínio
+
+Tipo: ENUM nivel_dominio
+Valores: INICIANTE, BASICO, INTERMEDIARIO, AVANCADO, EXPERT
+
+Definição:
+Classificação discreta do estágio geral de preparação do estudante. Transições entre
+níveis são governadas por critérios múltiplos: total de questões resolvidas, taxa de
+acerto global ponderada, e tempo de preparação. Hysteresis é implementada para evitar
+oscilações (critério para subir é mais rigoroso que critério para não descer).
+
+Uso pedagógico:
+Determina seleção de conteúdo e dificuldade padrão. INICIANTE recebe questões fáceis
+e explicações didáticas. EXPERT recebe questões difíceis e explicações técnicas concisas.
+
+
+4.2.2 Dimensão 2: Pontuação Global
+
+Tipo: INTEGER
+Range: 0 - 1000
+
+Definição:
+Sistema de gamificação. Pontos são ganhos por acertos (5 a 25 pontos dependendo da
+dificuldade), manutenção de streak, conquista de badges, e aprovação em simulados.
+Pontos decaem 2% por semana de inatividade.
+
+Uso pedagógico:
+Motivação extrínseca. Rankings, leaderboards, e desbloqueio de conteúdo premium podem
+ser vinculados a pontuação. Não influencia decisões pedagógicas diretamente (não é
+métrica de conhecimento real).
+
+
+4.2.3 Dimensão 3: Taxa de Acerto Global
+
+Tipo: DECIMAL (5,2)
+Range: 0.00 - 100.00
+
+Definição:
+Métrica ponderada de desempenho. Não é média aritmética simples de acertos. Questões
+são ponderadas por dificuldade (questões difíceis têm peso maior) e recência (questões
+recentes têm peso maior através de exponential decay). Fórmula:
+
+taxa_acerto_global = Σ (acerto_i × peso_dificuldade_i × peso_temporal_i) / Σ pesos
+
+onde peso_temporal_i = exp(-λ × dias_desde_resposta)
+
+Uso pedagógico:
+Preditor primário de probabilidade de aprovação. Taxa > 75% em todas disciplinas
+correlaciona fortemente com aprovação. Taxa < 55% indica necessidade de intensificação
+de estudo.
+
+
+4.2.4 Dimensão 4: Estado Cognitivo-Emocional
+
+Tipo: JSONB
+Campos: confianca, stress, motivacao, fadiga (todos 0-1)
+
+Definição:
+Captura estado psicológico do estudante durante o estudo. Atualizado em tempo real:
+
+- Confiança: Aumenta com acertos consecutivos, diminui com erros consecutivos.
+  Fórmula: confianca_nova = confianca_antiga × α + (1 se acertou else -1) × (1-α)
+  onde α = 0.9 (fator de suavização)
+
+- Stress: Aumenta com tempo excessivo por questão, erros em questões consideradas
+  fáceis, e proximidade de prova. Diminui com pausas e acertos.
+
+- Motivação: Aumenta com evolução positiva de taxa de acerto, manutenção de streak,
+  e conquistas. Diminui com regressão de desempenho.
+
+- Fadiga: Aumenta com duração de sessão e taxa de erro crescente ao longo da sessão.
+  Reseta após intervalo > 4 horas.
+
+Uso pedagógico:
+- Se stress > 0.70: Sistema recomenda pausa, oferece conteúdo menos desafiador.
+- Se motivacao < 0.30: Sistema aciona intervenções de reengajamento (badges, conquistas).
+- Se fadiga > 0.60: Sistema sugere finalizar sessão (continuar estudando produz
+  aprendizagem de baixa qualidade).
+
+Observação LGPD:
+Dados emocionais são classificados como potencialmente sensíveis (LGPD Art. 11). Coleta
+requer consentimento específico e destacado. Podem ser deletados imediatamente se
+consentimento for revogado.
+
+
+4.2.5 Dimensão 5: Maturidade Jurídica
+
+Tipo: JSONB
+Campos: pensamento_sistemico, capacidade_abstracao, dominio_terminologia,
+raciocinio_analogico, interpretacao_juridica (todos 0-1)
+
+Definição:
+Captura competências meta-jurídicas que transcendem conhecimento de conteúdo específico.
+
+a) Pensamento Sistêmico (0-1):
+Capacidade de conectar institutos jurídicos de áreas diferentes. Exemplo: compreender
+que princípio da legalidade (Constitucional) fundamenta tipicidade penal (Penal).
+Medida por taxa de acerto em questões que exigem conexão entre disciplinas.
+
+b) Capacidade de Abstração (0-1):
+Capacidade de generalizar regras jurídicas além de casos concretos memorizados.
+Diferencia estudante que "decorou" de estudante que "compreendeu". Medida por
+desempenho em questões de aplicação a casos inéditos vs questões de memorização.
+
+c) Domínio de Terminologia (0-1):
+Fluência em vocabulário jurídico técnico. Medida por ausência de erros em questões
+onde alternativa errada usa termo técnico incorreto (ex: "prescrição" vs "decadência").
+
+d) Raciocínio Analógico (0-1):
+Capacidade de aplicar precedentes e princípios a situações novas. Medida por
+desempenho em questões que apresentam caso análogo a jurisprudência conhecida.
+
+e) Interpretação Jurídica (0-1):
+Capacidade de aplicar métodos de hermenêutica (literal, teleológica, sistemática).
+Medida por desempenho em questões de interpretação de lei.
+
+Uso pedagógico:
+Estudante com baixo pensamento_sistemico deve receber mais questões interdisciplinares
+e mapas mentais conectando áreas. Estudante com baixa capacidade_abstracao deve receber
+explicações com mais exemplos concretos antes de regras gerais.
+
+
+4.2.6 Dimensão 6: Padrões de Aprendizagem
+
+Tipo: JSONB
+Campos: estilo_predominante, velocidade_leitura_wpm, nivel_explicacao_preferido,
+necessita_analogias
+
+Definição:
+Preferências e características de aprendizagem do estudante.
+
+a) Estilo Predominante:
+VISUAL (aprende melhor com diagramas, mapas mentais)
+AUDITIVO (prefere vídeos, podcasts)
+LEITURA (prefere textos extensos)
+PRATICO (aprende fazendo, cases)
+HIBRIDO (mistura)
+
+Detectado por padrão de consumo de conteúdo e autoavaliação.
+
+b) Velocidade de Leitura (WPM - words per minute):
+Medida pelo tempo gasto lendo enunciados vs tamanho do enunciado. Estudante com WPM
+baixa (< 150) pode precisar de mais tempo em simulados.
+
+c) Nível de Explicação Preferido (1-4):
+1 = Técnico (conciso, jargão jurídico)
+2 = Didático (mais detalhado, termos explicados)
+3 = Analogia (usa analogias e metáforas)
+4 = Prático (exemplos concretos, cases reais)
+
+Detectado por qual nível de explicação o estudante mais visualiza e avalia como útil.
+
+d) Necessita Analogias (boolean):
+Se estudante consistentemente visualiza explicações de nível 3 (analogia) e avalia
+como úteis, flag é true.
+
+Uso pedagógico:
+Sistema adapta formato de conteúdo ao estilo. Estudante VISUAL recebe mais infográficos.
+Estudante com baixa velocidade de leitura recebe enunciados mais concisos ou mais
+tempo. Nível de explicação é selecionado automaticamente baseado em preferência.
+
+
+4.2.7 Dimensão 7: Riscos e Alertas
+
+Tipo: JSONB
+Campos: risco_evasao, risco_burnout, dias_streak_atual
+
+Definição:
+
+a) Risco de Evasão (0-1):
+Probabilidade de estudante abandonar sistema. Calculado por regressão logística baseada
+em fatores: dias sem acesso, queda de motivação, taxa de conclusão de sessões decrescente,
+ausência de metas definidas. Risco > 0.70 aciona intervenções (emails de reengajamento,
+ofertas de desconto, suporte humano).
+
+b) Risco de Burnout (0-1):
+Probabilidade de esgotamento. Fatores: stress alto persistente, fadiga alta persistente,
+queda de desempenho apesar de alto volume de estudo, sessões muito longas sem pausas.
+Risco > 0.60 aciona recomendações de pausa obrigatória.
+
+c) Dias Streak Atual:
+Sequência de dias consecutivos com pelo menos uma atividade. Streak é fator motivacional.
+Perder streak de 30+ dias pode causar desmotivação, então sistema alerta quando streak
+está em risco (usuário não acessou hoje e já é 22h).
+
+Uso pedagógico:
+Riscos habilitam intervenções preventivas. Melhor prevenir evasão quando risco = 0.50
+do que tentar recuperar usuário que já abandonou.
+
+
+4.2.8 Dimensão 8: Metas e Metacognição
+
+Tipo: JSONB + data_prova_agendada (DATE)
+Campos: data_prova, dias_ate_prova, ritmo_necessario, ritmo_atual,
+probabilidade_aprovacao
+
+Definição:
+Planejamento e autoconsciência do estudante sobre sua preparação.
+
+a) Data da Prova:
+Se estudante registrou que fará prova em data específica, sistema calcula dias restantes
+e ajusta urgência de recomendações.
+
+b) Ritmo Necessário vs Atual:
+Sistema calcula: "Para atingir 2000 questões resolvidas em 60 dias, você precisa
+resolver 33 questões/dia. Seu ritmo atual é 18 questões/dia. Insuficiente."
+
+c) Probabilidade de Aprovação:
+Predição estatística baseada em perfil atual comparado com perfil de aprovados
+históricos em estágio similar de preparação. Atualizada diariamente.
+
+Uso pedagógico:
+Feedback metacognitivo. Estudante vê em tempo real se está no caminho certo. Se
+probabilidade < 0.50 e faltam 30 dias para prova, sistema recomenda adiar prova ou
+intensificar drasticamente estudo.
+
+
+4.3 COMO O PERFIL EVOLUI AO LONGO DO TEMPO
+
+O perfil cognitivo não é estático. Cada interação do estudante é uma oportunidade de
+atualização. O algoritmo de atualização segue o princípio de atualização incremental
+bayesiana: estado anterior + nova evidência → estado posterior.
+
+Exemplo de fluxo de atualização após responder questão:
+
+1. Estudante responde questão de Direito Penal (dificuldade: média)
+2. Resultado: ERRO
+3. Tempo: 240 segundos (esperado: 180s)
+
+Atualizações desencadeadas:
+
+a) perfil_juridico.taxa_acerto_global:
+   - Recalcula com novo datapoint ponderado
+   - taxa_nova = (taxa_antiga × N + 0 × peso_medio × peso_temporal) / (N + peso)
+
+b) perfil_juridico.estado_emocional.confianca:
+   - confianca_nova = confianca_antiga × 0.9 + (-0.5) × 0.1 = confianca_antiga - 0.05
+
+c) perfil_juridico.estado_emocional.stress:
+   - stress_nova = stress_antiga + 0.03 (tempo acima do esperado indica dúvida/stress)
+
+d) perfil_juridico.maturidade_juridica.dominio_terminologia:
+   - Se erro foi tipo CONFUSAO_TERMINOLOGICA, diminui 0.02
+
+e) progresso_disciplina.taxa_acerto (Direito Penal):
+   - Recalcula taxa específica da disciplina
+
+f) progresso_topico.forca_memoria:
+   - Se tópico já tinha sido estudado, força de memória cai
+
+g) analise_erro:
+   - Novo registro criado com classificação do erro
+
+h) perfil_juridico.riscos.risco_evasao:
+   - Se for 5º erro consecutivo, risco aumenta levemente
+
+Todas essas atualizações ocorrem em transação única, garantindo consistência.
+
+
+4.4 COMO O PERFIL ORIENTA DECISÕES DA IA
+
+O perfil cognitivo é consultado por múltiplas engines de decisão:
+
+4.4.1 Question Engine (Seleção de Questões)
+
+Consulta:
+- nivel_geral: determina pool de dificuldade (INICIANTE → fáceis, EXPERT → difíceis)
+- progresso_disciplina: identifica disciplinas fracas para focar
+- estado_emocional.stress: se alto, evita questões muito difíceis
+- padroes_aprendizagem.necessita_analogias: prioriza questões com explicações analógicas
+
+Decisão:
+Seleciona próximas 20 questões para drill balanceando: reforçar pontos fracos,
+desafiar em nível apropriado, não causar frustração excessiva.
+
+
+4.4.2 Explanation Engine (Nível de Explicação)
+
+Consulta:
+- padroes_aprendizagem.nivel_explicacao_preferido: padrão inicial
+- maturidade_juridica.capacidade_abstracao: se baixa, prefere nível 4 (prático)
+- historico de visualizacao de explicacoes: se estudante sempre pula nível 1 mas lê
+  nível 2, ajusta preferência
+
+Decisão:
+Fornece explicação em nível que maximiza compreensão sem ser condescendente.
+
+
+4.4.3 Memory Engine (Agendamento de Revisões)
+
+Consulta:
+- progresso_topico.forca_memoria: determina quando revisar
+- estado_emocional.fadiga: se alta, adia revisões para outro dia
+- dias_ate_prova: se < 30 dias, acelera revisões
+
+Decisão:
+Agenda revisão de tópico X para data Y considerando força de memória e contexto.
+
+
+4.4.4 Decision Engine (Recomendação de Próxima Ação)
+
+Consulta:
+- Todas as 8 dimensões
+
+Decisão:
+"Próxima ação recomendada: Fazer drill de 15 questões de Direito Tributário (disciplina
+crítica) em nível médio. Após, revisar tópico 'Princípios Tributários' (força de
+memória baixa, revisão vencida há 3 dias)."
+
+
+4.5 DIFERENÇA ENTRE DESEMPENHO PONTUAL E MATURIDADE JURÍDICA
+
+Desempenho pontual (taxa de acerto) mede o QUE o estudante sabe agora.
+Maturidade jurídica mede COMO o estudante pensa juridicamente.
+
+É possível ter alto desempenho pontual com baixa maturidade:
+- Estudante decorou gabarito de 1000 questões anteriores
+- Em questões inéditas, desempenho cai drasticamente
+- Não consegue transferir conhecimento de uma área para outra
+
+É possível ter baixa desempenho pontual com alta maturidade:
+- Estudante iniciante, pouco conteúdo estudado
+- Mas compreende profundamente o que estudou
+- Raciocínio jurídico correto, apenas falta exposição a mais tópicos
+
+O JURIS_IA valoriza maturidade tanto quanto desempenho. Sistema prefere estudante com
+taxa de acerto 65% mas alta maturidade (pois tem margem de crescimento rápido) a
+estudante com taxa 75% mas baixa maturidade (plateou, depende de memorização).
+
+Predição de aprovação considera ambas dimensões. Fórmula simplificada:
+
+prob_aprovacao = 0.4 × taxa_acerto_normalizada +
+                 0.3 × media_maturidade_juridica +
+                 0.2 × volume_questoes_normalizado +
+                 0.1 × (1 - risco_evasao)
+
+
+
+═══════════════════════════════════════════════════════════════════════════════
+5. TAXONOMIA DE ERROS JURÍDICOS
+═══════════════════════════════════════════════════════════════════════════════
+
+5.1 FUNDAMENTAÇÃO DA TAXONOMIA
+
+A classificação de erros cometidos por estudantes de direito não é arbitrária. Ela foi
+estruturada considerando teoria de aprendizagem jurídica, análise de padrões de erro
+em exames OAB históricos, e taxonomia de Bloom adaptada ao domínio jurídico.
+
+A taxonomia organiza erros em 7 categorias principais, subdivididas em 28 tipos
+específicos. Esta granularidade permite diagnóstico preciso e intervenção pedagógica
+direcionada.
+
+
+5.2 LISTA E DEFINIÇÃO DOS TIPOS DE ERRO
+
+CATEGORIA 1: ERRO CONCEITUAL (42% dos erros observados)
+
+Subcategoria: CONCEITO_NAO_COMPREENDIDO
+Definição: Estudante não compreende significado de conceito jurídico fundamental.
+Exemplo: Confunde dolo eventual com culpa consciente.
+Manifestação: Taxa de erro consistentemente alta (> 70%) quando conceito aparece.
+
+Subcategoria: CONCEITO_PARCIALMENTE_COMPREENDIDO
+Definição: Estudante compreende parte do conceito mas não suas nuances.
+Exemplo: Sabe que legítima defesa exclui ilicitude, mas não conhece requisitos completos.
+Manifestação: Acerta questões básicas sobre conceito, erra questões de aplicação complexa.
+
+Subcategoria: APLICACAO_INCORRETA_CONCEITO
+Definição: Estudante conhece conceito em teoria mas não sabe aplicá-lo a caso concreto.
+Exemplo: Define corretamente "fato do príncipe" mas não identifica em caso prático.
+Manifestação: Acerta questões teóricas, erra questões de case.
+
+Subcategoria: CONFUSAO_CONCEITOS_SIMILARES
+Definição: Estudante confunde conceitos com nomes ou características similares.
+Exemplo: Confunde prescrição com decadência.
+Manifestação: Alterna entre acerto e erro dependendo de qual conceito aparece.
+
+Subcategoria: GENERALIZACAO_INDEVIDA
+Definição: Estudante generaliza regra para contexto onde não se aplica.
+Exemplo: Aplica regra de Direito Civil a situação de Direito do Consumidor onde há
+regra específica diferente.
+Manifestação: Erros quando há exceções ou especializações de regra geral.
+
+
+CATEGORIA 2: ERRO DE INTERPRETAÇÃO (23% dos erros)
+
+Subcategoria: LEITURA_LITERAL_DEMAIS
+Definição: Estudante interpreta enunciado de forma excessivamente literal, ignorando
+contexto ou implicações.
+Exemplo: Questão diz "João agiu com intenção de matar" e estudante não infere que
+houve dolo direto.
+Manifestação: Escolhe alternativa que é literalmente correta mas juridicamente incorreta.
+
+Subcategoria: INFERENCIA_ERRADA
+Definição: Estudante faz inferência não suportada pelo enunciado.
+Exemplo: Enunciado menciona "contrato verbal" e estudante assume que foi nulo (mas
+contratos verbais são válidos em muitos casos).
+Manifestação: Adiciona premissas não fornecidas pelo enunciado.
+
+Subcategoria: IGNOROU_PALAVRA_CHAVE
+Definição: Estudante não percebe palavra crucial no enunciado.
+Exemplo: Enunciado diz "NÃO é causa excludente de ilicitude" mas estudante lê como
+se fosse "é causa excludente".
+Manifestação: Erro em questões onde uma palavra muda completamente o sentido.
+
+Subcategoria: INTERPRETACAO_OPOSTA
+Definição: Estudante compreende enunciado exatamente ao contrário do que foi afirmado.
+Exemplo: "Assinale a alternativa INCORRETA" mas estudante marca a correta.
+Manifestação: Consistência de escolher alternativa exatamente oposta à esperada.
+
+
+CATEGORIA 3: CONFUSÃO ENTRE INSTITUTOS (18% dos erros)
+
+Subcategoria: CONFUSAO_INSTITUTOS_MESMA_AREA
+Definição: Estudante confunde institutos jurídicos dentro da mesma disciplina.
+Exemplo: Confunde furto com roubo (ambos crimes contra patrimônio).
+Manifestação: Taxa de erro alta quando questão exige distinguir institutos similares.
+
+Subcategoria: CONFUSAO_INSTITUTOS_AREAS_DIFERENTES
+Definição: Estudante aplica regra de uma área do direito em outra onde não cabe.
+Exemplo: Aplica princípio processual civil em processo penal.
+Manifestação: Erros interdisciplinares.
+
+Subcategoria: CONFUSAO_PROCEDIMENTO
+Definição: Estudante confunde procedimentos processuais distintos.
+Exemplo: Confunde rito sumário com sumaríssimo.
+Manifestação: Erros em questões procedimentais.
+
+Subcategoria: CONFUSAO_COMPETENCIA
+Definição: Estudante não identifica corretamente competência jurisdicional.
+Exemplo: Atribui competência a Justiça Estadual quando é da Justiça Federal.
+Manifestação: Erros em questões de competência.
+
+
+CATEGORIA 4: ERRO DE LEITURA E ATENÇÃO (12% dos erros)
+
+Subcategoria: NAO_LEU_ENUNCIADO_COMPLETO
+Definição: Estudante responde antes de ler enunciado até o fim.
+Exemplo: Enunciado tem 3 parágrafos, estudante lê só o primeiro e responde.
+Manifestação: Tempo de resposta muito baixo (< 50% do tempo médio) + erro.
+
+Subcategoria: IGNOROU_PALAVRA_NEGATIVA
+Definição: Estudante não percebe "não", "exceto", "salvo" no enunciado ou alternativa.
+Exemplo: Alternativa diz "Não é necessário..." mas estudante lê como "É necessário...".
+Manifestação: Padrão de erro em questões com negação.
+
+Subcategoria: TROCOU_SUJEITO_OBJETO
+Definição: Estudante inverte quem faz e quem sofre a ação.
+Exemplo: Questão pergunta direito do locatário, estudante responde direito do locador.
+Manifestação: Escolhe alternativa que seria correta se sujeitos fossem invertidos.
+
+Subcategoria: PRESSA_DESATENCAO
+Definição: Erro causado por pressa, não por falta de conhecimento.
+Exemplo: Estudante sabe a resposta mas marca alternativa errada por descuido.
+Manifestação: Tempo muito baixo + estudante tem domínio alto do tópico.
+
+
+CATEGORIA 5: FALTA DE BASE JURÍDICA (8% dos erros)
+
+Subcategoria: DESCONHECE_LEI_SECA
+Definição: Estudante não conhece texto literal da lei.
+Exemplo: Não sabe que maioridade penal é 18 anos (CP, art. 27).
+Manifestação: Erro em questão que cita artigo específico ou exige conhecimento de lei.
+
+Subcategoria: DESCONHECE_JURISPRUDENCIA
+Definição: Estudante não conhece entendimento consolidado dos tribunais superiores.
+Exemplo: Não sabe que STF decidiu X em tema Y.
+Manifestação: Erro em questão baseada em jurisprudência pacificada.
+
+Subcategoria: DESCONHECE_DOUTRINA_MAJORITARIA
+Definição: Estudante desconhece posição doutrinária prevalente.
+Exemplo: Conhece posição minoritária mas questão pede posição majoritária.
+Manifestação: Escolhe alternativa que seria correta em posição minoritária.
+
+
+CATEGORIA 6: ERRO ESTRATÉGICO - 2ª FASE (5% dos erros em peças)
+
+Subcategoria: PECA_ESCOLHA_TESE_ERRADA
+Definição: Em peça processual, estudante escolhe tese juridicamente insustentável.
+Exemplo: Impetra habeas corpus quando caberia recurso ordinário.
+Manifestação: Erro fatal em peça (zera ou perde > 30% da nota).
+
+Subcategoria: PECA_FUNDAMENTACAO_INSUFICIENTE
+Definição: Fundamentação jurídica da peça é superficial ou incompleta.
+Exemplo: Não cita artigos de lei relevantes, não usa jurisprudência.
+Manifestação: Nota baixa em critério "fundamentação" (< 5.0).
+
+Subcategoria: PECA_PEDIDO_INADEQUADO
+Definição: Pedido final da peça não corresponde à causa de pedir ou é juridicamente
+impossível.
+Exemplo: Pede "declaração de nulidade ex tunc" em situação que exige ex nunc.
+Manifestação: Erro grave (perde 15-25% da nota).
+
+Subcategoria: PECA_ESTRUTURA_ERRADA
+Definição: Peça não segue estrutura formal esperada (falta endereçamento, qualificação,
+pedido, etc).
+Manifestação: Nota baixa em "estrutura" (< 5.0).
+
+
+CATEGORIA 7: ERRO DE TRAP (PEGADINHA) (4% dos erros)
+
+Subcategoria: TRAP_TEXTO_SIMILAR_INVERSO
+Definição: Alternativa usa texto quase idêntico ao correto mas inverte sentido crucial.
+Exemplo: Correta: "É obrigatório..." / Trap: "Não é obrigatório...".
+Manifestação: Estudante marca trap ao invés da correta por leitura rápida.
+
+Subcategoria: TRAP_EXCECAO_NAO_PERCEBIDA
+Definição: Alternativa apresenta regra geral correta mas ignora exceção aplicável ao caso.
+Exemplo: "Sempre é necessário X" mas caso concreto é exceção onde X não é necessário.
+Manifestação: Escolhe alternativa "quase correta" que ignora exceção.
+
+Subcategoria: TRAP_DADO_IRRELEVANTE_DESTACADO
+Definição: Enunciado destaca informação irrelevante para distrair.
+Exemplo: Enunciado menciona idade, patrimônio, profissão quando isso não importa
+juridicamente.
+Manifestação: Estudante foca em dado irrelevante e erra resposta.
+
+Subcategoria: TRAP_CONFUSAO_TEMPORAL
+Definição: Questão mistura marcos temporais (lei vigente em data X vs data Y).
+Exemplo: "Segundo lei vigente em 2015..." mas estudante aplica lei de 2020.
+Manifestação: Erro por aplicar lei de época errada.
+
+
+5.3 IMPACTO DE CADA TIPO NO APRENDIZADO
+
+Erros têm gravidades pedagógicas diferentes:
+
+GRAVIDADE ALTA (requer intervenção urgente):
+- CONCEITO_NAO_COMPREENDIDO: Bloqueia aprendizagem de tópicos dependentes.
+- DESCONHECE_LEI_SECA: Base fundamental faltante.
+- PECA_ESCOLHA_TESE_ERRADA: Erro fatal que zera peça.
+
+Impacto: Se não corrigido, estudante não conseguirá progredir em tópicos relacionados.
+Intervenção: Revisão completa do conceito, vídeo explicativo, drill focado.
+
+GRAVIDADE MÉDIA (requer correção mas não urgente):
+- CONFUSAO_CONCEITOS_SIMILARES: Pode ser resolvido com quadro comparativo.
+- CONFUSAO_INSTITUTOS: Exercícios de distinção.
+- APLICACAO_INCORRETA_CONCEITO: Mais prática com cases.
+
+Impacto: Estudante consegue progredir mas com desempenho subótimo.
+Intervenção: Material complementar específico.
+
+GRAVIDADE BAIXA (autocorrigível):
+- PRESSA_DESATENCAO: Treino de atenção, incentivo a revisar respostas.
+- IGNOROU_PALAVRA_NEGATIVA: Destacar palavras-chave.
+- NAO_LEU_ENUNCIADO_COMPLETO: Feedback sobre tempo de leitura.
+
+Impacto: Não indica deficiência de conhecimento, apenas de técnica.
+Intervenção: Dicas de estratégia de prova, simulados com pressão de tempo.
+
+
+5.4 COMO OS ERROS SÃO DETECTADOS
+
+A detecção de tipo de erro não é manual. O sistema utiliza algoritmo de classificação
+baseado em múltiplos fatores:
+
+Fator 1: Domínio do tópico
+- Se progresso_topico.taxa_acerto < 50% → provável CONCEITO_NAO_COMPREENDIDO
+- Se progresso_topico.taxa_acerto > 70% → improvável erro conceitual
+
+Fator 2: Tempo de resposta
+- Se tempo < 50% do esperado → provável PRESSA_DESATENCAO ou NAO_LEU_ENUNCIADO_COMPLETO
+- Se tempo > 150% do esperado → provável CONFUSAO ou DESCONHECIMENTO
+
+Fator 3: Características da questão
+- Se questao.eh_trap = true e errou → provável ERRO_TRAP
+- Se questao.exige_jurisprudencia = true → provável DESCONHECE_JURISPRUDENCIA
+
+Fator 4: Nível de fadiga
+- Se perfil.estado_emocional.fadiga > 0.6 → aumenta probabilidade de PRESSA_DESATENCAO
+
+Fator 5: Padrão histórico
+- Se estudante já errou 3 questões confundindo mesmo par de conceitos → CONFUSAO_CONCEITOS_SIMILARES
+
+Algoritmo simplificado:
+
+```
+classificar_erro(interacao_questao):
+    scores = {tipo: 0 for tipo in TIPOS_ERRO}
+
+    # Análise de domínio
+    dominio_topico = get_dominio(interacao.topico)
+    if dominio_topico < 0.5:
+        scores['CONCEITO_NAO_COMPREENDIDO'] += 0.4
+
+    # Análise temporal
+    if interacao.tempo < tempo_esperado * 0.5:
+        scores['PRESSA_DESATENCAO'] += 0.3
+        scores['NAO_LEU_ENUNCIADO_COMPLETO'] += 0.3
+
+    # Análise de trap
+    if questao.eh_trap:
+        scores['TRAP_*'] += 0.5
+
+    # Análise de padrão
+    erros_similares = count_erros_similares(user_id, topico, last_30_days)
+    if erros_similares > 3:
+        scores['CONFUSAO_CONCEITOS_SIMILARES'] += 0.4
+
+    # Selecionar tipo com maior score
+    return max(scores, key=scores.get)
+```
+
+
+5.5 COMO OS ERROS INFLUENCIAM REVISÃO E ESTRATÉGIA
+
+Cada tipo de erro aciona intervenção pedagógica específica:
+
+INTERVENÇÃO PARA CONCEITO_NAO_COMPREENDIDO:
+1. Agendar revisão imediata do conceito (não esperar ciclo normal)
+2. Fornecer explicação de nível mais básico (nível 2 ou 3)
+3. Gerar drill focado com 10 questões apenas sobre este conceito
+4. Reduzir forca_memoria do tópico para 0.3 (forçar revisões frequentes)
+5. Marcar tópico como "deficiente" no perfil
+
+INTERVENÇÃO PARA CONFUSAO_CONCEITOS_SIMILARES:
+1. Gerar quadro comparativo lado-a-lado dos conceitos confundidos
+2. Drill alternando questões de conceito A e conceito B
+3. Explicação destacando diferenças-chave
+
+INTERVENÇÃO PARA PRESSA_DESATENCAO:
+1. Não agendar revisão de conteúdo (estudante sabe, só errou por descuido)
+2. Incrementar contador de "erros por pressa"
+3. Se contador > 5: Feedback: "Você está errando por pressa. Revise suas respostas
+   antes de confirmar."
+4. Em simulados: Habilitar modo "revisão obrigatória" (estudante deve revisar todas
+   respostas antes de finalizar)
+
+INTERVENÇÃO PARA DESCONHECE_LEI_SECA:
+1. Fornecer texto literal do artigo de lei
+2. Drill focado em questões de lei seca da mesma lei
+3. Sugerir leitura do código (ex: "Leia arts. 121-130 do CP sobre homicídio")
+
+INTERVENÇÃO PARA TRAP:
+1. Explicação detalhada do trap: "Esta alternativa parece correta porque X, mas está
+   errada porque Y"
+2. Treino de identificação de traps (drill só com questões trap)
+3. Dica: "Releia alternativas destacando palavras como 'sempre', 'nunca', 'não'"
+
+A matriz completa de tipo_erro → intervenção contém 28 mapeamentos específicos.
+
+
+
+═══════════════════════════════════════════════════════════════════════════════
+6. SNAPSHOTS COGNITIVOS
+═══════════════════════════════════════════════════════════════════════════════
+
+6.1 CONCEITO E FINALIDADE
+
+Snapshot cognitivo é uma captura imutável e autocontida do estado cognitivo completo
+de um estudante em um momento específico do tempo.
+
+Diferença fundamental entre snapshot e perfil:
+- perfil_juridico: Mutável, representa estado ATUAL, 1 registro por usuário
+- snapshot_cognitivo: Imutável, representa estado em momento PASSADO, N registros
+  por usuário
+
+Finalidade primária:
+Permitir análise longitudinal da evolução do estudante ao longo de semanas e meses.
+
+Finalidades secundárias:
+a) Detecção de regressão (taxa de acerto caiu em alguma disciplina?)
+b) Validação de predições (sistema previu aprovação com probabilidade X; aluno foi
+   aprovado?)
+c) Benchmarking (comparar estudante atual com perfil médio de aprovados em mesmo estágio)
+d) Auditoria LGPD (demonstrar qual era estado cognitivo em data específica)
+e) Pesquisa científica (analisar padrões de aprendizagem em grandes populações)
+
+
+6.2 ESTRUTURA DE UM SNAPSHOT
+
+Um snapshot é armazenado como registro único na tabela snapshot_cognitivo, com campos
+JSONB autocontidos. Estrutura:
+
+6.2.1 Metadados do Snapshot
+- momento (TIMESTAMPTZ): Timestamp exato do snapshot
+- tipo_trigger (VARCHAR): Evento que gerou snapshot (pos_sessao, semanal, pre_prova, etc)
+- contexto_trigger (JSONB): Dados específicos do evento gerador
+- versao_snapshot (VARCHAR): Versionamento do schema (permite evolução)
+
+6.2.2 Bloco 1: Perfil Completo (JSONB)
+Cópia integral do perfil_juridico no momento. Contém todas as 8 dimensões:
+- nivel_geral, pontuacao_global, taxa_acerto_global
+- estado_emocional {confianca, stress, motivacao, fadiga}
+- maturidade_juridica {pensamento_sistemico, ...}
+- padroes_aprendizagem {estilo, velocidade_leitura, ...}
+- riscos {risco_evasao, risco_burnout, streak}
+- metas {data_prova, dias_ate_prova, ...}
+
+6.2.3 Bloco 2: Desempenho Consolidado (JSONB)
+Métricas agregadas de desempenho:
+- total_questoes_resolvidas, total_acertos, taxa_acerto_geral
+- por_disciplina: {disciplina: {questoes, acertos, taxa, nivel_dominio}}
+- por_dificuldade: {facil: {questoes, taxa}, media: {...}, dificil: {...}}
+- tempo_estudo_total_horas, tempo_medio_por_questao
+- simulados: {realizados, aprovado_em, media_notas, ultimo_simulado}
+
+6.2.4 Bloco 3: Padrões de Erro (JSONB)
+Distribuição de erros no momento:
+- distribuicao_categorias: {ERRO_CONCEITUAL: 42, ERRO_INTERPRETACAO: 31, ...}
+- tipo_predominante: tipo de erro mais frequente
+- top_5_erros_especificos: lista ordenada por frequência
+- conceitos_deficientes: conceitos com alta taxa de erro
+- evolucao_ultimos_30_dias: tendência (CRESCENTE, ESTAVEL, DECRESCENTE)
+
+6.2.5 Bloco 4: Estado de Memória (JSONB)
+Situação do sistema de spaced repetition:
+- total_conceitos_aprendidos, conceitos_dominados, conceitos_frageis
+- taxa_retencao_global
+- por_ciclo_revisao: {ciclo_1_24h: {pendentes, atrasadas, taxa_acerto}, ...}
+- esquecimento_detectado: lista de tópicos com queda de forca_memoria
+- proximas_revisoes_urgentes: revisões vencidas ou próximas
+
+6.2.6 Bloco 5: Predição (JSONB)
+Prognóstico de aprovação no momento:
+- probabilidade_aprovacao_1fase (0-1)
+- confianca_predicao (quão confiável é a predição, baseado em volume de dados)
+- nota_estimada_1fase (0-100), margem_erro
+- disciplinas_criticas: disciplinas com gap negativo vs taxa necessária
+- tempo_estimado_ate_aprovacao: {dias, horas_necessarias, ritmo_atual, ritmo_necessario}
+- recomendacao_geral: texto descritivo
+
+6.2.7 Bloco 6: Contexto do Momento (JSONB)
+Contexto temporal e situacional:
+- fase_preparacao: INICIAL, DESENVOLVIMENTO, PREPARACAO_INTENSIVA, PRE_PROVA, POS_PROVA
+- dias_desde_inicio, dias_ate_prova
+- atividade_recente: {ultima_sessao, dias_inativo, sessoes_por_semana, streak}
+- evento_gerador: detalhes do evento que causou snapshot
+- comparacao_snapshot_anterior: evolução desde último snapshot
+
+
+6.3 FREQUÊNCIA DE GERAÇÃO
+
+Snapshots não são gerados a cada interação (seria volume proibitivo). São gerados em
+momentos relevantes (triggers):
+
+TRIGGERS OBRIGATÓRIOS (sempre gera):
+
+1. FIM_SESSAO_ESTUDO
+   Quando: Ao finalizar qualquer sessão de estudo
+   Motivo: Captura estado pós-aprendizagem e fadiga acumulada
+   Frequência: Variável (depende de frequência de estudo do aluno)
+
+2. FIM_SIMULADO
+   Quando: Ao concluir simulado oficial
+   Motivo: Simulado é marco importante de avaliação
+   Frequência: ~1-2 por semana em fase intensiva
+
+3. MUDANCA_NIVEL
+   Quando: Estudante muda de nível (INICIANTE → BASICO, etc)
+   Motivo: Transição de nível é milestone importante
+   Frequência: Raro (~1-3 vezes em toda jornada)
+
+4. MILESTONE_QUESTOES
+   Quando: Atingir 100, 500, 1000, 2000, 5000 questões resolvidas
+   Motivo: Permite comparação em pontos equivalentes entre estudantes
+   Frequência: 5 vezes em toda jornada
+
+5. SNAPSHOT_SEMANAL
+   Quando: Todo domingo 23:59 (se houve atividade na semana)
+   Motivo: Permite análise semanal consistente
+   Frequência: Semanal
+
+6. PRE_PROVA_REAL
+   Quando: D-30, D-7, D-1 antes de prova OAB agendada
+   Motivo: Captura estado de preparo em momentos críticos
+   Frequência: 3 vezes por ciclo de prova
+
+7. POS_PROVA_REAL
+   Quando: Estudante registra resultado de prova OAB
+   Motivo: Valida predição do sistema vs resultado real
+   Frequência: 1 vez por tentativa de prova
+
+TRIGGERS CONDICIONAIS (gera se condição atendida):
+
+8. REGRESSAO_DETECTADA
+   Condição: Taxa de acerto cai > 15 pontos em disciplina
+   Motivo: Regressão requer análise posterior de causa
+   Frequência: Raro (indica problema)
+
+9. BREAKTHROUGH_DETECTADO
+   Condição: Taxa de acerto sobe > 20 pontos em disciplina (antes < 60%)
+   Motivo: Captura momento de "click" de compreensão
+   Frequência: Ocasional
+
+10. MUDANCA_COMPORTAMENTAL
+    Condição: Padrão de estudo muda drasticamente (ex: tempo/questão dobra)
+    Motivo: Mudança pode indicar nova estratégia ou problema
+    Frequência: Raro
+
+11. RISCO_ALTO_EVASAO
+    Condição: Risco de evasão > 0.70
+    Motivo: Documentar momento de risco para análise de intervenção
+    Frequência: Raro
+
+Volume estimado:
+Estudante ativo por 6 meses:
+- Sessões: ~100 (2-3 por semana) → 100 snapshots pos_sessao
+- Semanais: 26 → mas muitos já cobertos por pos_sessao
+- Simulados: ~12
+- Outros: ~5
+Total: ~115 snapshots por aluno em 6 meses (~20 snapshots/mês)
+
+
+6.4 USO EM REGRESSÃO, ADAPTAÇÃO E RELATÓRIOS
+
+6.4.1 Detecção de Regressão
+
+Query: Comparar snapshot atual com snapshot de 30 dias atrás
+
+```sql
+WITH snapshot_atual AS (
+    SELECT desempenho->'por_disciplina' as disciplinas
+    FROM snapshot_cognitivo
+    WHERE user_id = X ORDER BY momento DESC LIMIT 1
+),
+snapshot_30d AS (
+    SELECT desempenho->'por_disciplina' as disciplinas
+    FROM snapshot_cognitivo
+    WHERE user_id = X
+      AND momento >= NOW() - INTERVAL '30 days'
+      AND momento <= NOW() - INTERVAL '30 days' + INTERVAL '1 day'
+    ORDER BY momento LIMIT 1
+)
+SELECT
+    disc_key,
+    (atual.value->>'taxa')::float - (anterior.value->>'taxa')::float as delta
+FROM snapshot_atual
+CROSS JOIN LATERAL jsonb_each(disciplinas) as atual(disc_key, value)
+JOIN snapshot_30d
+CROSS JOIN LATERAL jsonb_each(snapshot_30d.disciplinas) as anterior(disc_key, value)
+WHERE atual.disc_key = anterior.disc_key
+  AND (atual.value->>'taxa')::float - (anterior.value->>'taxa')::float < -15;
+```
+
+Resultado: Lista de disciplinas em regressão
+Ação: Sistema alerta estudante e recomenda drill focado
+
+
+6.4.2 Ajuste Pedagógico Baseado em Evolução
+
+Algoritmo: Comparar estudante atual com benchmark de aprovados
+
+```python
+def comparar_com_aprovados(user_id):
+    # 1. Pegar snapshot atual do aluno
+    snapshot_aluno = get_snapshot_mais_recente(user_id)
+    dias_preparacao = snapshot_aluno['contexto_momento']['dias_desde_inicio']
+
+    # 2. Buscar snapshots de aprovados em mesmo estágio
+    benchmark = calcular_benchmark_aprovados(dias_preparacao)
+    # Retorna: {taxa_acerto_media: 72.3, questoes_media: 1247, confianca_media: 0.78}
+
+    # 3. Comparar
+    gap_taxa = snapshot_aluno['desempenho']['taxa_acerto_geral'] - benchmark['taxa_acerto_media']
+    gap_questoes = snapshot_aluno['desempenho']['total_questoes'] - benchmark['questoes_media']
+
+    # 4. Gerar recomendação
+    if gap_taxa < -10:
+        return "Sua taxa de acerto está 10 pontos abaixo da média de aprovados neste estágio. Recomenda-se intensificar revisão de fundamentos."
+    elif gap_questoes < -200:
+        return "Você resolveu 200 questões a menos que média de aprovados. Recomenda-se aumentar volume de treino."
+    else:
+        return "Você está dentro da trajetória de aprovados. Continue!"
+```
+
+
+6.4.3 Validação de Predições
+
+Query: Sistema previu aprovação? Aluno foi aprovado?
+
+```sql
+SELECT
+    s_pre.momento,
+    s_pre.predicao->>'probabilidade_aprovacao_1fase' as prob_prevista,
+    s_pre.predicao->>'nota_estimada_1fase' as nota_prevista,
+    s_pos.contexto_trigger->>'resultado_real' as resultado_real,
+    s_pos.contexto_trigger->>'nota_real' as nota_real,
+    CASE
+        WHEN (s_pre.predicao->>'probabilidade_aprovacao_1fase')::float >= 0.70
+             AND s_pos.contexto_trigger->>'resultado_real' = 'APROVADO'
+        THEN 'ACERTO_POSITIVO'
+
+        WHEN (s_pre.predicao->>'probabilidade_aprovacao_1fase')::float < 0.50
+             AND s_pos.contexto_trigger->>'resultado_real' = 'REPROVADO'
+        THEN 'ACERTO_NEGATIVO'
+
+        ELSE 'ERRO'
+    END as acuracia
+FROM snapshot_cognitivo s_pre
+JOIN snapshot_cognitivo s_pos ON s_pos.user_id = s_pre.user_id
+WHERE s_pre.tipo_trigger = 'pre_prova'
+  AND s_pos.tipo_trigger = 'pos_prova_real'
+  AND s_pos.momento > s_pre.momento;
+```
+
+Agregado para todos os alunos: Taxa de acurácia do modelo preditivo
+Exemplo: "Sistema acertou predição em 87% dos casos (N=450 alunos)"
+
+
+6.4.4 Relatório de Evolução (para estudante)
+
+Geração de relatório mensal:
+
+```python
+def gerar_relatorio_mensal(user_id, mes):
+    snapshots_mes = get_snapshots_do_mes(user_id, mes)
+
+    primeiro = snapshots_mes[0]
+    ultimo = snapshots_mes[-1]
+
+    relatorio = {
+        "periodo": f"{mes}/2025",
+        "questoes_resolvidas": ultimo['desempenho']['total_questoes'] - primeiro['desempenho']['total_questoes'],
+        "evolucao_taxa_acerto": ultimo['desempenho']['taxa_acerto_geral'] - primeiro['desempenho']['taxa_acerto_geral'],
+        "evolucao_confianca": ultimo['perfil_completo']['estado_emocional']['confianca'] - primeiro['perfil_completo']['estado_emocional']['confianca'],
+        "evolucao_probabilidade": ultimo['predicao']['probabilidade_aprovacao_1fase'] - primeiro['predicao']['probabilidade_aprovacao_1fase'],
+        "disciplinas_melhoradas": identificar_disciplinas_com_melhora(primeiro, ultimo),
+        "disciplinas_regredidas": identificar_disciplinas_com_regressao(primeiro, ultimo),
+        "conquistas": identificar_conquistas(snapshots_mes)
+    }
+
+    return relatorio
+```
+
+Estudante recebe:
+"Em dezembro/2025:
+- Você resolveu 342 questões
+- Sua taxa de acerto aumentou 5.2 pontos (de 63.1% para 68.3%)
+- Sua confiança aumentou 0.08 (de 0.64 para 0.72)
+- Sua probabilidade de aprovação aumentou 12 pontos (de 61% para 73%)
+- Disciplinas que mais melhoraram: Direito Penal (+8.3 pontos)
+- Disciplinas que regrediram: Direito Tributário (-3.1 pontos)
+- Conquistas: Atingiu milestone de 1000 questões, Manteve streak de 28 dias"
+
+
+
+═══════════════════════════════════════════════════════════════════════════════
+7. GOVERNANÇA, SEGURANÇA E LGPD
+═══════════════════════════════════════════════════════════════════════════════
+
+7.1 POLÍTICA DE RETENÇÃO
+
+A política de retenção define quanto tempo cada tipo de dado é armazenado antes de
+ser arquivado ou anonimizado. A política foi desenhada balanceando valor pedagógico,
+conformidade LGPD, e custo de armazenamento.
+
+7.1.1 Estados do Usuário
+
+O ciclo de vida de dados de um usuário segue estados bem definidos:
+
+ESTADO 1: ATIVO
+Critério: ultimo_acesso < 180 dias
+Política: Manter TODOS os dados sem restrição
+Backup: Diário + Semanal + Mensal
+Justificativa: Usuário ativo pode retornar a qualquer momento e espera encontrar
+seus dados intactos.
+
+ESTADO 2: INATIVO
+Critério: 180 dias <= ultimo_acesso < 365 dias
+Ações automáticas:
+- Dia 180: Enviar email de reengajamento "Sentimos sua falta"
+- Dia 270: Segundo email "Última chance antes de perdermos seu progresso"
+- Arquivar snapshots não-críticos em cold storage (manter apenas: pre_prova, pos_prova,
+  mudanca_nivel, snapshot mensal mais recente)
+Política: Manter dados principais, arquivar dados volumosos
+Backup: Apenas mensal
+Justificativa: Usuário pode retornar. Dados principais são preservados mas dados
+volumosos são otimizados.
+
+ESTADO 3: INATIVO_LONGO_PRAZO
+Critério: ultimo_acesso >= 365 dias
+Ações automáticas:
+- Dia 365: Enviar email "Seus dados serão anonimizados em 30 dias. Acesse para cancelar."
+- Dia 395: Anonimizar automaticamente (se não acessou)
+Política: Preparação para anonimização
+Justificativa: LGPD princípio da necessidade - dados sem uso por 1 ano não têm mais
+finalidade pedagógica ativa.
+
+ESTADO 4: EXCLUSAO_SOLICITADA
+Critério: Usuário solicitou exclusão via interface
+Ações:
+- Carência de 90 dias (período de arrependimento)
+- Acesso bloqueado mas dados preservados
+- Email de confirmação no dia 1 e avisos nos dias 60 e 89
+- Dia 90: Anonimizar permanentemente
+Exceção: Dados emocionais (estado_emocional) podem ser deletados IMEDIATAMENTE se
+usuário solicitar, sem carência (por serem dados sensíveis - LGPD Art. 11)
+Justificativa: LGPD Art. 18, VI (direito de exclusão) com proteção contra decisões
+impulsivas.
+
+ESTADO 5: ANONIMIZADO
+Critério: Processo de anonimização concluído
+Irreversibilidade: Dados pessoais foram removidos de forma não-reversível
+Dados científicos: Mantidos em forma agregada e desidentificada
+Justificativa: Dados anonimizados não são mais "dados pessoais" (LGPD Art. 5º, XI)
+e podem ser mantidos indefinidamente para pesquisa.
+
+ESTADO 6: APROVADO_OAB
+Critério: Usuário registrou aprovação na OAB
+Política especial: Manter TODOS os snapshots por 5 anos (valor histórico e benchmarking)
+Após 5 anos: Aplicar regras de INATIVO_LONGO_PRAZO
+Justificativa: Perfil de aprovados é valioso para calibrar predições e servir como
+benchmark para futuros estudantes.
+
+
+7.1.2 Retenção por Tabela
+
+users: Enquanto ativo + 5 anos OU solicitação exclusão → anonimizar
+perfil_juridico: Idem users
+progresso_disciplina: Idem users
+progresso_topico: Idem users
+sessao_estudo: Enquanto ativo + 2 anos → arquivar
+interacao_questao: Enquanto ativo + 5 anos → anonimizar
+analise_erro: Enquanto ativo + 3 anos → anonimizar
+pratica_peca: Enquanto ativo + 5 anos → anonimizar (conteudo_peca removido antes)
+erro_peca: Idem pratica_peca
+revisao_agendada: Enquanto ativo + 1 ano → deletar (sem valor após inatividade)
+snapshot_cognitivo: Políticas especiais (ver seção 6.3)
+metricas_temporais: 2 anos → arquivar
+questoes_banco: Indefinido (conteúdo independente de usuário)
+log_sistema: 6 anos (conformidade fiscal/legal)
+consentimentos: Indefinido (prova legal de consentimento)
+
+
+7.2 ANONIMIZAÇÃO
+
+Anonimização é o processo irreversível de remoção de dados pessoais mantendo dados
+científicos em forma agregada.
+
+7.2.1 Algoritmo de Anonimização
+
+Passo 1: Gerar hash anônimo
+SHA256(user_id + salt_aleatorio + timestamp) → hash não-reversível
+Este hash substitui user_id em dados científicos, permitindo rastreamento longitudinal
+sem identificação.
+
+Passo 2: Atualizar tabela users
+- nome → "Usuário Anonimizado"
+- email → "anonimizado_<hash[:16]>@anonimizado.local"
+- cpf, telefone, endereco, foto → NULL
+- anonimizado → true
+- anonimizado_em → NOW()
+- motivo_anonimizacao → "INATIVIDADE" ou "SOLICITACAO_USUARIO"
+- hash_anonimo → hash gerado no Passo 1
+
+Passo 3: Anonimizar perfil_juridico
+- metas (pode conter texto identificador) → NULL
+- Campos JSONB são mantidos (são métricas, não dados pessoais)
+- anonimizado → true
+
+Passo 4: Anonimizar dados de progresso
+- progresso_disciplina, progresso_topico: Manter (são métricas)
+- Flag anonimizado → true
+
+Passo 5: Anonimizar sessao_estudo
+- configuracao: Remover campo "notas_pessoais" se existir
+- Demais campos mantidos
+
+Passo 6: Anonimizar interacao_questao
+- anotacoes_aluno (se existir) → NULL
+- Demais campos mantidos (questao_id, alternativa_escolhida, tempo são dados científicos)
+
+Passo 7: Anonimizar analise_erro
+- Manter (não contém dados pessoais)
+
+Passo 8: Anonimizar pratica_peca
+- conteudo_peca → "[CONTEÚDO REMOVIDO - ANONIMIZADO]"
+  Motivo: Peça pode conter dados pessoais fictícios inseridos pelo aluno
+- Métricas mantidas (notas, tempo)
+
+Passo 9: Deletar revisao_agendada
+- DELETE (sem valor científico)
+
+Passo 10: Anonimizar snapshot_cognitivo
+- Remover dados identificadores de contexto_trigger e contexto_momento
+- Métricas agregadas mantidas
+
+Passo 11: Anonimizar metricas_temporais
+- Manter (agregados)
+
+Passo 12: Caso especial - Dados emocionais
+Se motivo = "SOLICITACAO_USUARIO" ou consentimento para dados_emocionais foi revogado:
+- perfil_juridico.estado_emocional → NULL
+- perfil_juridico.riscos → NULL
+- snapshot_cognitivo.perfil_completo.estado_emocional → NULL (em todos snapshots)
+
+Passo 13: Registrar em log_sistema
+Tipo: "ANONIMIZACAO_DADOS"
+Metadata: {user_id_original, hash_anonimo, motivo, data, tabelas_afetadas}
+Este log é PERMANENTE (nunca deletado) para auditoria
+
+Passo 14: Verificar qualidade da anonimização
+- Executar teste de não-reidentificação
+- Verificar que nome = "Usuário Anonimizado"
+- Verificar que email contém "@anonimizado.local"
+- Verificar que CPF/telefone são NULL
+- Verificar que conteudo_peca foi removido
+
+Passo 15: Commit transação
+Tudo ou nada (atomicidade)
+
+
+7.2.2 Teste de Não-Reidentificação
+
+Após anonimização, executar:
+
+```sql
+SELECT
+    (nome = 'Usuário Anonimizado') as nome_ok,
+    (email LIKE '%@anonimizado.local') as email_ok,
+    (cpf IS NULL) as cpf_ok,
+    (telefone IS NULL) as telefone_ok,
+    (anonimizado = true) as flag_ok
+FROM users
+WHERE hash_anonimo = '<hash>';
+```
+
+Todas as condições devem ser TRUE. Se alguma for FALSE, anonimização falhou e deve
+ser corrigida.
+
+
+7.3 LOGS ESSENCIAIS
+
+log_sistema registra eventos críticos para auditoria e conformidade:
+
+TIPO: ACESSO_DADOS_PESSOAIS
+Quando: Admin/suporte acessa dados pessoais de usuário
+Metadata: {user_id_acessado, admin_id, motivo, campos_acessados, ip}
+Retenção: 6 anos
+Motivo: LGPD accountability - provar que acessos são autorizados
+
+TIPO: ANONIMIZACAO_DADOS
+Quando: Dados são anonimizados
+Metadata: {user_id_original, hash_anonimo, motivo, tabelas_afetadas, registros_afetados}
+Retenção: Indefinido (nunca deletar)
+Motivo: Prova de conformidade com LGPD
+
+TIPO: EXPORTACAO_DADOS
+Quando: Usuário solicita exportação (LGPD Art. 18, II - portabilidade)
+Metadata: {user_id, formato, tamanho_bytes, url_download}
+Retenção: 6 anos
+Motivo: Demonstrar atendimento a direitos do titular
+
+TIPO: SOLICITACAO_EXCLUSAO
+Quando: Usuário solicita exclusão de dados
+Metadata: {user_id, motivo, data_execucao_prevista}
+Retenção: Indefinido
+Motivo: Prova de que solicitação foi recebida e processada
+
+TIPO: CONSENTIMENTO_REGISTRADO
+Quando: Usuário aceita termos e registra consentimentos
+Metadata: {user_id, consentimentos, versao_politica, timestamp}
+Retenção: Indefinido
+Motivo: Prova de que havia consentimento válido em momento X
+
+TIPO: CONSENTIMENTO_REVOGADO
+Quando: Usuário revoga consentimento específico
+Metadata: {user_id, tipo_consentimento, motivo}
+Retenção: Indefinido
+Motivo: Prova de revogação e quando sistema parou tratamento
+
+TIPO: INCIDENTE_SEGURANCA
+Quando: Acesso não autorizado, breach, tentativa de invasão
+Metadata: {tipo_incidente, gravidade, afetados, acao_tomada}
+Retenção: Indefinido
+Motivo: LGPD Art. 48 (comunicação de incidente à ANPD)
+
+
+7.4 CONTROLE DE ACESSO
+
+Acesso a dados é controlado em múltiplas camadas:
+
+7.4.1 Nível de Aplicação (Python/API)
+- Autenticação: JWT tokens com expiração de 24h
+- Autorização: RBAC (Role-Based Access Control)
+  Roles: ESTUDANTE, ADMIN, SUPORTE, ANALYTICS
+- Estudante: Acessa apenas próprios dados
+- Admin: Acessa qualquer dado (mas acesso é logado)
+- Suporte: Acessa dados para resolver tickets (acesso logado)
+- Analytics: Acesso somente leitura a dados agregados/anonimizados
+
+7.4.2 Nível de Banco de Dados (PostgreSQL)
+- Roles no PostgreSQL:
+  juris_ia_app: SELECT, INSERT, UPDATE (não DELETE em users, perfil_juridico)
+  juris_ia_analytics: SELECT only
+  juris_ia_admin: Full access
+- Row-Level Security (RLS):
+  CREATE POLICY estudante_vê_próprios_dados ON perfil_juridico
+  USING (user_id = current_setting('app.current_user_id')::uuid);
+
+7.4.3 Nível de Rede
+- TLS 1.3 para comunicação API ↔ Cliente
+- SSL para comunicação API ↔ Database
+- Firewall: Database não exposto publicamente (apenas localhost ou VPN)
+
+
+7.5 PROTEÇÕES JURÍDICAS DO SISTEMA
+
+7.5.1 Conformidade LGPD - Checklist
+
+✓ Princípio da Finalidade (Art. 6º, I): Dados coletados para finalidades específicas
+  e informadas (educação jurídica, predição de aprovação, personalização pedagógica)
+
+✓ Princípio da Necessidade (Art. 6º, III): Apenas dados estritamente necessários são
+  coletados. Sistema não coleta redes sociais, histórico de navegação, etc.
+
+✓ Princípio da Transparência (Art. 6º, VI): Política de privacidade clara acessível
+  antes de registro. Dashboard mostra quais dados são coletados.
+
+✓ Princípio da Segurança (Art. 6º, VII): Criptografia, controle de acesso, backups,
+  logs de auditoria.
+
+✓ Princípio da Prevenção (Art. 6º, VIII): Testes de segurança, WAF, monitoramento
+  de acessos anômalos.
+
+✓ Princípio da Accountability (Art. 6º, X): Logs demonstram conformidade, relatórios
+  mensais de compliance gerados automaticamente.
+
+✓ Bases Legais (Art. 7º):
+  - Execução de contrato (inciso V): Dados necessários para prestar serviço educacional
+  - Consentimento (inciso I): Personalização pedagógica e dados emocionais
+  - Legítimo interesse (inciso IX): Dados agregados para melhoria do produto
+
+✓ Dados Sensíveis (Art. 11): Consentimento específico e destacado para dados emocionais
+  (estado_emocional, riscos psicológicos)
+
+✓ Direitos do Titular (Art. 18):
+  - Confirmação de tratamento: Endpoint /dados/consultar
+  - Acesso aos dados: Endpoint /dados/exportar (JSON completo)
+  - Correção: Endpoint /dados/atualizar
+  - Anonimização/bloqueio: Processo automático
+  - Portabilidade: JSON estruturado
+  - Eliminação: Processo com carência de 90 dias
+  - Revogação: Endpoint /consentimento/revogar
+
+✓ Comunicação de Incidente (Art. 48): Procedimento definido para notificar ANPD em
+  < 72h e titulares afetados.
+
+7.5.2 Termo de Consentimento
+
+Usuário, ao se cadastrar, concorda explicitamente com:
+
+CONSENTIMENTO 1: Serviço Básico (obrigatório)
+Base legal: Execução de contrato
+Finalidade: Prestar serviço de preparação para OAB
+Dados: Nome, email, respostas a questões
+Não pode ser revogado (se revogar, não pode usar sistema)
+
+CONSENTIMENTO 2: Personalização Pedagógica (opcional)
+Base legal: Consentimento
+Finalidade: Adaptar conteúdo, dificuldade, e explicações ao perfil do estudante
+Dados: Perfil cognitivo completo, padrões de erro, análise de aprendizagem
+Pode ser revogado (sistema volta para modo "padrão" sem personalização)
+
+CONSENTIMENTO 3: Dados Emocionais - SENSÍVEL (opcional, destacado)
+Base legal: Consentimento específico para dado sensível (LGPD Art. 11)
+Finalidade: Detectar stress, fadiga, risco de burnout para recomendar pausas
+Dados: Confiança, stress, motivação, fadiga, risco de burnout
+Pode ser revogado a qualquer momento (dados deletados imediatamente)
+
+CONSENTIMENTO 4: Pesquisa Científica com Dados Anonimizados (opcional)
+Base legal: Legítimo interesse + anonimização
+Finalidade: Pesquisa sobre eficácia pedagógica, melhoria do sistema
+Dados: Dados anonimizados (não permitem reidentificação)
+Pode ser revogado (dados anonimizados não são deletados mas não são mais usados em
+pesquisa nova)
+
+CONSENTIMENTO 5: Comunicação de Marketing (opcional)
+Base legal: Consentimento
+Finalidade: Enviar emails sobre novos recursos, promoções
+Dados: Email
+Pode ser revogado (opt-out em qualquer email)
+
+
+
+═══════════════════════════════════════════════════════════════════════════════
+8. BENEFÍCIOS TÉCNICOS DA ARQUITETURA
+═══════════════════════════════════════════════════════════════════════════════
+
+8.1 ESCALABILIDADE
+
+A arquitetura foi projetada para suportar crescimento de 100 usuários a 100.000 usuários
+sem reestruturação fundamental.
+
+8.1.1 Escalabilidade Vertical (Single Server)
+
+Com servidor adequadamente dimensionado, a arquitetura suporta até ~10.000 usuários
+ativos simultaneamente:
+
+- PostgreSQL com 16 GB RAM, 8 cores, SSD NVMe
+- Índices otimizados reduzem queries de O(N) para O(log N)
+- JSONB com índices GIN permite busca eficiente em estruturas semiestruturadas
+- Connection pooling (PgBouncer) suporta 1000+ conexões concorrentes
+- Query optimization: Views pré-computadas, metricas_temporais pré-agregadas
+
+Gargalo identificado: interacao_questao cresce linearmente com uso. Solução:
+particionamento por data quando atingir ~1 milhão de registros.
+
+8.1.2 Escalabilidade Horizontal (Distributed)
+
+Para > 10.000 usuários ativos, arquitetura suporta distribuição:
+
+- Read replicas: Análises e dashboards consultam réplicas, escrita vai para master
+- Sharding por user_id: Particionar banco por hash de user_id (10 shards = 10x capacidade)
+- Caching: Redis para perfil_juridico (consulta frequente, atualização moderada)
+- CDN: Questões estáticas (questoes_banco) servidas via CDN
+
+8.1.3 Escalabilidade de Armazenamento
+
+Volume estimado por usuário:
+- perfil_juridico: 50 KB
+- progresso_*: 100 KB
+- interacao_questao: 2000 questões × 1 KB = 2 MB
+- snapshot_cognitivo: 50 snapshots × 100 KB = 5 MB
+- Total: ~7.2 MB por usuário
+
+Para 100.000 usuários: ~720 GB (viável em disco único)
+Para 1.000.000 usuários: ~7.2 TB (requer storage distribuído ou object storage para
+snapshots antigos)
+
+Otimização: Snapshots de usuários inativos movidos para S3 Glacier (custo 90% menor).
+
+
+8.2 MANUTENIBILIDADE
+
+8.2.1 Separação de Responsabilidades
+
+Cada tabela tem responsabilidade clara e única:
+- users: Identificação e autenticação
+- perfil_juridico: Estado cognitivo
+- interacao_questao: Eventos de aprendizagem
+- snapshot_cognitivo: Histórico temporal
+
+Esta separação permite:
+- Modificar lógica de perfil cognitivo sem afetar logs de interação
+- Adicionar novo tipo de erro sem alterar estrutura de questões
+- Evoluir schema de snapshot (versionamento) sem quebrar snapshots antigos
+
+8.2.2 Uso de JSONB para Flexibilidade
+
+Campos JSONB (perfil_juridico.estado_emocional, snapshot_cognitivo.desempenho) permitem
+evolução de schema sem migrations complexas:
+
+- Adicionar nova métrica: Basta incluir campo no JSONB (backward compatible)
+- Remover métrica obsoleta: Código para de escrever, dados antigos permanecem (não quebram)
+- Versionamento: Campo versao_snapshot permite múltiplos schemas coexistirem
+
+8.2.3 Documentação Inline
+
+Comentários SQL (COMMENT ON TABLE/COLUMN) documentam finalidade no próprio banco:
+
+```sql
+COMMENT ON COLUMN perfil_juridico.estado_emocional IS
+'LGPD Art. 11: Dado sensível - requer consentimento específico';
+```
+
+Developer novo pode entender estrutura consultando metadata do banco.
+
+8.2.4 Naming Conventions Consistentes
+
+- Tabelas: snake_case, plural ou singular conforme semântica (users, perfil_juridico)
+- Campos: snake_case, sufixos padronizados (_id para FKs, _em para timestamps)
+- Índices: idx_<tabela>_<campo(s)>
+- Constraints: unique_<tabela>_<campo(s)>, fk_<tabela>_<referencia>
+
+
+8.3 EFICIÊNCIA COMPUTACIONAL
+
+8.3.1 Pré-Computação Seletiva
+
+metricas_temporais pré-calcula agregações pesadas:
+- Query "Total de questões por disciplina na última semana" sem pré-computação:
+  Agregar milhões de registros de interacao_questao → 5-10 segundos
+- Com metricas_temporais: SELECT direto → 50ms
+
+Trade-off: Espaço (duplicação de dados) por tempo (query instantâneo)
+
+8.3.2 Índices Estratégicos
+
+Índices foram planejados baseados em queries mais frequentes:
+
+Query: "Buscar todas interações de um usuário"
+Índice: idx_interacao_user ON interacao_questao(user_id)
+Ganho: O(N) → O(log N)
+
+Query: "Buscar erros de um usuário"
+Índice parcial: idx_interacao_erros ON interacao_questao(user_id, questao_id)
+WHERE resultado = 'ERRO'
+Ganho: Índice é 60% menor (só erros) → scan mais rápido
+
+Query: "Buscar snapshots de um usuário ordenados por data"
+Índice composto: idx_snapshot_user_momento ON snapshot_cognitivo(user_id, momento DESC)
+Ganho: Ordenação evitada (já vem ordenado do índice)
+
+8.3.3 Desnormalização Controlada
+
+snapshot_cognitivo é propositalmente desnormalizado (duplica dados de perfil, progresso, etc).
+Motivo: Snapshot é autocontido e imutável. Normalizar exigiria 10+ joins para reconstruir
+estado → query lenta. Com desnormalização: 1 SELECT.
+
+Trade-off aceito: Duplicação de dados por velocidade de consulta histórica.
+
+
+8.4 CONFIABILIDADE PEDAGÓGICA
+
+8.4.1 Consistência de Dados
+
+Transações ACID garantem que perfil cognitivo nunca fica inconsistente:
+
+Exemplo: Estudante responde questão
+- Inserir em interacao_questao
+- Atualizar perfil_juridico.taxa_acerto_global
+- Atualizar progresso_disciplina.taxa_acerto
+- Inserir em analise_erro (se errou)
+- Atualizar progresso_topico.forca_memoria
+
+Se qualquer passo falhar, ROLLBACK de todos. Nunca fica estado parcial (ex: interacao
+registrada mas perfil não atualizado).
+
+8.4.2 Auditabilidade
+
+Toda decisão pedagógica pode ser rastreada:
+
+"Por que sistema recomendou drill de Direito Tributário?"
+→ Consultar perfil_juridico: progresso_disciplina mostra taxa 52% em Tributário
+→ Consultar progresso_topico: 3 tópicos com forca_memoria < 0.5
+→ Consultar snapshot_cognitivo anterior: disciplina regrediu 8 pontos em 2 semanas
+→ Conclusão documentada: Disciplina crítica + regressão = prioridade alta
+
+8.4.3 Reprodutibilidade
+
+Snapshots permitem "viajar no tempo":
+
+"Em 15/11/2024, por que sistema previu aprovação com probabilidade 73%?"
+→ Consultar snapshot de 15/11/2024
+→ predicao.probabilidade_aprovacao_1fase = 0.73
+→ desempenho mostra taxa_acerto_geral = 71.2%, 1.247 questões, 95 dias de preparação
+→ comparacao_snapshot_anterior mostra evolução positiva constante
+→ Conclusão: Predição baseada em dados concretos, não arbitrária
+
+
+8.5 SEGURANÇA JURÍDICA
+
+8.5.1 Prova de Conformidade LGPD
+
+Em caso de auditoria da ANPD:
+
+Pergunta: "Como vocês garantem que dados emocionais só são coletados com consentimento?"
+
+Resposta demonstrável:
+1. Consultar tabela consentimentos:
+   SELECT * FROM consentimentos WHERE user_id = X AND dados_emocionais = true;
+   Mostra data, hora, IP, versão da política
+
+2. Consultar log_sistema:
+   SELECT * FROM log_sistema WHERE tipo = 'CONSENTIMENTO_REGISTRADO' AND metadata->>'user_id' = X;
+   Log imutável do consentimento
+
+3. Mostrar código que verifica consentimento antes de coletar:
+   ```python
+   if not tem_consentimento(user_id, 'dados_emocionais'):
+       perfil.estado_emocional = None  # Não coletar
+   ```
+
+Pergunta: "Vocês anonimizam dados de inativos?"
+
+Resposta: Consultar users WHERE anonimizado = true. Mostrar log_sistema tipo
+'ANONIMIZACAO_DADOS' com timestamps, motivos, e resultado de teste de não-reidentificação.
+
+8.5.2 Proteção Contra Litígios
+
+Se aluno processar alegando "sistema falhou e eu reprovei":
+
+Defesa baseada em dados:
+1. Consultar snapshot pre_prova (D-7 antes da prova):
+   - Probabilidade de aprovação prevista: 45%
+   - Nota estimada: 57.3 (abaixo de 60)
+   - Disciplinas críticas: 4 disciplinas com taxa < 55%
+   - Recomendação: "Ritmo insuficiente. Recomenda-se adiar prova."
+
+2. Consultar log_sistema:
+   - Sistema enviou 3 alertas de "probabilidade baixa"
+   - Estudante visualizou alertas (log de acesso)
+
+3. Conclusão: Sistema alertou adequadamente. Estudante escolheu ignorar recomendação.
+   Não há responsabilidade do sistema.
+
+
+
+═══════════════════════════════════════════════════════════════════════════════
+9. CONSIDERAÇÕES FINAIS (TÉCNICAS)
+═══════════════════════════════════════════════════════════════════════════════
+
+9.1 LIMITES INTENCIONAIS DO SISTEMA
+
+9.1.1 Não é Sistema de Conversação
+
+O JURIS_IA não armazena histórico de chat ou conversas livres. Esta limitação é
+intencional. Sistemas de chat geram volume massivo de dados não-estruturados de baixo
+valor analítico. A arquitetura prioriza dados estruturados de alto valor pedagógico.
+
+Se futuramente for desejado adicionar chat, recomenda-se:
+- Sistema separado para conversação (não integrado ao banco principal)
+- Retenção curta (30 dias)
+- Não usar conversas para decisões pedagógicas críticas
+
+9.1.2 Não Armazena Dados de Terceiros
+
+O sistema não integra com redes sociais, histórico de navegação, ou dados de outras
+plataformas. Esta contenção de escopo reduz superfície de ataque LGPD e mantém foco
+no domínio jurídico-educacional.
+
+9.1.3 Predição Não é Garantia
+
+O campo predicao.probabilidade_aprovacao_1fase é estimativa estatística, não garantia.
+Interface deve sempre incluir disclaimer: "Esta predição é baseada em dados históricos
+e não garante aprovação. Resultado real depende de múltiplos fatores."
+
+
+9.2 PONTOS DE EXPANSÃO FUTURA
+
+9.2.1 Machine Learning Avançado
+
+Atualmente, perfil cognitivo é atualizado por algoritmos determinísticos (fórmulas
+matemáticas fixas). Expansão futura pode incluir:
+
+- Modelo de ML para predição de aprovação treinado em snapshots históricos de aprovados
+- Modelo de NLP para classificação automática de erros em peças (atualmente, avaliação
+  de peças é semi-manual)
+- Modelo de recomendação para sequência ótima de questões (atualmente, heurística)
+
+Estrutura atual já suporta ML:
+- snapshot_cognitivo fornece datasets rotulados (features = snapshot D-30, label = aprovado/reprovado)
+- interacao_questao fornece sequences para modelos temporais (LSTM, Transformers)
+- Campos JSONB permitem adicionar scores de ML sem alterar schema
+
+9.2.2 Gamificação Avançada
+
+Atualmente, pontuacao_global é métrica simples. Expansão pode incluir:
+
+- Sistema de badges armazenado em nova tabela badges_conquistados
+- Leaderboards por disciplina, região, instituição
+- Competições entre estudantes (torneios de simulados)
+
+Estrutura atual já suporta:
+- metricas_temporais permite rankings temporais
+- snapshot_cognitivo permite comparações justas (estudantes em mesmo estágio)
+
+9.2.3 Integrações Externas
+
+Expansão futura pode integrar com:
+
+- APIs de universidades (importar histórico acadêmico do aluno)
+- API da OAB (verificar resultado real de prova automaticamente)
+- Plataformas de vídeo (rastrear aulas assistidas)
+
+Recomendação: Manter integrações em tabelas separadas (ex: historico_academico,
+resultados_oab_api) para não poluir schema core.
+
+
+9.3 JUSTIFICATIVAS ARQUITETURAIS RELEVANTES
+
+9.3.1 Por que PostgreSQL e não MongoDB?
+
+Decisão: PostgreSQL com JSONB
+
+Justificativa:
+- Dados jurídicos têm estrutura relacional clara (usuário tem perfil, perfil tem
+  progresso em disciplinas, disciplinas têm tópicos)
+- ACID transactions são críticas para consistência de perfil cognitivo
+- Queries analíticas complexas (agregações, joins, window functions) são frequentes
+- JSONB oferece flexibilidade de NoSQL quando necessário (perfil, snapshots)
+- Conformidade LGPD é mais fácil com constraints e triggers de SQL
+
+MongoDB seria viável para:
+- Log de eventos de alta frequência (mas log_sistema tem frequência moderada)
+- Dados completamente não-estruturados (mas nossos dados têm estrutura)
+
+9.3.2 Por que UUIDs e não IDs Auto-Incrementais?
+
+Decisão: UUIDs (gen_random_uuid())
+
+Justificativa:
+- Distribuído-friendly: Múltiplos servidores podem gerar IDs sem colisão
+- Segurança: ID auto-incremental expõe volume de dados (user_id=10000 → 10k usuários)
+- Merge-friendly: Fácil migrar dados de ambiente dev → prod sem conflito de IDs
+- Padrão moderno
+
+Trade-off aceito:
+- 16 bytes vs 4 bytes (integer): Impacto de storage é marginal (~0.5% do total)
+- Índices ligeiramente maiores: Impacto de performance é marginal (< 5% em queries)
+
+9.3.3 Por que Snapshots e não Event Sourcing Completo?
+
+Decisão: Snapshots periódicos + estado mutável (perfil_juridico)
+
+Alternativa considerada: Event Sourcing puro (armazenar só eventos, reconstruir estado
+por replay)
+
+Justificativa:
+- Event Sourcing teria exigido replay de milhões de eventos para reconstruir perfil
+  (lento)
+- Snapshots balanceiam: Estado atual mutável (rápido) + snapshots históricos (análise
+  temporal)
+- Event Sourcing completo é over-engineering para domínio pedagógico
+
+Event Sourcing seria justificado se:
+- Necessário "desfazer" operações (não é o caso em educação)
+- Auditoria de cada mudança de campo (snapshots periódicos são suficientes)
+
+9.3.4 Por que Anonimização e não Exclusão Física?
+
+Decisão: Anonimização (remoção de dados pessoais, manutenção de dados científicos)
+
+Alternativa considerada: DELETE CASCADE em todas tabelas
+
+Justificativa:
+- LGPD permite anonimização como alternativa à exclusão (Art. 5º, XI)
+- Dados anonimizados têm valor científico (melhoria do sistema, pesquisa sobre
+  eficácia pedagógica)
+- Exclusão física destruiria capacidade de validar predições históricas
+
+Garantia LGPD:
+- Anonimização é irreversível (SHA256 sem salt armazenado)
+- Teste de não-reidentificação executado após cada anonimização
+- Log permanente do processo
+
+
+═══════════════════════════════════════════════════════════════════════════════
+CONCLUSÃO TÉCNICA
+═══════════════════════════════════════════════════════════════════════════════
+
+A arquitetura de dados e cognição jurídica do JURIS_IA_CORE_V1 foi projetada para
+suportar personalização pedagógica profunda através de persistência estruturada de
+perfil cognitivo multidimensional, taxonomia detalhada de erros, e análise longitudinal
+via snapshots temporais.
+
+A escolha de PostgreSQL com uso extensivo de JSONB balanceia estrutura relacional
+necessária para integridade de dados com flexibilidade para evolução de schema. O uso
+de snapshots imutáveis permite análise temporal sem complexidade de event sourcing
+completo.
+
+A conformidade LGPD foi integrada desde o design inicial, não como adaptação posterior,
+resultando em sistema que pode demonstrar accountability através de logs estruturados,
+consentimentos granulares, e processo de anonimização auditável.
+
+A arquitetura suporta escalabilidade de 100 a 100.000 usuários com otimizações graduais
+(índices, particionamento, read replicas) sem necessidade de reestruturação fundamental.
+
+Limitações intencionais (não armazenar conversas, não integrar com terceiros além do
+necessário) mantêm foco no domínio jurídico-educacional e facilitam manutenibilidade
+de longo prazo.
+
+
+═══════════════════════════════════════════════════════════════════════════════
+FIM DO RELATÓRIO TÉCNICO
+═══════════════════════════════════════════════════════════════════════════════
+
+Documento: JURIS_IA_ARQ_DADOS_001
+Versão: 1.0.0
+Data: 17 de dezembro de 2025
+Total de páginas: 89 (equivalente)
+Total de palavras: ~22.000
+Classificação: Documentação Técnica Interna
+Status: FINAL

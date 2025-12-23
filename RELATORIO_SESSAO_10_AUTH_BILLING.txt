@@ -1,0 +1,963 @@
+================================================================================
+RELATÓRIO DA SESSÃO 10 — AUTENTICAÇÃO E BILLING
+================================================================================
+
+SISTEMA: JURIS IA CORE V1
+DATA: 2025-12-17
+ETAPA: 10 — ARQUITETURA DE AUTENTICAÇÃO E MONETIZAÇÃO
+RESPONSÁVEL: Arquiteto de Autenticação e Monetização
+
+================================================================================
+1. OBJETIVO DA SESSÃO
+================================================================================
+
+Implementar sistema completo de autenticação, autorização e billing com:
+
+- JWT authentication (access + refresh tokens)
+- Role-based access control (RBAC)
+- Dual-mode architecture (pedagogico vs profissional)
+- Subscription plans (FREE, BASIC, PRO)
+- Usage metering e rate limiting
+- Stripe integration para billing
+- Webhook processing
+- Security best practices
+
+================================================================================
+2. ARQUIVOS CRIADOS
+================================================================================
+
+2.1. MIGRAÇÕES DE BANCO DE DADOS
+---------------------------------
+
+[A] database/migrations/003_create_auth_tables.sql
+    Linhas: ~350
+    Propósito: Tabelas de autenticação e sessões
+
+    Tabelas criadas:
+      - usuario: Dados de usuários com autenticação
+      - token_refresh: Tokens de refresh (7 dias)
+      - sessao_usuario: Sessões ativas (access tokens)
+      - log_autenticacao: Log completo de eventos
+      - jwt_secret: Secrets para assinatura JWT com rotação
+
+    Funcionalidades:
+      ✓ Roles: role_pedagogico, role_profissional, role_admin
+      ✓ Modos: pedagogico, profissional
+      ✓ Proteção contra brute force (5 tentativas, bloqueio 15min)
+      ✓ Soft delete de usuários
+      ✓ Token family tracking (segurança contra reutilização)
+      ✓ Funções: limpar_tokens_expirados(), revogar_tokens_usuario()
+
+    Permissões:
+      ✓ role_profissional NUNCA acessa gabarito_questao
+      ✓ role_pedagogico acessa gabarito apenas após responder
+      ✓ REVOKE ALL ON gabarito_questao FROM PUBLIC
+      ✓ GRANT SELECT ON gabarito_questao TO role_pedagogico
+
+    Índices:
+      ✓ idx_usuario_email, idx_usuario_role, idx_usuario_ativo
+      ✓ idx_token_refresh_usuario_id, idx_token_refresh_token
+      ✓ idx_sessao_usuario_jti, idx_sessao_usuario_ativa
+      ✓ idx_log_autenticacao_usuario_id, idx_log_autenticacao_timestamp
+
+[B] database/migrations/004_create_subscription_tables.sql
+    Linhas: ~520
+    Propósito: Tabelas de planos, assinaturas e metering
+
+    Tabelas criadas:
+      - plano: Planos de assinatura (FREE, BASIC, PRO)
+      - assinatura: Assinaturas ativas e históricas
+      - uso_diario: Metering de uso por usuário/dia
+      - evento_uso: Log detalhado de eventos de uso
+      - historico_plano: Histórico de mudanças de plano
+
+    Planos implementados:
+      FREE:
+        - Limite: 10 questões/dia
+        - Consultas: ilimitadas
+        - Peças: 0/mês
+        - Modo: apenas pedagógico
+        - Preço: Gratuito
+
+      BASIC:
+        - Limite: 50 questões/dia
+        - Consultas: ilimitadas
+        - Peças: 5/mês
+        - Modo: apenas pedagógico
+        - Analytics: SIM
+        - Preço: R$ 49,90/mês ou R$ 479,00/ano
+
+      PRO:
+        - Limite: ilimitado
+        - Consultas: ilimitadas
+        - Peças: ilimitadas
+        - Modo: pedagógico + profissional
+        - Analytics: SIM
+        - Jurisprudência: SIM
+        - Preço: R$ 199,90/mês ou R$ 1.919,00/ano
+
+    Funcionalidades:
+      ✓ Metering automático de uso
+      ✓ Enforcement de limites (rate limiting)
+      ✓ Funções: obter_assinatura_ativa(), obter_uso_dia(),
+        incrementar_uso(), verificar_limite()
+      ✓ View: v_assinaturas_ativas
+      ✓ Integração Stripe (subscription_id, customer_id)
+
+    Índices:
+      ✓ idx_plano_codigo, idx_plano_ativo
+      ✓ idx_assinatura_usuario_id, idx_assinatura_status
+      ✓ idx_uso_diario_usuario_id, idx_uso_diario_data
+      ✓ idx_evento_uso_tipo, idx_evento_uso_bloqueado
+
+
+2.2. SERVIÇOS DE AUTENTICAÇÃO
+------------------------------
+
+[A] auth/jwt_manager.py
+    Linhas: ~550
+    Propósito: Gerenciamento de tokens JWT
+
+    Componentes:
+      - Classe JWTManager
+
+    Métodos principais:
+      [1] gerar_secret(): Gera secret aleatório (64 bytes)
+      [2] obter_secret_ativo(): Busca secret ativo ou cria novo
+      [3] rotacionar_secret(): Rotaciona secret periodicamente
+      [4] gerar_access_token(): Gera access token (15 minutos)
+      [5] gerar_refresh_token(): Gera refresh token (7 dias)
+      [6] validar_access_token(): Valida access token
+      [7] validar_refresh_token(): Valida refresh token
+      [8] refresh_access_token(): Renova access token (com rotação)
+      [9] salvar_refresh_token(): Persiste refresh token
+      [10] salvar_sessao(): Persiste sessão
+      [11] revogar_refresh_token(): Revoga token específico
+      [12] revogar_todos_tokens_usuario(): Revoga todos os tokens
+      [13] finalizar_sessao(): Finaliza sessão (logout)
+      [14] limpar_tokens_expirados(): Remove tokens expirados
+
+    Garantias de segurança:
+      ✓ Access token: 15 minutos de validade
+      ✓ Refresh token: 7 dias de validade
+      ✓ Token family tracking (detecta reutilização)
+      ✓ Automatic rotation no refresh
+      ✓ JWT ID (jti) único por token
+      ✓ Verificação de sessão ativa
+      ✓ Secret rotation support
+      ✓ HS256 algorithm (HMAC SHA-256)
+
+    Payload do access token:
+      {
+        "jti": "uuid",
+        "sub": "usuario_id",
+        "email": "email@example.com",
+        "role": "role_pedagogico",
+        "modo": "pedagogico",
+        "type": "access",
+        "iat": timestamp,
+        "exp": timestamp
+      }
+
+    Payload do refresh token:
+      {
+        "jti": "uuid",
+        "sub": "usuario_id",
+        "family": "family_uuid",
+        "type": "refresh",
+        "iat": timestamp,
+        "exp": timestamp
+      }
+
+[B] auth/auth_service.py
+    Linhas: ~650
+    Propósito: Serviço de autenticação completo
+
+    Componentes:
+      - Classe AuthService
+
+    Métodos principais:
+      [1] hash_password(): Gera hash bcrypt (12 rounds)
+      [2] verificar_senha(): Verifica senha contra hash
+      [3] registrar_usuario(): Cria novo usuário
+      [4] login(): Realiza login com email/senha
+      [5] logout(): Revoga tokens e finaliza sessão
+      [6] logout_all(): Revoga todos os tokens do usuário
+      [7] refresh_token(): Renova access token
+      [8] alterar_senha(): Altera senha (revoga todos os tokens)
+      [9] trocar_modo(): Troca entre pedagógico/profissional
+      [10] _log_evento_autenticacao(): Registra evento no log
+
+    Proteções implementadas:
+      ✓ Bcrypt com 12 rounds (salt automático)
+      ✓ Brute force protection: 5 tentativas
+      ✓ Bloqueio temporário: 15 minutos
+      ✓ Log completo de eventos
+      ✓ Verificação de usuário ativo
+      ✓ Verificação de bloqueio
+      ✓ Reset de tentativas em login bem-sucedido
+      ✓ IP tracking
+
+    Eventos de log:
+      - registro
+      - login
+      - login_falha
+      - logout
+      - logout_all
+      - token_refresh
+      - alteracao_senha
+      - alteracao_senha_falha
+      - troca_modo
+
+[C] auth/middleware.py
+    Linhas: ~420
+    Propósito: Middleware FastAPI para autenticação
+
+    Componentes:
+      - Classe UsuarioAutenticado
+      - HTTPBearer security scheme
+      - Dependencies FastAPI
+
+    Dependencies disponíveis:
+      [1] obter_usuario_autenticado(): Requer autenticação
+      [2] obter_usuario_opcional(): Autenticação opcional
+      [3] requer_role(role): Requer role específica
+      [4] requer_qualquer_role(roles): Requer uma das roles
+      [5] requer_modo(modo): Requer modo específico
+      [6] requer_acesso_gabarito(): Valida acesso a gabarito
+      [7] requer_modo_profissional(): Modo profissional
+
+    Classe UsuarioAutenticado:
+      Atributos:
+        - usuario_id: UUID
+        - email: str
+        - role: str
+        - modo_atual: str
+        - jti: str (JWT ID)
+
+      Métodos:
+        - tem_role(role): Verifica role
+        - tem_qualquer_role(roles): Verifica múltiplas roles
+        - esta_em_modo(modo): Verifica modo
+        - pode_acessar_gabarito(): Validação de acesso a gabarito
+
+    Garantias críticas:
+      ✓ role_profissional NUNCA acessa gabarito
+      ✓ Apenas role_pedagogico em modo pedagógico acessa gabarito
+      ✓ Token validation em cada request
+      ✓ Sessão ativa verificada
+      ✓ HTTP 401 para token inválido
+      ✓ HTTP 403 para autorização negada
+
+    Exemplo de uso:
+      @app.get("/protected")
+      async def route(
+          usuario: UsuarioAutenticado = Depends(obter_usuario_autenticado)
+      ):
+          return {"id": usuario.usuario_id}
+
+      @app.get("/gabarito/{questao_id}")
+      async def gabarito(
+          questao_id: UUID,
+          usuario: UsuarioAutenticado = Depends(requer_acesso_gabarito)
+      ):
+          # role_profissional NUNCA chega aqui
+          return {"gabarito": "C"}
+
+
+2.3. SERVIÇOS DE SUBSCRIPTION
+------------------------------
+
+[A] auth/subscription_service.py
+    Linhas: ~520
+    Propósito: Gestão de planos e metering
+
+    Componentes:
+      - Classe SubscriptionService
+
+    Métodos principais:
+      [1] obter_plano(codigo): Busca plano por código
+      [2] listar_planos_publicos(): Lista planos disponíveis
+      [3] criar_assinatura(): Cria nova assinatura
+      [4] obter_assinatura_ativa(): Assinatura ativa do usuário
+      [5] cancelar_assinatura(): Cancela assinatura
+      [6] obter_uso_dia(): Uso do dia
+      [7] verificar_limite(): Verifica se atingiu limite
+      [8] incrementar_uso(): Incrementa contador de uso
+      [9] registrar_bloqueio(): Registra bloqueio por limite
+      [10] pode_usar_recurso(): Enforcement completo
+      [11] obter_estatisticas_uso(): Analytics de uso
+
+    Tipos de recursos:
+      - questao: Questões OAB respondidas
+      - consulta: Consultas realizadas
+      - peca: Peças processuais geradas
+
+    Enforcement de limites:
+      Plano FREE:
+        ✓ 10 questões/dia → bloqueia 11ª
+        ✓ 0 peças/mês → bloqueia qualquer
+        ✓ Consultas ilimitadas
+
+      Plano BASIC:
+        ✓ 50 questões/dia → bloqueia 51ª
+        ✓ 5 peças/mês → bloqueia 6ª
+        ✓ Consultas ilimitadas
+
+      Plano PRO:
+        ✓ Tudo ilimitado (NULL = sem limite)
+
+    Fluxo de uso:
+      [1] Usuário tenta usar recurso
+      [2] pode_usar_recurso() verifica limite
+      [3] Se OK: incrementar_uso() atualiza contador
+      [4] Se BLOQUEADO: registrar_bloqueio() loga
+      [5] Retorna sucesso/erro para application
+
+    Metering:
+      ✓ Uso rastreado por dia (uso_diario)
+      ✓ Eventos detalhados (evento_uso)
+      ✓ Associado à assinatura ativa
+      ✓ Rollover diário automático
+      ✓ Analytics agregados por período
+
+
+2.4. BILLING E STRIPE
+---------------------
+
+[A] auth/billing_service.py
+    Linhas: ~450
+    Propósito: Integração com Stripe
+
+    Componentes:
+      - Classe BillingService
+
+    Métodos principais:
+      [1] criar_stripe_customer(): Cria customer no Stripe
+      [2] obter_stripe_customer_id(): Busca customer ID
+      [3] criar_stripe_subscription(): Cria subscription Stripe
+      [4] cancelar_stripe_subscription(): Cancela subscription
+      [5] processar_webhook(): Processa webhooks Stripe
+      [6] criar_payment_intent(): Cria payment intent
+
+    Webhooks tratados:
+      ✓ customer.subscription.created
+      ✓ customer.subscription.updated
+      ✓ customer.subscription.deleted
+      ✓ invoice.payment_succeeded
+      ✓ invoice.payment_failed
+
+    Configuração necessária:
+      Variáveis de ambiente:
+        - STRIPE_API_KEY: API key (secret)
+        - STRIPE_WEBHOOK_SECRET: Secret para validar webhooks
+        - STRIPE_PRICE_BASIC_MONTHLY: Price ID
+        - STRIPE_PRICE_BASIC_YEARLY: Price ID
+        - STRIPE_PRICE_PRO_MONTHLY: Price ID
+        - STRIPE_PRICE_PRO_YEARLY: Price ID
+
+    Instalação:
+      pip install stripe
+
+    Fluxo de assinatura:
+      [1] Frontend: Collect payment method (Stripe Elements)
+      [2] Backend: criar_stripe_subscription()
+      [3] Stripe: Cria subscription, envia webhook
+      [4] Backend: processar_webhook() atualiza status
+      [5] Sistema: Libera acesso conforme plano
+
+    Segurança:
+      ✓ Webhook signature validation
+      ✓ Idempotency (subscription já criada = skip)
+      ✓ Automatic rollback se falhar localmente
+      ✓ CPF como tax ID (br_cpf)
+
+
+================================================================================
+3. FLUXO COMPLETO DE AUTENTICAÇÃO
+================================================================================
+
+3.1. REGISTRO DE USUÁRIO
+-------------------------
+
+[1] Frontend: POST /auth/register
+    Body:
+      {
+        "email": "usuario@example.com",
+        "senha": "Senha123!",
+        "nome_completo": "João da Silva",
+        "cpf": "12345678900"
+      }
+
+[2] Backend: AuthService.registrar_usuario()
+    - Validar email (formato @)
+    - Validar senha (mínimo 8 caracteres)
+    - Verificar email único
+    - Hash senha (bcrypt 12 rounds)
+    - Inserir em usuario
+    - Criar assinatura FREE automática
+    - Log evento "registro"
+
+[3] Response:
+    {
+      "usuario_id": "uuid",
+      "email": "usuario@example.com",
+      "message": "Usuário criado com sucesso"
+    }
+
+
+3.2. LOGIN
+----------
+
+[1] Frontend: POST /auth/login
+    Body:
+      {
+        "email": "usuario@example.com",
+        "senha": "Senha123!"
+      }
+
+[2] Backend: AuthService.login()
+    - Buscar usuário por email
+    - Verificar se ativo
+    - Verificar bloqueio temporário
+    - Verificar senha (bcrypt.checkpw)
+    - Se senha errada:
+      * Incrementar tentativas_login_falhas
+      * Se >= 5: bloquear 15 minutos
+      * Log "login_falha"
+      * Retornar erro
+    - Se senha correta:
+      * Reset tentativas_login_falhas
+      * Gerar access token (15min)
+      * Gerar refresh token (7 dias)
+      * Salvar tokens no banco
+      * Criar sessão
+      * Log "login"
+      * Retornar tokens
+
+[3] Response:
+    {
+      "access_token": "eyJ...",
+      "refresh_token": "eyJ...",
+      "access_expires_at": "2025-12-17T10:45:00Z",
+      "refresh_expires_at": "2025-12-24T10:30:00Z",
+      "usuario": {
+        "id": "uuid",
+        "email": "usuario@example.com",
+        "role": "role_pedagogico",
+        "modo_atual": "pedagogico"
+      }
+    }
+
+[4] Frontend: Armazenar tokens
+    - access_token: localStorage ou memory
+    - refresh_token: httpOnly cookie (mais seguro)
+
+
+3.3. REQUEST AUTENTICADO
+-------------------------
+
+[1] Frontend: GET /questoes/123
+    Headers:
+      Authorization: Bearer eyJ...
+
+[2] Middleware: obter_usuario_autenticado()
+    - Extrair token do header
+    - JWTManager.validar_access_token()
+      * Decodificar JWT
+      * Verificar assinatura (secret)
+      * Verificar expiração
+      * Verificar tipo = "access"
+      * Buscar sessão por jti
+      * Verificar sessão.ativa = TRUE
+    - Se válido: Criar UsuarioAutenticado
+    - Se inválido: HTTP 401 Unauthorized
+
+[3] Route handler: Recebe UsuarioAutenticado
+    - Acessar usuario.usuario_id, usuario.role, etc.
+    - Processar request
+
+[4] Response: Dados da questão
+
+
+3.4. REFRESH TOKEN
+-------------------
+
+[1] Frontend: Access token expirou (HTTP 401)
+    POST /auth/refresh
+    Body:
+      {
+        "refresh_token": "eyJ..."
+      }
+
+[2] Backend: AuthService.refresh_token()
+    - JWTManager.refresh_access_token()
+      * Validar refresh token
+      * Verificar não revogado
+      * Revogar token antigo (rotação)
+      * Gerar novo access token
+      * Gerar novo refresh token (mesma família)
+      * Salvar novos tokens
+      * Criar nova sessão
+      * Log "token_refresh"
+
+[3] Response:
+    {
+      "access_token": "eyJ...",
+      "refresh_token": "eyJ...",
+      "access_expires_at": "2025-12-17T11:00:00Z",
+      "refresh_expires_at": "2025-12-24T10:30:00Z"
+    }
+
+[4] Frontend: Atualizar tokens
+    - Retry original request com novo access_token
+
+
+3.5. LOGOUT
+-----------
+
+[1] Frontend: POST /auth/logout
+    Headers:
+      Authorization: Bearer eyJ...
+
+[2] Backend: AuthService.logout()
+    - Validar access token
+    - Finalizar sessão (jti)
+    - Revogar refresh token relacionado
+    - Log "logout"
+
+[3] Response:
+    {
+      "message": "Logout realizado"
+    }
+
+[4] Frontend: Limpar tokens
+
+
+================================================================================
+4. FLUXO COMPLETO DE SUBSCRIPTION
+================================================================================
+
+4.1. CRIAÇÃO DE ASSINATURA FREE
+--------------------------------
+
+[1] Frontend: Usuário se registra
+[2] Backend: Criar assinatura FREE automática
+    - SubscriptionService.criar_assinatura()
+    - Plano: FREE
+    - Status: active
+    - Limites: 10 questões/dia, 0 peças/mês
+
+
+4.2. UPGRADE PARA BASIC/PRO
+---------------------------
+
+[1] Frontend: POST /subscription/upgrade
+    Body:
+      {
+        "plano_codigo": "PRO",
+        "periodo": "yearly",
+        "payment_method_id": "pm_1234..."
+      }
+
+[2] Backend: BillingService.criar_stripe_subscription()
+    - Obter plano PRO
+    - Criar Stripe customer (se não existe)
+    - Criar Stripe subscription
+      * Price ID: STRIPE_PRICE_PRO_YEARLY
+      * Payment method: pm_1234...
+    - Criar assinatura local
+      * Cancelar FREE anterior
+      * Criar PRO ativa
+      * Stripe subscription ID salvo
+    - Log evento
+
+[3] Stripe: Processa pagamento
+    - Se sucesso: Webhook invoice.payment_succeeded
+    - Se falha: Webhook invoice.payment_failed
+
+[4] Backend: Processar webhook
+    - Atualizar status da assinatura
+    - Log evento
+
+[5] Response:
+    {
+      "assinatura_id": "uuid",
+      "plano": "PRO",
+      "status": "active",
+      "limites": {
+        "questoes_dia": null,  // ilimitado
+        "consultas_dia": null,
+        "pecas_mes": null
+      }
+    }
+
+
+4.3. USO DE RECURSO COM RATE LIMITING
+--------------------------------------
+
+[1] Frontend: POST /questoes/responder
+    Headers:
+      Authorization: Bearer eyJ...
+    Body:
+      {
+        "questao_id": "uuid",
+        "alternativa_escolhida": "C"
+      }
+
+[2] Backend: Antes de processar
+    - SubscriptionService.pode_usar_recurso(usuario_id, "questao")
+      * Obter assinatura ativa
+      * Obter limite (ex: 10 questões/dia)
+      * Obter uso atual (ex: 9 questões hoje)
+      * Verificar: 9 < 10 → OK
+      * Retornar (True, info)
+
+[3] Se limite OK:
+    - Processar resposta da questão
+    - SubscriptionService.incrementar_uso(usuario_id, "questao")
+      * Incrementar uso_diario.questoes_respondidas
+      * Registrar evento_uso
+    - Retornar resposta
+
+[4] Se limite ATINGIDO:
+    - SubscriptionService.registrar_bloqueio()
+    - HTTP 429 Too Many Requests
+      {
+        "erro": "Limite diário de questões atingido",
+        "limite": 10,
+        "uso_atual": 10,
+        "plano_atual": "FREE",
+        "sugestao": "Faça upgrade para plano BASIC ou PRO"
+      }
+
+
+4.4. CANCELAMENTO DE ASSINATURA
+--------------------------------
+
+[1] Frontend: POST /subscription/cancel
+    Body:
+      {
+        "motivo": "Não preciso mais do serviço"
+      }
+
+[2] Backend: BillingService.cancelar_stripe_subscription()
+    - Obter assinatura ativa
+    - Cancelar no Stripe (ao fim do período)
+    - Atualizar assinatura local
+      * Status: canceled
+      * data_cancelamento: NOW
+      * Manter acesso até data_fim
+    - Log evento
+
+[3] Response:
+    {
+      "message": "Assinatura cancelada",
+      "acesso_ate": "2025-12-31T23:59:59Z"
+    }
+
+
+================================================================================
+5. ENDPOINTS DE API RECOMENDADOS
+================================================================================
+
+5.1. AUTENTICAÇÃO
+-----------------
+
+POST /auth/register
+  - Registrar novo usuário
+  - Body: {email, senha, nome_completo, cpf}
+  - Response: {usuario_id, email}
+
+POST /auth/login
+  - Login com email/senha
+  - Body: {email, senha}
+  - Response: {access_token, refresh_token, usuario}
+
+POST /auth/logout
+  - Logout (requer auth)
+  - Headers: Authorization
+  - Response: {message}
+
+POST /auth/refresh
+  - Renovar access token
+  - Body: {refresh_token}
+  - Response: {access_token, refresh_token}
+
+POST /auth/trocar-modo
+  - Trocar modo pedagógico/profissional
+  - Headers: Authorization
+  - Body: {novo_modo}
+  - Response: {modo_atual}
+
+POST /auth/alterar-senha
+  - Alterar senha (requer auth)
+  - Headers: Authorization
+  - Body: {senha_antiga, senha_nova}
+  - Response: {message}
+
+
+5.2. SUBSCRIPTION
+-----------------
+
+GET /subscription/planos
+  - Listar planos disponíveis (público)
+  - Response: [{codigo, nome, preco, limites}, ...]
+
+GET /subscription/minha-assinatura
+  - Obter assinatura ativa (requer auth)
+  - Headers: Authorization
+  - Response: {plano, status, limites, uso_dia}
+
+POST /subscription/upgrade
+  - Fazer upgrade de plano
+  - Headers: Authorization
+  - Body: {plano_codigo, periodo, payment_method_id}
+  - Response: {assinatura_id, stripe_subscription_id}
+
+POST /subscription/cancel
+  - Cancelar assinatura
+  - Headers: Authorization
+  - Body: {motivo}
+  - Response: {message, acesso_ate}
+
+GET /subscription/uso
+  - Obter estatísticas de uso
+  - Headers: Authorization
+  - Query: ?data_inicio=2025-01-01&data_fim=2025-01-31
+  - Response: {total_questoes, total_consultas, ...}
+
+
+5.3. WEBHOOKS
+-------------
+
+POST /webhooks/stripe
+  - Processar webhooks Stripe
+  - Headers: Stripe-Signature
+  - Body: raw payload
+  - Response: 200 OK
+
+
+================================================================================
+6. GARANTIAS DE SEGURANÇA
+================================================================================
+
+6.1. AUTENTICAÇÃO
+-----------------
+
+✓ Bcrypt para hash de senhas (12 rounds)
+✓ Proteção contra brute force (5 tentativas, bloqueio 15min)
+✓ Access tokens curtos (15 minutos)
+✓ Refresh tokens longos mas revogáveis (7 dias)
+✓ Token family tracking (detecta reutilização)
+✓ Automatic rotation no refresh
+✓ Sessões rastreadas por jti
+✓ Invalidação imediata (logout revoga tokens)
+✓ Secret rotation support
+✓ JWT assinado com HS256 (SHA-256)
+
+
+6.2. AUTORIZAÇÃO
+----------------
+
+✓ Role-based access control (RBAC)
+✓ Mode-based restrictions
+✓ Middleware de autorização por role
+✓ Middleware de autorização por modo
+✓ Gabarito protection:
+  - role_profissional: NUNCA acessa
+  - role_pedagogico: acessa apenas após responder
+  - Database-level enforcement (REVOKE/GRANT)
+✓ HTTP 401 para autenticação inválida
+✓ HTTP 403 para autorização negada
+
+
+6.3. BILLING
+------------
+
+✓ Webhook signature validation (Stripe)
+✓ Idempotency de operações
+✓ Rollback automático em falhas
+✓ Customer ID único por usuário
+✓ Subscription ID único por assinatura
+✓ Payment method segregation
+✓ PCI compliance (Stripe handles)
+
+
+6.4. RATE LIMITING
+------------------
+
+✓ Enforcement de limites por plano
+✓ Metering diário/mensal
+✓ Bloqueio automático ao atingir limite
+✓ Log de bloqueios
+✓ Sugestão de upgrade ao usuário
+✓ Graceful degradation (não crash)
+
+
+================================================================================
+7. PRÓXIMOS PASSOS
+================================================================================
+
+7.1. DESENVOLVIMENTO FRONTEND
+------------------------------
+
+[1] Páginas de autenticação
+    - /login: Formulário de login
+    - /register: Formulário de registro
+    - /esqueci-senha: Recuperação de senha
+
+[2] Componente de proteção de rotas
+    - PrivateRoute: Requer autenticação
+    - RoleRoute: Requer role específica
+
+[3] Gerenciamento de tokens
+    - Auto-refresh ao expirar
+    - Logout em caso de 401
+
+[4] Páginas de subscription
+    - /planos: Listar planos
+    - /minha-assinatura: Gerenciar assinatura
+    - /upgrade: Processo de upgrade
+    - /cancelar: Processo de cancelamento
+
+[5] Integração Stripe Elements
+    - CardElement para captura de pagamento
+    - PaymentIntent confirmation
+    - Tratamento de erros
+
+
+7.2. MELHORIAS FUTURAS
+----------------------
+
+[1] Email verification
+    - Enviar email de verificação no registro
+    - Link de confirmação
+    - Resend verification email
+
+[2] Password reset
+    - Esqueci minha senha
+    - Email com token de reset
+    - Form de nova senha
+
+[3] Two-factor authentication (2FA)
+    - TOTP (Google Authenticator)
+    - SMS (Twilio)
+    - Backup codes
+
+[4] OAuth providers
+    - Login com Google
+    - Login com Facebook
+    - Login com Apple
+
+[5] Analytics avançados
+    - Dashboard de uso
+    - Gráficos de consumo
+    - Predição de upgrade
+
+[6] Referral program
+    - Link de indicação
+    - Créditos por indicação
+    - Gamification
+
+[7] Trial period
+    - Trial de 7 dias para planos pagos
+    - Conversão automática após trial
+    - Email de lembrete de fim de trial
+
+
+================================================================================
+8. CONFIGURAÇÃO EM PRODUÇÃO
+================================================================================
+
+8.1. VARIÁVEIS DE AMBIENTE
+---------------------------
+
+# Database
+DATABASE_URL=postgresql://user:pass@host:5432/juris_ia_core
+
+# Stripe
+STRIPE_API_KEY=sk_live_...
+STRIPE_WEBHOOK_SECRET=whsec_...
+STRIPE_PRICE_BASIC_MONTHLY=price_...
+STRIPE_PRICE_BASIC_YEARLY=price_...
+STRIPE_PRICE_PRO_MONTHLY=price_...
+STRIPE_PRICE_PRO_YEARLY=price_...
+
+
+8.2. COMANDOS DE SETUP
+-----------------------
+
+# Criar roles no PostgreSQL
+CREATE ROLE role_pedagogico;
+CREATE ROLE role_profissional;
+CREATE ROLE role_admin;
+
+# Executar migrations
+psql -U postgres -d juris_ia_core -f database/migrations/003_create_auth_tables.sql
+psql -U postgres -d juris_ia_core -f database/migrations/004_create_subscription_tables.sql
+
+# Instalar dependências Python
+pip install bcrypt pyjwt stripe sqlalchemy psycopg2-binary fastapi
+
+# Configurar Stripe webhook
+stripe listen --forward-to localhost:8000/webhooks/stripe
+# Copiar webhook secret para .env
+
+
+8.3. JOBS PERIÓDICOS (CRON)
+----------------------------
+
+# Limpar tokens expirados (diário, 3am)
+0 3 * * * python -c "from auth.auth_service import AuthService; AuthService().limpar_tokens_expirados()"
+
+# Atualizar assinaturas expiradas (diário, 4am)
+0 4 * * * python scripts/atualizar_assinaturas_expiradas.py
+
+# Enviar email de renovação (diário, 10am)
+0 10 * * * python scripts/enviar_emails_renovacao.py
+
+
+================================================================================
+9. CONCLUSÃO
+================================================================================
+
+ETAPA 10 CONCLUÍDA COM SUCESSO.
+
+Entregáveis:
+
+  ✅ 10.1 — JWT Authentication (jwt_manager.py, auth_service.py)
+  ✅ 10.2 — Roles e Modos (middleware.py, RBAC completo)
+  ✅ 10.3 — Planos e Limites (subscription_service.py, metering)
+  ✅ 10.4 — Billing Stripe (billing_service.py, webhooks)
+  ✅ 10.5 — Documentação (este arquivo)
+
+Sistema implementado:
+
+  ✓ Autenticação JWT com access + refresh tokens
+  ✓ Role-based access control (RBAC)
+  ✓ Dual-mode architecture (pedagogico/profissional)
+  ✓ Subscription plans (FREE, BASIC, PRO)
+  ✓ Usage metering e rate limiting
+  ✓ Stripe integration completa
+  ✓ Webhook processing
+  ✓ Security best practices
+
+Garantias de segurança:
+
+  ✓ Bcrypt password hashing (12 rounds)
+  ✓ Brute force protection (5 tentativas, 15min bloqueio)
+  ✓ Token rotation (refresh)
+  ✓ Token family tracking
+  ✓ Session management
+  ✓ Gabarito protection (role-based + mode-based)
+  ✓ Rate limiting enforcement
+  ✓ Webhook signature validation
+
+Status: SISTEMA PRONTO PARA PRODUÇÃO COM AUTH E BILLING.
+
+Próximo desenvolvimento: Frontend integration.
+
+================================================================================
+FIM DO RELATÓRIO
+================================================================================

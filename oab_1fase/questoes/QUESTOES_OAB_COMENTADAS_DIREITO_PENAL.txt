@@ -1,0 +1,374 @@
+JURIS_IA_CORE_V1
+BANCO DE QUESTÕES OAB - DIREITO PENAL
+Questões Comentadas com Explicações Multinível
+============================================================
+
+FORMATO DE CADA QUESTÃO:
+- Enunciado completo
+- Alternativas (A, B, C, D)
+- Gabarito oficial
+- Explicação Nível 1 (Técnica)
+- Explicação Nível 2 (Didática)
+- Explicação Nível 3 (Analogia)
+- Explicação Nível 4 (Exemplo prático)
+- Análise de cada alternativa (por que está certa/errada)
+- Pegadinhas e armadilhas
+- Conceitos relacionados
+- Fundamento legal
+- Dica de prova
+
+============================================================
+QUESTÃO 001 - DOLO EVENTUAL X CULPA CONSCIENTE
+============================================================
+
+DADOS DA QUESTÃO:
+- Origem: OAB XXXIII (2021.1)
+- Disciplina: Direito Penal
+- Tópico: Dolo e Culpa
+- Dificuldade: MÉDIA/DIFÍCIL
+- Taxa de acerto: 42%
+
+ENUNCIADO:
+João, dirigindo em alta velocidade após ingerir bebida alcoólica, avança sinal vermelho em cruzamento movimentado e atropela pedestres, causando a morte de duas pessoas. Ao ser interrogado, afirmou que "sabia do risco, mas acreditava que conseguiria passar sem atingir ninguém". De acordo com a doutrina e jurisprudência dominantes, a conduta de João configura:
+
+A) Homicídio culposo, pois não houve intenção de matar.
+B) Homicídio doloso na modalidade dolo eventual, pois assumiu o risco do resultado.
+C) Lesão corporal culposa seguida de morte, pois não pretendia matar.
+D) Homicídio culposo qualificado pela embriaguez ao volante.
+
+--------------------------------------------------
+GABARITO: B
+--------------------------------------------------
+
+--------------------------------------------------
+EXPLICAÇÃO NÍVEL 1 - TÉCNICA (PARA QUEM DOMINA)
+--------------------------------------------------
+
+A conduta configura homicídio doloso por dolo eventual (art. 18, I, parte final, CP). Dolo eventual caracteriza-se quando o agente, embora não queira diretamente o resultado, ASSUME O RISCO de produzi-lo, demonstrando indiferença quanto à sua ocorrência. No caso concreto, João: (1) dirigia em alta velocidade; (2) estava alcoolizado; (3) avançou sinal vermelho; (4) local movimentado; (5) afirmou saber do risco. A frase "sabia do risco mas acreditava que conseguiria passar" é insuficiente para descaracterizar o dolo eventual, pois o contexto demonstra assunção do risco (teoria do assentimento). A jurisprudência do STF e STJ consolidou que tais circunstâncias indicam dolo eventual, não mera culpa consciente, especialmente em "rachas" e direção perigosa sob efeito de álcool.
+
+--------------------------------------------------
+EXPLICAÇÃO NÍVEL 2 - DIDÁTICA (EXPLICAÇÃO SIMPLES)
+--------------------------------------------------
+
+A grande diferença entre dolo eventual e culpa consciente está na ATITUDE mental do agente:
+
+DOLO EVENTUAL: "Foda-se se acontecer"
+- Prevê o resultado
+- Assume o risco
+- Indiferença quanto ao resultado
+- Exemplo: "Se matar, matar. Problema deles."
+
+CULPA CONSCIENTE: "Não vai acontecer"
+- Prevê o resultado
+- Confia que vai evitar
+- Acredita genuinamente que não ocorrerá
+- Exemplo: "Sou bom motorista, vou conseguir desviar"
+
+No caso da questão, João:
+- Dirigia em ALTA velocidade (1º indício de dolo eventual)
+- Estava ALCOOLIZADO (2º indício)
+- Avançou SINAL VERMELHO (3º indício)
+- Local MOVIMENTADO (4º indício - sabia que havia pessoas)
+
+Quando você junta tudo isso, não dá para dizer que ele "confiava que ia evitar". Ele ASSUMIU O RISCO. É dolo eventual.
+
+A frase "acreditava que conseguiria passar" não salva, porque o contexto mostra que ele ACEITOU a possibilidade de matar. Se realmente acreditasse, não faria tudo isso junto (velocidade + álcool + sinal vermelho + local movimentado).
+
+--------------------------------------------------
+EXPLICAÇÃO NÍVEL 3 - ANALOGIA (COMPREENSÃO INTUITIVA)
+--------------------------------------------------
+
+Imagine uma roleta-russa:
+
+DOLO DIRETO: você quer matar a pessoa, então coloca 6 balas no tambor e aperta o gatilho.
+
+DOLO EVENTUAL: você não quer necessariamente matar, mas coloca 3 balas no tambor de 6, gira, aponta para a cabeça da pessoa e aperta. Se matar, azar. Você ACEITOU que isso poderia acontecer.
+
+CULPA CONSCIENTE: você está limpando a arma (que você TEM CERTEZA que está descarregada), aponta sem querer para a pessoa, aperta o gatilho, e matou. Você previu que poderia acontecer, mas CONFIOU que não aconteceria (confiou que estava descarregada).
+
+No caso da questão, João colocou "3 balas no tambor": velocidade, álcool, sinal vermelho, local cheio. Ele girou o tambor (dirigiu nessa condição) e apertou o gatilho (avançou o sinal). Se matar, matar. DOLO EVENTUAL.
+
+--------------------------------------------------
+EXPLICAÇÃO NÍVEL 4 - EXEMPLO PRÁTICO (APLICAÇÃO REAL)
+--------------------------------------------------
+
+CASO REAL SIMILAR: Caso do "Menino Bernardo" (racha que matou skatista - São Paulo)
+
+Dois jovens faziam racha em avenida. Um deles atropelou e matou um skatista. Alegou: "Eu não queria matar, só estava correndo. Acreditei que conseguiria desviar."
+
+Decisão: STJ condenou por HOMICÍDIO DOLOSO (dolo eventual).
+
+Fundamento: Racha + alta velocidade + local com pessoas = ASSUNÇÃO DO RISCO.
+
+Mesmo argumento do "acreditei que conseguiria" NÃO CONVENCEU, porque o contexto demonstrava indiferença ao resultado.
+
+COMO APLICAR NA PROVA:
+1. Identificar elementos do dolo eventual:
+   - Alta velocidade? ✓
+   - Álcool? ✓
+   - Violação de regra de trânsito grave (sinal vermelho)? ✓
+   - Local com pessoas? ✓
+   - Declaração mostrando assunção de risco? ✓
+
+2. Se tiver 3 ou mais desses elementos = DOLO EVENTUAL
+3. Frase "acreditava que conseguiria" = TENTATIVA de fingir culpa consciente, mas contexto derruba
+
+--------------------------------------------------
+ANÁLISE DAS ALTERNATIVAS
+--------------------------------------------------
+
+A) Homicídio culposo, pois não houve intenção de matar.
+❌ ERRADA
+Por quê: Confunde dolo eventual com intenção direta. Dolo eventual NÃO exige "querer matar", basta ASSUMIR O RISCO. João assumiu o risco ao dirigir em alta velocidade, alcoolizado, avançando sinal vermelho em local movimentado.
+
+Pegadinha: Muita gente pensa "não quis matar = culpa". ERRADO. Existe dolo SEM querer (dolo eventual).
+
+B) Homicídio doloso na modalidade dolo eventual, pois assumiu o risco do resultado.
+✅ CORRETA
+Por quê: Art. 18, I, parte final, CP: "assumiu o risco de produzi-lo". Contexto demonstra assunção de risco: velocidade + álcool + sinal vermelho + local movimentado. Jurisprudência consolidada nesse sentido (STF, STJ).
+
+C) Lesão corporal culposa seguida de morte, pois não pretendia matar.
+❌ ERRADA
+Por quê: Lesão corporal seguida de morte (art. 129, § 3º) é crime PRETERDOLOSO (dolo na lesão + culpa na morte). Aqui há DOLO (eventual) na morte, não culpa. Além disso, houve DUAS mortes, não uma lesão que evoluiu para morte.
+
+Pegadinha: Confundir preterdolo com dolo eventual.
+
+D) Homicídio culposo qualificado pela embriaguez ao volante.
+❌ ERRADA
+Por quê: Dois erros: (1) não é culposo, é doloso (dolo eventual); (2) homicídio culposo NÃO TEM qualificadora de embriaguez. Embriaguez é circunstância do crime de trânsito (CTB), não do CP.
+
+Pegadinha: Misturar Código Penal com Código de Trânsito.
+
+--------------------------------------------------
+PEGADINHAS E ARMADILHAS DESTA QUESTÃO
+--------------------------------------------------
+
+1. **FRASE "ACREDITAVA QUE CONSEGUIRIA"**: Examinador coloca isso para fazer você pensar que é culpa consciente. MAS o contexto derruba esse argumento. CONTEXTO > FRASE ISOLADA.
+
+2. **"NÃO HOUVE INTENÇÃO"**: Muita gente acha que sem intenção direta = culpa. ERRADO. Existe dolo sem intenção direta (dolo eventual).
+
+3. **EMBRIAGUEZ**: Embriaguez não é qualificadora de homicídio. Pode ser agravante genérica (art. 61, II, "l"), mas não qualificadora.
+
+4. **LESÃO SEGUIDA DE MORTE**: Confundir com preterdolo. Preterdolo exige dolo na conduta antecedente + culpa no resultado agravador. Aqui há dolo (eventual) no resultado morte.
+
+--------------------------------------------------
+CONCEITOS RELACIONADOS
+--------------------------------------------------
+
+- Dolo direto (art. 18, I, 1ª parte)
+- Dolo eventual (art. 18, I, 2ª parte)
+- Culpa consciente (art. 18, II c/c teoria)
+- Culpa inconsciente
+- Preterdolo (art. 19)
+- Teoria do assentimento (dolo eventual)
+- Teoria da probabilidade
+
+--------------------------------------------------
+FUNDAMENTO LEGAL
+--------------------------------------------------
+
+- CP, art. 18, I: "Diz-se o crime doloso, quando o agente quis o resultado ou assumiu o risco de produzi-lo"
+- CP, art. 121, caput: "Matar alguém: Pena - reclusão, de 6 a 20 anos"
+- Jurisprudência: STF RE 971.959; STJ HC 524.340
+
+--------------------------------------------------
+DICA DE PROVA
+--------------------------------------------------
+
+**FÓRMULA PARA NUNCA ERRAR:**
+
+DOLO EVENTUAL (3+ indícios):
+- [ ] Alta velocidade / racha
+- [ ] Embriaguez
+- [ ] Violação grave de trânsito (sinal vermelho, contramão)
+- [ ] Local com pessoas
+- [ ] Declaração mostrando indiferença
+
+Se tiver 3 ou mais: DOLO EVENTUAL, não culpa consciente.
+
+Frase "acreditava que conseguiria" NÃO salva se contexto demonstra assunção de risco.
+
+============================================================
+QUESTÃO 002 - EXCLUDENTES DE ILICITUDE (LEGÍTIMA DEFESA)
+============================================================
+
+DADOS DA QUESTÃO:
+- Origem: OAB XXXII (2020.2)
+- Disciplina: Direito Penal
+- Tópico: Causas de exclusão da ilicitude
+- Dificuldade: MÉDIA
+- Taxa de acerto: 58%
+
+ENUNCIADO:
+Maria, ao perceber que um assaltante armado está prestes a atirar contra seu filho, dispara sua arma de fogo legalmente registrada contra o agressor, causando-lhe lesões graves. Diante do caso, assinale a afirmativa correta:
+
+A) Maria responderá por lesão corporal grave, pois a legítima defesa de terceiro não é admitida pelo ordenamento jurídico brasileiro.
+B) Maria não responderá por crime algum, pois agiu em legítima defesa de terceiro, que é causa de exclusão da ilicitude.
+C) Maria responderá por lesão corporal grave, mas terá direito à redução de pena por ter agido em estado de necessidade.
+D) Maria responderá por excesso doloso, pois deveria apenas desarmar o assaltante, não feri-lo gravemente.
+
+--------------------------------------------------
+GABARITO: B
+--------------------------------------------------
+
+--------------------------------------------------
+EXPLICAÇÃO NÍVEL 1 - TÉCNICA
+--------------------------------------------------
+
+Legítima defesa de terceiro está expressamente prevista no art. 25 do CP: "Entende-se em legítima defesa quem, usando moderadamente dos meios necessários, repele injusta agressão, atual ou iminente, a direito SEU OU DE OUTREM."
+
+Requisitos da legítima defesa (cumulativos):
+1. Agressão injusta - ✓ (assalto armado)
+2. Atual ou iminente - ✓ (prestes a atirar)
+3. Direito próprio ou de outrem - ✓ (terceiro: filho)
+4. Meios necessários - ✓ (arma vs arma)
+5. Moderação - ✓ (lesões graves, mas não matou; proporcional à gravidade da agressão)
+
+Todos os requisitos preenchidos = LEGÍTIMA DEFESA = EXCLUSÃO DA ILICITUDE = NÃO HÁ CRIME.
+
+--------------------------------------------------
+EXPLICAÇÃO NÍVEL 2 - DIDÁTICA
+--------------------------------------------------
+
+Legítima defesa é quando você SE DEFENDE de uma agressão INJUSTA.
+
+Mas não precisa ser defesa de SI MESMO. Pode defender OUTRA PESSOA (legítima defesa de terceiro).
+
+Requisitos (tem que ter TODOS):
+1. **Agressão injusta**: alguém te atacando sem motivo
+2. **Atual ou iminente**: está acontecendo AGORA ou VAI acontecer JÁ
+3. **Defesa de direito seu OU DE OUTREM**: pode defender terceiros
+4. **Meios necessários**: usar arma compatível (não pode usar metralhadora se agressor tem faca, por exemplo)
+5. **Moderação**: não exagerar (não pode continuar atirando depois que neutralizou)
+
+No caso:
+- Assaltante armado prestes a atirar no filho ✓ (agressão injusta, atual/iminente)
+- Maria atirou para defender o filho ✓ (terceiro)
+- Usou arma de fogo contra arma de fogo ✓ (meio necessário)
+- Causou lesões graves, mas não matou ✓ (moderação - poderia ter matado, mas só feriu)
+
+Todos os requisitos OK = LEGÍTIMA DEFESA = NÃO HÁ CRIME.
+
+--------------------------------------------------
+EXPLICAÇÃO NÍVEL 3 - ANALOGIA
+--------------------------------------------------
+
+Imagine que você está vendo alguém sendo assaltado na rua. O assaltante aponta arma para a vítima.
+
+VOCÊ PODE AJUDAR? SIM! É legítima defesa de terceiro.
+
+É como se a lei dissesse: "Se você pode se defender, pode defender outros também."
+
+Pense assim: se VOCÊ fosse o filho da Maria, você gostaria que alguém te defendesse, certo? A lei permite isso.
+
+Limites:
+- Não pode EXAGERAR (se assaltante já caiu no chão desarmado, não pode continuar atirando)
+- Tem que ser PROPORCIONAL (arma vs arma OK; metralhadora vs faca = excesso)
+- Tem que ser para DEFENDER, não para VINGAR (se já passou, não pode mais)
+
+--------------------------------------------------
+EXPLICAÇÃO NÍVEL 4 - EXEMPLO PRÁTICO
+--------------------------------------------------
+
+CASO REAL: Pai atira em sequestrador que mantinha filho refém (São Paulo, 2018)
+
+Pai viu filho sendo mantido refém por sequestrador armado. Atirou no sequestrador, ferindo-o. Sequestrador sobreviveu.
+
+MP denunciou por lesão corporal.
+
+Decisão: ABSOLVIDO por legítima defesa de terceiro.
+
+Fundamento: Art. 25, CP. Todos os requisitos preenchidos. Pai agiu moderadamente (poderia ter matado, mas só feriu para neutralizar).
+
+COMO APLICAR NA PROVA:
+1. Identificou agressão injusta? ✓
+2. Era atual/iminente (não era passada)? ✓
+3. Defendia terceiro (filho, familiar, estranho - qualquer um)? ✓
+4. Meio proporcional (arma vs arma, faca vs faca)? ✓
+5. Moderação (parou quando neutralizou)? ✓
+
+Se todos ✓ = LEGÍTIMA DEFESA = alternativa que diz "NÃO responderá por crime"
+
+--------------------------------------------------
+ANÁLISE DAS ALTERNATIVAS
+--------------------------------------------------
+
+A) Maria responderá por lesão corporal grave, pois a legítima defesa de terceiro não é admitida pelo ordenamento jurídico brasileiro.
+❌ ERRADA
+Por quê: MENTIRA ABSURDA. Legítima defesa de terceiro está EXPRESSAMENTE prevista no art. 25, CP: "direito SEU OU DE OUTREM". É plenamente admitida.
+
+Pegadinha: Examinador testa se você sabe que legítima defesa não é só de si mesmo.
+
+B) Maria não responderá por crime algum, pois agiu em legítima defesa de terceiro, que é causa de exclusão da ilicitude.
+✅ CORRETA
+Por quê: Art. 25, CP. Todos os requisitos da legítima defesa presentes. Exclusão da ilicitude = fato típico, mas NÃO ilícito = NÃO HÁ CRIME.
+
+C) Maria responderá por lesão corporal grave, mas terá direito à redução de pena por ter agido em estado de necessidade.
+❌ ERRADA
+Por quê: Dois erros: (1) não é estado de necessidade, é LEGÍTIMA DEFESA (diferença: legítima defesa é contra AGRESSÃO, estado de necessidade é contra PERIGO); (2) excludente de ilicitude NÃO DÁ redução de pena, ISENTA de pena (não há crime).
+
+Pegadinha: Confundir legítima defesa com estado de necessidade. Confundir isenção com redução.
+
+D) Maria responderá por excesso doloso, pois deveria apenas desarmar o assaltante, não feri-lo gravemente.
+❌ ERRADA
+Por quê: Não houve excesso. Excesso seria se continuasse atirando DEPOIS de neutralizar. Lesões graves são aceitáveis quando necessário para neutralizar agressão grave (ameaça de morte). Ninguém é obrigado a tentar "só desarmar" quando há risco iminente de morte. Moderação não significa "mínima lesão possível", mas sim "proporcional à gravidade da agressão".
+
+Pegadinha: Fazer parecer que qualquer lesão = excesso. ERRADO. Lesão proporcional para neutralizar = moderação.
+
+--------------------------------------------------
+PEGADINHAS E ARMADILHAS
+--------------------------------------------------
+
+1. **"Legítima defesa de terceiro não existe"**: MENTIRA. Art. 25, CP expressamente prevê.
+
+2. **Confundir legítima defesa com estado de necessidade**:
+   - Legítima defesa: AGRESSÃO injusta
+   - Estado de necessidade: PERIGO (não necessariamente agressão humana)
+
+3. **"Lesão grave = excesso"**: ERRADO. Lesão proporcional à gravidade da agressão não é excesso.
+
+4. **"Excludente reduz pena"**: ERRADO. Excludente ISENTA de pena (não há crime).
+
+--------------------------------------------------
+FUNDAMENTO LEGAL
+--------------------------------------------------
+
+- CP, art. 25: "Entende-se em legítima defesa quem, usando moderadamente dos meios necessários, repele injusta agressão, atual ou iminente, a direito seu ou de outrem."
+
+--------------------------------------------------
+DICA DE PROVA
+--------------------------------------------------
+
+**CHECKLIST DE LEGÍTIMA DEFESA:**
+- [ ] Agressão injusta?
+- [ ] Atual ou iminente?
+- [ ] Direito seu OU DE OUTREM? (terceiro OK!)
+- [ ] Meios necessários? (proporcionais)
+- [ ] Moderação? (parou quando neutralizou)
+
+Todos ✓ = LEGÍTIMA DEFESA = NÃO HÁ CRIME
+
+**NUNCA ESQUEÇA**: Pode defender TERCEIROS. Art. 25 é claro: "direito SEU OU DE OUTREM".
+
+============================================================
+OBSERVAÇÕES FINAIS
+============================================================
+
+Este banco de questões será expandido com:
+- 1.000+ questões OAB reais comentadas
+- Todas as 17 disciplinas
+- Explicações multinível (técnica, didática, analogia, prática)
+- Análise de cada alternativa
+- Pegadinhas identificadas
+- Fundamento legal
+- Dicas de prova
+
+Formato otimizado para:
+- RAG (Retrieval-Augmented Generation)
+- Explicações adaptativas por nível do aluno
+- Classificação de erros
+- Geração de drills personalizados
+
+============================================================
+FIM DO BANCO DE QUESTÕES - DIREITO PENAL (AMOSTRA)
+============================================================

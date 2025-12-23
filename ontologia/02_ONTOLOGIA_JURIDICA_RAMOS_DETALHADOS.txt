@@ -1,0 +1,1053 @@
+JURIS_IA_CORE_V1
+ONTOLOGIA JURÍDICA - RAMOS DETALHADOS
+Versão 1.0 - Estrutura Completa para RAG e Aprovação OAB
+============================================================
+
+Este documento detalha profundamente cada ramo do Direito cobrado na OAB, organizando institutos, conceitos, relações e padrões de cobrança.
+
+============================================================
+BLOCO 1: DIREITO CONSTITUCIONAL COMPLETO
+============================================================
+
+--------------------------------------------------
+SUB-RAMO: TEORIA DA CONSTITUIÇÃO
+--------------------------------------------------
+
+CONCEITO FUNDAMENTAL: CONSTITUIÇÃO
+
+DEFINIÇÃO TÉCNICA:
+Conjunto de normas jurídicas supremas que estabelecem a estrutura do Estado, a organização dos Poderes, os direitos fundamentais e os procedimentos de mudança constitucional.
+
+CLASSIFICAÇÕES:
+
+1. QUANTO AO CONTEÚDO:
+- Material: normas essencialmente constitucionais (organização estatal, direitos fundamentais)
+- Formal: todas as normas inseridas na Constituição, independente do conteúdo
+
+2. QUANTO À FORMA:
+- Escrita: documento único
+- Não escrita: costumes, leis esparsas, precedentes
+
+3. QUANTO À ELABORAÇÃO:
+- Dogmática: elaborada por órgão constituinte
+- Histórica: resultado de evolução histórica
+
+4. QUANTO À ORIGEM:
+- Promulgada: aprovada por assembleia democrática (CF/88)
+- Outorgada: imposta por governante (CF/1967, 1937, 1824)
+
+5. QUANTO À ESTABILIDADE:
+- Rígida: exige processo especial para mudança (CF/88)
+- Flexível: mudada por processo legislativo comum
+- Semi-rígida: parte rígida, parte flexível
+
+INCIDÊNCIA NA OAB:
+- Classificação da CF/88: escrita, dogmática, promulgada, rígida, analítica
+- Elementos da Constituição: orgânicos, limitativos, socioideológicos, estabilização, aplicabilidade
+- Pegadinhas: confundir rigidez com imutabilidade (CF é rígida, mas mutável)
+
+APLICAÇÃO PRÁTICA:
+- Identificar norma materialmente constitucional para arguir inconstitucionalidade
+- Usar classificação para argumentar amplitude de direitos
+- Distinguir poder constituinte originário de derivado
+
+ERROS COMUNS:
+- Achar que CF/88 é imutável: ela é rígida, não imutável
+- Confundir rigidez com supremacia: são conceitos distintos
+- Ignorar diferença entre Constituição formal e material
+
+--------------------------------------------------
+SUB-RAMO: DIREITOS E GARANTIAS FUNDAMENTAIS
+--------------------------------------------------
+
+CLASSIFICAÇÃO DOS DIREITOS FUNDAMENTAIS:
+
+1. DIREITOS INDIVIDUAIS (ART. 5º):
+- Vida, liberdade, igualdade, segurança, propriedade
+- 78 incisos + parágrafos
+- Cláusula pétrea
+
+2. DIREITOS COLETIVOS (ART. 5º):
+- Associação, reunião, entidades sindicais
+
+3. DIREITOS SOCIAIS (ART. 6º a 11):
+- Educação, saúde, trabalho, moradia, lazer, segurança, previdência, proteção à maternidade e infância, assistência aos desamparados
+- Direitos dos trabalhadores (art. 7º)
+
+4. DIREITOS DE NACIONALIDADE (ART. 12 e 13):
+- Brasileiros natos e naturalizados
+- Perda da nacionalidade
+
+5. DIREITOS POLÍTICOS (ART. 14 a 16):
+- Sufrágio, voto, elegibilidade
+- Plebiscito, referendo, iniciativa popular
+
+INSTITUTOS ESSENCIAIS:
+
+--------------------------------------------------
+INSTITUTO: HABEAS CORPUS (HC)
+--------------------------------------------------
+
+DEFINIÇÃO:
+Remédio constitucional que protege o direito de locomoção contra ilegalidade ou abuso de poder.
+
+HIPÓTESES:
+- Preventivo: ameaça à liberdade
+- Repressivo (liberatório): já houve prisão ilegal
+
+LEGITIMIDADE:
+- Ativa: qualquer pessoa (até sem advogado)
+- Passiva: autoridade coatora
+
+OBJETO:
+- Liberdade de locomoção
+
+NÃO CABE:
+- Punições disciplinares militares (salvo se abusivas)
+- Contra decisão transitada em julgado (usar revisão criminal)
+- Para discutir mérito da condenação
+
+INCIDÊNCIA NA OAB:
+- Peça de 2ª fase em Penal
+- Questões sobre cabimento, legitimidade, hipóteses
+- Súmula 693 STF: não cabe contra punição disciplinar militar (salvo abuso)
+
+APLICAÇÃO PRÁTICA:
+- Impetra-se contra prisão ilegal, excesso de prazo, falta de fundamentação
+
+ERROS COMUNS:
+- Achar que só cabe em crime: cabe em qualquer ameaça à locomoção
+- Confundir com Habeas Data: HC é locomoção, HD é informação
+- Não saber que não precisa de advogado: pode ser impetrado por qualquer um
+
+--------------------------------------------------
+INSTITUTO: MANDADO DE SEGURANÇA (MS)
+--------------------------------------------------
+
+DEFINIÇÃO:
+Remédio para proteger direito líquido e certo não amparado por HC ou HD, contra ato ilegal ou abusivo de autoridade pública ou agente de pessoa jurídica no exercício de atribuições públicas.
+
+REQUISITOS:
+- Direito líquido e certo: comprovado de plano
+- Ato ilegal ou abusivo
+- Autoridade coatora
+
+PRAZO:
+- 120 dias da ciência do ato (decadencial)
+
+NÃO CABE:
+- Contra lei em tese
+- Contra ato judicial com recurso específico
+- Quando há recurso administrativo com efeito suspensivo (salvo exigência de caução)
+
+ESPÉCIES:
+- Individual
+- Coletivo (art. 21, LMS): partido político, organização sindical, entidade de classe, associação
+
+INCIDÊNCIA NA OAB:
+- Peça comum de 2ª fase (Constitucional, Administrativo)
+- Conceito de direito líquido e certo
+- Prazo decadencial de 120 dias
+
+APLICAÇÃO PRÁTICA:
+- Impugnar ato administrativo ilegal
+- Suspender exigibilidade de tributo
+- Garantir direito violado por autoridade
+
+ERROS COMUNS:
+- Perder prazo de 120 dias: decadência
+- Usar MS quando há recurso específico: não cabe
+- Não identificar corretamente autoridade coatora
+- Confundir MS preventivo com repressivo
+
+--------------------------------------------------
+INSTITUTO: MANDADO DE INJUNÇÃO (MI)
+--------------------------------------------------
+
+DEFINIÇÃO:
+Remédio para suprir ausência de norma regulamentadora que inviabiliza exercício de direitos e liberdades constitucionais e prerrogativas inerentes à nacionalidade, soberania e cidadania.
+
+OBJETO:
+- Falta de norma regulamentadora
+
+LEGITIMIDADE:
+- Ativa: titular do direito inviabilizado
+- Passiva: órgão omisso
+
+EFEITOS:
+- STF adota posição concretista: supre a omissão para o caso concreto
+- Antes adotava posição não concretista: apenas comunicava o Poder omisso
+
+INCIDÊNCIA NA OAB:
+- Diferença com ADO: MI é individual/coletivo, ADO é abstrata
+- Legitimidade ativa: qualquer titular do direito (MI) x legitimados da ADI (ADO)
+- Efeitos: inter partes (MI) x erga omnes (ADO)
+
+APLICAÇÃO PRÁTICA:
+- Exemplo clássico: direito de greve do servidor público (MI 670, 708, 712)
+
+ERROS COMUNS:
+- Confundir com ADO: objeto similar, mas legitimidade e efeitos diferentes
+- Achar que MI só declara omissão: STF concretiza
+
+--------------------------------------------------
+INSTITUTO: HABEAS DATA (HD)
+--------------------------------------------------
+
+DEFINIÇÃO:
+Remédio para assegurar conhecimento ou retificação de informações pessoais constantes de registros ou bancos de dados de entidades governamentais ou de caráter público.
+
+HIPÓTESES:
+a) conhecer informações sobre a pessoa
+b) retificar dados
+c) anotação de justificação ou explicação sobre dado verdadeiro mas justificável
+
+REQUISITO:
+- Prévio requerimento administrativo recusado ou não respondido em 15 dias (interesse processual)
+
+NÃO CABE:
+- Para informações de terceiros (usar MS)
+- Sem prévio requerimento administrativo
+- Contra particulares sem dados de caráter público
+
+INCIDÊNCIA NA OAB:
+- Diferença com direito de certidão (art. 5º, XXXIV, b): certidão é via MS
+- Necessidade de prévio requerimento administrativo
+- Cabimento restrito: só informações pessoais
+
+APLICAÇÃO PRÁTICA:
+- Corrigir dados do CPF, SPC, SERASA (quando entes públicos ou com dados públicos)
+- Acessar informações sobre si em órgãos públicos
+
+ERROS COMUNS:
+- Usar HD sem prévio requerimento: falta interesse processual
+- Confundir com MS: HD é específico para dados pessoais
+- Achar que cabe contra qualquer empresa privada: só se exercer função pública
+
+--------------------------------------------------
+INSTITUTO: AÇÃO POPULAR (AP)
+--------------------------------------------------
+
+DEFINIÇÃO:
+Remédio para anular ato lesivo ao patrimônio público, à moralidade administrativa, ao meio ambiente e ao patrimônio histórico e cultural.
+
+LEGITIMIDADE:
+- Ativa: qualquer cidadão (eleitor)
+- Passiva: autoridade ou entidade responsável + beneficiários do ato
+
+OBJETO:
+- Ato lesivo ao patrimônio público (sentido amplo)
+- Proteção objetiva: basta lesividade
+
+CUSTAS:
+- Autor isento (salvo má-fé)
+
+INCIDÊNCIA NA OAB:
+- Legitimidade restrita: só cidadão (eleitor com título)
+- Objeto amplo: patrimônio público, moralidade, ambiente, cultural
+- Coisa julgada secundum eventum litis: se improcedente, qualquer cidadão pode propor novamente
+
+APLICAÇÃO PRÁTICA:
+- Anular contrato lesivo ao patrimônio público
+- Anular ato de improbidade administrativa
+- Proteger meio ambiente
+
+ERROS COMUNS:
+- Confundir com ACP: legitimidade é diferente
+- Achar que cabe para qualquer pessoa: só cidadão (eleitor)
+- Não saber que autor não paga custas (salvo má-fé)
+
+--------------------------------------------------
+SUB-RAMO: CONTROLE DE CONSTITUCIONALIDADE
+--------------------------------------------------
+
+SISTEMA BRASILEIRO: MISTO (DIFUSO + CONCENTRADO)
+
+CONTROLE DIFUSO (CONCRETO):
+- Qualquer juiz ou tribunal
+- Incidenter tantum (questão prejudicial)
+- Efeitos: inter partes, ex tunc
+- Reserva de plenário: só órgão especial ou plenário declara (CF, art. 97)
+- Senado pode dar efeito erga omnes (CF, art. 52, X)
+
+CONTROLE CONCENTRADO (ABSTRATO):
+- STF (em relação à CF)
+- TJ (em relação à CE)
+- Efeitos: erga omnes, ex tunc (salvo modulação)
+
+AÇÕES DO CONTROLE CONCENTRADO:
+
+--------------------------------------------------
+INSTITUTO: AÇÃO DIRETA DE INCONSTITUCIONALIDADE (ADI)
+--------------------------------------------------
+
+OBJETO:
+- Lei ou ato normativo federal ou estadual incompatível com CF
+
+LEGITIMADOS (CF, ART. 103):
+- Presidente, Mesa do Senado, Mesa da Câmara, Mesa de Assembleia Legislativa, Governador, PGR, Conselho Federal da OAB, Partido Político com representação no Congresso, Confederação Sindical ou Entidade de Classe de âmbito nacional
+
+PERTINÊNCIA TEMÁTICA:
+- Exigida para: Governador, Mesa de AL, Confederação Sindical, Entidade de Classe
+- Não exigida para: Presidente, PGR, OAB, Partido Político
+
+EFEITOS:
+- Erga omnes, vinculante, ex tunc (retroativo)
+- Pode ser modulada pelo STF (ex nunc ou data futura)
+
+INCIDÊNCIA NA OAB:
+- Legitimados ativos (decorar!)
+- Pertinência temática
+- Diferença com ADC e ADPF
+
+APLICAÇÃO PRÁTICA:
+- Impugnar lei inconstitucional de forma abstrata
+
+ERROS COMUNS:
+- Confundir legitimados: nem todos precisam pertinência temática
+- Achar que qualquer pessoa pode propor: legitimação restrita
+- Ignorar que efeitos são vinculantes: juízes não podem decidir contra
+
+--------------------------------------------------
+INSTITUTO: AÇÃO DECLARATÓRIA DE CONSTITUCIONALIDADE (ADC)
+--------------------------------------------------
+
+OBJETO:
+- Declarar constitucionalidade de lei ou ato normativo federal
+
+LEGITIMADOS:
+- Os mesmos da ADI (art. 103)
+
+REQUISITO:
+- Controvérsia judicial relevante sobre a lei
+
+EFEITOS:
+- Erga omnes, vinculante, ex tunc
+
+INCIDÊNCIA NA OAB:
+- Diferença com ADI: ADI presume constitucionalidade, ADC busca afirmar constitucion
+
+alidade
+- Mesmos legitimados da ADI
+
+APLICAÇÃO PRÁTICA:
+- Pacificar controvérsia sobre constitucionalidade de lei federal
+
+ERROS COMUNS:
+- Achar que ADC só serve para "defender governo": qualquer legitimado pode propor
+- Não saber que exige controvérsia judicial relevante
+
+--------------------------------------------------
+INSTITUTO: ARGUIÇÃO DE DESCUMPRIMENTO DE PRECEITO FUNDAMENTAL (ADPF)
+--------------------------------------------------
+
+OBJETO:
+- Evitar ou reparar lesão a preceito fundamental por ato do Poder Público
+
+SUBSIDIARIEDADE:
+- Só cabe se não houver outro meio eficaz (caráter residual)
+
+LEGITIMADOS:
+- Os mesmos da ADI
+
+VANTAGENS:
+- Abrange atos pré-constitucionais
+- Abrange leis municipais
+- Abrange atos administrativos
+
+EFEITOS:
+- Erga omnes, vinculante
+
+INCIDÊNCIA NA OAB:
+- Subsidiariedade: diferença com ADI
+- Objeto mais amplo que ADI
+- Cabe contra lei municipal (ADI não cabe)
+
+APLICAÇÃO PRÁTICA:
+- Impugnar lei municipal perante CF
+- Impugnar ato pré-constitucional
+
+ERROS COMUNS:
+- Usar ADPF quando cabe ADI: viola subsidiariedade
+- Não saber que cabe contra lei municipal (ADI não cabe)
+
+============================================================
+BLOCO 2: DIREITO CIVIL COMPLETO
+============================================================
+
+--------------------------------------------------
+SUB-RAMO: PARTE GERAL
+--------------------------------------------------
+
+LIVRO I: DAS PESSOAS
+
+--------------------------------------------------
+INSTITUTO: PESSOA NATURAL
+--------------------------------------------------
+
+INÍCIO DA PERSONALIDADE:
+- Nascimento com vida (art. 2º, CC)
+- Teoria natalista: adotada pelo CC/2002
+- Direitos do nascituro: protegidos desde a concepção (art. 2º, parte final)
+
+CAPACIDADE:
+
+1. CAPACIDADE DE DIREITO (GOZO):
+- Aptidão para ser titular de direitos
+- Toda pessoa tem
+
+2. CAPACIDADE DE FATO (EXERCÍCIO):
+- Aptidão para exercer pessoalmente os atos da vida civil
+- Pode ser limitada
+
+INCAPACIDADE ABSOLUTA (ART. 3º):
+- Menores de 16 anos
+- [Revogados: enfermos/deficientes mentais, que passaram a relativamente incapazes]
+
+INCAPACIDADE RELATIVA (ART. 4º):
+- Maiores de 16 e menores de 18
+- Ébrios habituais e viciados em tóxico
+- Aqueles que, por causa transitória ou permanente, não puderem exprimir vontade
+- Pródigos (atos de disposição patrimonial)
+
+EFEITOS:
+- Absolutamente incapaz: ato é NULO
+- Relativamente incapaz: ato é ANULÁVEL
+
+SUPRIMENTO:
+- Representação (incapaz absoluto)
+- Assistência (incapaz relativo)
+
+INCIDÊNCIA NA OAB:
+- EPD excluiu doentes mentais da incapacidade absoluta
+- Diferença entre nulidade e anulabilidade
+- Emancipação: hipóteses do art. 5º
+
+APLICAÇÃO PRÁTICA:
+- Verificar capacidade das partes em negócios jurídicos
+- Pleitear anulação de ato praticado por incapaz
+
+ERROS COMUNS:
+- Achar que doente mental é absolutamente incapaz: EPD mudou (Lei 13.146/2015)
+- Confundir representação com assistência
+- Ignorar que pródigo só é incapaz para atos patrimoniais dispositivos
+
+--------------------------------------------------
+INSTITUTO: PESSOA JURÍDICA
+--------------------------------------------------
+
+DEFINIÇÃO:
+Entidade abstrata com personalidade jurídica própria, distinta de seus membros.
+
+REQUISITOS:
+- Vontade humana criadora
+- Observância das condições legais
+- Liceidade de objeto
+
+INÍCIO DA PERSONALIDADE:
+- Registro do ato constitutivo (art. 45, CC)
+
+CLASSIFICAÇÃO:
+
+1. DIREITO PÚBLICO:
+- Interno: União, Estados, DF, Municípios, autarquias, fundações públicas, associações públicas
+- Externo: países estrangeiros, organismos internacionais
+
+2. DIREITO PRIVADO:
+- Associações
+- Sociedades
+- Fundações
+- Organizações religiosas
+- Partidos políticos
+- EIRELI (extinta em 2021, substituída pela SLU)
+
+DESCONSIDERAÇÃO DA PERSONALIDADE JURÍDICA:
+
+TEORIA MAIOR (ART. 50, CC):
+- Abuso da personalidade
+- Desvio de finalidade
+- Confusão patrimonial
+
+TEORIA MENOR (CDC, CTN, AMBIENTAL):
+- Basta insuficiência patrimonial
+
+INCIDÊNCIA NA OAB:
+- Diferença entre teoria maior e menor
+- Momento do início da personalidade: registro
+- Desconsideração e desconsideração inversa
+
+APLICAÇÃO PRÁTICA:
+- Pedir desconsideração para atingir patrimônio dos sócios
+- Impugnar desconsideração quando não há requisitos
+
+ERROS COMUNS:
+- Confundir teoria maior com menor
+- Achar que basta inadimplência para desconsiderar: precisa requisitos
+- Não saber que desconsideração pode ser requerida no próprio processo (incidente)
+
+--------------------------------------------------
+SUB-RAMO: OBRIGAÇÕES
+--------------------------------------------------
+
+ESTRUTURA DA OBRIGAÇÃO:
+- Sujeito ativo (credor)
+- Sujeito passivo (devedor)
+- Vínculo jurídico
+- Objeto (prestação: dar, fazer, não fazer)
+
+CLASSIFICAÇÃO DAS OBRIGAÇÕES:
+
+1. QUANTO AO OBJETO:
+- Dar coisa certa
+- Dar coisa incerta
+- Fazer
+- Não fazer
+
+2. QUANTO AOS SUJEITOS:
+- Simples: um credor, um devedor
+- Complexas: pluralidade de sujeitos
+
+3. SOLIDARIEDADE:
+- Ativa: vários credores, qualquer um pode cobrar o todo
+- Passiva: vários devedores, qualquer um pode ser cobrado pelo todo
+- Não se presume: decorre de lei ou contrato
+
+4. QUANTO À DIVISIBILIDADE:
+- Divisível: pode ser fracionada
+- Indivisível: não pode ser fracionada
+
+EXTINÇÃO DAS OBRIGAÇÕES:
+
+1. PAGAMENTO (forma normal)
+- Quem deve pagar, o que, a quem, onde, quando
+
+2. OUTRAS FORMAS:
+- Novação: substituição por obrigação nova
+- Compensação: dívidas recíprocas se extinguem
+- Confusão: credor e devedor se tornam mesma pessoa
+- Remissão: perdão da dívida
+- Prescrição: perda da pretensão
+
+INADIMPLEMENTO:
+
+1. MORA:
+- Mora do devedor (solvendi): atraso culposo no cumprimento
+- Mora do credor (accipiendi): recusa injustificada em receber
+
+2. PERDAS E DANOS:
+- Dano emergente: prejuízo efetivo
+- Lucro cessante: o que deixou de lucrar
+
+INCIDÊNCIA NA OAB:
+- Solidariedade: não se presume
+- Diferença entre novação e dação em pagamento
+- Mora do devedor x mora do credor
+
+APLICAÇÃO PRÁTICA:
+- Cobrar dívida solidária de qualquer devedor
+- Pleitear perdas e danos (emergente + cessante)
+- Usar compensação em contestação
+
+ERROS COMUNS:
+- Presumir solidariedade: precisa lei ou contrato
+- Confundir dano emergente com lucro cessante
+- Não distinguir mora de inadimplemento absoluto
+
+--------------------------------------------------
+SUB-RAMO: CONTRATOS (PARTE ESPECIAL)
+--------------------------------------------------
+
+PRINCÍPIOS DOS CONTRATOS:
+
+1. AUTONOMIA PRIVADA (LIBERDADE CONTRATUAL)
+- Limitada pela função social e boa-fé
+
+2. FORÇA OBRIGATÓRIA (PACTA SUNT SERVANDA)
+- Contrato faz lei entre as partes
+- Mitigado: revisão por onerosidade excessiva
+
+3. BOA-FÉ OBJETIVA
+- Padrão de conduta leal, proba, cooperativa
+- Deveres anexos: informação, cooperação, proteção
+
+4. FUNÇÃO SOCIAL
+- Contrato não pode violar interesse social
+
+FORMAÇÃO DO CONTRATO:
+- Proposta + Aceitação = Contrato
+- Regras: arts. 427 a 435, CC
+
+VÍCIOS DO NEGÓCIO JURÍDICO:
+
+1. VÍCIOS DE CONSENTIMENTO:
+- Erro ou ignorância
+- Dolo
+- Coação
+- Estado de perigo
+- Lesão
+
+2. VÍCIOS SOCIAIS:
+- Fraude contra credores
+- Simulação
+
+REVISÃO CONTRATUAL:
+
+ONEROSIDADE EXCESSIVA (ART. 478, CC):
+- Contratos de execução continuada ou diferida
+- Acontecimento extraordinário e imprevisível
+- Extrema vantagem para uma parte
+- Onerosidade excessiva para outra
+
+RESOLUÇÃO POR ONEROSIDADE EXCESSIVA:
+- Fato superveniente
+- Imprevisível
+- Altera equilíbrio contratual
+
+INCIDÊNCIA NA OAB:
+- Princípios: boa-fé, função social
+- Revisão: onerosidade excessiva (teoria da imprevisão)
+- Vícios: erro, dolo, coação, lesão, estado de perigo
+
+APLICAÇÃO PRÁTICA:
+- Pedir revisão de contrato leonino
+- Anular contrato por vício de consentimento
+- Alegar boa-fé objetiva para limitar cláusulas abusivas
+
+ERROS COMUNS:
+- Confundir lesão com estado de perigo: requisitos diferentes
+- Não distinguir erro substancial de acidental
+- Ignorar prazo decadencial para anular: 4 anos (vícios) ou 2 anos (defeito oculto)
+
+--------------------------------------------------
+CONTRATOS EM ESPÉCIE (PRINCIPAIS)
+--------------------------------------------------
+
+1. COMPRA E VENDA:
+- Transferência de propriedade mediante preço
+- Evicção: perda da coisa por decisão judicial
+- Vícios redibitórios: defeitos ocultos
+
+2. DOAÇÃO:
+- Transferência gratuita
+- Revogação: ingratidão, inexecução de encargo
+
+3. LOCAÇÃO:
+- Uso temporário mediante aluguel
+- Lei 8.245/91: locação urbana
+- Direitos do locatário: renovação (comercial), preferência
+
+4. COMODATO:
+- Empréstimo gratuito de coisa infungível
+- Comodatário deve restituir a mesma coisa
+
+5. MÚTUO:
+- Empréstimo de coisa fungível
+- Mutuário deve restituir coisa do mesmo gênero, qualidade e quantidade
+
+6. PRESTAÇÃO DE SERVIÇO:
+- Fornecimento de trabalho sem subordinação
+- Não se presume gratuidade
+
+7. EMPREITADA:
+- Execução de obra
+- Empreiteiro pode fornecer material ou só mão de obra
+
+8. MANDATO:
+- Outorga de poderes para praticar atos em nome do mandante
+- Presume-se gratuito (salvo profissional)
+
+INCIDÊNCIA NA OAB:
+- Evicção e vícios redibitórios: compra e venda
+- Diferença entre comodato e mútuo
+- Mandato: poderes especiais (art. 661, § 1º)
+
+APLICAÇÃO PRÁTICA:
+- Redigir contratos
+- Pleitear redibição ou abatimento (vícios)
+- Cobrar indenização por evicção
+
+ERROS COMUNS:
+- Confundir comodato com mútuo
+- Não saber quando mandato é oneroso x gratuito
+- Ignorar prazo para reclamar de vícios redibitórios: 30 ou 90 dias (CDC)
+
+============================================================
+BLOCO 3: DIREITO PROCESSUAL CIVIL COMPLETO
+============================================================
+
+--------------------------------------------------
+SUB-RAMO: TEORIA GERAL DO PROCESSO
+--------------------------------------------------
+
+JURISDIÇÃO:
+
+DEFINIÇÃO:
+Função estatal de aplicar o direito ao caso concreto, substituindo a vontade das partes.
+
+PRINCÍPIOS:
+- Investidura: só juiz investido pode exercer
+- Indelegabilidade: não pode delegar jurisdição
+- Inevitabilidade: partes se submetem
+- Territorialidade: limites territoriais
+- Inércia: ne procedat iudex ex officio (depende de provocação)
+
+COMPETÊNCIA:
+
+CRITÉRIOS:
+- Objetiva: valor da causa, matéria
+- Funcional: grau de jurisdição, fase processual
+- Territorial: domicílio, lugar do ato/fato
+
+COMPETÊNCIA ABSOLUTA X RELATIVA:
+- Absoluta: matéria, funcional (não prorroga, conhecida de ofício, gera nulidade absoluta)
+- Relativa: territorial, valor (prorroga, arguida por exceção, gera nulidade relativa)
+
+AÇÃO:
+
+CONDIÇÕES DA AÇÃO:
+- Legitimidade ad causam
+- Interesse processual (necessidade + adequação)
+- Possibilidade jurídica do pedido (maioria da doutrina entende superada)
+
+ELEMENTOS DA AÇÃO:
+- Partes
+- Causa de pedir (fato + fundamento jurídico)
+- Pedido
+
+PROCESSO:
+
+PRESSUPOSTOS PROCESSUAIS:
+- Existência: petição inicial, citação, capacidade postulatória
+- Validade: competência, imparcialidade, capacidade processual
+
+INCIDÊNCIA NA OAB:
+- Diferença entre competência absoluta e relativa
+- Condições da ação: carência gera extinção sem resolução de mérito
+- Pressupostos processuais
+
+APLICAÇÃO PRÁTICA:
+- Alegar incompetência: exceção (relativa) ou preliminar (absoluta)
+- Arguir carência de ação
+- Verificar pressupostos antes de propor ação
+
+ERROS COMUNS:
+- Confundir competência absoluta com relativa
+- Não distinguir condições da ação de mérito
+- Ignorar que falta de pressuposto gera nulidade
+
+--------------------------------------------------
+SUB-RAMO: PROCEDIMENTO COMUM
+--------------------------------------------------
+
+PETIÇÃO INICIAL:
+
+REQUISITOS (ART. 319, CPC):
+I - juízo competente
+II - nomes, qualificação, endereços
+III - fatos e fundamentos jurídicos
+IV - pedido com especificações
+V - valor da causa
+VI - provas
+VII - opção por audiência de conciliação ou não
+
+PEDIDO:
+- Certo ou determinado
+- Pode ser: genérico (se não houver como determinar), alternativo, sucessivo
+
+CAUSA DE PEDIR:
+- Próxima: fundamento jurídico
+- Remota: fatos
+
+INDEFERIMENTO DA INICIAL (ART. 330):
+- Inépcia
+- Ilegitimidade
+- Falta de interesse
+- Litispendência, coisa julgada, perempção
+
+EMENDA DA INICIAL:
+- 15 dias para corrigir vício (art. 321)
+
+CONTESTAÇÃO:
+
+PRAZO:
+- 15 dias (art. 335)
+
+CONTEÚDO:
+- Preliminares (art. 337): incompetência relativa, conexão, incapacidade, defeito de representação, falta de caução, etc.
+- Mérito: impugnação específica dos fatos
+
+EFEITOS DA REVELIA:
+- Presunção de veracidade dos fatos
+- Não opera se: litisconsórcio (contestação de um aproveita outros), direitos indisponíveis, inicial não verossímil
+
+RECONVENÇÃO:
+
+DEFINIÇÃO:
+Ação do réu contra o autor no mesmo processo.
+
+REQUISITOS:
+- Conexão com ação principal ou fundamento da defesa
+- Competência e procedimento compatíveis
+
+DIFERENÇA COM PEDIDO CONTRAPOSTO:
+- Reconvenção: procedimento comum
+- Pedido contraposto: juizados especiais
+
+RÉPLICA:
+
+- Faculdade do autor de se manifestar sobre contestação e documentos novos
+- Prazo: 15 dias
+
+JULGAMENTO CONFORME O ESTADO DO PROCESSO:
+
+EXTINÇÃO SEM RESOLUÇÃO DE MÉRITO (ART. 485):
+- Indeferimento da inicial
+- Abandono
+- Desistência
+- Ausência de pressupostos ou condições da ação
+
+JULGAMENTO ANTECIPADO DO MÉRITO (ART. 355):
+- Não há necessidade de provas
+- Revelia com efeitos
+
+JULGAMENTO ANTECIPADO PARCIAL (ART. 356):
+- Incontroversa parte do mérito ou incontroverso um dos pedidos
+
+SANEAMENTO E ORGANIZAÇÃO DO PROCESSO:
+
+- Decisão saneadora: fixa pontos controvertidos, define provas, delimita questões
+- Pode haver audiência de saneamento (causas complexas)
+
+AUDIÊNCIA DE INSTRUÇÃO E JULGAMENTO:
+
+ORDEM:
+1. Tentativa de conciliação
+2. Oitiva de testemunhas do autor
+3. Oitiva de testemunhas do réu
+4. Depoimento pessoal (primeiro do autor, depois do réu)
+5. Debates orais (20 min cada parte)
+6. Sentença (pode ser publicada depois)
+
+SENTENÇA:
+
+REQUISITOS (ART. 489, CPC):
+- Relatório
+- Fundamentação (analítica, não genérica)
+- Dispositivo
+
+TIPOS:
+- Declaratória
+- Constitutiva
+- Condenatória
+- Mandamental
+- Executiva lato sensu
+
+COISA JULGADA:
+
+FORMAL:
+- Imutabilidade dentro do processo (não cabe mais recurso)
+
+MATERIAL:
+- Imutabilidade fora do processo (vincula outros processos)
+- Só abrange dispositivo, não motivação
+
+LIMITES:
+- Subjetivos: partes e sucessores
+- Objetivos: dispositivo (lide decidida)
+- Temporais: fatos ocorridos até a estabilização da demanda
+
+INCIDÊNCIA NA OAB:
+- Requisitos da inicial
+- Ordem de julgamento: preliminares → mérito
+- Efeitos da revelia
+- Coisa julgada: material x formal
+
+APLICAÇÃO PRÁTICA:
+- Redigir inicial completa
+- Contestar adequadamente
+- Identificar caso de julgamento antecipado
+
+ERROS COMUNS:
+- Não emendar inicial no prazo: indeferimento
+- Contestar genericamente: revelia parcial
+- Confundir coisa julgada formal com material
+
+--------------------------------------------------
+SUB-RAMO: RECURSOS
+--------------------------------------------------
+
+PRINCÍPIOS:
+- Taxatividade: só os previstos em lei
+- Singularidade: um recurso para cada decisão
+- Fungibilidade: permite troca se houver dúvida objetiva
+- Consumação: interposto, não pode desistir sem anuência da outra parte (salvo antes da contraminuta)
+
+JUÍZO DE ADMISSIBILIDADE:
+- Cabimento
+- Legitimidade
+- Interesse
+- Tempestividade
+- Regularidade formal
+- Inexistência de fato impeditivo/extintivo
+
+EFEITOS:
+- Devolutivo: devolve matéria ao tribunal
+- Suspensivo: impede eficácia da decisão
+- Translativo: tribunal pode conhecer de ofício matérias de ordem pública
+
+RECURSOS PRINCIPAIS:
+
+--------------------------------------------------
+RECURSO: APELAÇÃO
+--------------------------------------------------
+
+CABIMENTO:
+- Contra sentença (art. 1.009)
+
+PRAZO:
+- 15 dias
+
+EFEITOS:
+- Devolutivo (sempre)
+- Suspensivo (regra)
+- Não tem efeito suspensivo: art. 1.012, § 1º (tutela de urgência, improcedência liminar, etc.)
+
+PROCESSAMENTO:
+- Contrarazões: 15 dias
+- Juízo de retratação: se sentença indeferir inicial ou julgar liminarmente improcedente
+- Remessa ao tribunal
+
+INCIDÊNCIA NA OAB:
+- Peça de 2ª fase: apelação
+- Efeitos: regra é devolutivo + suspensivo
+- Juízo de retratação: art. 331 e 332
+
+APLICAÇÃO PRÁTICA:
+- Interpor apelação contra sentença
+- Contrarrazoar
+
+ERROS COMUNS:
+- Achar que apelação sempre suspende: há exceções (art. 1.012, § 1º)
+- Não indicar especificamente os pontos recorridos
+- Perder prazo
+
+--------------------------------------------------
+RECURSO: AGRAVO DE INSTRUMENTO
+--------------------------------------------------
+
+CABIMENTO:
+- Contra decisão interlocutória (rol taxativo do art. 1.015)
+
+PRAZO:
+- 15 dias
+
+PEÇAS OBRIGATÓRIAS (ART. 1.017):
+- Petição, procuração, decisão, certidão de intimação
+- Peças essenciais: comprovem requisitos de admissibilidade
+
+PROCESSAMENTO:
+- Interposto diretamente no tribunal
+- Informações do juiz em 15 dias
+- Pode haver tutela antecipada recursal
+
+AGRAVO INTERNO:
+- Contra decisão monocrática de relator
+- Prazo: 15 dias
+
+INCIDÊNCIA NA OAB:
+- Rol do art. 1.015: taxativo (STJ flexibilizou em alguns casos)
+- Peças obrigatórias
+- Diferença com agravo interno
+
+APLICAÇÃO PRÁTICA:
+- Impugnar decisão interlocutória sobre tutela provisória, mérito, liquidação, cumprimento de sentença
+
+ERROS COMUNS:
+- Não juntar peças obrigatórias: não conhecimento
+- Interpor contra decisão fora do art. 1.015: preclusão
+- Confundir agravo de instrumento com agravo interno
+
+--------------------------------------------------
+RECURSO: EMBARGOS DE DECLARAÇÃO
+--------------------------------------------------
+
+CABIMENTO:
+- Obscuridade, contradição, omissão, erro material
+
+PRAZO:
+- 5 dias
+
+EFEITOS:
+- Interrompe prazo para outros recursos
+- Prequestionamento
+- Pode ter efeito modificativo (se preencher requisitos)
+
+INCIDÊNCIA NA OAB:
+- Requisitos: obscuridade, contradição, omissão
+- Efeito interruptivo: prazo para apelar começa após embargos
+- Prequestionamento para REsp e RE
+
+APLICAÇÃO PRÁTICA:
+- Esclarecer decisão obscura
+- Suprir omissão
+- Prequestionar para recursos excepcionais
+
+ERROS COMUNS:
+- Usar como sucedâneo de apelação: embargos não reexaminam mérito
+- Não embargar para prequestionar: pode perder REsp/RE
+- Achar que sempre tem efeito modificativo: é exceção
+
+--------------------------------------------------
+RECURSO: RECURSO ESPECIAL (RESP) E RECURSO EXTRAORDINÁRIO (RE)
+--------------------------------------------------
+
+RECURSO ESPECIAL (STJ):
+- Violação à lei federal
+- Divergência jurisprudencial
+
+REQUISITOS:
+- Esgotamento de instâncias ordinárias
+- Prequestionamento
+- Fundamentação específica
+
+RECURSO EXTRAORDINÁRIO (STF):
+- Questão constitucional
+- Repercussão geral
+
+PRAZO:
+- 15 dias (ambos)
+
+INCIDÊNCIA NA OAB:
+- Diferença: REsp (lei federal) x RE (Constituição)
+- Prequestionamento: necessário
+- Repercussão geral: RE
+
+APLICAÇÃO PRÁTICA:
+- Fundamentar violação à lei federal (REsp) ou CF (RE)
+- Prequestionar nos embargos declaratórios
+
+ERROS COMUNS:
+- Não prequestionar: inadmissibilidade
+- Confundir REsp com RE
+- Não demonstrar repercussão geral (RE): inadmissibilidade
+
+============================================================
+OBSERVAÇÕES FINAIS
+============================================================
+
+Este documento detalha os principais ramos cobrados na OAB 1ª fase. Os próximos documentos abordarão:
+
+- Direito Penal e Processual Penal Completo
+- Direito do Trabalho e Processual do Trabalho Completo
+- Direito Tributário
+- Direito Administrativo
+- Direito Empresarial
+- Direito do Consumidor
+- Ética e Estatuto da OAB
+
+Cada ramo segue a mesma estrutura: definições técnicas, explicações didáticas, incidência na OAB, aplicação prática e erros comuns.
+
+============================================================
+FIM DO DOCUMENTO DE RAMOS DETALHADOS
+Próximo: ONTOLOGIA_JURIDICA_DIREITO_PENAL_E_PROCESSUAL_PENAL.txt
+============================================================

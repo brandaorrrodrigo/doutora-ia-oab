@@ -1,0 +1,587 @@
+JURIS_IA_CORE_V1
+LEI SECA ESTRUTURADA - CONSTITUIÇÃO FEDERAL DE 1988
+Versão 1.0 - Formato RAG-Ready para IA
+============================================================
+
+ÍNDICE GERAL
+============================================================
+
+TÍTULO I - Dos Princípios Fundamentais (arts. 1º a 4º)
+TÍTULO II - Dos Direitos e Garantias Fundamentais (arts. 5º a 17)
+  CAPÍTULO I - Dos Direitos e Deveres Individuais e Coletivos (art. 5º)
+  CAPÍTULO II - Dos Direitos Sociais (arts. 6º a 11)
+  CAPÍTULO III - Da Nacionalidade (arts. 12 e 13)
+  CAPÍTULO IV - Dos Direitos Políticos (arts. 14 a 16)
+  CAPÍTULO V - Dos Partidos Políticos (art. 17)
+TÍTULO III - Da Organização do Estado (arts. 18 a 43)
+TÍTULO IV - Da Organização dos Poderes (arts. 44 a 135)
+TÍTULO V - Da Defesa do Estado e das Instituições Democráticas (arts. 136 a 144)
+TÍTULO VI - Da Tributação e do Orçamento (arts. 145 a 169)
+TÍTULO VII - Da Ordem Econômica e Financeira (arts. 170 a 192)
+TÍTULO VIII - Da Ordem Social (arts. 193 a 232)
+TÍTULO IX - Das Disposições Constitucionais Gerais (arts. 233 a 250)
+TÍTULO X - Ato das Disposições Constitucionais Transitórias (ADCT)
+
+============================================================
+TÍTULO I - DOS PRINCÍPIOS FUNDAMENTAIS
+============================================================
+
+--------------------------------------------------
+ARTIGO 1º
+--------------------------------------------------
+
+TEXTO COMPLETO:
+Art. 1º A República Federativa do Brasil, formada pela união indissolúvel dos Estados e Municípios e do Distrito Federal, constitui-se em Estado Democrático de Direito e tem como fundamentos:
+I - a soberania;
+II - a cidadania;
+III - a dignidade da pessoa humana;
+IV - os valores sociais do trabalho e da livre iniciativa;
+V - o pluralismo político.
+Parágrafo único. Todo o poder emana do povo, que o exerce por meio de representantes eleitos ou diretamente, nos termos desta Constituição.
+
+SÍNTESE OBJETIVA:
+Define o Brasil como Estado Democrático de Direito fundado em: soberania, cidadania, dignidade humana, valores sociais do trabalho e livre iniciativa, e pluralismo político. Estabelece que o poder emana do povo (democracia).
+
+CONCEITOS RELACIONADOS:
+- Estado Democrático de Direito
+- Forma de Estado: Federação
+- Forma de Governo: República
+- Sistema de Governo: Presidencialismo
+- Soberania popular
+- Dignidade da pessoa humana (princípio fundamental)
+
+EXCEÇÕES:
+Nenhuma
+
+PEGADINHAS OAB:
+1. "A República Federativa do Brasil é formada pela união DISSOLÚVEL..." (ERRADO: é indissolúvel - não pode separar)
+2. "O poder emana dos representantes eleitos" (ERRADO: emana do POVO, exercido por representantes)
+3. Confundir fundamentos (art. 1º) com objetivos (art. 3º): fundamentos são a BASE, objetivos são METAS
+4. "Dignidade da pessoa humana é objetivo fundamental" (ERRADO: é FUNDAMENTO, não objetivo)
+5. Esquecer que há democracia DIRETA e REPRESENTATIVA (parágrafo único)
+
+INCIDÊNCIA NA OAB:
+Frequência: ALTA
+Disciplinas: Constitucional, Direitos Humanos
+Tipo de cobrança:
+- Literal: decorar fundamentos (decoreba dos 5 incisos)
+- Interpretação: diferença entre fundamentos x objetivos
+- Aplicação: dignidade humana como vetor interpretativo
+
+APLICAÇÃO PRÁTICA:
+- Fundamentar petições invocando dignidade da pessoa humana
+- Arguir que lei viola fundamento da República (inconstitucionalidade)
+- Invocar soberania popular em controle de constitucionalidade
+- Base para direitos fundamentais
+
+JURISPRUDÊNCIA RELEVANTE:
+- STF: dignidade da pessoa humana é fundamento que irradia para todo ordenamento
+- STF: união indissolúvel veda secessão (separação de estados)
+
+ARTIGOS RELACIONADOS:
+- Art. 3º (objetivos fundamentais): complementa fundamentos
+- Art. 5º (direitos fundamentais): concretiza dignidade humana
+- Art. 18 (organização federativa): detalha união indissolúvel
+
+QUESTÕES RELACIONADAS:
+- OAB XXXI: "Assinale a alternativa que apresenta fundamento da República..." (cobrou decoreba literal)
+- OAB XXXIII: Diferença entre fundamentos e objetivos (pegadinha clássica)
+
+--------------------------------------------------
+ARTIGO 3º
+--------------------------------------------------
+
+TEXTO COMPLETO:
+Art. 3º Constituem objetivos fundamentais da República Federativa do Brasil:
+I - construir uma sociedade livre, justa e solidária;
+II - garantir o desenvolvimento nacional;
+III - erradicar a pobreza e a marginalização e reduzir as desigualdades sociais e regionais;
+IV - promover o bem de todos, sem preconceitos de origem, raça, sexo, cor, idade e quaisquer outras formas de discriminação.
+
+SÍNTESE OBJETIVA:
+Estabelece as METAS que o Brasil deve perseguir: sociedade livre/justa/solidária, desenvolvimento nacional, erradicação da pobreza, redução de desigualdades, promoção do bem de todos sem discriminação.
+
+CONCEITOS RELACIONADOS:
+- Objetivos fundamentais (diferente de fundamentos)
+- Igualdade material (substancial): reduzir desigualdades
+- Estado Social
+- Solidariedade
+- Não discriminação
+
+EXCEÇÕES:
+Nenhuma
+
+PEGADINHAS OAB:
+1. Confundir com fundamentos (art. 1º): fundamentos = BASE, objetivos = METAS
+2. "Erradicar a pobreza" vs "Reduzir desigualdades": erradicar é objetivo, reduzir também (não confundir os verbos)
+3. "Promover o bem de todos, SEM DISTINÇÃO" (CUIDADO: texto diz "sem preconceitos", não "sem distinção" - distinções justas são permitidas, preconceito não)
+4. Achar que são auto-aplicáveis: são normas programáticas (dependem de políticas públicas)
+
+INCIDÊNCIA NA OAB:
+Frequência: MÉDIA
+Disciplinas: Constitucional
+Tipo de cobrança:
+- Literal: decorar objetivos
+- Interpretação: diferença entre fundamentos (art. 1º) x objetivos (art. 3º)
+- Aplicação: fundamentar políticas públicas, ações afirmativas
+
+APLICAÇÃO PRÁTICA:
+- Fundamentar ações afirmativas (cotas): promover igualdade material
+- Fundamentar políticas públicas sociais
+- Arguir inconstitucionalidade de lei discriminatória (viola art. 3º, IV)
+- Base para controle de constitucionalidade de omissão
+
+JURISPRUDÊNCIA RELEVANTE:
+- STF: objetivos fundamentam ações afirmativas (cotas raciais são constitucionais)
+- STF: normas programáticas vinculam o legislador e administrador
+
+--------------------------------------------------
+ARTIGO 5º (DIREITOS E GARANTIAS FUNDAMENTAIS)
+--------------------------------------------------
+
+TEXTO INTRODUTÓRIO:
+Art. 5º Todos são iguais perante a lei, sem distinção de qualquer natureza, garantindo-se aos brasileiros e aos estrangeiros residentes no País a inviolabilidade do direito à vida, à liberdade, à igualdade, à segurança e à propriedade, nos termos seguintes:
+
+SÍNTESE DO CAPUT:
+Consagra princípio da igualdade formal (todos iguais perante a lei) e enumera 5 direitos básicos: vida, liberdade, igualdade, segurança, propriedade. Aplica-se a brasileiros e estrangeiros RESIDENTES.
+
+PEGADINHAS DO CAPUT:
+- "Estrangeiros NÃO residentes têm direitos do art. 5º" (DEPENDE: direitos da pessoa humana sim, direitos políticos e específicos não)
+- "Igualdade impede toda distinção" (ERRADO: igualdade MATERIAL permite distinções justificadas)
+
+ESTRUTURA DO ART. 5º:
+- 78 incisos (I a LXXVIII)
+- 4 parágrafos
+- É o artigo mais cobrado na OAB
+- Contém remédios constitucionais: HC, MS, MI, HD, AP
+
+INCISOS ESSENCIAIS (MAIS COBRADOS NA OAB):
+
+--------------------------------------------------
+INCISO II - PRINCÍPIO DA LEGALIDADE
+--------------------------------------------------
+
+TEXTO:
+II - ninguém será obrigado a fazer ou deixar de fazer alguma coisa senão em virtude de lei;
+
+SÍNTESE:
+Princípio da legalidade: só lei pode obrigar/proibir. Base do Estado de Direito.
+
+CONCEITOS RELACIONADOS:
+- Legalidade estrita (Penal): lei em sentido formal
+- Legalidade administrativa (art. 37): administrador só faz o que lei autoriza
+- Reserva legal: algumas matérias SÓ por lei
+
+PEGADINHAS:
+- "Decreto pode criar obrigação" (ERRADO: só lei, decreto apenas regulamenta)
+- Confundir legalidade com reserva legal: legalidade é mais ampla
+
+INCIDÊNCIA OAB:
+- Frequência: ALTA
+- Sempre cai em Constitucional, Administrativo, Penal
+
+--------------------------------------------------
+INCISO III e IV - VEDAÇÃO À TORTURA
+--------------------------------------------------
+
+TEXTO:
+III - ninguém será submetido a tortura nem a tratamento desumano ou degradante;
+IV - é livre a manifestação do pensamento, sendo vedado o anonimato;
+
+SÍNTESE III:
+Proibição absoluta de tortura. Crime inafiançável e insuscetível de graça/anistia (art. 5º, XLIII).
+
+SÍNTESE IV:
+Liberdade de expressão, mas não no anonimato (para garantir responsabilização).
+
+PEGADINHAS:
+- "Tortura é crime afiançável" (ERRADO: inafiançável e insuscetível de graça/anistia)
+- "Pode manifestar pensamento anonimamente" (ERRADO: vedado anonimato)
+
+--------------------------------------------------
+INCISO VI - LIBERDADE RELIGIOSA
+--------------------------------------------------
+
+TEXTO:
+VI - é inviolável a liberdade de consciência e de crença, sendo assegurado o livre exercício dos cultos religiosos e garantida, na forma da lei, a proteção aos locais de culto e a suas liturgias;
+
+SÍNTESE:
+Liberdade de crença, culto e liturgia. Estado laico (CF, art. 19, I: vedado estabelecer cultos ou embaraçá-los).
+
+PEGADINHAS:
+- "Estado pode embaraçar culto religioso" (ERRADO: Estado é laico)
+- Confundir liberdade religiosa com imposição religiosa
+
+--------------------------------------------------
+INCISO XI - INVIOLABILIDADE DE DOMICÍLIO
+--------------------------------------------------
+
+TEXTO:
+XI - a casa é asilo inviolável do indivíduo, ninguém nela podendo penetrar sem consentimento do morador, salvo em caso de flagrante delito ou desastre, ou para prestar socorro, ou, durante o dia, por determinação judicial;
+
+SÍNTESE:
+Casa é inviolável. Exceções SEM mandado: flagrante, desastre, socorro. Exceção COM mandado: durante o DIA.
+
+CONCEITOS RELACIONADOS:
+- "Casa": não só residência, inclui escritório, consultório, quarto de hotel
+- "Dia": 6h às 18h (entendimento STF)
+
+PEGADINHAS OAB (CLÁSSICAS):
+- "Pode entrar à noite com mandado" (ERRADO: mandado só DURANTE O DIA)
+- "Flagrante precisa de mandado" (ERRADO: flagrante é exceção, não precisa mandado)
+- "Escritório não é protegido" (ERRADO: escritório profissional é "casa")
+
+INCIDÊNCIA OAB:
+- Frequência: MUITO ALTA
+- Sempre cai: literal ou caso prático
+
+--------------------------------------------------
+INCISO XII - SIGILO DE COMUNICAÇÃO
+--------------------------------------------------
+
+TEXTO:
+XII - é inviolável o sigilo da correspondência e das comunicações telegráficas, de dados e das comunicações telefônicas, salvo, no último caso, por ordem judicial, nas hipóteses e na forma que a lei estabelecer para fins de investigação criminal ou instrução processual penal;
+
+SÍNTESE:
+Sigilo de correspondência, telégrafo, dados, telefone. Interceptação telefônica: só com ordem judicial, para investigação criminal/processo penal, na forma da lei (Lei 9.296/96).
+
+PEGADINHAS:
+- "Pode interceptar telefone para processo civil" (ERRADO: só penal)
+- "Pode interceptar e-mail facilmente" (DEPENDE: e-mail armazenado é "dado", não "telefone" - STF tem entendimento específico)
+- "Correspondência pode ser violada com ordem judicial" (CUIDADO: STF entende que correspondência é MAIS protegida que telefone, não há previsão expressa de exceção)
+
+INCIDÊNCIA OAB:
+- Frequência: ALTA
+- Lei 9.296/96 (interceptação telefônica) é muito cobrada
+
+--------------------------------------------------
+INCISO XV - LIBERDADE DE LOCOMOÇÃO
+--------------------------------------------------
+
+TEXTO:
+XV - é livre a locomoção no território nacional em tempo de paz, podendo qualquer pessoa, nos termos da lei, nele entrar, permanecer ou dele sair com seus bens;
+
+SÍNTESE:
+Liberdade de ir, vir, ficar. Protegida por Habeas Corpus.
+
+EXCEÇÃO:
+Tempo de paz. Em estado de sítio/defesa pode ser restringida.
+
+PEGADINHAS:
+- "É absoluta" (ERRADO: pode ser restringida em estado de sítio, prisão legal, etc.)
+
+--------------------------------------------------
+INCISO XXXV - INAFASTABILIDADE DA JURISDIÇÃO
+--------------------------------------------------
+
+TEXTO:
+XXXV - a lei não excluirá da apreciação do Poder Judiciário lesão ou ameaça a direito;
+
+SÍNTESE:
+Acesso à Justiça é garantido. Lei não pode impedir. Base do devido processo legal.
+
+CONCEITOS RELACIONADOS:
+- Jurisdição una (Brasil): só Judiciário decide definitivamente
+- Não exige esgotamento de via administrativa (salvo exceções expressas: Justiça Desportiva)
+
+PEGADINHAS:
+- "Precisa esgotar via administrativa antes" (REGRA GERAL: NÃO, salvo Justiça Desportiva - CF, art. 217, § 1º)
+- "Lei pode vedar acesso ao Judiciário" (ERRADO: viola art. 5º, XXXV)
+
+INCIDÊNCIA OAB:
+- Frequência: ALTA
+- Base de muitas ações
+
+--------------------------------------------------
+INCISO LIV - DEVIDO PROCESSO LEGAL
+--------------------------------------------------
+
+TEXTO:
+LIV - ninguém será privado da liberdade ou de seus bens sem o devido processo legal;
+
+SÍNTESE:
+Garantia de processo justo. Abrange contraditório, ampla defesa, juiz natural, motivação.
+
+CONCEITOS RELACIONADOS:
+- Due process of law (origem americana)
+- Dimensões: processual (procedimento justo) e substancial (razoabilidade da lei)
+
+PEGADINHAS:
+- "Aplica-se só ao processo judicial" (ERRADO: também processo administrativo)
+- Confundir com contraditório: devido processo é mais amplo
+
+--------------------------------------------------
+INCISO LV - CONTRADITÓRIO E AMPLA DEFESA
+--------------------------------------------------
+
+TEXTO:
+LV - aos litigantes, em processo judicial ou administrativo, e aos acusados em geral são assegurados o contraditório e ampla defesa, com os meios e recursos a ela inerentes;
+
+SÍNTESE:
+Direito de ser ouvido, apresentar defesa, produzir provas, recorrer. Vale para processo judicial E administrativo.
+
+CONCEITOS RELACIONADOS:
+- Contraditório: ciência + oportunidade de resposta
+- Ampla defesa: técnica (advogado) + autodefesa
+
+PEGADINHAS OAB:
+- "Processo administrativo não precisa contraditório" (ERRADO: precisa sim)
+- "Defesa técnica é dispensável" (DEPENDE: em processo penal é indispensável, noutros pode ser flexível)
+
+INCIDÊNCIA OAB:
+- Frequência: MUITO ALTA
+- Base de nulidades processuais
+
+--------------------------------------------------
+INCISO LVII - PRESUNÇÃO DE INOCÊNCIA
+--------------------------------------------------
+
+TEXTO:
+LVII - ninguém será considerado culpado até o trânsito em julgado de sentença penal condenatória;
+
+SÍNTESE:
+Presunção de inocência (ou não culpabilidade). Só é culpado após trânsito em julgado.
+
+CONCEITOS RELACIONADOS:
+- Ônus da prova da acusação
+- In dubio pro reo
+- Prisão antes do trânsito: possível se fundamentada (cautelar, preventiva)
+
+PEGADINHAS:
+- "Não pode prender antes do trânsito" (ERRADO: pode prisão cautelar/preventiva fundamentada)
+- "Execução provisória após 2ª instância é constitucional" (MUDOU: STF vedou em 2019, voltou atrás em parte, tema complexo)
+
+INCIDÊNCIA OAB:
+- Frequência: ALTA
+- Sempre cai em Penal/Processo Penal
+
+--------------------------------------------------
+INCISO LXVIII - HABEAS CORPUS (HC)
+--------------------------------------------------
+
+TEXTO:
+LXVIII - conceder-se-á habeas corpus sempre que alguém sofrer ou se achar ameaçado de sofrer violência ou coação em sua liberdade de locomoção, por ilegalidade ou abuso de poder;
+
+SÍNTESE:
+Remédio constitucional para proteger liberdade de locomoção. Preventivo ou repressivo.
+
+REQUISITOS:
+- Ilegalidade ou abuso de poder
+- Violação à liberdade de locomoção (preso ou ameaçado)
+
+NÃO CABE:
+- Punições disciplinares militares (Súmula 693 STF, salvo abuso)
+- Contra trânsito em julgado (usar revisão criminal)
+
+LEGITIMIDADE:
+- Ativa: qualquer pessoa (até sem advogado)
+- Passiva: autoridade coatora
+
+INCIDÊNCIA OAB:
+- Frequência: MUITO ALTA
+- Peça de 2ª fase em Penal
+- Questões sobre cabimento
+
+PEGADINHAS:
+- "Precisa de advogado" (ERRADO: pode sem advogado)
+- "Cabe contra punição militar" (REGRA: NÃO, salvo se abusiva - Súmula 693 STF)
+- "Cabe para discutir mérito de condenação transitada" (ERRADO: usar revisão criminal)
+
+--------------------------------------------------
+INCISO LXIX - MANDADO DE SEGURANÇA (MS)
+--------------------------------------------------
+
+TEXTO:
+LXIX - conceder-se-á mandado de segurança para proteger direito líquido e certo, não amparado por habeas corpus ou habeas data, quando o responsável pela ilegalidade ou abuso de poder for autoridade pública ou agente de pessoa jurídica no exercício de atribuições do Poder Público;
+
+SÍNTESE:
+Remédio para proteger direito líquido e certo contra ilegalidade/abuso de autoridade pública. Subsidiário (não cabe se couber HC ou HD).
+
+REQUISITOS:
+- Direito líquido e certo (comprovado de plano, sem dilação probatória)
+- Ato ilegal ou abusivo
+- Autoridade coatora
+
+PRAZO:
+- 120 dias da ciência do ato (DECADENCIAL)
+
+NÃO CABE:
+- Lei em tese
+- Ato judicial com recurso específico
+- Se há recurso administrativo com efeito suspensivo (salvo caução)
+
+INCIDÊNCIA OAB:
+- Frequência: MUITO ALTA
+- Peça de 2ª fase (Constitucional, Administrativo, Tributário)
+
+PEGADINHAS:
+- "Prazo de 120 dias é prescricional" (ERRADO: é DECADENCIAL - não suspende/interrompe)
+- "Cabe contra lei em tese" (ERRADO: só contra ato concreto)
+- "Cabe se há recurso administrativo" (DEPENDE: se recurso tem efeito suspensivo E não exige caução, não cabe MS)
+
+--------------------------------------------------
+INCISO LXXI - MANDADO DE INJUNÇÃO (MI)
+--------------------------------------------------
+
+TEXTO:
+LXXI - conceder-se-á mandado de injunção sempre que a falta de norma regulamentadora torne inviável o exercício dos direitos e liberdades constitucionais e das prerrogativas inerentes à nacionalidade, à soberania e à cidadania;
+
+SÍNTESE:
+Remédio para suprir falta de norma regulamentadora que inviabiliza direito constitucional.
+
+DIFERENÇA COM ADO:
+- MI: individual/coletivo, efeitos inter partes
+- ADO: abstrata, efeitos erga omnes
+
+EFEITOS:
+- STF adota posição CONCRETISTA: supre a omissão para o caso concreto
+
+EXEMPLO CLÁSSICO:
+- MI 670, 708, 712 (STF): direito de greve do servidor público (aplicou Lei de Greve do setor privado por analogia)
+
+INCIDÊNCIA OAB:
+- Frequência: MÉDIA
+- Diferenciar de ADO
+
+PEGADINHAS:
+- Confundir com ADO: legitimidade e efeitos são diferentes
+- "MI só declara omissão" (ERRADO: STF concretiza)
+
+--------------------------------------------------
+INCISO LXXII - HABEAS DATA (HD)
+--------------------------------------------------
+
+TEXTO:
+LXXII - conceder-se-á habeas data:
+a) para assegurar o conhecimento de informações relativas à pessoa do impetrante, constantes de registros ou bancos de dados de entidades governamentais ou de caráter público;
+b) para a retificação de dados, quando não se prefira fazê-lo por processo sigiloso, judicial ou administrativo;
+
+SÍNTESE:
+Remédio para conhecer ou retificar informações PESSOAIS em bancos de dados públicos ou de caráter público.
+
+REQUISITO:
+- PRÉVIO requerimento administrativo recusado ou não respondido em 15 dias (NECESSÁRIO)
+
+NÃO CABE:
+- Informações de terceiros (usar MS)
+- Sem prévio requerimento administrativo (falta interesse processual)
+
+INCIDÊNCIA OAB:
+- Frequência: BAIXA
+- Diferença com MS
+
+PEGADINHAS:
+- "Não precisa requerimento prévio" (ERRADO: precisa, senão falta interesse)
+- "Cabe para informações de terceiros" (ERRADO: só informações PESSOAIS)
+
+--------------------------------------------------
+INCISO LXXIII - AÇÃO POPULAR (AP)
+--------------------------------------------------
+
+TEXTO:
+LXXIII - qualquer cidadão é parte legítima para propor ação popular que vise a anular ato lesivo ao patrimônio público ou de entidade de que o Estado participe, à moralidade administrativa, ao meio ambiente e ao patrimônio histórico e cultural, ficando o autor, salvo comprovada má-fé, isento de custas judiciais e do ônus da sucumbência;
+
+SÍNTESE:
+Remédio para anular ato lesivo ao patrimônio público, moralidade, meio ambiente, patrimônio histórico e cultural.
+
+LEGITIMIDADE:
+- Ativa: qualquer CIDADÃO (eleitor com título eleitoral)
+
+OBJETO:
+- Ato lesivo ao patrimônio público (sentido amplo)
+
+CUSTAS:
+- Autor isento (salvo má-fé)
+
+COISA JULGADA:
+- Secundum eventum litis: se improcedente por insuficiência de provas, outro cidadão pode propor novamente
+
+INCIDÊNCIA OAB:
+- Frequência: BAIXA/MÉDIA
+- Diferença com ACP
+
+PEGADINHAS:
+- "Qualquer pessoa pode propor" (ERRADO: só CIDADÃO - eleitor)
+- Confundir com ACP: legitimidade é diferente
+
+--------------------------------------------------
+PARÁGRAFOS DO ART. 5º
+--------------------------------------------------
+
+§ 1º As normas definidoras dos direitos e garantias fundamentais têm aplicação imediata.
+
+SÍNTESE:
+Direitos fundamentais são auto-aplicáveis. Não precisam de lei regulamentadora para valer.
+
+PEGADINHA:
+- "Todos os direitos do art. 5º são de eficácia plena" (ERRADO: maioria sim, mas alguns dependem de lei - ex: art. 5º, LXXI - MI)
+
+--------------------------------------------------
+
+§ 2º Os direitos e garantias expressos nesta Constituição não excluem outros decorrentes do regime e dos princípios por ela adotados, ou dos tratados internacionais em que a República Federativa do Brasil seja parte.
+
+SÍNTESE:
+Direitos fundamentais são um ROL EXEMPLIFICATIVO, não exaustivo. Inclui direitos implícitos e tratados internacionais.
+
+CONCEITOS:
+- Direitos implícitos: privacidade digital, bioética, etc.
+- Tratados de direitos humanos: integram bloco de constitucionalidade
+
+--------------------------------------------------
+
+§ 3º Os tratados e convenções internacionais sobre direitos humanos que forem aprovados, em cada Casa do Congresso Nacional, em dois turnos, por três quintos dos votos dos respectivos membros, serão equivalentes às emendas constitucionais.
+
+SÍNTESE:
+Tratados de direitos humanos aprovados pelo rito do § 3º têm STATUS DE EMENDA CONSTITUCIONAL.
+
+RITO:
+- Cada Casa (Câmara + Senado)
+- Dois turnos
+- 3/5 dos membros
+
+EXEMPLO:
+- Convenção sobre Direitos das Pessoas com Deficiência (primeiro a usar esse rito)
+
+INCIDÊNCIA OAB:
+- Frequência: ALTA
+- Hierarquia dos tratados
+
+PEGADINHAS:
+- "Todo tratado de direitos humanos é constitucional" (ERRADO: só se aprovado pelo rito do § 3º; senão é supralegal)
+- Confundir 3/5 com maioria simples ou 2/3
+
+--------------------------------------------------
+
+§ 4º O Brasil se submete à jurisdição de Tribunal Penal Internacional a cuja criação tenha manifestado adesão.
+
+SÍNTESE:
+Brasil aceita Tribunal Penal Internacional (TPI).
+
+============================================================
+OBSERVAÇÕES FINAIS
+============================================================
+
+Este documento estrutura a Constituição Federal para consumo por IA jurídica. Cada artigo contém:
+- Texto completo
+- Síntese objetiva
+- Conceitos relacionados
+- Exceções
+- Pegadinhas OAB
+- Incidência na prova
+- Aplicação prática
+- Jurisprudência relevante
+- Artigos e questões relacionadas
+
+Os próximos documentos abordarão:
+- Demais artigos da CF/88
+- Código Civil completo
+- Código Penal completo
+- Código de Processo Civil completo
+- Código de Processo Penal completo
+- CLT estruturada
+- Leis especiais (CDC, ECA, Lei de Drogas, etc.)
+
+============================================================
+FIM DO DOCUMENTO DE LEI SECA - CONSTITUIÇÃO FEDERAL
+Próximo: CODIGO_CIVIL_ESTRUTURADO.txt
+============================================================

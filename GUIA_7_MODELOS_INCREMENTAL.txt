@@ -1,0 +1,353 @@
+================================================================================
+GUIA: INSTALAÇÃO INCREMENTAL DOS 7 MODELOS IA (RTX 3090)
+================================================================================
+Sistema: JURIS_IA_CORE_V1
+Estratégia: Usar modelos existentes primeiro, escalar conforme necessário
+Data: 2025-12-17
+================================================================================
+
+FILOSOFIA
+================================================================================
+
+✅ Use o que você JÁ TEM instalado
+✅ Instale novos modelos conforme NECESSIDADE
+✅ Escale para modelos maiores quando quiser MAIS QUALIDADE
+✅ Todos os 7 modelos são OPCIONAIS - o sistema funciona com apenas 2
+
+
+OS 7 MODELOS RECOMENDADOS
+================================================================================
+
+CATEGORIA 1: EMBEDDINGS (escolher 1 de 3)
+------------------------------------------
+Função: Busca semântica de questões
+
+1. 🥇 nomic-embed-text (RECOMENDADO)
+   Tamanho: 1.5GB
+   Dimensões: 768
+   Qualidade: Excelente
+   Uso: Melhor para português jurídico
+   Comando: ollama pull nomic-embed-text
+
+2. 🥈 mxbai-embed-large (alternativa)
+   Tamanho: 670MB
+   Dimensões: 1024
+   Qualidade: Muito boa
+   Uso: Mais rápido, menor
+   Comando: ollama pull mxbai-embed-large
+
+3. 🥉 all-minilm (leve)
+   Tamanho: 120MB
+   Dimensões: 384
+   Qualidade: Boa
+   Uso: Testes rápidos
+   Comando: ollama pull all-minilm
+
+
+CATEGORIA 2: LLM PRINCIPAL (escolher 1 de 3)
+---------------------------------------------
+Função: Explicações pedagógicas principais
+
+4. 🥇 llama3.1:8b (RECOMENDADO - melhor custo-benefício)
+   Tamanho: 4.7GB
+   Parâmetros: 8 bilhões
+   Qualidade: Muito boa
+   Performance RTX 3090: 100-150 tokens/seg
+   Comando: ollama pull llama3.1:8b
+
+5. 🥉 llama3.2:3b (mais leve, começar aqui)
+   Tamanho: 2GB
+   Parâmetros: 3 bilhões
+   Qualidade: Boa
+   Performance RTX 3090: 150-200 tokens/seg
+   Comando: ollama pull llama3.2:3b
+
+6. 🥈 llama3:70b-q4_K_M (máxima qualidade)
+   Tamanho: 40GB
+   Parâmetros: 70 bilhões (quantizado)
+   Qualidade: Excelente (quase GPT-4)
+   Performance RTX 3090: 30-50 tokens/seg
+   Comando: ollama pull llama3:70b-q4_K_M
+
+
+CATEGORIA 3: ESPECIALIZADOS (opcional)
+---------------------------------------
+
+7. 💡 llama3.1:8b-instruct-q8_0 (instruções refinadas)
+   Tamanho: 8.5GB
+   Uso: Versão instruída do 8B, melhor para explicações complexas
+   Performance RTX 3090: 80-120 tokens/seg
+   Comando: ollama pull llama3.1:8b-instruct-q8_0
+
+
+ESTRATÉGIA DE INSTALAÇÃO INCREMENTAL
+================================================================================
+
+FASE 1: MÍNIMO VIÁVEL (3.5GB total)
+------------------------------------
+Instalar apenas 2 modelos para começar:
+
+✅ OBRIGATÓRIO: 1 modelo de embedding
+   Recomendado: all-minilm (120MB) OU nomic-embed-text (1.5GB)
+
+✅ OBRIGATÓRIO: 1 modelo LLM
+   Recomendado: llama3.2:3b (2GB)
+
+Comandos:
+  # Opção leve (3.5GB)
+  ollama pull all-minilm
+  ollama pull llama3.2:3b
+
+  # Opção balanceada (3.5GB)
+  ollama pull nomic-embed-text
+  ollama pull llama3.2:3b
+
+Tempo download: ~5-10 minutos
+Funcionalidade: 100% operacional
+
+
+FASE 2: QUALIDADE MELHOR (6.2GB total)
+---------------------------------------
+Upgrade para modelos melhores:
+
+Comandos:
+  ollama pull nomic-embed-text    # Se ainda não instalou
+  ollama pull llama3.1:8b         # Upgrade do LLM
+
+Tempo download: ~10-15 minutos
+Melhoria: +50% qualidade nas explicações
+
+
+FASE 3: ESPECIALIZAÇÃO (14.7GB total)
+--------------------------------------
+Adicionar modelo instruído para casos complexos:
+
+Comando:
+  ollama pull llama3.1:8b-instruct-q8_0
+
+Tempo download: ~15 minutos
+Melhoria: Explicações mais precisas e estruturadas
+
+
+FASE 4: MÁXIMA QUALIDADE (54.7GB total)
+----------------------------------------
+Para os melhores resultados (requer RTX 3090):
+
+Comando:
+  ollama pull llama3:70b-q4_K_M
+
+Tempo download: ~60-90 minutos
+Melhoria: Qualidade próxima a GPT-4
+
+
+DETECTAR E USAR MODELOS JÁ INSTALADOS
+================================================================================
+
+O sistema detecta automaticamente os modelos que você já tem!
+
+1. EXECUTAR SCRIPT DE DETECÇÃO:
+
+   cd D:\JURIS_IA_CORE_V1
+   python scripts/detectar_modelos_ollama.py
+
+   Isso vai:
+   ✓ Listar modelos já instalados
+   ✓ Recomendar quais usar
+   ✓ Sugerir próximos a instalar
+   ✓ Atualizar .env automaticamente
+
+2. SAÍDA EXEMPLO:
+
+   📦 MODELOS JÁ INSTALADOS:
+     ✓ llama3.2:3b (2.0 GB)
+     ✓ nomic-embed-text:latest (1.5 GB)
+
+   ✅ USAR AGORA (já instalados):
+     • Embedding: nomic-embed-text
+       Melhor embedding para português jurídico
+
+     • LLM Principal: llama3.2:3b
+       Rápido, bom para começar
+       Performance RTX 3090: 150-200 tokens/seg
+
+   🔥 INSTALAR PRÓXIMOS (prioridade):
+     1. LLM Principal: llama3.1:8b
+        Melhor custo-benefício (RECOMENDADO)
+        Tamanho: 4.7 GB
+        Performance RTX 3090: 100-150 tokens/seg
+        Comando: ollama pull llama3.1:8b
+
+   ⚙️ CONFIGURAÇÃO AUTO-DETECTADA:
+     EMBEDDING_MODEL=nomic-embed-text
+     LLM_MODEL=llama3.2:3b
+
+   Deseja atualizar o arquivo .env? (s/n): s
+   ✓ Arquivo .env atualizado com sucesso!
+
+
+COMANDOS RÁPIDOS
+================================================================================
+
+# Ver modelos já instalados
+ollama list
+
+# Detectar e configurar automaticamente
+python scripts/detectar_modelos_ollama.py
+
+# Instalar modelo específico
+ollama pull <nome-do-modelo>
+
+# Remover modelo (se quiser trocar)
+ollama rm <nome-do-modelo>
+
+# Testar modelo
+ollama run <nome-do-modelo> "Explique o princípio da isonomia"
+
+
+TABELA DE DECISÃO
+================================================================================
+
+Situação                              | Recomendação
+--------------------------------------|--------------------------------------
+"Quero começar AGORA"                 | all-minilm + llama3.2:3b (3.5GB)
+"Já tenho llama3.2"                   | USE ELE! Não precisa baixar outro
+"Quero boa qualidade"                 | nomic-embed + llama3.1:8b (6.2GB)
+"Tenho RTX 3090 e quero o melhor"     | nomic-embed + llama3:70b (41.5GB)
+"Preciso de explicações complexas"    | Adicionar llama3.1:8b-instruct
+"Não sei qual escolher"               | Execute detectar_modelos_ollama.py
+
+
+WORKFLOW RECOMENDADO
+================================================================================
+
+DIA 1: Setup Inicial
+---------------------
+1. Verificar modelos já instalados:
+   ollama list
+
+2. Se já tem algum Llama:
+   python scripts/detectar_modelos_ollama.py
+   # Use o que já tem!
+
+3. Se não tem nenhum:
+   ollama pull llama3.2:3b        # 2GB, rápido
+   ollama pull nomic-embed-text   # 1.5GB
+
+4. Configurar automaticamente:
+   python scripts/detectar_modelos_ollama.py
+
+5. Testar:
+   make populate-embeddings-test  # 100 questões
+
+
+DIA 2-7: Uso Normal
+-------------------
+Use os modelos que você tem. Monitore:
+- Qualidade das explicações
+- Velocidade
+- Satisfação com resultados
+
+
+SEMANA 2+: Escalar se Necessário
+---------------------------------
+1. Se achar explicações fracas:
+   ollama pull llama3.1:8b  # Upgrade
+
+2. Se precisar mais especialização:
+   ollama pull llama3.1:8b-instruct-q8_0
+
+3. Se quiser máxima qualidade:
+   ollama pull llama3:70b-q4_K_M  # Requer RTX 3090
+
+
+INTEGRAÇÃO COM DOCKER
+================================================================================
+
+Se usar Docker, a detecção funciona igual:
+
+# Detectar modelos no container Ollama
+docker-compose exec backend python scripts/detectar_modelos_ollama.py
+
+# Instalar novo modelo
+docker-compose exec ollama ollama pull llama3.1:8b
+
+# Reiniciar backend para usar novo modelo
+docker-compose restart backend
+
+
+MONITORAMENTO DE RECURSOS (RTX 3090)
+================================================================================
+
+Modelo          | VRAM Usada | Performance
+----------------|------------|------------------
+llama3.2:3b     | ~4GB       | 150-200 tokens/s
+llama3.1:8b     | ~6GB       | 100-150 tokens/s
+llama3:70b      | ~22GB      | 30-50 tokens/s
+Todos + cache   | ~24GB      | Usa toda VRAM
+
+Comando para monitorar:
+  watch -n 1 nvidia-smi
+
+
+PERGUNTAS FREQUENTES
+================================================================================
+
+P: Preciso instalar todos os 7 modelos?
+R: NÃO! Apenas 2 são obrigatórios (1 embedding + 1 LLM). O resto é opcional.
+
+P: Qual o mínimo para funcionar?
+R: all-minilm (120MB) + llama3.2:3b (2GB) = 3.5GB total
+
+P: Posso usar modelos que já tenho?
+R: SIM! Execute detectar_modelos_ollama.py para usar automaticamente.
+
+P: Como saber se preciso upgrade?
+R: Se achar as explicações muito simples ou imprecisas, faça upgrade.
+
+P: Posso instalar vários e escolher depois?
+R: SIM! Instale vários e configure qual usar no .env
+
+P: RTX 3090 aguenta o modelo 70B?
+R: SIM! Com 24GB VRAM você roda tranquilo.
+
+P: Quanto espaço preciso no disco?
+R: Mínimo: 3.5GB | Recomendado: 10GB | Premium: 50GB
+
+P: Posso remover modelos depois?
+R: SIM! ollama rm <nome-do-modelo>
+
+
+RESUMO EXECUTIVO
+================================================================================
+
+✅ COMECE COM O QUE VOCÊ JÁ TEM
+   python scripts/detectar_modelos_ollama.py
+
+✅ MÍNIMO VIÁVEL (3.5GB)
+   all-minilm + llama3.2:3b
+
+✅ RECOMENDADO RTX 3090 (6.2GB)
+   nomic-embed-text + llama3.1:8b
+
+✅ MÁXIMA QUALIDADE (41.5GB)
+   nomic-embed-text + llama3:70b
+
+✅ NÃO PRECISA INSTALAR TODOS OS 7
+   Apenas 2 obrigatórios, resto é opcional para escalar
+
+
+PRÓXIMOS PASSOS
+================================================================================
+
+1. [ ] Verificar modelos já instalados: ollama list
+2. [ ] Executar detecção: python scripts/detectar_modelos_ollama.py
+3. [ ] Se necessário, instalar mínimo: ollama pull llama3.2:3b
+4. [ ] Configurar: .env será atualizado automaticamente
+5. [ ] Testar: python scripts/popular_embeddings_ollama.py --limite 10
+6. [ ] Usar por alguns dias
+7. [ ] Escalar se necessário: ollama pull llama3.1:8b
+
+
+================================================================================
+FIM DO GUIA
+================================================================================

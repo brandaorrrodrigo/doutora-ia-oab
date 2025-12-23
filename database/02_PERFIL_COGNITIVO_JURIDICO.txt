@@ -1,0 +1,786 @@
+JURIS_IA_CORE_V1 - MODELO DE COGNIÇÃO
+ETAPA 2: PERFIL COGNITIVO JURÍDICO
+Data: 2025-12-17
+============================================================
+
+FUNDAMENTOS DO PERFIL COGNITIVO
+============================================================
+
+O PERFIL COGNITIVO JURÍDICO é o núcleo inteligente do sistema.
+Não é apenas estatística - é MODELO MENTAL do estudante.
+
+PRINCÍPIOS:
+
+1. DINÂMICO: Atualiza após cada interação significativa
+2. MULTIDIMENSIONAL: Não é "nota" - são dimensões cognitivas
+3. PREDITIVO: Antecipa dificuldades antes de acontecerem
+4. PRESCRITIVO: Recomenda ações específicas
+5. LONGITUDINAL: Rastreia evolução ao longo do tempo
+
+============================================================
+DIMENSÃO 1: NÍVEL GERAL DE DOMÍNIO JURÍDICO
+============================================================
+
+CAMPO: nivel_global
+TIPO: VARCHAR(50)
+VALORES: INICIANTE | INTERMEDIARIO | AVANCADO | EXPERT
+
+CRITÉRIOS DE CLASSIFICAÇÃO:
+
+INICIANTE:
+- Taxa de acerto global < 40%
+- Menos de 100 questões respondidas
+- Domínio de < 20% dos conceitos fundamentais
+- Tempo médio > 250 segundos/questão
+- Erros conceituais predominantes (> 60%)
+- Não distingue institutos básicos
+- Dificuldade em interpretação de enunciados
+
+INTERMEDIÁRIO:
+- Taxa de acerto global 40-70%
+- 100-500 questões respondidas
+- Domínio de 20-60% dos conceitos
+- Tempo médio 150-250 segundos/questão
+- Mix de erros (conceituais + interpretação)
+- Distingue institutos básicos, confunde sutilezas
+- Boa leitura, raciocínio ainda superficial
+
+AVANÇADO:
+- Taxa de acerto global 70-85%
+- 500-2000 questões respondidas
+- Domínio de 60-85% dos conceitos
+- Tempo médio 120-180 segundos/questão
+- Erros majoritariamente em pegadinhas
+- Distingue sutilezas, ocasionalmente erra detalhes
+- Raciocínio jurídico consolidado
+
+EXPERT:
+- Taxa de acerto global > 85%
+- 2000+ questões respondidas
+- Domínio de > 85% dos conceitos
+- Tempo médio < 150 segundos/questão
+- Erros raros, em questões muito difíceis
+- Pensamento jurídico sistêmico
+- Raciocínio analógico desenvolvido
+
+COMO É ATUALIZADO:
+
+Reavaliado após:
+- Cada 50 questões respondidas
+- Cada simulado completo
+- Cada snapshot semanal
+
+Algoritmo:
+```
+nivel = calcular_nivel(
+    taxa_acerto_global,
+    questoes_respondidas,
+    conceitos_dominados / conceitos_totais,
+    tempo_medio_questao,
+    distribuicao_tipos_erro,
+    consistencia_acerto
+)
+```
+
+TRANSIÇÕES:
+- INICIANTE → INTERMEDIÁRIO: Automático ao atingir critérios
+- INTERMEDIÁRIO → AVANÇADO: Automático + validação (simulado > 70%)
+- AVANÇADO → EXPERT: Automático + validação (simulado > 85% + consistência)
+- REGRESSÃO: Possível se taxa cair 15% em 30 dias
+
+============================================================
+DIMENSÃO 2: PONTUAÇÃO GLOBAL (GAMIFICAÇÃO INTELIGENTE)
+============================================================
+
+CAMPO: pontuacao_global
+TIPO: INTEGER
+RANGE: 0-1000
+
+SISTEMA DE PONTOS:
+
+ACÚMULO:
+- Questão fácil acertada: +5 pontos
+- Questão média acertada: +10 pontos
+- Questão difícil acertada: +20 pontos
+- Questão muito difícil acertada: +50 pontos
+
+BÔNUS:
+- Acerto rápido (< 50% tempo ideal): +50%
+- Acerto sequencial (3+ seguidos): +25%
+- Drill completo sem erro: +100 pontos
+- Simulado > 80%: +500 pontos
+
+PENALIDADES:
+- Questão errada: -0 pontos (não penaliza para não desmotivar)
+- Tempo excessivo (> 200% ideal): +0 bônus
+
+DECAIMENTO:
+- Sem atividade por 7 dias: -5% pontos
+- Sem atividade por 30 dias: -20% pontos
+
+COMO É ATUALIZADO:
+
+Após cada questão respondida:
+```
+pontos_ganhos = calcular_pontos(
+    dificuldade_questao,
+    acertou,
+    tempo_resposta,
+    tempo_ideal,
+    acertos_consecutivos
+)
+
+pontuacao_global += pontos_ganhos
+```
+
+Após cada período de inatividade:
+```
+if dias_sem_estudo >= 7:
+    pontuacao_global *= 0.95  # -5%
+```
+
+PROPÓSITO:
+- Gamificação saudável (não viciante)
+- Indicador de esforço acumulado
+- Motivação para consistência
+- NÃO substitui taxa de acerto (não é métrica de domínio)
+
+============================================================
+DIMENSÃO 3: TAXA DE ACERTO GLOBAL
+============================================================
+
+CAMPO: taxa_acerto_global
+TIPO: DECIMAL(5,2)
+RANGE: 0.00-100.00
+
+CÁLCULO:
+
+SIMPLES (primeiras 100 questões):
+```
+taxa = (questoes_acertadas / questoes_total) * 100
+```
+
+PONDERADA (após 100 questões):
+```
+taxa = calcular_taxa_ponderada(
+    acertos_ultimos_30_dias * 0.50,  # Peso 50%: desempenho recente
+    acertos_ultimos_90_dias * 0.30,  # Peso 30%: médio prazo
+    acertos_historico * 0.20         # Peso 20%: histórico
+)
+```
+
+AJUSTES:
+- Por dificuldade: Questões difíceis valem mais na taxa
+- Por disciplina: Ponderação por relevância (Constitucional > Ética)
+- Por contexto: Simulado oficial pesa mais que drill livre
+
+COMO É ATUALIZADO:
+
+Após CADA questão respondida:
+```
+1. Adiciona resultado (acerto/erro) ao histórico
+2. Recalcula janelas (30d, 90d, histórico)
+3. Aplica ponderação temporal
+4. Atualiza taxa_acerto_global
+5. Registra tendência (melhora/estável/regressão)
+```
+
+TRIGGERS DE ALERTA:
+- Taxa < 30%: Alerta CRÍTICO - base muito frágil
+- Taxa caiu > 15% em 30 dias: Alerta REGRESSÃO
+- Taxa estagnada (< 5% mudança em 90 dias): Alerta PLATÔ
+
+============================================================
+DIMENSÃO 4: ESTADO COGNITIVO-EMOCIONAL
+============================================================
+
+CAMPOS:
+- confianca_geral: DECIMAL(3,2) [0.00-1.00]
+- stress_nivel: DECIMAL(3,2) [0.00-1.00]
+- motivacao_nivel: DECIMAL(3,2) [0.00-1.00]
+- fadiga_cognitiva: DECIMAL(3,2) [0.00-1.00]
+
+CONFIANÇA GERAL:
+
+DEFINIÇÃO:
+Autoavaliação do estudante sobre seu nível de preparo.
+Cruzada com desempenho real para detectar excesso/falta de confiança.
+
+CÁLCULO:
+```
+confianca = calcular_confianca(
+    taxa_acerto_recente * 0.40,
+    acertos_consecutivos * 0.20,
+    desempenho_simulados * 0.30,
+    feedback_autoavaliacao * 0.10
+)
+```
+
+ATUALIZAÇÃO:
+- Acerto: +0.05 (máximo 1.00)
+- Erro: -0.10 (mínimo 0.00)
+- Acertos consecutivos (5+): +0.15
+- Erro em questão fácil: -0.20 (abala mais)
+
+INTERPRETAÇÃO:
+- < 0.30: Insegurança crítica, precisa reforço
+- 0.30-0.60: Confiança moderada, normal para iniciante
+- 0.60-0.85: Confiança saudável
+- > 0.85: Atenção - pode ser excesso de confiança
+
+STRESS NÍVEL:
+
+DEFINIÇÃO:
+Nível de tensão/ansiedade durante estudo.
+Stress moderado é produtivo, extremos prejudicam.
+
+INDICADORES:
+- Tempo de resposta errático (alta variância)
+- Erros em sequência (3+)
+- Mudança de resposta frequente
+- Pausas excessivas
+- Respostas muito rápidas (pressa ansiosa)
+
+CÁLCULO:
+```
+stress = calcular_stress(
+    erros_consecutivos * 0.25,
+    variancia_tempo_resposta * 0.20,
+    mudancas_resposta * 0.15,
+    proximidade_prova * 0.20,
+    horas_estudo_continuas * 0.20
+)
+```
+
+ATUALIZAÇÃO:
+- Durante sessão: Aumenta se detecta padrões de ansiedade
+- Pós-sessão: Reduz 20% (relaxamento pós-estudo)
+- Erro seguido de pausa longa: +0.15
+- Acerto após erro: -0.05
+
+TRIGGERS:
+- > 0.70: Sugerir pausa imediata
+- > 0.85: Interromper sessão, recomendar descanso
+
+MOTIVAÇÃO NÍVEL:
+
+DEFINIÇÃO:
+Engajamento e disposição para estudar.
+Preditor #1 de evasão.
+
+INDICADORES:
+- Frequência de acesso (dias consecutivos)
+- Duração de sessões
+- Finalização de drills
+- Feedback em explicações
+- Interação com sistema
+
+CÁLCULO:
+```
+motivacao = calcular_motivacao(
+    dias_consecutivos_estudo * 0.30,
+    tempo_medio_sessao / tempo_ideal * 0.20,
+    taxa_conclusao_drills * 0.25,
+    melhora_desempenho * 0.15,
+    feedback_positivo * 0.10
+)
+```
+
+ATUALIZAÇÃO:
+- Login diário: +0.05
+- Drill completo: +0.10
+- Melhora de desempenho: +0.15
+- Sem login por 3 dias: -0.15
+- Sem login por 7 dias: -0.30
+
+TRIGGERS:
+- < 0.30: Risco de evasão ALTO
+- < 0.20: Risco de evasão CRÍTICO - intervenção urgente
+
+FADIGA COGNITIVA:
+
+DEFINIÇÃO:
+Cansaço mental acumulado durante sessão.
+Detecta momento de parar para manter qualidade.
+
+INDICADORES:
+- Queda progressiva de taxa de acerto na sessão
+- Aumento de tempo de resposta
+- Aumento de erros de leitura/atenção
+- Tempo de sessão > 2 horas
+
+CÁLCULO:
+```
+fadiga = calcular_fadiga(
+    questoes_respondidas_sessao / 50,  # Normalizado
+    duracao_sessao_minutos / 120,
+    delta_taxa_acerto_sessao,
+    aumento_tempo_medio
+)
+```
+
+ATUALIZAÇÃO:
+Durante sessão:
+- Aumenta 0.02 a cada questão
+- Aumenta 0.05 a cada 15 minutos
+- Aumenta 0.10 se detecta queda de performance
+
+Pós-sessão:
+- Reset para 0.00
+
+TRIGGERS:
+- > 0.60: Sugerir pausa de 10 minutos
+- > 0.80: Recomendar encerrar sessão
+
+============================================================
+DIMENSÃO 5: MATURIDADE JURÍDICA (5 SUBDIMENSÕES)
+============================================================
+
+CAMPOS (todos INTEGER 0-100):
+- pensamento_sistematico
+- capacidade_abstracao
+- dominio_terminologia
+- raciocinio_analogico
+- interpretacao_legal
+
+PENSAMENTO SISTEMÁTICO:
+
+DEFINIÇÃO:
+Capacidade de ver Direito como sistema integrado, não regras soltas.
+Conecta institutos de diferentes ramos.
+
+INDICADORES:
+- Acerta questões que exigem aplicação conjunta de normas
+- Identifica conflitos aparentes de normas
+- Resolve por hierarquia/cronologia/especialidade
+- Relaciona princípios com regras
+
+CÁLCULO INICIAL:
+```
+if ja_formado_direito:
+    pensamento_sistematico = 60
+elif cursando_direito:
+    pensamento_sistematico = 40
+else:
+    pensamento_sistematico = 20
+```
+
+EVOLUÇÃO:
+- Acerto em questão de conflito de normas: +2
+- Acerto em questão multi-disciplinar: +3
+- Erro por não ver conexão sistêmica: -1
+
+CAPACIDADE DE ABSTRAÇÃO:
+
+DEFINIÇÃO:
+Habilidade de ir do caso concreto ao conceito abstrato e vice-versa.
+Essencial para analogia jurídica.
+
+INDICADORES:
+- Resolve questões de caso hipotético
+- Identifica ratio decidendi
+- Aplica princípio a situação nova
+- Compreende explicações por analogia
+
+EVOLUÇÃO:
+- Acerto em questão de caso prático: +2
+- Compreende explicação nível 3 (analogia): +1
+- Erro por não abstrair conceito: -1
+
+DOMÍNIO DE TERMINOLOGIA:
+
+DEFINIÇÃO:
+Precisão no uso de termos técnicos jurídicos.
+Distingue institutos que leigos confundem.
+
+INDICADORES:
+- Acerta questões sobre definições
+- Não confunde termos similares
+- Compreende "juridiquês" sem dificuldade
+
+EVOLUÇÃO:
+- Acerto em questão conceitual: +1
+- Erro por confusão terminológica: -2
+- Leitura de artigos estruturados: +1 (passivo)
+
+RACIOCÍNIO ANALÓGICO:
+
+DEFINIÇÃO:
+Aplica solução de caso conhecido a caso novo similar.
+Base da hermenêutica jurídica.
+
+INDICADORES:
+- Resolve questões inéditas por analogia
+- Identifica casos análogos
+- Compreende jurisprudência analógica
+
+EVOLUÇÃO:
+- Acerto em questão que exige analogia: +3
+- Erro por não perceber analogia: -1
+
+INTERPRETAÇÃO LEGAL:
+
+DEFINIÇÃO:
+Capacidade de extrair sentido de texto normativo.
+Lê lei e compreende alcance, exceções, limites.
+
+INDICADORES:
+- Acerta questões de interpretação literal
+- Distingue interpretação restritiva/extensiva
+- Compreende exceções e ressalvas
+
+EVOLUÇÃO:
+- Acerto em questão de interpretação: +2
+- Erro de interpretação: -1
+- Leitura de lei seca estruturada: +1
+
+CÁLCULO AGREGADO:
+
+```
+maturidade_juridica_geral = (
+    pensamento_sistematico * 0.25 +
+    capacidade_abstracao * 0.20 +
+    dominio_terminologia * 0.20 +
+    raciocinio_analogico * 0.20 +
+    interpretacao_legal * 0.15
+)
+```
+
+CLASSIFICAÇÃO:
+- 0-30: Leigo jurídico
+- 31-50: Estudante iniciante
+- 51-70: Estudante avançado
+- 71-85: Profissional iniciante
+- 86-100: Profissional experiente
+
+============================================================
+DIMENSÃO 6: PADRÕES DE APRENDIZAGEM
+============================================================
+
+ESTILO DE APRENDIZAGEM:
+
+CAMPO: estilo_aprendizagem
+TIPO: VARCHAR(50)
+VALORES: visual | auditivo | cinestesico | leitura_escrita
+
+DETECÇÃO:
+Baseado em:
+- Tempo em explicações visuais vs textuais
+- Preferência de nível de explicação
+- Engagement com diferentes formatos
+- Feedback explícito do usuário
+
+ATUALIZAÇÃO:
+- Inicialmente: Pergunta ao usuário
+- Refinamento: Observa comportamento
+- Ajuste contínuo baseado em eficácia
+
+VELOCIDADE DE LEITURA:
+
+CAMPO: velocidade_leitura
+TIPO: VARCHAR(50)
+VALORES: lenta | media | rapida
+
+CÁLCULO:
+```
+palavras_enunciado = contar_palavras(enunciado)
+tempo_leitura_estimado = palavras_enunciado / velocidade_leitura_media_brasil
+tempo_real = tempo_resposta - tempo_raciocinio_estimado
+
+if tempo_real > tempo_estimado * 1.3:
+    velocidade = "lenta"
+elif tempo_real < tempo_estimado * 0.7:
+    velocidade = "rapida"
+else:
+    velocidade = "media"
+```
+
+IMPACTO:
+- Lenta: Aumenta tempo ideal de questão (+30%)
+- Rápida: Reduz tempo ideal (-20%)
+- Ajusta alertas de tempo excessivo
+
+PREFERÊNCIA DE EXPLICAÇÃO:
+
+CAMPO: preferencia_explicacao
+TIPO: VARCHAR(50)
+VALORES: tecnica | didatica | analogia | pratica
+
+DETECÇÃO:
+```
+nivel_mais_acessado = max([
+    count(nivel_1),
+    count(nivel_2),
+    count(nivel_3),
+    count(nivel_4)
+])
+
+nivel_maior_compreensao = nivel_com_maior_taxa_acerto_pos_leitura
+```
+
+ATUALIZAÇÃO:
+- Tracking de cliques em cada nível
+- Medição de acerto em questões similares pós-leitura
+- Ajuste automático baseado em eficácia
+
+TEMPO MÉDIO POR QUESTÃO:
+
+CAMPO: tempo_medio_questao
+TIPO: INTEGER (segundos)
+
+CÁLCULO:
+```
+tempo_medio = median(
+    ultimos_100_tempos_resposta,
+    filtrado_por_outliers  # Remove < 30s e > 600s
+)
+```
+
+ATUALIZAÇÃO:
+- Após cada questão
+- Usa mediana (não média) para robustez a outliers
+- Segmentado por dificuldade
+
+PROPÓSITO:
+- Personaliza alertas de tempo
+- Detecta mudanças (stress, fadiga)
+- Base para ajuste de drills
+
+============================================================
+DIMENSÃO 7: RISCOS E ALERTAS
+============================================================
+
+RISCO DE EVASÃO:
+
+CAMPO: risco_evasao
+TIPO: DECIMAL(3,2)
+RANGE: 0.00-1.00
+
+FATORES:
+```
+risco_evasao = calcular_risco(
+    motivacao_nivel < 0.30: +0.30,
+    dias_sem_estudo > 7: +0.25,
+    taxa_conclusao_drills < 0.40: +0.20,
+    desempenho_caindo: +0.15,
+    feedback_negativo: +0.10
+)
+```
+
+TRIGGERS:
+- > 0.60: Enviar email de reengajamento
+- > 0.75: Oferecer mentoria humana
+- > 0.85: Intervenção urgente (ligação/WhatsApp)
+
+RISCO DE BURNOUT:
+
+CAMPO: risco_burnout
+TIPO: DECIMAL(3,2)
+RANGE: 0.00-1.00
+
+FATORES:
+```
+risco_burnout = calcular_risco(
+    stress_nivel > 0.70: +0.30,
+    horas_estudo_semanal > 40: +0.25,
+    dias_sem_pausa > 10: +0.20,
+    fadiga_alta_frequente: +0.15,
+    queda_desempenho_repentina: +0.10
+)
+```
+
+TRIGGERS:
+- > 0.50: Sugerir redução de ritmo
+- > 0.70: Forçar dia de descanso
+- > 0.85: Bloquear acesso por 24h (proteção)
+
+DIAS SEM ESTUDO:
+
+CAMPO: dias_sem_estudo
+TIPO: INTEGER
+
+CÁLCULO:
+```
+dias_sem_estudo = date_now - ultima_sessao.data
+```
+
+TRIGGERS:
+- 3 dias: Notificação suave
+- 7 dias: Email motivacional
+- 14 dias: Oferta de retomada guiada
+- 30 dias: Risco de abandono
+
+STREAK (DIAS CONSECUTIVOS):
+
+CAMPOS:
+- streak_atual: INTEGER
+- streak_maximo: INTEGER
+
+CÁLCULO:
+```
+if estudou_hoje AND estudou_ontem:
+    streak_atual += 1
+elif NOT estudou_ontem:
+    streak_atual = 1 if estudou_hoje else 0
+
+streak_maximo = max(streak_maximo, streak_atual)
+```
+
+IMPACTO:
+- Gamificação positiva
+- Bônus de pontos por streak longo
+- Motivação para consistência
+
+============================================================
+DIMENSÃO 8: OBJETIVOS E META-COGNIÇÃO
+============================================================
+
+OBJETIVO PRINCIPAL:
+
+CAMPO: objetivo_principal
+TIPO: VARCHAR(100)
+VALORES: OAB_1fase | OAB_2fase | concurso_publico | atualizacao_profissional
+
+IMPACTO:
+- Define priorização de conteúdo
+- Ajusta dificuldade de drills
+- Personaliza recomendações
+- Define KPIs de sucesso
+
+DATA DO OBJETIVO:
+
+CAMPO: data_objetivo
+TIPO: DATE
+
+EXEMPLO: Data da próxima prova OAB
+
+IMPACTO:
+```
+dias_restantes = data_objetivo - date_now
+
+if dias_restantes < 30:
+    intensidade = "ALTA"  # Foco em simulados
+elif dias_restantes < 90:
+    intensidade = "MEDIA"  # Mix drill + simulado
+else:
+    intensidade = "BAIXA"  # Foco em base conceitual
+```
+
+PROGRESSO DO OBJETIVO:
+
+CAMPO: progresso_objetivo
+TIPO: DECIMAL(5,2)
+RANGE: 0.00-100.00
+
+CÁLCULO (para OAB 1ª fase):
+```
+progresso = (
+    cobertura_disciplinas * 0.30 +  # Estudou todas?
+    taxa_acerto_geral * 0.40 +      # Acima de 60%?
+    simulados_realizados * 0.20 +   # Fez simulados?
+    revisoes_completas * 0.10       # Revisou pontos fracos?
+)
+```
+
+VISUALIZAÇÃO:
+- Barra de progresso
+- Projeção de aprovação
+- Dias restantes vs preparação
+
+============================================================
+ATUALIZAÇÃO DO PERFIL COGNITIVO
+============================================================
+
+FREQUÊNCIA DE ATUALIZAÇÃO:
+
+TEMPO REAL (após cada ação):
+- taxa_acerto_global
+- confianca_geral
+- stress_nivel
+- motivacao_nivel
+- fadiga_cognitiva
+
+AGREGAÇÃO PERIÓDICA (job noturno):
+- nivel_global
+- maturidade_juridica_geral
+- risco_evasao
+- risco_burnout
+- progresso_objetivo
+
+ALGORITMO DE ATUALIZAÇÃO:
+
+```
+FUNÇÃO atualizar_perfil_pos_questao(usuario_id, interacao):
+
+    1. Carregar perfil_juridico
+
+    2. Atualizar taxa_acerto_global:
+       - Adicionar resultado ao histórico
+       - Recalcular com ponderação temporal
+
+    3. Atualizar confiança:
+       if interacao.acertou:
+           confianca += 0.05
+       else:
+           confianca -= 0.10
+       confianca = clamp(confianca, 0.00, 1.00)
+
+    4. Atualizar stress:
+       if interacao.tempo > tempo_ideal * 1.5:
+           stress += 0.05
+       if interacao.mudou_resposta:
+           stress += 0.03
+
+    5. Atualizar maturidade_juridica:
+       for dimensao in [pensamento, abstracao, terminologia, analogia, interpretacao]:
+           if interacao.testou_dimensao(dimensao):
+               dimensao += 2 if acertou else -1
+
+    6. Salvar perfil_juridico
+
+    7. Trigger snapshot se necessário
+```
+
+GATILHOS DE SNAPSHOT:
+- A cada 50 questões respondidas
+- Semanalmente (domingo 23h59)
+- Pré-simulado oficial
+- Pós-simulado oficial
+- Detecção de mudança significativa (> 10% em qualquer métrica)
+
+============================================================
+CONCLUSÃO DA ETAPA 2
+============================================================
+
+O PERFIL COGNITIVO JURÍDICO é composto por:
+
+8 DIMENSÕES PRINCIPAIS:
+1. Nível geral de domínio (INICIANTE → EXPERT)
+2. Pontuação global (gamificação)
+3. Taxa de acerto (métrica core)
+4. Estado cognitivo-emocional (4 sub-métricas)
+5. Maturidade jurídica (5 sub-métricas)
+6. Padrões de aprendizagem (personalização)
+7. Riscos e alertas (prevenção)
+8. Objetivos e meta-cognição (direcionamento)
+
+TOTAL: ~20 métricas inter-relacionadas
+
+ATUALIZAÇÃO:
+- Tempo real: métricas de estado
+- Agregação: métricas de perfil
+- Snapshot: fotografia periódica
+
+PROPÓSITO:
+- Conhecer o estudante profundamente
+- Adaptar experiência em tempo real
+- Prever dificuldades
+- Prescrever ações
+- Garantir aprovação
+
+============================================================
+FIM DA ETAPA 2
+============================================================
+
+PRÓXIMA ETAPA: CLASSIFICAÇÃO DE ERROS JURÍDICOS
+Aguardando confirmação para prosseguir.

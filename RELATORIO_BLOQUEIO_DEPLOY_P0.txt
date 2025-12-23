@@ -1,0 +1,305 @@
+================================================================================
+RELATÓRIO DE BLOQUEIO - DEPLOY P0
+================================================================================
+Data: 2025-12-18
+Hora: ~12:00 (horário local)
+Fase: ETAPA 13.1 - PREPARO DE AMBIENTE
+Status: BLOQUEADO
+
+================================================================================
+RESUMO EXECUTIVO
+================================================================================
+
+O deploy P0 foi BLOQUEADO na Etapa 13.1 devido a problemas críticos com Docker
+Desktop. A infraestrutura não pode ser inicializada de forma confiável.
+
+DECISÃO: NO-GO para prosseguir até resolver problema de infraestrutura
+
+================================================================================
+PROGRESSO ATÉ O BLOQUEIO
+================================================================================
+
+✓ CONCLUÍDO:
+-----------
+1. Validação de estrutura de arquivos
+   - docker-compose.yml: OK
+   - .env: OK
+   - Migrations 003, 004: OK
+   - Scripts: OK
+
+2. Validação de variáveis de ambiente (13/13)
+   - DATABASE_URL: OK
+   - REDIS_URL: OK
+   - OLLAMA_HOST: OK
+   - JWT_SECRET_KEY: GERADO E VALIDADO (64 caracteres)
+   - JWT_REFRESH_SECRET: GERADO E VALIDADO (64 caracteres)
+   - Todos os valores necessários presentes e válidos
+
+3. Docker Desktop inicializado
+   - Versão: 28.4.0
+   - Status inicial: OK
+
+4. Download de imagens Docker
+   - PostgreSQL (ankane/pgvector:latest): BAIXADA (628MB)
+   - Redis (7-alpine): BAIXADA (60.7MB)
+   - Ollama (latest): BAIXADA (2GB+)
+
+5. Correção de configuração
+   - Removido locale inválido "pt_BR.UTF-8" do docker-compose.yml
+   - PostgreSQL configurado com encoding UTF8 padrão
+
+✗ BLOQUEADO:
+-----------
+6. Inicialização de containers
+   - PostgreSQL: INICIADO mas em loop de restart (corrigido config, mas requer recriação)
+   - Redis: INICIADO, depois DERRUBADO durante troubleshooting
+   - Ollama: INICIADO com GPU detectada (RTX 3090 24GB), depois DERRUBADO
+
+7. Docker API Error 500
+   - Erro crítico: "500 Internal Server Error for API route and version http://...dockerDesktopLinuxEngine/v1.51/"
+   - Impossibilita gerenciamento de containers via docker-compose
+   - Impossibilita gerenciamento via comandos docker diretos
+   - Containers órfãos ou em estados inconsistentes
+
+================================================================================
+PROBLEMA CRÍTICO: DOCKER ENGINE API 500
+================================================================================
+
+SINTOMAS:
+---------
+- Todos comandos docker/docker-compose retornam erro 500
+- API version 1.51 não responde corretamente
+- Docker Client funciona, Docker Server/Engine não responde
+- Containers existentes não podem ser gerenciados
+
+IMPACTO:
+--------
+- CRÍTICO: Impossível prosseguir com deploy
+- Infraestrutura instável e não confiável
+- Risco de corrupção de dados se continuar
+- Impossível validar conectividade com serviços
+
+CAUSA PROVÁVEL:
+---------------
+1. Problema com Docker Desktop versão 28.4.0
+2. Incompatibilidade entre client API v1.51 e engine
+3. Possível corrupção após múltiplas tentativas de restart
+4. Bug conhecido no Docker Desktop para Windows
+5. Problema com WSL2 backend
+
+TENTATIVAS DE CORREÇÃO:
+-----------------------
+1. Restart do Docker Desktop: FALHOU
+2. Limpeza de cache (docker system prune): FALHOU
+3. Remoção manual de containers: FALHOU (erro 500)
+4. Aguardar inicialização completa (75s+): FALHOU
+
+================================================================================
+ESTADO ATUAL DA INFRAESTRUTURA
+================================================================================
+
+PORTAS:
+-------
+- 5432 (PostgreSQL): ABERTA (container possivelmente em loop)
+- 6379 (Redis): FECHADA (container down)
+- 11434 (Ollama): FECHADA (container down)
+
+CONTAINERS:
+-----------
+- juris_ia_postgres: Estado desconhecido (API não responde)
+- juris_ia_redis: DOWN
+- juris_ia_ollama: DOWN
+
+VOLUMES:
+--------
+- juris_ia_core_v1_postgres_data: Possivelmente corrompido (locale inválido)
+- juris_ia_core_v1_redis_data: OK
+- juris_ia_core_v1_ollama_data: OK (sem modelos ainda)
+
+NETWORK:
+--------
+- juris_ia_core_v1_juris_ia_network: Criada
+
+================================================================================
+VALIDAÇÕES BEM-SUCEDIDAS
+================================================================================
+
+1. GPU NVIDIA RTX 3090 detectada pelo Ollama
+   - Compute: 8.6
+   - VRAM: 24GB total, 23GB disponível
+   - CUDA: 12.6
+   - Driver: OK
+
+2. Variáveis de ambiente completas e seguras
+   - JWT secrets gerados criptograficamente seguros
+   - Todas configurações validadas
+
+3. Arquitetura Docker preparada
+   - docker-compose.yml corrigido
+   - Healthchecks configurados
+   - Dependências mapeadas corretamente
+
+================================================================================
+AÇÕES NECESSÁRIAS PARA DESBLOQUEAR
+================================================================================
+
+OPÇÃO 1: CORRIGIR DOCKER DESKTOP (RECOMENDADO)
+-----------------------------------------------
+1. Fazer backup dos volumes existentes
+2. Desinstalar Docker Desktop completamente
+3. Limpar registros e caches:
+   - %APPDATA%\Docker
+   - %LOCALAPPDATA%\Docker
+   - C:\ProgramData\Docker
+4. Reinstalar Docker Desktop (versão estável, não bleeding edge)
+5. Reconfigurar WSL2 se necessário
+6. Reiniciar máquina
+7. Validar: docker ps deve funcionar sem erro 500
+
+OPÇÃO 2: DOWNGRADE DO DOCKER
+-----------------------------
+1. Desinstalar Docker Desktop 28.4.0
+2. Instalar versão LTS mais estável (ex: 27.x.x)
+3. Reiniciar
+4. Validar funcionamento
+
+OPÇÃO 3: USAR DOCKER VIA WSL2 DIRETAMENTE
+------------------------------------------
+1. Instalar Docker Engine diretamente no WSL2
+2. Não usar Docker Desktop
+3. Configurar docker-compose no WSL2
+4. Executar deploy do WSL2
+5. Requer ajustes nos paths (D:\ para /mnt/d/)
+
+OPÇÃO 4: MIGRAR PARA DOCKER EM LINUX (PRODUÇÃO)
+------------------------------------------------
+1. Deploy em VM Linux ou servidor dedicado
+2. Evita problemas do Windows/WSL2
+3. Melhor performance
+4. Mais estável para produção
+
+================================================================================
+ROLLBACK PLAN
+================================================================================
+
+ESTADO ANTES DO BLOQUEIO:
+-------------------------
+- Sem containers rodando
+- Sem volumes criados
+- Ambiente limpo
+
+ROLLBACK NECESSÁRIO:
+--------------------
+1. Aguardar correção do Docker
+2. Remover todos containers órfãos: docker rm -f $(docker ps -aq)
+3. Remover todos volumes: docker volume prune -f
+4. Remover network: docker network prune -f
+5. Validar estado limpo: docker ps -a (deve estar vazio)
+
+DADOS AFETADOS:
+---------------
+- NENHUM: Deploy ainda não iniciou de fato
+- Apenas configurações (.env atualizado com JWT secrets)
+- JWT secrets foram salvos em .env (backup recomendado)
+
+================================================================================
+RISCOS IDENTIFICADOS
+================================================================================
+
+CRÍTICO:
+--------
+- Infraestrutura Docker instável
+- Impossível continuar sem Docker funcional
+- Risco de perda de dados se continuar forçando
+
+ALTO:
+-----
+- Containers podem ficar em estados inconsistentes
+- Volumes podem corromper se forçar operações
+- PostgreSQL já teve problema de locale (corrigido)
+
+MÉDIO:
+------
+- Tempo de deploy aumentado devido ao bloqueio
+- Necessidade de troubleshooting adicional do Docker
+- Possível necessidade de reinstalação completa
+
+================================================================================
+RECOMENDAÇÕES
+================================================================================
+
+IMEDIATO:
+---------
+1. NÃO PROSSEGUIR com o deploy até resolver Docker
+2. DOCUMENTAR o bloqueio (este relatório)
+3. DECIDIR qual opção de correção seguir (1-4 acima)
+4. FAZER BACKUP do .env com os JWT secrets gerados
+
+CURTO PRAZO:
+------------
+1. Resolver problema do Docker Desktop
+2. Validar ambiente limpo
+3. Reiniciar deploy da Etapa 13.1 do zero
+4. Documentar solução aplicada
+
+LONGO PRAZO:
+------------
+1. Considerar migração para infraestrutura Linux
+2. Evitar Docker Desktop em produção
+3. Usar CI/CD para deploys automatizados
+4. Implementar monitoring de infraestrutura
+
+================================================================================
+PRÓXIMOS PASSOS
+================================================================================
+
+AGUARDANDO DECISÃO:
+-------------------
+[ ] Escolher opção de correção (1-4)
+[ ] Executar correção escolhida
+[ ] Validar Docker funcional: docker ps
+[ ] Limpar ambiente: docker system prune -a
+[ ] Reiniciar Etapa 13.1 do zero
+
+QUANDO DESBLOQUEADO:
+--------------------
+[ ] Validar Docker: docker ps, docker-compose version
+[ ] Subir containers: docker-compose up -d postgres redis ollama
+[ ] Aguardar healthchecks (60s)
+[ ] Validar conectividade:
+    - PostgreSQL: psql -h localhost -U juris_ia_user -d juris_ia
+    - Redis: redis-cli ping
+    - Ollama: curl http://localhost:11434/api/tags
+[ ] Continuar Etapa 13.1: Gerar checklist de validação
+[ ] Prosseguir para Etapa 13.2: Migrations
+
+================================================================================
+CONCLUSÃO
+================================================================================
+
+STATUS: NO-GO PARA DEPLOY P0
+
+O deploy P0 não pode prosseguir devido a problema crítico de infraestrutura
+(Docker Engine API 500). A correção é necessária antes de qualquer avanço.
+
+TEMPO INVESTIDO: ~1h30min
+TEMPO PERDIDO: ~45min (troubleshooting Docker)
+TEMPO ESTIMADO PARA CORREÇÃO: 30min-2h (dependendo da opção escolhida)
+
+VALIDAÇÕES COMPLETADAS: 5/16 (31%)
+BLOQUEADO EM: Validação de conectividade (Etapa 13.1)
+
+ARQUIVOS MODIFICADOS:
+- .env (JWT secrets atualizados - FAZER BACKUP!)
+- docker-compose.yml (locale removido)
+- scripts/validar_ambiente.py (criado)
+
+PRÓXIMA AÇÃO REQUERIDA: Decisão sobre correção do Docker Desktop
+
+================================================================================
+FIM DO RELATÓRIO
+================================================================================
+Data geração: 2025-12-18
+Gerado por: Engenheiro de Deploy - Claude Code
+Status: AGUARDANDO RESOLUÇÃO DE BLOQUEIO CRÍTICO
+================================================================================

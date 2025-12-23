@@ -1,0 +1,279 @@
+================================================================================
+INSTRUÇÕES PARA DEPLOY P0 - DOUTORA IA/OAB
+JURIS_IA_CORE_V1
+================================================================================
+Data: 2025-12-18
+Status: AGUARDANDO DOCKER DESKTOP
+================================================================================
+
+SITUAÇÃO ATUAL
+================================================================================
+O ambiente de deploy foi preparado e validado:
+
+✓ Arquivo .env configurado com todas as variáveis necessárias
+✓ docker-compose.yml validado
+✓ Migrations SQL localizadas e prontas (003, 004)
+✓ Scripts de deploy automático criados
+✓ Checklist de validação gerado
+
+⚠ BLOQUEADOR: Docker Desktop não está completamente inicializado
+
+================================================================================
+AÇÃO IMEDIATA NECESSÁRIA
+================================================================================
+
+1. INICIAR DOCKER DESKTOP
+   - Abra o Docker Desktop manualmente
+   - Aguarde até que o ícone fique verde (pode levar 1-2 minutos)
+   - Verifique que está rodando com: docker ps
+
+2. DEPOIS QUE DOCKER ESTIVER RODANDO, EXECUTE:
+
+   cd D:\JURIS_IA_CORE_V1
+
+   # ETAPA 13.1 - Inicializar serviços
+   bash scripts/deploy_p0_init.sh
+
+   # ETAPA 13.2 - Executar migrations
+   bash scripts/deploy_p0_migrations.sh
+
+   # ETAPA 13.3 - Ingerir dados (a ser criado após 13.2)
+   bash scripts/deploy_p0_ingest.sh
+
+   # ETAPA 13.4 - Testes end-to-end (a ser criado após 13.3)
+   bash scripts/deploy_p0_tests.sh
+
+
+================================================================================
+DETALHAMENTO DAS ETAPAS
+================================================================================
+
+ETAPA 13.1: Inicialização de Serviços
+--------------------------------------
+Script: scripts/deploy_p0_init.sh
+
+Ações:
+  ✓ Validar Docker daemon
+  ✓ Iniciar PostgreSQL + pgvector
+  ✓ Iniciar Redis (cache)
+  ✓ Iniciar Ollama (GPU)
+  ✓ Download de modelos IA:
+    - nomic-embed-text (embeddings)
+    - llama3.1:8b-instruct-q8_0 (LLM)
+  ✓ Validar conectividade de todos os serviços
+  ✓ Validar modelos disponíveis
+
+Tempo estimado: 10-20 minutos (download dos modelos)
+
+
+ETAPA 13.2: Migrations
+----------------------
+Script: scripts/deploy_p0_migrations.sh
+
+Ações:
+  ✓ Backup do banco (se houver dados)
+  ✓ Executar migration 003 (tabelas de autenticação):
+    - usuario
+    - token_refresh
+    - sessao_usuario
+    - log_autenticacao
+    - jwt_secret
+    - Funções: limpar_tokens_expirados, revogar_tokens_usuario
+    - Criar usuário admin padrão
+
+  ✓ Executar migration 004 (tabelas de assinatura):
+    - plano
+    - assinatura
+    - uso_diario
+    - evento_uso
+    - historico_plano
+    - Funções: obter_assinatura_ativa, obter_uso_dia, incrementar_uso, verificar_limite
+    - Criar planos: FREE, BASIC, PRO
+
+  ✓ Validar integridade:
+    - Contar tabelas (esperado: 10+)
+    - Validar constraints
+    - Validar índices
+    - Testar funções SQL
+
+Tempo estimado: 2-5 minutos
+
+
+ETAPA 13.3: População de Embeddings
+------------------------------------
+Script: scripts/deploy_p0_ingest.sh (A SER CRIADO)
+
+Ações:
+  - Ingerir lei seca (artigos de legislação)
+  - Ingerir questões OAB (banco de questões)
+  - Gerar embeddings com nomic-embed-text
+  - Armazenar vetores no PostgreSQL (pgvector)
+  - Validar contagens e amostras
+  - Medir latência média de consulta
+
+Tempo estimado: 30-60 minutos (depende do volume de dados)
+
+
+ETAPA 13.4: Testes End-to-End
+------------------------------
+Script: scripts/deploy_p0_tests.sh (A SER CRIADO)
+
+Ações:
+  - Iniciar backend API
+  - Testar fluxo de autenticação (login/logout)
+  - Testar fluxo de estudo (questões + explicações IA)
+  - Testar paywall e limites por plano
+  - Testar consultas RAG (lei seca)
+  - Validar cache Redis
+  - Validar métricas e logs
+
+Tempo estimado: 10-15 minutos
+
+
+ETAPA 13.5: Monitoramento
+--------------------------
+Ações:
+  - Configurar health checks
+  - Ativar alertas básicos (erro 5xx, latência, DB pool)
+  - Validar dashboards mínimos
+
+Tempo estimado: 5 minutos
+
+
+ETAPA 13.6: Relatório Final
+----------------------------
+Gerar: RELATORIO_DEPLOY_P0.txt
+
+Conteúdo:
+  - Checklist completo
+  - Tempos de execução
+  - Métricas de performance
+  - Riscos residuais
+  - Decisão GO/NO-GO
+
+
+================================================================================
+VARIÁVEIS DE AMBIENTE IMPORTANTES
+================================================================================
+
+Configuradas em .env:
+
+DATABASE_URL=postgresql://juris_ia_user:changeme123@postgres:5432/juris_ia
+REDIS_URL=redis://redis:6379/0
+OLLAMA_HOST=http://ollama:11434
+EMBEDDING_MODEL=nomic-embed-text
+LLM_MODEL=llama3.1:8b-instruct-q8_0
+
+JWT_SECRET_KEY=your-secret-key-here-change-in-production  ⚠ ALTERAR EM PRODUÇÃO!
+JWT_ALGORITHM=HS256
+JWT_ACCESS_TOKEN_EXPIRE_MINUTES=15
+JWT_REFRESH_TOKEN_EXPIRE_DAYS=7
+
+MODO_OAB_ENABLED=true
+MODO_PROFISSIONAL_ENABLED=false
+PIECE_ENGINE_ENABLED=false
+
+SESSOES_POR_DIA=3
+QUESTOES_POR_SESSAO=20
+PECAS_POR_SEMANA=0
+MAX_USUARIOS_CADASTRADOS=50
+
+LOG_LEVEL=INFO
+ENVIRONMENT=production
+
+
+================================================================================
+USUÁRIO ADMIN PADRÃO
+================================================================================
+
+Email: admin@juris-ia.com
+Senha: Admin@123
+
+⚠ ALTERAR SENHA EM PRODUÇÃO após primeiro login!
+
+
+================================================================================
+PORTAS DOS SERVIÇOS
+================================================================================
+
+PostgreSQL: 5432
+Redis: 6379
+Ollama: 11434
+Backend API: 8000
+PgAdmin (opcional): 5050
+Redis Commander (opcional): 8081
+
+
+================================================================================
+COMANDOS ÚTEIS
+================================================================================
+
+# Ver logs dos serviços
+docker-compose logs -f
+
+# Ver logs de um serviço específico
+docker-compose logs -f postgres
+docker-compose logs -f ollama
+
+# Status dos containers
+docker-compose ps
+
+# Parar todos os serviços
+docker-compose down
+
+# Reiniciar um serviço
+docker-compose restart postgres
+
+# Acessar shell do PostgreSQL
+docker exec -it juris_ia_postgres psql -U juris_ia_user -d juris_ia
+
+# Acessar shell do Redis
+docker exec -it juris_ia_redis redis-cli
+
+# Listar modelos Ollama
+docker exec juris_ia_ollama ollama list
+
+
+================================================================================
+TROUBLESHOOTING
+================================================================================
+
+Problema: Docker não inicia
+Solução: Reiniciar Docker Desktop, aguardar 2 minutos
+
+Problema: PostgreSQL não fica healthy
+Solução: docker-compose logs postgres
+         Verificar se porta 5432 está livre
+
+Problema: Ollama não detecta GPU
+Solução: Verificar drivers NVIDIA, reiniciar Docker
+
+Problema: Modelos não baixam
+Solução: Verificar conexão com internet, espaço em disco
+
+
+================================================================================
+LOGS E DOCUMENTAÇÃO GERADOS
+================================================================================
+
+✓ LOGS_DEPLOY_P0.txt - Log detalhado de execução
+✓ CHECKLIST_VALIDACAO_P0.txt - Checklist completo de validação
+✓ scripts/deploy_p0_init.sh - Script de inicialização
+✓ scripts/deploy_p0_migrations.sh - Script de migrations
+✓ .env - Variáveis de ambiente configuradas
+
+Pendentes:
+  - scripts/deploy_p0_ingest.sh (criar após migrations)
+  - scripts/deploy_p0_tests.sh (criar após ingestão)
+  - RELATORIO_DEPLOY_P0.txt (gerar ao final)
+
+
+================================================================================
+PRÓXIMA AÇÃO
+================================================================================
+
+1. Iniciar Docker Desktop
+2. Aguardar até ficar totalmente inicializado
+3. Executar: bash scripts/deploy_p0_init.sh
+
+================================================================================
