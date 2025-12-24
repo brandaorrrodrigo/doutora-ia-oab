@@ -62,8 +62,23 @@ class DatabaseConfig:
         Returns:
             str: URL de conexão PostgreSQL
         """
-        driver = "postgresql+asyncpg" if async_mode else "postgresql+psycopg2"
+        # PRIORIDADE 1: Usar DATABASE_URL se fornecido (Railway, produção)
+        database_url = os.getenv("DATABASE_URL")
+        if database_url:
+            # Railway fornece URL com postgres://, precisamos de postgresql://
+            if database_url.startswith("postgres://"):
+                database_url = database_url.replace("postgres://", "postgresql://", 1)
 
+            # Adicionar driver correto
+            if async_mode and "postgresql://" in database_url:
+                database_url = database_url.replace("postgresql://", "postgresql+asyncpg://", 1)
+            elif not async_mode and "postgresql://" in database_url and "+psycopg2" not in database_url:
+                database_url = database_url.replace("postgresql://", "postgresql+psycopg2://", 1)
+
+            return database_url
+
+        # PRIORIDADE 2: Construir URL a partir de variáveis individuais (desenvolvimento)
+        driver = "postgresql+asyncpg" if async_mode else "postgresql+psycopg2"
         url = f"{driver}://{self.user}:{self.password}@{self.host}:{self.port}/{self.database}"
 
         # Adiciona parâmetros SSL se necessário
