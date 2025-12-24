@@ -32,6 +32,48 @@ async def create_database_tables():
             "error": str(e)
         }
 
+@router.post("/migrate-add-password-hash")
+async def migrate_add_password_hash():
+    """
+    Adiciona coluna password_hash à tabela users (migration)
+    """
+    from database.connection import DatabaseManager
+
+    try:
+        db_manager = DatabaseManager()
+        Session = db_manager.get_session_factory()
+        db = Session()
+
+        # Adicionar coluna password_hash se não existir
+        try:
+            db.execute("""
+                ALTER TABLE users
+                ADD COLUMN IF NOT EXISTS password_hash VARCHAR(255)
+            """)
+            db.commit()
+
+            return {
+                "success": True,
+                "message": "Coluna password_hash adicionada com sucesso (ou já existia)",
+                "migrated": True
+            }
+        except Exception as e:
+            db.rollback()
+            return {
+                "success": False,
+                "message": f"Erro na migração: {str(e)}",
+                "error": str(e)
+            }
+        finally:
+            db.close()
+
+    except Exception as e:
+        return {
+            "success": False,
+            "message": f"Erro ao conectar ao banco: {str(e)}",
+            "error": str(e)
+        }
+
 @router.get("/debug-db")
 async def debug_database_config():
     """

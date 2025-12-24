@@ -145,6 +145,7 @@ class User(Base):
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     nome = Column(String(255), nullable=False)
     email = Column(String(255), nullable=False, unique=True, index=True)
+    password_hash = Column(String(255), nullable=False)  # Hash da senha para autenticação
     cpf = Column(String(14), unique=True, index=True)
     telefone = Column(String(20))
     data_nascimento = Column(DateTime)

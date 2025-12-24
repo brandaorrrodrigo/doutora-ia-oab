@@ -1,0 +1,67 @@
+# ================================================================================
+# VARIÁVEIS DE AMBIENTE PARA RAILWAY - DOUTORA IA OAB
+# ================================================================================
+# Copie e cole estas variáveis no painel do Railway
+# Settings → Variables → RAW Editor
+# ================================================================================
+
+# Node Environment
+NODE_ENV=production
+ENVIRONMENT=production
+
+# API Configuration
+API_HOST=0.0.0.0
+API_PORT=$PORT
+API_WORKERS=2
+
+# Database (Railway fornece automaticamente - use referência)
+DATABASE_URL=${{Postgres.DATABASE_URL}}
+POSTGRES_PASSWORD=${{Postgres.POSTGRES_PASSWORD}}
+
+# Redis (Railway fornece automaticamente - use referência)
+REDIS_URL=${{Redis.REDIS_URL}}
+
+# Chat Server Multi-Tenant (PRODUÇÃO)
+CHAT_SERVER_URL=https://chat.doutoraia.com
+CHAT_API_KEY=doutoraia-oab-2025-secret-key-ultra-secure
+
+# JWT Secrets (COPIE DO SEU .ENV LOCAL - IMPORTANTE!)
+JWT_SECRET_KEY=Pv2hq_89mtG-wdXLYPrFpi6eOUPGbiSyLNcWcFcNi0JfhLz8tKCFcKNrQizFRDW_QYjTo22OHx2MoEIn_aBMEA
+JWT_REFRESH_SECRET=-mcPHH_AqeFp8Y-rxlfKSHMOfwlE6Ga3kDA9f4E6f7EFGd0DWRASsPtYewkqpkQQ8fTtdNWs11fKDjcSXDL0EA
+JWT_ALGORITHM=HS256
+JWT_ACCESS_TOKEN_EXPIRE_MINUTES=15
+JWT_REFRESH_TOKEN_EXPIRE_DAYS=7
+
+# Feature Flags
+MODO_OAB_ENABLED=true
+MODO_PROFISSIONAL_ENABLED=false
+PIECE_ENGINE_ENABLED=false
+
+# Limites
+SESSOES_POR_DIA=3
+QUESTOES_POR_SESSAO=20
+PECAS_POR_SEMANA=0
+MAX_USUARIOS_CADASTRADOS=50
+
+# Logging
+LOG_LEVEL=INFO
+
+# Pricing (configurável)
+PLANO_FREE_PRECO_MENSAL=0.00
+PLANO_OAB_MENSAL_PRECO_MENSAL=49.90
+PLANO_OAB_SEMESTRAL_PRECO_SEMESTRAL=247.00
+PRICING_MOEDA=BRL
+
+# Embedding Model (não usado com chat server, mas necessário)
+EMBEDDING_MODEL=nomic-embed-text
+LLM_MODEL=llama3.1:8b-instruct-q8_0
+
+# Ollama (apontar para chat server, não usar diretamente)
+OLLAMA_HOST=https://chat.doutoraia.com
+
+# ================================================================================
+# IMPORTANTE:
+# - DATABASE_URL e REDIS_URL são preenchidos automaticamente pelo Railway
+# - JWT secrets devem ser trocados em produção por segurança
+# - CHAT_SERVER_URL já está configurado para https://chat.doutoraia.com
+# ================================================================================
