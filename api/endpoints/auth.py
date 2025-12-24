@@ -1,6 +1,7 @@
 """
 Endpoints de Autenticação - Registro e Login
 """
+from typing import Optional
 from fastapi import APIRouter, HTTPException, status
 from pydantic import BaseModel, EmailStr, Field
 from sqlalchemy.exc import IntegrityError
@@ -22,8 +23,8 @@ class RegisterRequest(BaseModel):
     nome: str = Field(..., min_length=3, max_length=255, description="Nome completo")
     email: EmailStr = Field(..., description="Email válido")
     senha: str = Field(..., min_length=6, description="Senha (mínimo 6 caracteres)")
-    cpf: str | None = Field(None, description="CPF (opcional)")
-    telefone: str | None = Field(None, description="Telefone (opcional)")
+    cpf: Optional[str] = Field(None, description="CPF (opcional)")
+    telefone: Optional[str] = Field(None, description="Telefone (opcional)")
 
 
 class LoginRequest(BaseModel):
@@ -36,7 +37,7 @@ class AuthResponse(BaseModel):
     """Response de autenticação"""
     success: bool
     message: str
-    data: dict | None = None
+    data: Optional[dict] = None
 
 
 # ============================================================================
