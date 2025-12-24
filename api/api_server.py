@@ -100,10 +100,10 @@ sistema = JurisIA()
 
 # Importar e registrar routers
 from api.endpoints.admin import router as admin_router
-from api.endpoints.auth import router as auth_router
+# from api.endpoints.auth import router as auth_router  # Temporariamente desabilitado para debug
 
 app.include_router(admin_router)
-app.include_router(auth_router)
+# app.include_router(auth_router)  # Temporariamente desabilitado para debug
 
 
 # ============================================================
