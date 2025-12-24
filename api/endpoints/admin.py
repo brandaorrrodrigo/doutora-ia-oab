@@ -9,6 +9,29 @@ from database.models import QuestaoBanco, DificuldadeQuestao
 
 router = APIRouter(prefix="/admin", tags=["admin"])
 
+@router.post("/create-tables")
+async def create_database_tables():
+    """
+    Cria todas as tabelas do banco de dados
+    """
+    from database.connection import DatabaseManager
+
+    try:
+        db_manager = DatabaseManager()
+        db_manager.create_all_tables()
+
+        return {
+            "success": True,
+            "message": "Todas as tabelas foram criadas com sucesso!",
+            "tables_created": True
+        }
+    except Exception as e:
+        return {
+            "success": False,
+            "message": f"Erro ao criar tabelas: {str(e)}",
+            "error": str(e)
+        }
+
 @router.get("/debug-db")
 async def debug_database_config():
     """
