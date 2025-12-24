@@ -644,6 +644,428 @@ QUESTOES_SEED = [
         "fundamentacao_legal": {"CPC": "Art. 373"},
         "tags": ["ônus da prova", "provas"],
         "eh_trap": False
+    },
+    # MAIS QUESTÕES PARA COMPLETAR 50+
+    {
+        "codigo_questao": "OAB_XXXVIII_31",
+        "disciplina": "Direito Administrativo",
+        "topico": "Licitações",
+        "subtopico": "Modalidades",
+        "enunciado": "O pregão é modalidade de licitação destinada a:",
+        "alternativas": {
+            "A": "Obras de grande porte.",
+            "B": "Aquisição de bens e serviços comuns.",
+            "C": "Alienação de bens imóveis.",
+            "D": "Contratação de serviços de engenharia."
+        },
+        "alternativa_correta": "B",
+        "dificuldade": "FACIL",
+        "ano_prova": 2024,
+        "numero_exame": "XXXVIII",
+        "explicacao_detalhada": "Lei 10.520/02: pregão destina-se à aquisição de bens e serviços comuns, independentemente do valor.",
+        "fundamentacao_legal": {"Lei": "Lei 10.520/02"},
+        "tags": ["licitação", "pregão", "administrativo"],
+        "eh_trap": False
+    },
+    {
+        "codigo_questao": "OAB_XXXVIII_32",
+        "disciplina": "Direito Administrativo",
+        "topico": "Atos Administrativos",
+        "subtopico": "Atributos",
+        "enunciado": "A presunção de legitimidade dos atos administrativos significa que:",
+        "alternativas": {
+            "A": "O ato é sempre legal e não pode ser questionado.",
+            "B": "Presume-se que o ato foi praticado conforme a lei, até prova em contrário.",
+            "C": "O ato não pode ser revogado.",
+            "D": "Apenas o Poder Judiciário pode questionar o ato."
+        },
+        "alternativa_correta": "B",
+        "dificuldade": "MEDIO",
+        "ano_prova": 2024,
+        "numero_exame": "XXXVIII",
+        "explicacao_detalhada": "Presunção de legitimidade é relativa (juris tantum), admitindo prova em contrário.",
+        "fundamentacao_legal": {"Doutrina": "Atributos dos atos administrativos"},
+        "tags": ["atos administrativos", "presunção de legitimidade"],
+        "eh_trap": False
+    },
+    {
+        "codigo_questao": "OAB_XXXVIII_33",
+        "disciplina": "Direito Ambiental",
+        "topico": "Responsabilidade",
+        "subtopico": "Dano Ambiental",
+        "enunciado": "A responsabilidade por dano ambiental é:",
+        "alternativas": {
+            "A": "Subjetiva, exigindo prova de culpa.",
+            "B": "Objetiva, independentemente de culpa.",
+            "C": "Exclusiva da pessoa física.",
+            "D": "Limitada a danos materiais."
+        },
+        "alternativa_correta": "B",
+        "dificuldade": "FACIL",
+        "ano_prova": 2024,
+        "numero_exame": "XXXVIII",
+        "explicacao_detalhada": "Art. 14, §1º, Lei 6.938/81: responsabilidade objetiva por dano ambiental.",
+        "fundamentacao_legal": {"Lei": "Lei 6.938/81, art. 14, §1º"},
+        "tags": ["dano ambiental", "responsabilidade objetiva"],
+        "eh_trap": False
+    },
+    {
+        "codigo_questao": "OAB_XXXVIII_34",
+        "disciplina": "Direito do Consumidor",
+        "topico": "Relação de Consumo",
+        "subtopico": "Conceitos",
+        "enunciado": "É considerado consumidor:",
+        "alternativas": {
+            "A": "Apenas a pessoa física que adquire produto ou serviço.",
+            "B": "A pessoa física ou jurídica que adquire ou utiliza produto ou serviço como destinatário final.",
+            "C": "Exclusivamente quem compra produtos.",
+            "D": "Apenas quem adquire serviços."
+        },
+        "alternativa_correta": "B",
+        "dificuldade": "FACIL",
+        "ano_prova": 2024,
+        "numero_exame": "XXXVIII",
+        "explicacao_detalhada": "Art. 2º, CDC: consumidor é toda pessoa física ou jurídica que adquire ou utiliza produto ou serviço como destinatário final.",
+        "fundamentacao_legal": {"CDC": "Art. 2º"},
+        "tags": ["consumidor", "destinatário final"],
+        "eh_trap": False
+    },
+    {
+        "codigo_questao": "OAB_XXXVIII_35",
+        "disciplina": "Direito do Consumidor",
+        "topico": "Vícios",
+        "subtopico": "Prazo",
+        "enunciado": "O prazo para reclamar de vícios aparentes em produtos duráveis é de:",
+        "alternativas": {
+            "A": "30 dias.",
+            "B": "90 dias.",
+            "C": "1 ano.",
+            "D": "5 anos."
+        },
+        "alternativa_correta": "B",
+        "dificuldade": "MEDIO",
+        "ano_prova": 2024,
+        "numero_exame": "XXXVIII",
+        "explicacao_detalhada": "Art. 26, II, CDC: prazo de 90 dias para reclamar de vícios aparentes em produtos duráveis.",
+        "fundamentacao_legal": {"CDC": "Art. 26, II"},
+        "tags": ["vícios", "prazo", "produto durável"],
+        "eh_trap": True,
+        "tipo_trap": "Prazo - 30 vs 90 dias"
+    },
+    {
+        "codigo_questao": "OAB_XXXVIII_36",
+        "disciplina": "Direito Penal",
+        "topico": "Crimes Contra a Pessoa",
+        "subtopico": "Homicídio",
+        "enunciado": "O homicídio qualificado pelo motivo torpe ocorre quando:",
+        "alternativas": {
+            "A": "O crime é cometido mediante paga.",
+            "B": "O crime é praticado por motivo repugnante, abjeto.",
+            "C": "O crime é praticado com emprego de veneno.",
+            "D": "O crime é cometido à traição."
+        },
+        "alternativa_correta": "B",
+        "dificuldade": "FACIL",
+        "ano_prova": 2024,
+        "numero_exame": "XXXVIII",
+        "explicacao_detalhada": "Art. 121, §2º, I, CP: motivo torpe é o repugnante, abjeto, vil.",
+        "fundamentacao_legal": {"CP": "Art. 121, §2º, I"},
+        "tags": ["homicídio qualificado", "motivo torpe"],
+        "eh_trap": False
+    },
+    {
+        "codigo_questao": "OAB_XXXVIII_37",
+        "disciplina": "Direito Constitucional",
+        "topico": "Poder Legislativo",
+        "subtopico": "Imunidades",
+        "enunciado": "A imunidade parlamentar material significa que:",
+        "alternativas": {
+            "A": "Deputados e Senadores não podem ser presos.",
+            "B": "Parlamentares são invioláveis por suas opiniões, palavras e votos.",
+            "C": "Parlamentares não podem ser processados.",
+            "D": "Parlamentares têm foro privilegiado."
+        },
+        "alternativa_correta": "B",
+        "dificuldade": "FACIL",
+        "ano_prova": 2024,
+        "numero_exame": "XXXVIII",
+        "explicacao_detalhada": "Art. 53, CF: imunidade material garante inviolabilidade por opiniões, palavras e votos.",
+        "fundamentacao_legal": {"CF88": "Art. 53"},
+        "tags": ["imunidade parlamentar", "inviolabilidade"],
+        "eh_trap": False
+    },
+    {
+        "codigo_questao": "OAB_XXXVIII_38",
+        "disciplina": "Direito Civil",
+        "topico": "Sucessões",
+        "subtopico": "Testamento",
+        "enunciado": "O testamento público:",
+        "alternativas": {
+            "A": "É escrito pelo próprio testador.",
+            "B": "É lavrado por tabelião ou substituto legal.",
+            "C": "Não precisa de testemunhas.",
+            "D": "É sempre revogável por escritura pública."
+        },
+        "alternativa_correta": "B",
+        "dificuldade": "FACIL",
+        "ano_prova": 2024,
+        "numero_exame": "XXXVIII",
+        "explicacao_detalhada": "Art. 1.864, CC: testamento público é escrito por tabelião em seu livro de notas.",
+        "fundamentacao_legal": {"CC": "Art. 1.864"},
+        "tags": ["testamento público", "sucessões"],
+        "eh_trap": False
+    },
+    {
+        "codigo_questao": "OAB_XXXVIII_39",
+        "disciplina": "Direito Empresarial",
+        "topico": "Falência",
+        "subtopico": "Requisitos",
+        "enunciado": "Pode requerer falência de empresário:",
+        "alternativas": {
+            "A": "Apenas o próprio devedor.",
+            "B": "O próprio devedor, o cônjuge sobrevivente ou qualquer credor.",
+            "C": "Exclusivamente o Ministério Público.",
+            "D": "Apenas credores trabalhistas."
+        },
+        "alternativa_correta": "B",
+        "dificuldade": "MEDIO",
+        "ano_prova": 2024,
+        "numero_exame": "XXXVIII",
+        "explicacao_detalhada": "Art. 97, Lei 11.101/05: podem requerer falência o próprio devedor, cônjuge sobrevivente, herdeiros, inventariante, sócio ou qualquer credor.",
+        "fundamentacao_legal": {"Lei": "Lei 11.101/05, art. 97"},
+        "tags": ["falência", "legitimidade"],
+        "eh_trap": False
+    },
+    {
+        "codigo_questao": "OAB_XXXVIII_40",
+        "disciplina": "Direito Processual Civil",
+        "topico": "Petição Inicial",
+        "subtopico": "Requisitos",
+        "enunciado": "São requisitos essenciais da petição inicial:",
+        "alternativas": {
+            "A": "Apenas a indicação do juiz e o pedido.",
+            "B": "Endereço das partes, fatos e fundamentos jurídicos, pedido e valor da causa.",
+            "C": "Somente o nome das partes e o pedido.",
+            "D": "Apenas os fundamentos jurídicos."
+        },
+        "alternativa_correta": "B",
+        "dificuldade": "MEDIO",
+        "ano_prova": 2024,
+        "numero_exame": "XXXVIII",
+        "explicacao_detalhada": "Art. 319, CPC: a petição inicial deve conter, entre outros, endereço das partes, fatos e fundamentos, pedido e valor da causa.",
+        "fundamentacao_legal": {"CPC": "Art. 319"},
+        "tags": ["petição inicial", "requisitos"],
+        "eh_trap": False
+    },
+    {
+        "codigo_questao": "OAB_XXXVIII_41",
+        "disciplina": "Direito Tributário",
+        "topico": "Competência",
+        "subtopico": "Impostos Municipais",
+        "enunciado": "É imposto de competência dos Municípios:",
+        "alternativas": {
+            "A": "ICMS.",
+            "B": "IPTU.",
+            "C": "ITCMD.",
+            "D": "IOF."
+        },
+        "alternativa_correta": "B",
+        "dificuldade": "FACIL",
+        "ano_prova": 2024,
+        "numero_exame": "XXXVIII",
+        "explicacao_detalhada": "Art. 156, I, CF: compete aos Municípios instituir imposto sobre propriedade predial e territorial urbana (IPTU).",
+        "fundamentacao_legal": {"CF88": "Art. 156, I"},
+        "tags": ["IPTU", "competência municipal"],
+        "eh_trap": False
+    },
+    {
+        "codigo_questao": "OAB_XXXVIII_42",
+        "disciplina": "Direito do Trabalho",
+        "topico": "FGTS",
+        "subtopico": "Multa",
+        "enunciado": "Na dispensa sem justa causa, o empregador deve pagar multa de FGTS de:",
+        "alternativas": {
+            "A": "20% sobre o saldo.",
+            "B": "40% sobre o saldo.",
+            "C": "50% sobre o saldo.",
+            "D": "10% sobre o saldo."
+        },
+        "alternativa_correta": "B",
+        "dificuldade": "FACIL",
+        "ano_prova": 2024,
+        "numero_exame": "XXXVIII",
+        "explicacao_detalhada": "Art. 18, §1º, Lei 8.036/90: multa de 40% sobre o saldo do FGTS na dispensa sem justa causa.",
+        "fundamentacao_legal": {"Lei": "Lei 8.036/90, art. 18, §1º"},
+        "tags": ["FGTS", "multa", "rescisão"],
+        "eh_trap": False
+    },
+    {
+        "codigo_questao": "OAB_XXXVIII_43",
+        "disciplina": "Ética Profissional",
+        "topico": "OAB",
+        "subtopico": "Inscrição",
+        "enunciado": "Para inscrição nos quadros da OAB, é necessário:",
+        "alternativas": {
+            "A": "Apenas diploma de bacharel em Direito.",
+            "B": "Aprovação no Exame de Ordem e idoneidade moral.",
+            "C": "Cinco anos de experiência jurídica.",
+            "D": "Recomendação de três advogados."
+        },
+        "alternativa_correta": "B",
+        "dificuldade": "FACIL",
+        "ano_prova": 2024,
+        "numero_exame": "XXXVIII",
+        "explicacao_detalhada": "Art. 8º, EOAB: requisitos incluem capacidade civil, diploma, aprovação no Exame de Ordem e idoneidade moral.",
+        "fundamentacao_legal": {"EOAB": "Art. 8º"},
+        "tags": ["inscrição OAB", "exame de ordem"],
+        "eh_trap": False
+    },
+    {
+        "codigo_questao": "OAB_XXXVIII_44",
+        "disciplina": "Direito Processual Penal",
+        "topico": "Provas",
+        "subtopico": "Provas Ilícitas",
+        "enunciado": "Provas obtidas por meios ilícitos são:",
+        "alternativas": {
+            "A": "Válidas se essenciais à condenação.",
+            "B": "Inadmissíveis no processo.",
+            "C": "Válidas apenas na defesa.",
+            "D": "Admitidas com ressalvas."
+        },
+        "alternativa_correta": "B",
+        "dificuldade": "FACIL",
+        "ano_prova": 2024,
+        "numero_exame": "XXXVIII",
+        "explicacao_detalhada": "Art. 5º, LVI, CF e art. 157, CPP: são inadmissíveis as provas obtidas por meios ilícitos.",
+        "fundamentacao_legal": {"CF88": "Art. 5º, LVI", "CPP": "Art. 157"},
+        "tags": ["provas ilícitas", "inadmissibilidade"],
+        "eh_trap": False
+    },
+    {
+        "codigo_questao": "OAB_XXXVIII_45",
+        "disciplina": "Direito Civil",
+        "topico": "Obrigações",
+        "subtopico": "Mora",
+        "enunciado": "Na obrigação positiva e líquida, o devedor considera-se em mora:",
+        "alternativas": {
+            "A": "Apenas após interpelação judicial.",
+            "B": "Desde o vencimento.",
+            "C": "Após 30 dias do vencimento.",
+            "D": "Quando for notificado extrajudicialmente."
+        },
+        "alternativa_correta": "B",
+        "dificuldade": "MEDIO",
+        "ano_prova": 2024,
+        "numero_exame": "XXXVIII",
+        "explicacao_detalhada": "Art. 397, CC: o devedor em mora desde o vencimento quando a obrigação for positiva, líquida e com termo.",
+        "fundamentacao_legal": {"CC": "Art. 397"},
+        "tags": ["mora", "obrigações", "vencimento"],
+        "eh_trap": False
+    },
+    {
+        "codigo_questao": "OAB_XXXVIII_46",
+        "disciplina": "Direito Penal",
+        "topico": "Concurso de Crimes",
+        "subtopico": "Concurso Formal",
+        "enunciado": "No concurso formal de crimes:",
+        "alternativas": {
+            "A": "Aplica-se a pena do crime mais grave aumentada.",
+            "B": "Somam-se todas as penas.",
+            "C": "Aplica-se apenas a pena do crime mais grave.",
+            "D": "Não há aumento de pena."
+        },
+        "alternativa_correta": "A",
+        "dificuldade": "MEDIO",
+        "ano_prova": 2024,
+        "numero_exame": "XXXVIII",
+        "explicacao_detalhada": "Art. 70, CP: concurso formal - aplica-se a mais grave das penas cabíveis ou, se iguais, uma delas, aumentada de 1/6 a 1/2.",
+        "fundamentacao_legal": {"CP": "Art. 70"},
+        "tags": ["concurso formal", "penas"],
+        "eh_trap": False
+    },
+    {
+        "codigo_questao": "OAB_XXXVIII_47",
+        "disciplina": "Direito Constitucional",
+        "topico": "Remédios Constitucionais",
+        "subtopico": "Habeas Data",
+        "enunciado": "O habeas data destina-se a:",
+        "alternativas": {
+            "A": "Proteger a liberdade de locomoção.",
+            "B": "Conhecer e retificar informações constantes de registros públicos.",
+            "C": "Anular ato lesivo ao patrimônio público.",
+            "D": "Suspender ato normativo."
+        },
+        "alternativa_correta": "B",
+        "dificuldade": "FACIL",
+        "ano_prova": 2024,
+        "numero_exame": "XXXVIII",
+        "explicacao_detalhada": "Art. 5º, LXXII, CF: habeas data para conhecer informações pessoais em registros e para retificação.",
+        "fundamentacao_legal": {"CF88": "Art. 5º, LXXII"},
+        "tags": ["habeas data", "remédios constitucionais"],
+        "eh_trap": False
+    },
+    {
+        "codigo_questao": "OAB_XXXVIII_48",
+        "disciplina": "Direito Empresarial",
+        "topico": "Nome Empresarial",
+        "subtopico": "Espécies",
+        "enunciado": "A firma individual é formada por:",
+        "alternativas": {
+            "A": "Nome fantasia escolhido livremente.",
+            "B": "Nome civil do empresário, completo ou abreviado.",
+            "C": "Sigla do ramo de atividade.",
+            "D": "Nome de terceiros."
+        },
+        "alternativa_correta": "B",
+        "dificuldade": "FACIL",
+        "ano_prova": 2024,
+        "numero_exame": "XXXVIII",
+        "explicacao_detalhada": "Art. 1.156, CC: o empresário individual opera sob firma constituída por seu nome, completo ou abreviado.",
+        "fundamentacao_legal": {"CC": "Art. 1.156"},
+        "tags": ["nome empresarial", "firma individual"],
+        "eh_trap": False
+    },
+    {
+        "codigo_questao": "OAB_XXXVIII_49",
+        "disciplina": "Direito Administrativo",
+        "topico": "Servidores Públicos",
+        "subtopico": "Estabilidade",
+        "enunciado": "O servidor público adquire estabilidade após:",
+        "alternativas": {
+            "A": "1 ano de efetivo exercício.",
+            "B": "2 anos de efetivo exercício.",
+            "C": "3 anos de efetivo exercício.",
+            "D": "5 anos de efetivo exercício."
+        },
+        "alternativa_correta": "C",
+        "dificuldade": "FACIL",
+        "ano_prova": 2024,
+        "numero_exame": "XXXVIII",
+        "explicacao_detalhada": "Art. 41, CF: o servidor adquire estabilidade após 3 anos de efetivo exercício, mediante avaliação de desempenho.",
+        "fundamentacao_legal": {"CF88": "Art. 41"},
+        "tags": ["estabilidade", "servidores públicos"],
+        "eh_trap": False
+    },
+    {
+        "codigo_questao": "OAB_XXXVIII_50",
+        "disciplina": "Direito do Consumidor",
+        "topico": "Responsabilidade",
+        "subtopico": "Fato do Produto",
+        "enunciado": "A responsabilidade pelo fato do produto é:",
+        "alternativas": {
+            "A": "Subjetiva.",
+            "B": "Objetiva.",
+            "C": "Solidária apenas entre fabricantes.",
+            "D": "Exclusiva do comerciante."
+        },
+        "alternativa_correta": "B",
+        "dificuldade": "FACIL",
+        "ano_prova": 2024,
+        "numero_exame": "XXXVIII",
+        "explicacao_detalhada": "Art. 12, CDC: responsabilidade objetiva do fabricante, produtor, construtor e importador por defeitos do produto.",
+        "fundamentacao_legal": {"CDC": "Art. 12"},
+        "tags": ["fato do produto", "responsabilidade objetiva"],
+        "eh_trap": False
     }
 ]
 
