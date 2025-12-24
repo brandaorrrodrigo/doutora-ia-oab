@@ -1199,8 +1199,6 @@ async def get_database_stats():
 
 import hashlib
 import os
-import jwt
-from datetime import timedelta
 
 # Configurações JWT
 SECRET_KEY = os.getenv("JWT_SECRET_KEY", "your-secret-key-change-in-production-JURIS_IA_2025")
@@ -1218,6 +1216,15 @@ def verify_password_simple(plain_password: str, hashed_password: str) -> bool:
 
 def create_jwt_token(data: dict) -> str:
     """Cria token JWT"""
+    from datetime import timedelta
+    try:
+        import jwt
+    except ImportError:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="PyJWT não está instalado"
+        )
+
     to_encode = data.copy()
     expire = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     to_encode.update({"exp": expire})
