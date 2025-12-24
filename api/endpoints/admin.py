@@ -169,3 +169,37 @@ async def seed_questoes():
         "total_questoes": len(QUESTOES_SEED),
         "erros": erros if erros else None
     }
+
+@router.get("/stats")
+async def get_database_stats():
+    """
+    Retorna estatísticas do banco de dados
+    """
+    from database.connection import DatabaseManager
+    from sqlalchemy import func
+
+    db_manager = DatabaseManager()
+    Session = db_manager.get_session_factory()
+    db = Session()
+
+    try:
+        total_questoes = db.query(func.count(QuestaoBanco.id)).scalar()
+
+        questoes_por_disciplina = db.query(
+            QuestaoBanco.disciplina,
+            func.count(QuestaoBanco.id)
+        ).group_by(QuestaoBanco.disciplina).all()
+
+        questoes_por_dificuldade = db.query(
+            QuestaoBanco.dificuldade,
+            func.count(QuestaoBanco.id)
+        ).group_by(QuestaoBanco.dificuldade).all()
+
+        return {
+            "success": True,
+            "total_questoes": total_questoes,
+            "por_disciplina": {disc: count for disc, count in questoes_por_disciplina},
+            "por_dificuldade": {dif: count for dif, count in questoes_por_dificuldade}
+        }
+    finally:
+        db.close()
