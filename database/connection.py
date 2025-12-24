@@ -64,7 +64,10 @@ class DatabaseConfig:
         """
         # PRIORIDADE 1: Usar DATABASE_URL se fornecido (Railway, produção)
         database_url = os.getenv("DATABASE_URL")
+        logger.info(f"DATABASE_URL encontrada: {bool(database_url)}")
         if database_url:
+            logger.info(f"Usando DATABASE_URL do ambiente (Railway/produção)")
+            original_url = database_url[:50] + "..." if len(database_url) > 50 else database_url
             # Railway fornece URL com postgres://, precisamos de postgresql://
             if database_url.startswith("postgres://"):
                 database_url = database_url.replace("postgres://", "postgresql://", 1)
@@ -78,6 +81,7 @@ class DatabaseConfig:
             return database_url
 
         # PRIORIDADE 2: Construir URL a partir de variáveis individuais (desenvolvimento)
+        logger.warning(f"DATABASE_URL não encontrada, usando variáveis individuais (host={self.host}, db={self.database})")
         driver = "postgresql+asyncpg" if async_mode else "postgresql+psycopg2"
         url = f"{driver}://{self.user}:{self.password}@{self.host}:{self.port}/{self.database}"
 
