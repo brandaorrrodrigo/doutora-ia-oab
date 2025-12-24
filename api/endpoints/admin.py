@@ -320,6 +320,330 @@ QUESTOES_SEED = [
         "fundamentacao_legal": {"Lei": "Lei 7.998/90"},
         "tags": ["rescisão", "verbas rescisórias", "seguro-desemprego"],
         "eh_trap": False
+    },
+    # DIREITO PROCESSUAL PENAL
+    {
+        "codigo_questao": "OAB_XXXVIII_16",
+        "disciplina": "Direito Processual Penal",
+        "topico": "Prisões",
+        "subtopico": "Prisão em Flagrante",
+        "enunciado": "A prisão em flagrante é obrigatória quando:",
+        "alternativas": {
+            "A": "Qualquer pessoa estiver cometendo crime.",
+            "B": "Houver mandado judicial.",
+            "C": "A autoridade policial tiver fundadas suspeitas.",
+            "D": "O crime for inafiançável."
+        },
+        "alternativa_correta": "A",
+        "dificuldade": "FACIL",
+        "ano_prova": 2024,
+        "numero_exame": "XXXVIII",
+        "explicacao_detalhada": "Art. 301, CPP: Qualquer do povo poderá e as autoridades policiais e seus agentes deverão prender quem quer que seja encontrado em flagrante delito.",
+        "fundamentacao_legal": {"CPP": "Art. 301"},
+        "tags": ["prisão em flagrante", "processo penal"],
+        "eh_trap": False
+    },
+    {
+        "codigo_questao": "OAB_XXXVIII_17",
+        "disciplina": "Direito Processual Penal",
+        "topico": "Ação Penal",
+        "subtopico": "Titularidade",
+        "enunciado": "A ação penal pública é de titularidade:",
+        "alternativas": {
+            "A": "Do ofendido ou seu representante legal.",
+            "B": "Do Ministério Público.",
+            "C": "Do juiz de direito.",
+            "D": "Da autoridade policial."
+        },
+        "alternativa_correta": "B",
+        "dificuldade": "FACIL",
+        "ano_prova": 2024,
+        "numero_exame": "XXXVIII",
+        "explicacao_detalhada": "CF/88, art. 129, I: é função institucional do MP promover privativamente a ação penal pública.",
+        "fundamentacao_legal": {"CF88": "Art. 129, I"},
+        "tags": ["ação penal", "ministério público"],
+        "eh_trap": False
+    },
+    # DIREITO CONSTITUCIONAL
+    {
+        "codigo_questao": "OAB_XXXVIII_18",
+        "disciplina": "Direito Constitucional",
+        "topico": "Controle de Constitucionalidade",
+        "subtopico": "ADI",
+        "enunciado": "Podem propor Ação Direta de Inconstitucionalidade (ADI):",
+        "alternativas": {
+            "A": "Qualquer cidadão no pleno gozo dos direitos políticos.",
+            "B": "Apenas o Presidente da República e o Procurador-Geral da República.",
+            "C": "Os legitimados do art. 103 da CF/88.",
+            "D": "Exclusivamente o Supremo Tribunal Federal."
+        },
+        "alternativa_correta": "C",
+        "dificuldade": "MEDIO",
+        "ano_prova": 2024,
+        "numero_exame": "XXXVIII",
+        "explicacao_detalhada": "Art. 103, CF: lista os legitimados para propor ADI (Presidente, Mesa do Senado/Câmara, Governador, PGR, Conselho Federal da OAB, etc).",
+        "fundamentacao_legal": {"CF88": "Art. 103"},
+        "tags": ["controle de constitucionalidade", "ADI"],
+        "eh_trap": False
+    },
+    {
+        "codigo_questao": "OAB_XXXVIII_19",
+        "disciplina": "Direito Constitucional",
+        "topico": "Organização do Estado",
+        "subtopico": "Competências",
+        "enunciado": "É competência privativa da União legislar sobre:",
+        "alternativas": {
+            "A": "Educação e cultura.",
+            "B": "Direito civil, comercial, penal e processual.",
+            "C": "Proteção ao meio ambiente.",
+            "D": "Orçamento municipal."
+        },
+        "alternativa_correta": "B",
+        "dificuldade": "MEDIO",
+        "ano_prova": 2024,
+        "numero_exame": "XXXVIII",
+        "explicacao_detalhada": "Art. 22, I, CF: compete privativamente à União legislar sobre direito civil, comercial, penal, processual, etc.",
+        "fundamentacao_legal": {"CF88": "Art. 22, I"},
+        "tags": ["competências legislativas", "federalismo"],
+        "eh_trap": False
+    },
+    # DIREITO CIVIL
+    {
+        "codigo_questao": "OAB_XXXVIII_20",
+        "disciplina": "Direito Civil",
+        "topico": "Responsabilidade Civil",
+        "subtopico": "Dano Moral",
+        "enunciado": "Para a configuração do dano moral, é necessário:",
+        "alternativas": {
+            "A": "Prova do prejuízo material.",
+            "B": "Demonstração de dor física.",
+            "C": "Violação de direito da personalidade.",
+            "D": "Culpa grave ou dolo do agente."
+        },
+        "alternativa_correta": "C",
+        "dificuldade": "MEDIO",
+        "ano_prova": 2024,
+        "numero_exame": "XXXVIII",
+        "explicacao_detalhada": "Dano moral decorre da violação de direitos da personalidade (honra, imagem, intimidade, etc).",
+        "fundamentacao_legal": {"CC": "Arts. 186 e 927"},
+        "tags": ["dano moral", "responsabilidade civil"],
+        "eh_trap": False
+    },
+    {
+        "codigo_questao": "OAB_XXXVIII_21",
+        "disciplina": "Direito Civil",
+        "topico": "Casamento",
+        "subtopico": "Regime de Bens",
+        "enunciado": "No regime da comunhão parcial de bens:",
+        "alternativas": {
+            "A": "Todos os bens, anteriores e posteriores ao casamento, são comunicáveis.",
+            "B": "Apenas os bens adquiridos onerosamente na constância do casamento são comuns.",
+            "C": "Nenhum bem se comunica.",
+            "D": "Apenas os bens móveis se comunicam."
+        },
+        "alternativa_correta": "B",
+        "dificuldade": "MEDIO",
+        "ano_prova": 2024,
+        "numero_exame": "XXXVIII",
+        "explicacao_detalhada": "Art. 1.658, CC: Na comunhão parcial, comunicam-se os bens adquiridos onerosamente na constância do casamento.",
+        "fundamentacao_legal": {"CC": "Art. 1.658"},
+        "tags": ["casamento", "regime de bens"],
+        "eh_trap": False
+    },
+    # DIREITO PENAL
+    {
+        "codigo_questao": "OAB_XXXVIII_22",
+        "disciplina": "Direito Penal",
+        "topico": "Penas",
+        "subtopico": "Prescrição",
+        "enunciado": "A prescrição da pretensão punitiva regula-se:",
+        "alternativas": {
+            "A": "Pela pena em abstrato prevista no tipo penal.",
+            "B": "Pela pena efetivamente aplicada na sentença.",
+            "C": "Sempre pelo prazo de 20 anos.",
+            "D": "Pela gravidade do crime cometido."
+        },
+        "alternativa_correta": "A",
+        "dificuldade": "MEDIO",
+        "ano_prova": 2024,
+        "numero_exame": "XXXVIII",
+        "explicacao_detalhada": "Art. 109, CP: A prescrição antes de transitar em julgado regula-se pelo máximo da pena privativa de liberdade cominada ao crime.",
+        "fundamentacao_legal": {"CP": "Art. 109"},
+        "tags": ["prescrição", "pretensão punitiva"],
+        "eh_trap": False
+    },
+    {
+        "codigo_questao": "OAB_XXXVIII_23",
+        "disciplina": "Direito Penal",
+        "topico": "Crimes Contra o Patrimônio",
+        "subtopico": "Furto",
+        "enunciado": "O furto qualificado pelo rompimento de obstáculo caracteriza-se quando:",
+        "alternativas": {
+            "A": "A vítima estava dormindo.",
+            "B": "Há destruição ou rompimento de obstáculo à subtração da coisa.",
+            "C": "O crime é cometido durante o repouso noturno.",
+            "D": "Participam duas ou mais pessoas."
+        },
+        "alternativa_correta": "B",
+        "dificuldade": "FACIL",
+        "ano_prova": 2024,
+        "numero_exame": "XXXVIII",
+        "explicacao_detalhada": "Art. 155, §4º, I, CP: qualifica-se o furto quando há destruição ou rompimento de obstáculo.",
+        "fundamentacao_legal": {"CP": "Art. 155, §4º, I"},
+        "tags": ["furto qualificado", "crimes contra o patrimônio"],
+        "eh_trap": False
+    },
+    # DIREITOS HUMANOS
+    {
+        "codigo_questao": "OAB_XXXVIII_24",
+        "disciplina": "Direitos Humanos",
+        "topico": "Sistema Interamericano",
+        "subtopico": "Corte IDH",
+        "enunciado": "A Corte Interamericana de Direitos Humanos tem jurisdição:",
+        "alternativas": {
+            "A": "Automática sobre todos os países da América.",
+            "B": "Apenas consultiva, sem poder de condenação.",
+            "C": "Contenciosa e consultiva, mas depende de aceitação expressa do Estado.",
+            "D": "Exclusivamente sobre casos de genocídio."
+        },
+        "alternativa_correta": "C",
+        "dificuldade": "MEDIO",
+        "ano_prova": 2024,
+        "numero_exame": "XXXVIII",
+        "explicacao_detalhada": "A jurisdição contenciosa da Corte IDH depende de declaração de aceitação do Estado (art. 62, Convenção Americana).",
+        "fundamentacao_legal": {"CADH": "Art. 62"},
+        "tags": ["direitos humanos", "corte IDH"],
+        "eh_trap": False
+    },
+    {
+        "codigo_questao": "OAB_XXXVIII_25",
+        "disciplina": "Direitos Humanos",
+        "topico": "Tratados Internacionais",
+        "subtopico": "Incorporação",
+        "enunciado": "Tratados de direitos humanos aprovados com quórum de emenda constitucional:",
+        "alternativas": {
+            "A": "Têm status supralegal.",
+            "B": "Têm equivalência a emendas constitucionais.",
+            "C": "São inconstitucionais.",
+            "D": "Têm status de lei ordinária."
+        },
+        "alternativa_correta": "B",
+        "dificuldade": "MEDIO",
+        "ano_prova": 2024,
+        "numero_exame": "XXXVIII",
+        "explicacao_detalhada": "Art. 5º, §3º, CF: tratados de direitos humanos aprovados por 3/5 em dois turnos equivalem a emendas constitucionais.",
+        "fundamentacao_legal": {"CF88": "Art. 5º, §3º"},
+        "tags": ["tratados", "direitos humanos", "hierarquia"],
+        "eh_trap": False
+    },
+    # MAIS DIREITO DO TRABALHO
+    {
+        "codigo_questao": "OAB_XXXVIII_26",
+        "disciplina": "Direito do Trabalho",
+        "topico": "Jornada",
+        "subtopico": "Horas Extras",
+        "enunciado": "O adicional de horas extras deve ser, no mínimo:",
+        "alternativas": {
+            "A": "30% sobre o valor da hora normal.",
+            "B": "50% sobre o valor da hora normal.",
+            "C": "100% sobre o valor da hora normal.",
+            "D": "25% sobre o valor da hora normal."
+        },
+        "alternativa_correta": "B",
+        "dificuldade": "FACIL",
+        "ano_prova": 2024,
+        "numero_exame": "XXXVIII",
+        "explicacao_detalhada": "Art. 7º, XVI, CF: remuneração do serviço extraordinário superior, no mínimo, em 50% à do normal.",
+        "fundamentacao_legal": {"CF88": "Art. 7º, XVI"},
+        "tags": ["horas extras", "jornada de trabalho"],
+        "eh_trap": False
+    },
+    {
+        "codigo_questao": "OAB_XXXVIII_27",
+        "disciplina": "Direito do Trabalho",
+        "topico": "Férias",
+        "subtopico": "Período Aquisitivo",
+        "enunciado": "O empregado perde o direito às férias quando:",
+        "alternativas": {
+            "A": "Deixar o emprego e não for readmitido em 60 dias.",
+            "B": "Permanecer em licença remunerada por mais de 30 dias.",
+            "C": "Faltar injustificadamente por mais de 5 dias no período aquisitivo.",
+            "D": "Receber auxílio-doença por mais de 6 meses."
+        },
+        "alternativa_correta": "D",
+        "dificuldade": "DIFICIL",
+        "ano_prova": 2024,
+        "numero_exame": "XXXVIII",
+        "explicacao_detalhada": "Art. 133, IV, CLT: perde o direito a férias quem permanecer em gozo de auxílio-doença por mais de 6 meses, mesmo descontínuos.",
+        "fundamentacao_legal": {"CLT": "Art. 133, IV"},
+        "tags": ["férias", "perda do direito"],
+        "eh_trap": True,
+        "tipo_trap": "Prazo - 6 meses vs outros prazos"
+    },
+    # MAIS ÉTICA
+    {
+        "codigo_questao": "OAB_XXXVIII_28",
+        "disciplina": "Ética Profissional",
+        "topico": "Honorários",
+        "subtopico": "Contrato",
+        "enunciado": "O contrato de honorários advocatícios:",
+        "alternativas": {
+            "A": "Deve sempre ser verbal para facilitar acordos.",
+            "B": "Pode ser escrito ou verbal, mas é recomendável a forma escrita.",
+            "C": "É obrigatoriamente registrado na OAB.",
+            "D": "Só é válido se houver duas testemunhas."
+        },
+        "alternativa_correta": "B",
+        "dificuldade": "FACIL",
+        "ano_prova": 2024,
+        "numero_exame": "XXXVIII",
+        "explicacao_detalhada": "Art. 48, EOAB: O contrato pode ser escrito ou verbal, mas a forma escrita é recomendável para evitar controvérsias.",
+        "fundamentacao_legal": {"EOAB": "Art. 48"},
+        "tags": ["honorários", "contrato"],
+        "eh_trap": False
+    },
+    {
+        "codigo_questao": "OAB_XXXVIII_29",
+        "disciplina": "Ética Profissional",
+        "topico": "Publicidade",
+        "subtopico": "Limites",
+        "enunciado": "É vedado ao advogado em sua publicidade profissional:",
+        "alternativas": {
+            "A": "Mencionar suas especializações.",
+            "B": "Divulgar preços de serviços.",
+            "C": "Referir-se de forma depreciatória a colegas.",
+            "D": "Informar endereço do escritório."
+        },
+        "alternativa_correta": "C",
+        "dificuldade": "FACIL",
+        "ano_prova": 2024,
+        "numero_exame": "XXXVIII",
+        "explicacao_detalhada": "Art. 31, CED: É vedada a publicidade de qualquer espécie que deprecie outros advogados.",
+        "fundamentacao_legal": {"CED": "Art. 31"},
+        "tags": ["publicidade", "ética", "vedações"],
+        "eh_trap": False
+    },
+    # MAIS PROCESSUAL CIVIL
+    {
+        "codigo_questao": "OAB_XXXVIII_30",
+        "disciplina": "Direito Processual Civil",
+        "topico": "Provas",
+        "subtopico": "Ônus da Prova",
+        "enunciado": "Sobre o ônus da prova, é correto afirmar:",
+        "alternativas": {
+            "A": "Cabe sempre ao autor provar todos os fatos.",
+            "B": "Ao autor incumbe provar o fato constitutivo do seu direito; ao réu, fato impeditivo, modificativo ou extintivo.",
+            "C": "O réu nunca tem ônus probatório.",
+            "D": "Apenas o autor tem ônus da prova."
+        },
+        "alternativa_correta": "B",
+        "dificuldade": "MEDIO",
+        "ano_prova": 2024,
+        "numero_exame": "XXXVIII",
+        "explicacao_detalhada": "Art. 373, CPC: ao autor incumbe provar fato constitutivo; ao réu, fatos impeditivos, modificativos ou extintivos do direito do autor.",
+        "fundamentacao_legal": {"CPC": "Art. 373"},
+        "tags": ["ônus da prova", "provas"],
+        "eh_trap": False
     }
 ]
 
