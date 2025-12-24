@@ -9,6 +9,30 @@ from database.models import QuestaoBanco, DificuldadeQuestao
 
 router = APIRouter(prefix="/admin", tags=["admin"])
 
+@router.get("/debug-db")
+async def debug_database_config():
+    """
+    Endpoint de debug para verificar configuração do banco
+    """
+    import os
+    from database.connection import DatabaseManager
+
+    db_manager = DatabaseManager()
+
+    return {
+        "database_url_exists": bool(os.getenv("DATABASE_URL")),
+        "database_url_preview": os.getenv("DATABASE_URL", "NOT_SET")[:50] + "..." if os.getenv("DATABASE_URL") else "NOT_SET",
+        "postgres_host": os.getenv("POSTGRES_HOST", "NOT_SET"),
+        "postgres_db": os.getenv("POSTGRES_DB", "NOT_SET"),
+        "postgres_user": os.getenv("POSTGRES_USER", "NOT_SET"),
+        "config_host": db_manager.config.host,
+        "config_database": db_manager.config.database,
+        "all_env_vars_count": len(os.environ),
+        "database_related_vars": {k: v[:50] + "..." if len(v) > 50 else v
+                                  for k, v in os.environ.items()
+                                  if "DATABASE" in k or "POSTGRES" in k}
+    }
+
 # Questões OAB para seed inicial
 QUESTOES_SEED = [
     {
