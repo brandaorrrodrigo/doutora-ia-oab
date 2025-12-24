@@ -1112,6 +1112,327 @@ class PieceEngineDB:
             "Assinatura e OAB"
         ]
 
+        # Contestação Cível
+        self.piece_templates[PieceType.CONTESTACAO_CIVEL] = {
+            "partes": {
+                "enderecamento": {
+                    "indicadores": ["excelentíssimo", "mm. juiz"],
+                    "criterios": [],
+                    "regras": [],
+                    "modelo": "EXCELENTÍSSIMO SENHOR DOUTOR JUIZ DE DIREITO DA ... VARA CÍVEL DE ..."
+                },
+                "qualificacao": {
+                    "indicadores": ["réu", "autor", "autos"],
+                    "criterios": [],
+                    "regras": [],
+                    "modelo": "[NOME DO RÉU], já qualificado nos autos da ação que lhe move [NOME DO AUTOR]..."
+                },
+                "preliminares": {
+                    "indicadores": ["preliminarmente", "prescrição", "ilegitimidade"],
+                    "criterios": [],
+                    "regras": [],
+                    "modelo": "DAS PRELIMINARES\n[Argumentos preliminares se houver]"
+                },
+                "merito": {
+                    "indicadores": ["mérito", "improcedência", "improcedente"],
+                    "criterios": [],
+                    "regras": [],
+                    "modelo": "DO MÉRITO\n[Argumentação de mérito contestando os fatos]"
+                },
+                "pedido": {
+                    "indicadores": ["requer", "pede", "improcedência"],
+                    "criterios": [],
+                    "regras": [],
+                    "modelo": "DOS PEDIDOS\nDiante do exposto, requer a improcedência total dos pedidos..."
+                }
+            },
+            "observacoes": ["Contestar todos os fatos alegados", "Apresentar documentos"],
+            "dicas": ["Impugnar especificamente cada alegação", "Fundamentar com CPC e jurisprudência"]
+        }
+
+        self.checklists[PieceType.CONTESTACAO_CIVEL] = [
+            "Endereçamento correto",
+            "Referência aos autos e partes",
+            "Preliminares (se houver)",
+            "Contestação ponto a ponto dos fatos",
+            "Fundamentação jurídica",
+            "Pedido de improcedência",
+            "Requerimento de provas",
+            "Assinatura e OAB"
+        ]
+
+        # Recurso de Apelação
+        self.piece_templates[PieceType.RECURSO_APELACAO] = {
+            "partes": {
+                "enderecamento": {
+                    "indicadores": ["egrégio", "tribunal"],
+                    "criterios": [],
+                    "regras": [],
+                    "modelo": "EGRÉGIO TRIBUNAL DE JUSTIÇA DO ESTADO DE ..."
+                },
+                "qualificacao": {
+                    "indicadores": ["apelante", "apelado", "autos"],
+                    "criterios": [],
+                    "regras": [],
+                    "modelo": "[NOME], já qualificado nos autos, vem, respeitosamente, interpor..."
+                },
+                "razoes": {
+                    "indicadores": ["razões", "sentença", "equivocada"],
+                    "criterios": [],
+                    "regras": [],
+                    "modelo": "DAS RAZÕES DO RECURSO\n1. DOS FATOS\n2. DO DIREITO\n3. DA REFORMA NECESSÁRIA"
+                },
+                "pedido": {
+                    "indicadores": ["provimento", "reforma"],
+                    "criterios": [],
+                    "regras": [],
+                    "modelo": "DOS PEDIDOS\nRequer o provimento do recurso para reformar a sentença..."
+                }
+            },
+            "observacoes": ["Prazo de 15 dias", "Preparo obrigatório em regra"],
+            "dicas": ["Demonstrar prejuízo", "Atacar todos os fundamentos da sentença"]
+        }
+
+        self.checklists[PieceType.RECURSO_APELACAO] = [
+            "Endereçamento ao Tribunal",
+            "Qualificação e referência aos autos",
+            "Tempestividade (prazo)",
+            "Razões de fato e de direito",
+            "Pedido específico de reforma",
+            "Requerimento de provas (se necessário)",
+            "Assinatura e OAB",
+            "Comprovante de preparo"
+        ]
+
+        # Habeas Corpus
+        self.piece_templates[PieceType.HABEAS_CORPUS] = {
+            "partes": {
+                "enderecamento": {
+                    "indicadores": ["excelentíssimo", "tribunal", "juiz"],
+                    "criterios": [],
+                    "regras": [],
+                    "modelo": "EXCELENTÍSSIMO SENHOR DOUTOR JUIZ DE DIREITO / DESEMBARGADOR..."
+                },
+                "qualificacao": {
+                    "indicadores": ["paciente", "impetrante", "coator"],
+                    "criterios": [],
+                    "regras": [],
+                    "modelo": "Impetrante: [ADVOGADO]\nPaciente: [NOME DO PRESO]\nCoator: [AUTORIDADE COATORA]"
+                },
+                "coacao": {
+                    "indicadores": ["coação", "ilegal", "constrangimento"],
+                    "criterios": [],
+                    "regras": [],
+                    "modelo": "DA COAÇÃO ILEGAL\n[Demonstração da ilegalidade ou abuso]"
+                },
+                "pedido": {
+                    "indicadores": ["liberdade", "relaxamento", "concessão"],
+                    "criterios": [],
+                    "regras": [],
+                    "modelo": "DOS PEDIDOS\nRequer a concessão da ordem para..."
+                }
+            },
+            "observacoes": ["Não admite condenação em custas", "Liminar possível"],
+            "dicas": ["Demonstrar ilegalidade flagrante", "Juntar documentos que provem a coação"]
+        }
+
+        self.checklists[PieceType.HABEAS_CORPUS] = [
+            "Endereçamento correto",
+            "Qualificação completa (paciente, impetrante, coator)",
+            "Descrição da coação ilegal",
+            "Fundamentação (CF, CPP, jurisprudência)",
+            "Pedido claro de liberdade",
+            "Requerimento de liminar (se urgente)",
+            "Assinatura e OAB"
+        ]
+
+        # Mandado de Segurança
+        self.piece_templates[PieceType.MANDADO_SEGURANCA] = {
+            "partes": {
+                "enderecamento": {
+                    "indicadores": ["excelentíssimo", "juiz", "desembargador"],
+                    "criterios": [],
+                    "regras": [],
+                    "modelo": "EXCELENTÍSSIMO SENHOR DOUTOR JUIZ FEDERAL/ESTADUAL..."
+                },
+                "qualificacao": {
+                    "indicadores": ["impetrante", "impetrado"],
+                    "criterios": [],
+                    "regras": [],
+                    "modelo": "Impetrante: [NOME]\nImpetrado: [AUTORIDADE COATORA]"
+                },
+                "ato_coator": {
+                    "indicadores": ["ato coator", "ilegal", "direito líquido"],
+                    "criterios": [],
+                    "regras": [],
+                    "modelo": "DO ATO COATOR\n[Descrição do ato ilegal ou abusivo]"
+                },
+                "direito_liquido": {
+                    "indicadores": ["direito líquido e certo", "prova pré-constituída"],
+                    "criterios": [],
+                    "regras": [],
+                    "modelo": "DO DIREITO LÍQUIDO E CERTO\n[Demonstração com documentos]"
+                },
+                "pedido": {
+                    "indicadores": ["concessão", "segurança", "liminar"],
+                    "criterios": [],
+                    "regras": [],
+                    "modelo": "DOS PEDIDOS\nRequer a concessão da segurança para..."
+                }
+            },
+            "observacoes": ["Necessária prova pré-constituída", "Prazo de 120 dias"],
+            "dicas": ["Demonstrar direito líquido e certo", "Fundamentar com CF/88"]
+        }
+
+        self.checklists[PieceType.MANDADO_SEGURANCA] = [
+            "Endereçamento correto",
+            "Qualificação (impetrante e impetrado)",
+            "Descrição do ato coator",
+            "Demonstração de direito líquido e certo",
+            "Prova pré-constituída",
+            "Pedido de liminar (se urgente)",
+            "Pedido principal",
+            "Assinatura e OAB"
+        ]
+
+        # Reclamação Trabalhista
+        self.piece_templates[PieceType.RECLAMACAO_TRABALHISTA] = {
+            "partes": {
+                "enderecamento": {
+                    "indicadores": ["excelentíssimo", "vara do trabalho"],
+                    "criterios": [],
+                    "regras": [],
+                    "modelo": "EXCELENTÍSSIMO SENHOR DOUTOR JUIZ DA ... VARA DO TRABALHO DE ..."
+                },
+                "qualificacao": {
+                    "indicadores": ["reclamante", "reclamada"],
+                    "criterios": [],
+                    "regras": [],
+                    "modelo": "Reclamante: [EMPREGADO]\nReclamada: [EMPREGADOR]"
+                },
+                "relacao_emprego": {
+                    "indicadores": ["vínculo", "carteira assinada", "jornada"],
+                    "criterios": [],
+                    "regras": [],
+                    "modelo": "DA RELAÇÃO DE EMPREGO\n[Detalhes do contrato e condições de trabalho]"
+                },
+                "verbas": {
+                    "indicadores": ["verbas rescisórias", "horas extras", "fgts"],
+                    "criterios": [],
+                    "regras": [],
+                    "modelo": "DAS VERBAS DEVIDAS\n[Discriminação de cada verba com cálculo]"
+                },
+                "pedido": {
+                    "indicadores": ["requer", "condenação", "procedência"],
+                    "criterios": [],
+                    "regras": [],
+                    "modelo": "DOS PEDIDOS\nRequer a procedência total para condenar a reclamada..."
+                }
+            },
+            "observacoes": ["Discriminar e calcular cada verba", "Juntar documentos trabalhistas"],
+            "dicas": ["Fundamentar com CLT", "Especificar valores de cada pedido"]
+        }
+
+        self.checklists[PieceType.RECLAMACAO_TRABALHISTA] = [
+            "Endereçamento à Vara do Trabalho",
+            "Qualificação (reclamante e reclamada)",
+            "Descrição da relação de emprego",
+            "Discriminação das verbas devidas",
+            "Cálculos detalhados",
+            "Pedidos especificados",
+            "Valor da causa",
+            "Assinatura e OAB"
+        ]
+
+        # Contraminuta
+        self.piece_templates[PieceType.CONTRAMINUTA] = {
+            "partes": {
+                "enderecamento": {
+                    "indicadores": ["egrégio", "tribunal"],
+                    "criterios": [],
+                    "regras": [],
+                    "modelo": "EGRÉGIO TRIBUNAL DE JUSTIÇA DO ESTADO DE ..."
+                },
+                "qualificacao": {
+                    "indicadores": ["apelado", "apelante", "contraminuta"],
+                    "criterios": [],
+                    "regras": [],
+                    "modelo": "[APELADO], vem apresentar CONTRAMINUTA ao recurso de apelação..."
+                },
+                "contrarrazoes": {
+                    "indicadores": ["manutenção", "sentença", "acerto"],
+                    "criterios": [],
+                    "regras": [],
+                    "modelo": "DAS CONTRARRAZÕES\n[Refutação dos argumentos do apelante]"
+                },
+                "pedido": {
+                    "indicadores": ["desprovi mento", "manutenção", "sentença"],
+                    "criterios": [],
+                    "regras": [],
+                    "modelo": "DOS PEDIDOS\nRequer o desprovimento do recurso..."
+                }
+            },
+            "observacoes": ["Prazo de 15 dias após intimação do recurso"],
+            "dicas": ["Defender a sentença ponto a ponto", "Demonstrar acerto do juízo"]
+        }
+
+        self.checklists[PieceType.CONTRAMINUTA] = [
+            "Endereçamento ao Tribunal",
+            "Referência aos autos e recurso",
+            "Contrarrazões fundamentadas",
+            "Refutação dos argumentos do apelante",
+            "Pedido de desprovimento",
+            "Assinatura e OAB"
+        ]
+
+        # Queixa-Crime
+        self.piece_templates[PieceType.QUEIXA_CRIME] = {
+            "partes": {
+                "enderecamento": {
+                    "indicadores": ["excelentíssimo", "juiz criminal"],
+                    "criterios": [],
+                    "regras": [],
+                    "modelo": "EXCELENTÍSSIMO SENHOR DOUTOR JUIZ DE DIREITO DA ... VARA CRIMINAL DE ..."
+                },
+                "qualificacao": {
+                    "indicadores": ["querelante", "querelado"],
+                    "criterios": [],
+                    "regras": [],
+                    "modelo": "Querelante: [VÍTIMA]\nQuerelado: [ACUSADO]"
+                },
+                "fatos": {
+                    "indicadores": ["fato criminoso", "ocorrido", "praticado"],
+                    "criterios": [],
+                    "regras": [],
+                    "modelo": "DOS FATOS\n[Narrativa detalhada do crime]"
+                },
+                "tipificacao": {
+                    "indicadores": ["tipifica", "código penal", "artigo"],
+                    "criterios": [],
+                    "regras": [],
+                    "modelo": "DA TIPIFICAÇÃO\n[Enquadramento legal - CP, art. X]"
+                },
+                "pedido": {
+                    "indicadores": ["recebimento", "citação", "condenação"],
+                    "criterios": [],
+                    "regras": [],
+                    "modelo": "DOS PEDIDOS\nRequer o recebimento da queixa e citação do querelado..."
+                }
+            },
+            "observacoes": ["Prazo decadencial de 6 meses", "Apenas para crimes de ação privada"],
+            "dicas": ["Narrar fatos com clareza", "Tipificar corretamente o crime"]
+        }
+
+        self.checklists[PieceType.QUEIXA_CRIME] = [
+            "Endereçamento correto",
+            "Qualificação completa",
+            "Narrativa clara dos fatos",
+            "Tipificação penal",
+            "Pedido de recebimento e citação",
+            "Requerimento de provas",
+            "Assinatura e OAB"
+        ]
+
 
 # ============================================================
 # FUNÇÕES FACTORY
