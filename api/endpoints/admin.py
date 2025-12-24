@@ -1,11 +1,15 @@
 """
 Endpoints administrativos para gerenciar conteúdo
+E autenticação (temporariamente aqui até resolver problema de imports)
 """
-from fastapi import APIRouter, Depends, HTTPException
+from typing import Optional
+from datetime import datetime
+from fastapi import APIRouter, Depends, HTTPException, status
+from pydantic import BaseModel, EmailStr, Field
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
-from database.connection import get_db_session
-from database.models import QuestaoBanco, DificuldadeQuestao
+from database.connection import get_db_session, DatabaseManager
+from database.models import QuestaoBanco, DificuldadeQuestao, User, UserStatus, PerfilJuridico, NivelDominio
 
 router = APIRouter(prefix="/admin", tags=["admin"])
 
@@ -1185,5 +1189,217 @@ async def get_database_stats():
             "por_disciplina": {disc: count for disc, count in questoes_por_disciplina},
             "por_dificuldade": {dif: count for dif, count in questoes_por_dificuldade}
         }
+    finally:
+        db.close()
+
+
+# ============================================================================
+# AUTENTICAÇÃO (Temporariamente aqui até resolver problema de imports)
+# ============================================================================
+
+import hashlib
+import os
+import jwt as pyjwt
+from datetime import timedelta
+
+# Configurações JWT
+SECRET_KEY = os.getenv("JWT_SECRET_KEY", "your-secret-key-change-in-production-JURIS_IA_2025")
+ALGORITHM = "HS256"
+ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24 * 7  # 7 dias
+
+# Funções auxiliares
+def hash_password_simple(password: str) -> str:
+    """Hash simples de senha usando SHA256"""
+    return hashlib.sha256(password.encode()).hexdigest()
+
+def verify_password_simple(plain_password: str, hashed_password: str) -> bool:
+    """Verifica senha comparando hashes"""
+    return hash_password_simple(plain_password) == hashed_password
+
+def create_jwt_token(data: dict) -> str:
+    """Cria token JWT"""
+    to_encode = data.copy()
+    expire = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    to_encode.update({"exp": expire})
+    encoded_jwt = pyjwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+    return encoded_jwt
+
+# Modelos de Request
+class RegisterRequest(BaseModel):
+    nome: str = Field(..., min_length=3, max_length=255)
+    email: EmailStr
+    senha: str = Field(..., min_length=6)
+    cpf: Optional[str] = None
+    telefone: Optional[str] = None
+
+class LoginRequest(BaseModel):
+    email: EmailStr
+    senha: str
+
+class AuthResponse(BaseModel):
+    success: bool
+    message: str
+    data: Optional[dict] = None
+
+# Endpoints de autenticação
+@router.post("/register", response_model=AuthResponse, status_code=status.HTTP_201_CREATED)
+async def register_user(request: RegisterRequest):
+    """
+    Registra um novo usuário no sistema
+    """
+    db_manager = DatabaseManager()
+    Session = db_manager.get_session_factory()
+    db = Session()
+
+    try:
+        # Verificar se email já existe
+        existing_user = db.query(User).filter(User.email == request.email).first()
+        if existing_user:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Email já cadastrado"
+            )
+
+        # Verificar se CPF já existe (se fornecido)
+        if request.cpf:
+            existing_cpf = db.query(User).filter(User.cpf == request.cpf).first()
+            if existing_cpf:
+                raise HTTPException(
+                    status_code=status.HTTP_400_BAD_REQUEST,
+                    detail="CPF já cadastrado"
+                )
+
+        # Hash da senha
+        password_hash = hash_password_simple(request.senha)
+
+        # Criar novo usuário
+        new_user = User(
+            nome=request.nome,
+            email=request.email,
+            password_hash=password_hash,
+            cpf=request.cpf,
+            telefone=request.telefone,
+            status=UserStatus.ATIVO,
+            data_ultimo_acesso=datetime.utcnow()
+        )
+
+        db.add(new_user)
+        db.flush()
+
+        # Criar perfil jurídico inicial
+        perfil = PerfilJuridico(
+            user_id=new_user.id,
+            nivel_geral=NivelDominio.INICIANTE,
+            pontuacao_global=0,
+            taxa_acerto_global=0.0
+        )
+
+        db.add(perfil)
+        db.commit()
+        db.refresh(new_user)
+
+        # Gerar token JWT
+        token = create_jwt_token({
+            "user_id": str(new_user.id),
+            "email": new_user.email
+        })
+
+        return AuthResponse(
+            success=True,
+            message="Usuário registrado com sucesso",
+            data={
+                "token": token,
+                "user": {
+                    "id": str(new_user.id),
+                    "nome": new_user.nome,
+                    "email": new_user.email,
+                    "status": new_user.status.value
+                }
+            }
+        )
+
+    except IntegrityError:
+        db.rollback()
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail="Erro ao registrar usuário: dados duplicados"
+        )
+    except HTTPException:
+        db.rollback()
+        raise
+    except Exception as e:
+        db.rollback()
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Erro ao registrar usuário: {str(e)}"
+        )
+    finally:
+        db.close()
+
+
+@router.post("/login", response_model=AuthResponse)
+async def login_user(request: LoginRequest):
+    """
+    Autentica um usuário
+    """
+    db_manager = DatabaseManager()
+    Session = db_manager.get_session_factory()
+    db = Session()
+
+    try:
+        # Buscar usuário pelo email
+        user = db.query(User).filter(User.email == request.email).first()
+
+        if not user:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Email ou senha incorretos"
+            )
+
+        # Verificar senha
+        if not verify_password_simple(request.senha, user.password_hash):
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="Email ou senha incorretos"
+            )
+
+        # Verificar se usuário está ativo
+        if user.status != UserStatus.ATIVO and user.status != UserStatus.APROVADO_OAB:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="Usuário inativo"
+            )
+
+        # Atualizar último acesso
+        user.data_ultimo_acesso = datetime.utcnow()
+        db.commit()
+
+        # Gerar token JWT
+        token = create_jwt_token({
+            "user_id": str(user.id),
+            "email": user.email
+        })
+
+        return AuthResponse(
+            success=True,
+            message="Login realizado com sucesso",
+            data={
+                "token": token,
+                "user": {
+                    "id": str(user.id),
+                    "nome": user.nome,
+                    "email": user.email,
+                    "status": user.status.value
+                }
+            }
+        )
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail=f"Erro ao fazer login: {str(e)}"
+        )
     finally:
         db.close()
