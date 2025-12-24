@@ -1199,7 +1199,7 @@ async def get_database_stats():
 
 import hashlib
 import os
-import jwt as pyjwt
+import jwt
 from datetime import timedelta
 
 # Configurações JWT
@@ -1221,7 +1221,7 @@ def create_jwt_token(data: dict) -> str:
     to_encode = data.copy()
     expire = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
     to_encode.update({"exp": expire})
-    encoded_jwt = pyjwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
 
 # Modelos de Request
