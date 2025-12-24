@@ -18,7 +18,7 @@ from dataclasses import asdict
 from engines.explanation_engine import ExplanationEngine, StudentProfile, ExplanationLevel
 from engines.decision_engine import DecisionEngine, EngineEvent, EventType, EngineAction
 from engines.memory_engine import MemoryEngine, ReviewCycle
-from engines.question_engine import QuestionEngine, Question, Drill, DifficultyLevel
+from engines.question_engine_db import QuestionEngineDB
 from engines.piece_engine import PieceEngine, PieceType, PieceEvaluation
 
 
@@ -46,7 +46,7 @@ class JurisIA:
         self.explanation_engine = ExplanationEngine()
         self.decision_engine = DecisionEngine()
         self.memory_engine = MemoryEngine()
-        self.question_engine = QuestionEngine()
+        self.question_engine = QuestionEngineDB()
         self.piece_engine = PieceEngine()
 
         print("[OK] Explanation Engine carregado")
