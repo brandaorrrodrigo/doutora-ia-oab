@@ -49,11 +49,11 @@ class JurisIA:
         self.question_engine = QuestionEngine()
         self.piece_engine = PieceEngine()
 
-        print("✓ Explanation Engine carregado")
-        print("✓ Decision Engine carregado")
-        print("✓ Memory Engine carregado")
-        print("✓ Question Engine carregado")
-        print("✓ Piece Engine carregado")
+        print("[OK] Explanation Engine carregado")
+        print("[OK] Decision Engine carregado")
+        print("[OK] Memory Engine carregado")
+        print("[OK] Question Engine carregado")
+        print("[OK] Piece Engine carregado")
         print("\nSistema pronto!")
 
     # ============================================================
