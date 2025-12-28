@@ -13,7 +13,8 @@ Data: 2025-12-19
 """
 
 import os
-from fastapi import FastAPI, HTTPException, status, Request
+import httpx
+from fastapi import FastAPI, HTTPException, status, Request, Depends
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
@@ -29,8 +30,13 @@ from engines.piece_engine import PieceType
 from core.enforcement import LimitsEnforcement, ReasonCode
 from dotenv import load_dotenv
 
+# Importa routers
+from api.endpoints.admin import router as admin_router
+
 # Carrega variáveis de ambiente
-load_dotenv()
+# Prioridade: .env.local (desenvolvimento) > .env (produção)
+load_dotenv(".env")  # Carrega .env primeiro
+load_dotenv(".env.local", override=True)  # Sobrescreve com .env.local se existir
 
 
 # ============================================================
@@ -76,6 +82,12 @@ class AvaliarPecaRequest(BaseModel):
     enunciado: str = Field(..., description="Enunciado original")
 
 
+class ChatRequest(BaseModel):
+    """Request para chat com IA"""
+    user_name: str = Field(..., description="Nome do usuário")
+    message: str = Field(..., description="Mensagem do usuário")
+
+
 class Response(BaseModel):
     """Response padrão da API"""
     success: bool
@@ -97,13 +109,18 @@ app = FastAPI(
 )
 
 # Configuração CORS
+# Em produção, apenas domínios específicos
+ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "http://localhost:3000,https://oab.doutoraia.com").split(",")
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=ALLOWED_ORIGINS,
     allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allow_headers=["Content-Type", "Authorization"],
 )
+
+# Incluir routers
+app.include_router(admin_router)  # Router já tem prefix="/admin" definido
 
 # Instância global do sistema
 sistema = JurisIA()
@@ -578,6 +595,86 @@ async def analise_memoria(aluno_id: str):
             detail={
                 "error": True,
                 "message": "Erro interno ao analisar memória. Nossa equipe foi notificada.",
+                "technical_details": str(e) if os.getenv("DEBUG") else None
+            }
+        )
+
+
+# ============================================================
+# ENDPOINTS - CHAT COM IA
+# ============================================================
+
+@app.post("/api/chat", response_model=Response)
+async def chat_com_ia(request_body: ChatRequest):
+    """
+    Proxy seguro para chat com IA.
+
+    A API key do chat server fica no backend, não exposta ao frontend.
+    """
+    try:
+        # URL e API key do chat server (configurados em .env)
+        chat_server_url = os.getenv("CHAT_SERVER_URL", "http://localhost:3001")
+        chat_api_key = os.getenv("CHAT_API_KEY", "")
+
+        if not chat_api_key:
+            raise HTTPException(
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                detail={
+                    "error": True,
+                    "message": "Chat server não configurado. Entre em contato com o suporte."
+                }
+            )
+
+        # Fazer requisição ao chat server
+        async with httpx.AsyncClient(timeout=30.0) as client:
+            response = await client.post(
+                f"{chat_server_url}/api/chat",
+                json={
+                    "userName": request_body.user_name,
+                    "message": request_body.message
+                },
+                headers={
+                    "X-API-Key": chat_api_key,
+                    "Content-Type": "application/json"
+                }
+            )
+
+            if response.status_code != 200:
+                raise HTTPException(
+                    status_code=status.HTTP_502_BAD_GATEWAY,
+                    detail={
+                        "error": True,
+                        "message": "Erro ao comunicar com servidor de chat"
+                    }
+                )
+
+            chat_response = response.json()
+
+            return Response(
+                success=True,
+                data={
+                    "response": chat_response.get("response", ""),
+                    "timestamp": datetime.now().isoformat()
+                },
+                message="Mensagem processada com sucesso"
+            )
+
+    except httpx.TimeoutException:
+        raise HTTPException(
+            status_code=status.HTTP_504_GATEWAY_TIMEOUT,
+            detail={
+                "error": True,
+                "message": "Timeout ao processar mensagem. Tente novamente."
+            }
+        )
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail={
+                "error": True,
+                "message": "Erro interno ao processar chat. Nossa equipe foi notificada.",
                 "technical_details": str(e) if os.getenv("DEBUG") else None
             }
         )
