@@ -1,0 +1,43 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:oab.doutoraia.com)",
+      "Bash(npm run build:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push)",
+      "Bash(ls \"D:\\\\JURIS_IA_CORE_V1\\\\database\\\\migrations\"\" | grep \".sql \")",
+      "Bash(ls -1 \"D:\\\\JURIS_IA_CORE_V1\\\\database\\\\migrations\"\" | grep \".sql \")",
+      "Bash(cd:*)",
+      "Bash(dir:*)",
+      "Bash(find:*)",
+      "Bash(cat:*)",
+      "Bash(npm install:*)",
+      "Bash(npx playwright:*)",
+      "Bash(npm run test:e2e:*)",
+      "Bash(Get-Content \"C:\\\\Users\\\\NFC\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\D--JURIS-IA-CORE-V1\\\\tasks\\\\bfa3f9f.output\")",
+      "Bash(Select-Object -Last 50)",
+      "Bash(git push:*)",
+      "Bash(set CI=true)",
+      "Bash(taskkill:*)",
+      "Bash(python -c:*)",
+      "Bash(ls:*)",
+      "Bash(python:*)",
+      "Bash(set:*)",
+      "Bash(cmd /c importar.bat)",
+      "Bash(powershell -Command \"$env:POSTGRES_PASSWORD=''changeme123''; python importar_consolidadas.py\")",
+      "Bash(timeout:*)",
+      "Bash(ping:*)",
+      "Bash(docker-compose:*)",
+      "Bash(curl:*)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(powershell -Command \"Get-Content ''D:\\\\JURIS_IA_CORE_V1\\\\api\\\\api_server.py'' | Measure-Object -Line\")",
+      "Bash(docker cp:*)",
+      "Bash(docker exec:*)",
+      "Bash(npm audit:*)",
+      "Bash(pip freeze:*)",
+      "Bash(pip install:*)"
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+Processando PDF GIGANTE: EXAME DA OAB UNIFICADO 1ª FASE.PDF
+
+Total de paginas: 2207
+Processando em blocos de 200 paginas
+
+Bloco 0-200 (200 paginas)... 16 questoes
+Bloco 200-400 (200 paginas)... 24 questoes
+Bloco 400-600 (200 paginas)... 17 questoes
+Bloco 600-800 (200 paginas)... 12 questoes
+Bloco 800-1000 (200 paginas)... 24 questoes
+Bloco 1000-1200 (200 paginas)... 12 questoes
+Bloco 1200-1400 (200 paginas)... 11 questoes
+Bloco 1400-1600 (200 paginas)... 12 questoes
+Bloco 1600-1800 (200 paginas)... 33 questoes
+Bloco 1800-2000 (200 paginas)... 37 questoes
+Bloco 2000-2200 (200 paginas)... 16 questoes
+Bloco 2200-2207 (7 paginas)... 0 questoes
+
+============================================================
+Total de questoes UNICAS: 90
+============================================================
+
+Salvo em: gigante_exame_unificado.json
+
+
+============================================================
+CONCLUIDO: 90 questoes extraidas!
+============================================================
+

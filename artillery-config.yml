@@ -1,0 +1,101 @@
+config:
+  target: "http://localhost:8000"
+  phases:
+    # Warmup: 10 usuários por 30s
+    - duration: 30
+      arrivalRate: 10
+      name: "Warmup"
+
+    # Ramp up: 10 → 50 usuários em 2 min
+    - duration: 120
+      arrivalRate: 10
+      rampTo: 50
+      name: "Ramp up"
+
+    # Sustained load: 50 usuários por 5 min
+    - duration: 300
+      arrivalRate: 50
+      name: "Sustained load"
+
+    # Spike: 100 usuários por 1 min
+    - duration: 60
+      arrivalRate: 100
+      name: "Spike test"
+
+  timeout: 30
+
+scenarios:
+  # Cenário 1: Health Check
+  - name: "Health Check"
+    weight: 10
+    flow:
+      - get:
+          url: "/health"
+
+  # Cenário 2: Login
+  - name: "Login Flow"
+    weight: 30
+    flow:
+      - post:
+          url: "/admin/login"
+          json:
+            email: "teste@example.com"
+            password: "senha123"
+          capture:
+            - json: "$.data.token"
+              as: "authToken"
+
+  # Cenário 3: Dashboard (autenticado)
+  - name: "Dashboard Load"
+    weight: 20
+    flow:
+      - post:
+          url: "/admin/login"
+          json:
+            email: "teste@example.com"
+            password: "senha123"
+          capture:
+            - json: "$.data.token"
+              as: "authToken"
+      - get:
+          url: "/estudante/painel"
+          headers:
+            Authorization: "Bearer {{ authToken }}"
+
+  # Cenário 4: Iniciar Estudo
+  - name: "Study Session"
+    weight: 25
+    flow:
+      - post:
+          url: "/admin/login"
+          json:
+            email: "teste@example.com"
+            password: "senha123"
+          capture:
+            - json: "$.data.token"
+              as: "authToken"
+      - post:
+          url: "/estudo/iniciar"
+          headers:
+            Authorization: "Bearer {{ authToken }}"
+          json:
+            modo: "adaptativo"
+
+  # Cenário 5: Gamificação
+  - name: "Gamification Data"
+    weight: 15
+    flow:
+      - post:
+          url: "/admin/login"
+          json:
+            email: "teste@example.com"
+            password: "senha123"
+          capture:
+            - json: "$.data.token"
+              as: "authToken"
+            - json: "$.data.user.id"
+              as: "userId"
+      - get:
+          url: "/gamificacao/{{ userId }}"
+          headers:
+            Authorization: "Bearer {{ authToken }}"

@@ -1,0 +1,404 @@
+{
+  "questoes": [
+    {
+      "disciplina": "Direito Constitucional",
+      "topico": "Direitos Fundamentais",
+      "enunciado": "João foi preso em flagrante por furto. No entanto, o delegado recusou-se a informar seus familiares sobre a prisão. Considerando a situação narrada e a disciplina constitucional sobre direitos fundamentais, assinale a afirmativa correta.",
+      "alternativas": {
+        "A": "A recusa do delegado é legítima, pois o preso não tem direito de comunicar sua prisão até o término do inquérito policial.",
+        "B": "A comunicação da prisão aos familiares é faculdade do delegado, podendo ser negada em casos de crimes contra o patrimônio.",
+        "C": "A prisão deve ser imediatamente comunicada ao juiz competente e à família do preso ou à pessoa por ele indicada.",
+        "D": "A comunicação aos familiares só é obrigatória após o trânsito em julgado da sentença condenatória."
+      },
+      "gabarito": "C",
+      "explicacao": "Conforme art. 5º, LXII da CF/88, a prisão de qualquer pessoa deve ser imediatamente comunicada ao juiz competente e à família do preso ou à pessoa por ele indicada. Este é um direito fundamental que não comporta exceções.",
+      "fundamentacao": "CF/88, art. 5º, LXII",
+      "dificuldade": "medio",
+      "ano_prova": 2024
+    },
+    {
+      "disciplina": "Direito Constitucional",
+      "topico": "Organização do Estado",
+      "enunciado": "Sobre a organização político-administrativa do Estado brasileiro, é correto afirmar que:",
+      "alternativas": {
+        "A": "A União, os Estados, o Distrito Federal e os Municípios são autônomos, nos termos da Constituição Federal.",
+        "B": "Os Territórios Federais integram a União e possuem autonomia política.",
+        "C": "Os Estados podem incorporar-se entre si sem necessidade de aprovação do Congresso Nacional.",
+        "D": "A criação de novos Municípios depende apenas de lei estadual."
+      },
+      "gabarito": "A",
+      "explicacao": "A CF/88, em seu art. 18, estabelece que a organização político-administrativa compreende a União, os Estados, o Distrito Federal e os Municípios, todos autônomos. Os Territórios não são entes federativos autônomos.",
+      "fundamentacao": "CF/88, art. 18, caput",
+      "dificuldade": "facil",
+      "ano_prova": 2024
+    },
+    {
+      "disciplina": "Direito Constitucional",
+      "topico": "Controle de Constitucionalidade",
+      "enunciado": "Sobre o controle de constitucionalidade no Brasil, assinale a alternativa correta:",
+      "alternativas": {
+        "A": "A ADI pode ser proposta por qualquer cidadão brasileiro.",
+        "B": "O Governador de Estado pode propor ADI contra lei municipal que contrarie a Constituição Estadual.",
+        "C": "A decisão definitiva de mérito em ADI tem eficácia contra todos e efeito vinculante.",
+        "D": "O STF não pode declarar inconstitucionalidade de emenda constitucional."
+      },
+      "gabarito": "C",
+      "explicacao": "Conforme art. 102, §2º da CF/88, as decisões definitivas de mérito em ADI e ADC têm eficácia contra todos (erga omnes) e efeito vinculante relativamente aos demais órgãos do Poder Judiciário e à administração pública.",
+      "fundamentacao": "CF/88, art. 102, §2º",
+      "dificuldade": "medio",
+      "ano_prova": 2023
+    },
+    {
+      "disciplina": "Direito Civil",
+      "topico": "Pessoas Naturais",
+      "enunciado": "Maria, com 17 anos e 11 meses, deseja casar-se. Sobre sua capacidade civil, é correto afirmar:",
+      "alternativas": {
+        "A": "Maria é absolutamente incapaz para todos os atos da vida civil.",
+        "B": "O casamento é causa de emancipação, tornando Maria plenamente capaz.",
+        "C": "Maria precisa de autorização judicial para casar, mas permanecerá relativamente incapaz.",
+        "D": "Menores de 18 anos não podem se casar em nenhuma hipótese."
+      },
+      "gabarito": "B",
+      "explicacao": "Conforme CC, art. 5º, parágrafo único, II, o casamento é causa de emancipação. Uma vez casada, Maria adquire plena capacidade civil, ainda que seja menor de 18 anos.",
+      "fundamentacao": "CC, art. 5º, parágrafo único, II",
+      "dificuldade": "medio",
+      "ano_prova": 2024
+    },
+    {
+      "disciplina": "Direito Civil",
+      "topico": "Obrigações",
+      "enunciado": "João contratou Pedro para pintar sua casa por R$ 5.000,00. Pedro iniciou o serviço, mas João se recusou a pagar sem justo motivo. Pedro poderá:",
+      "alternativas": {
+        "A": "Apenas rescindir o contrato e cobrar o que já foi executado.",
+        "B": "Exigir o cumprimento forçado da obrigação ou resolvê-la, mais perdas e danos.",
+        "C": "Somente pleitear perdas e danos, sem possibilidade de execução específica.",
+        "D": "Nada fazer, pois contratos de prestação de serviços não geram obrigações jurídicas."
+      },
+      "gabarito": "B",
+      "explicacao": "Segundo o CC, art. 475, a parte lesada pelo inadimplemento pode pedir a resolução do contrato, se não preferir exigir-lhe o cumprimento, cabendo, em qualquer caso, indenização por perdas e danos.",
+      "fundamentacao": "CC, art. 475",
+      "dificuldade": "medio",
+      "ano_prova": 2023
+    },
+    {
+      "disciplina": "Direito Civil",
+      "topico": "Responsabilidade Civil",
+      "enunciado": "Sobre responsabilidade civil objetiva, é correto afirmar:",
+      "alternativas": {
+        "A": "Depende sempre da comprovação de culpa do agente.",
+        "B": "Aplica-se apenas em acidentes de trabalho.",
+        "C": "Independe de culpa, bastando a comprovação do dano e do nexo causal.",
+        "D": "Não é admitida no ordenamento jurídico brasileiro."
+      },
+      "gabarito": "C",
+      "explicacao": "A responsabilidade civil objetiva, prevista no art. 927, parágrafo único do CC, independe de culpa. Basta a comprovação do dano, da conduta e do nexo causal entre ambos.",
+      "fundamentacao": "CC, art. 927, parágrafo único",
+      "dificuldade": "facil",
+      "ano_prova": 2024
+    },
+    {
+      "disciplina": "Direito Penal",
+      "topico": "Parte Geral",
+      "enunciado": "Carlos, com 17 anos, praticou ato infracional análogo ao crime de roubo. Sobre o caso, é correto afirmar:",
+      "alternativas": {
+        "A": "Carlos deve ser processado criminalmente, com pena reduzida pela menoridade.",
+        "B": "Carlos é inimputável e sujeita-se às medidas do ECA.",
+        "C": "Carlos pode ser preso preventivamente se houver risco à ordem pública.",
+        "D": "A menoridade de Carlos afasta apenas a pena de prisão, mas não a responsabilidade penal."
+      },
+      "gabarito": "B",
+      "explicacao": "Conforme CP, art. 27, os menores de 18 anos são penalmente inimputáveis, ficando sujeitos às normas do Estatuto da Criança e do Adolescente (ECA).",
+      "fundamentacao": "CP, art. 27; Lei 8.069/90 (ECA)",
+      "dificuldade": "facil",
+      "ano_prova": 2024
+    },
+    {
+      "disciplina": "Direito Penal",
+      "topico": "Crimes contra o Patrimônio",
+      "enunciado": "João subtraiu um celular de Maria mediante grave ameaça com faca. Posteriormente, na fuga, lesionou um pedestre. João responderá por:",
+      "alternativas": {
+        "A": "Furto qualificado e lesão corporal em concurso material.",
+        "B": "Roubo simples e lesão corporal em concurso material.",
+        "C": "Roubo qualificado pela lesão corporal, em crime único.",
+        "D": "Latrocínio, pois houve lesão na execução do crime patrimonial."
+      },
+      "gabarito": "C",
+      "explicacao": "O roubo com resultado de lesão corporal é qualificado nos termos do CP, art. 157, §3º. A lesão ocorrida na execução do roubo ou para assegurar a posse da coisa qualifica o crime, não caracterizando concurso.",
+      "fundamentacao": "CP, art. 157, §3º",
+      "dificuldade": "medio",
+      "ano_prova": 2023
+    },
+    {
+      "disciplina": "Direito Penal",
+      "topico": "Crimes contra a Pessoa",
+      "enunciado": "Pedro, em legítima defesa, mata José que o atacava injustamente com arma de fogo. Sobre o caso, é correto afirmar:",
+      "alternativas": {
+        "A": "Pedro praticou homicídio com pena reduzida pela legítima defesa.",
+        "B": "A legítima defesa exclui a ilicitude do fato, não havendo crime.",
+        "C": "Pedro responde por homicídio culposo.",
+        "D": "A legítima defesa não se aplica em casos de homicídio."
+      },
+      "gabarito": "B",
+      "explicacao": "Conforme CP, art. 23, I, não há crime quando o agente pratica o fato em legítima defesa. Esta é uma causa excludente de ilicitude que afasta completamente o crime.",
+      "fundamentacao": "CP, art. 23, I e art. 25",
+      "dificuldade": "facil",
+      "ano_prova": 2024
+    },
+    {
+      "disciplina": "Direito Processual Civil",
+      "topico": "Procedimento Comum",
+      "enunciado": "Sobre a petição inicial, é correto afirmar:",
+      "alternativas": {
+        "A": "Pode ser apresentada oralmente em todos os casos.",
+        "B": "Deve indicar o juiz, as partes, os fatos, os fundamentos jurídicos e o pedido.",
+        "C": "Não precisa indicar o valor da causa se o pedido for genérico.",
+        "D": "A ausência de documentos essenciais não impede o processamento da ação."
+      },
+      "gabarito": "B",
+      "explicacao": "O CPC, art. 319, estabelece os requisitos da petição inicial, incluindo indicação do juiz, qualificação das partes, fatos e fundamentos jurídicos, pedido e valor da causa.",
+      "fundamentacao": "CPC, art. 319",
+      "dificuldade": "facil",
+      "ano_prova": 2024
+    },
+    {
+      "disciplina": "Direito Processual Civil",
+      "topico": "Recursos",
+      "enunciado": "Contra sentença proferida em procedimento comum, o recurso cabível é:",
+      "alternativas": {
+        "A": "Agravo de instrumento.",
+        "B": "Apelação.",
+        "C": "Recurso ordinário.",
+        "D": "Embargos de declaração, exclusivamente."
+      },
+      "gabarito": "B",
+      "explicacao": "Conforme CPC, art. 1.009, da sentença cabe apelação. A apelação é o recurso adequado para impugnar sentenças.",
+      "fundamentacao": "CPC, art. 1.009",
+      "dificuldade": "facil",
+      "ano_prova": 2023
+    },
+    {
+      "disciplina": "Direito Processual Civil",
+      "topico": "Tutela Provisória",
+      "enunciado": "Sobre a tutela provisória de urgência, é correto afirmar:",
+      "alternativas": {
+        "A": "Só pode ser concedida após a citação do réu.",
+        "B": "Pode ser concedida em caráter antecedente ou incidental.",
+        "C": "Não se admite em ações que versem sobre direitos patrimoniais.",
+        "D": "Depende sempre de caução do requerente."
+      },
+      "gabarito": "B",
+      "explicacao": "O CPC, art. 294, parágrafo único, prevê que a tutela provisória de urgência pode ser antecedente (antes da petição inicial) ou incidental (no curso do processo).",
+      "fundamentacao": "CPC, art. 294, parágrafo único",
+      "dificuldade": "medio",
+      "ano_prova": 2024
+    },
+    {
+      "disciplina": "Direito do Trabalho",
+      "topico": "Contrato de Trabalho",
+      "enunciado": "São requisitos caracterizadores da relação de emprego:",
+      "alternativas": {
+        "A": "Pessoalidade, onerosidade, eventualidade e subordinação.",
+        "B": "Pessoalidade, onerosidade, não eventualidade e subordinação.",
+        "C": "Habitualidade, gratuidade e subordinação.",
+        "D": "Apenas onerosidade e subordinação."
+      },
+      "gabarito": "B",
+      "explicacao": "Os requisitos da relação de emprego, conforme CLT, arts. 2º e 3º, são: pessoalidade, onerosidade, não eventualidade (habitualidade) e subordinação.",
+      "fundamentacao": "CLT, arts. 2º e 3º",
+      "dificuldade": "medio",
+      "ano_prova": 2024
+    },
+    {
+      "disciplina": "Direito do Trabalho",
+      "topico": "FGTS e Aviso Prévio",
+      "enunciado": "O empregado dispensado sem justa causa tem direito a:",
+      "alternativas": {
+        "A": "Saque do FGTS, aviso prévio e multa de 40% do FGTS.",
+        "B": "Apenas saque do FGTS.",
+        "C": "Aviso prévio, mas não pode sacar o FGTS.",
+        "D": "Nenhum direito, pois foi dispensado."
+      },
+      "gabarito": "A",
+      "explicacao": "Na dispensa sem justa causa, o empregado tem direito ao saque do FGTS, aviso prévio (trabalhado ou indenizado) e à multa de 40% sobre o saldo do FGTS, conforme Lei 8.036/90.",
+      "fundamentacao": "Lei 8.036/90, art. 18",
+      "dificuldade": "facil",
+      "ano_prova": 2023
+    },
+    {
+      "disciplina": "Direito Empresarial",
+      "topico": "Sociedades",
+      "enunciado": "Na sociedade limitada, a responsabilidade dos sócios:",
+      "alternativas": {
+        "A": "É ilimitada pelas dívidas sociais.",
+        "B": "É restrita ao valor de suas quotas, mas todos respondem solidariamente pela integralização do capital social.",
+        "C": "É limitada ao patrimônio pessoal de cada sócio.",
+        "D": "Não existe, sendo apenas a sociedade responsável."
+      },
+      "gabarito": "B",
+      "explicacao": "Conforme CC, art. 1.052, a responsabilidade de cada sócio é restrita ao valor de suas quotas, mas todos respondem solidariamente pela integralização do capital social.",
+      "fundamentacao": "CC, art. 1.052",
+      "dificuldade": "medio",
+      "ano_prova": 2024
+    },
+    {
+      "disciplina": "Direito Empresarial",
+      "topico": "Títulos de Crédito",
+      "enunciado": "Sobre o cheque, é correto afirmar:",
+      "alternativas": {
+        "A": "É uma ordem de pagamento à vista.",
+        "B": "Pode ser emitido sem provisão de fundos sem consequências.",
+        "C": "Tem prazo de apresentação de 2 anos da emissão.",
+        "D": "Não pode ser cruzado."
+      },
+      "gabarito": "A",
+      "explicacao": "O cheque é uma ordem de pagamento à vista, conforme Lei 7.357/85, art. 32. Mesmo que seja pós-datado, juridicamente é sempre à vista.",
+      "fundamentacao": "Lei 7.357/85, art. 32",
+      "dificuldade": "facil",
+      "ano_prova": 2023
+    },
+    {
+      "disciplina": "Ética Profissional",
+      "topico": "Estatuto da OAB",
+      "enunciado": "Segundo o Estatuto da OAB, o advogado pode:",
+      "alternativas": {
+        "A": "Anunciar seus serviços por qualquer meio de comunicação, sem restrições.",
+        "B": "Fazer publicidade discreta de seus serviços, com moderação e discrição.",
+        "C": "Garantir resultados em processos judiciais em anúncios.",
+        "D": "Oferecer serviços mediante captação de clientela."
+      },
+      "gabarito": "B",
+      "explicacao": "O Código de Ética da OAB permite publicidade moderada e discreta dos serviços advocatícios, vedando a mercantilização da profissão e garantia de resultados.",
+      "fundamentacao": "Código de Ética e Disciplina da OAB, arts. 28 a 34",
+      "dificuldade": "medio",
+      "ano_prova": 2024
+    },
+    {
+      "disciplina": "Ética Profissional",
+      "topico": "Deveres do Advogado",
+      "enunciado": "É dever do advogado:",
+      "alternativas": {
+        "A": "Aceitar qualquer causa, independentemente de sua convicção.",
+        "B": "Renunciar ao mandato se descobrir que a causa é injusta.",
+        "C": "Preservar o sigilo profissional.",
+        "D": "Divulgar fatos sigilosos se beneficiarem seu cliente."
+      },
+      "gabarito": "C",
+      "explicacao": "O sigilo profissional é dever fundamental do advogado, previsto no Estatuto da OAB, art. 7º, XIX, devendo ser preservado mesmo após o término da relação profissional.",
+      "fundamentacao": "Estatuto da OAB, art. 7º, XIX",
+      "dificuldade": "facil",
+      "ano_prova": 2023
+    },
+    {
+      "disciplina": "Direito Tributário",
+      "topico": "Princípios Tributários",
+      "enunciado": "Sobre o princípio da anterioridade tributária, é correto afirmar:",
+      "alternativas": {
+        "A": "Veda a cobrança de tributos no mesmo exercício financeiro da publicação da lei que os instituiu.",
+        "B": "Aplica-se a todos os tributos sem exceção.",
+        "C": "Permite a cobrança imediata de qualquer tributo.",
+        "D": "Não se aplica aos impostos municipais."
+      },
+      "gabarito": "A",
+      "explicacao": "O princípio da anterioridade (CF, art. 150, III, 'b') veda a cobrança de tributos no mesmo exercício financeiro em que haja sido publicada a lei que os instituiu ou aumentou, ressalvadas as exceções constitucionais.",
+      "fundamentacao": "CF/88, art. 150, III, 'b'",
+      "dificuldade": "medio",
+      "ano_prova": 2024
+    },
+    {
+      "disciplina": "Direito Tributário",
+      "topico": "Competência Tributária",
+      "enunciado": "Compete aos Municípios instituir impostos sobre:",
+      "alternativas": {
+        "A": "Propriedade de veículos automotores.",
+        "B": "Transmissão causa mortis de bens imóveis.",
+        "C": "Propriedade territorial urbana.",
+        "D": "Renda e proventos de qualquer natureza."
+      },
+      "gabarito": "C",
+      "explicacao": "Conforme CF, art. 156, I, compete aos Municípios instituir impostos sobre propriedade predial e territorial urbana (IPTU).",
+      "fundamentacao": "CF/88, art. 156, I",
+      "dificuldade": "facil",
+      "ano_prova": 2023
+    },
+    {
+      "disciplina": "Direito Administrativo",
+      "topico": "Atos Administrativos",
+      "enunciado": "São atributos do ato administrativo:",
+      "alternativas": {
+        "A": "Presunção de legitimidade, imperatividade e autoexecutoriedade.",
+        "B": "Apenas legalidade e moralidade.",
+        "C": "Tipicidade, mas não presunção de veracidade.",
+        "D": "Discricionariedade absoluta."
+      },
+      "gabarito": "A",
+      "explicacao": "Os atributos do ato administrativo são: presunção de legitimidade e veracidade, imperatividade, autoexecutoriedade e, em alguns casos, tipicidade.",
+      "fundamentacao": "Doutrina de Direito Administrativo",
+      "dificuldade": "medio",
+      "ano_prova": 2024
+    },
+    {
+      "disciplina": "Direito Administrativo",
+      "topico": "Licitações",
+      "enunciado": "Sobre licitações públicas, é correto afirmar:",
+      "alternativas": {
+        "A": "São dispensáveis em todos os contratos de pequeno valor.",
+        "B": "A modalidade pregão é exclusiva para bens e serviços comuns.",
+        "C": "Não se aplicam às empresas públicas.",
+        "D": "O procedimento pode ser iniciado sem prévia dotação orçamentária."
+      },
+      "gabarito": "B",
+      "explicacao": "A modalidade pregão, regulamentada pela Lei 10.520/02, é utilizada para aquisição de bens e serviços comuns, independentemente do valor.",
+      "fundamentacao": "Lei 10.520/02; Lei 14.133/21",
+      "dificuldade": "medio",
+      "ano_prova": 2024
+    },
+    {
+      "disciplina": "Direito Processual Penal",
+      "topico": "Prisões",
+      "enunciado": "A prisão preventiva pode ser decretada:",
+      "alternativas": {
+        "A": "De ofício pelo juiz durante a investigação.",
+        "B": "Mediante representação da autoridade policial ou requerimento do MP.",
+        "C": "Automaticamente em crimes hediondos.",
+        "D": "Apenas após o trânsito em julgado."
+      },
+      "gabarito": "B",
+      "explicacao": "Conforme CPP, art. 311, a prisão preventiva pode ser decretada pelo juiz, de ofício (apenas no curso da ação penal), a requerimento do MP, do querelante ou do assistente, ou por representação da autoridade policial.",
+      "fundamentacao": "CPP, art. 311",
+      "dificuldade": "medio",
+      "ano_prova": 2023
+    },
+    {
+      "disciplina": "Direito Processual Penal",
+      "topico": "Provas",
+      "enunciado": "Sobre provas ilícitas, é correto afirmar:",
+      "alternativas": {
+        "A": "São inadmissíveis no processo.",
+        "B": "Podem ser utilizadas se beneficiarem o réu.",
+        "C": "São válidas em crimes hediondos.",
+        "D": "Dependem de autorização judicial para serem consideradas."
+      },
+      "gabarito": "A",
+      "explicacao": "Conforme CF, art. 5º, LVI, são inadmissíveis, no processo, as provas obtidas por meios ilícitos. O CPP, art. 157, reforça essa vedação.",
+      "fundamentacao": "CF/88, art. 5º, LVI; CPP, art. 157",
+      "dificuldade": "facil",
+      "ano_prova": 2024
+    },
+    {
+      "disciplina": "Direito Constitucional",
+      "topico": "Remédios Constitucionais",
+      "enunciado": "O habeas corpus pode ser impetrado:",
+      "alternativas": {
+        "A": "Apenas por advogado constituído.",
+        "B": "Por qualquer pessoa, em favor próprio ou de outrem.",
+        "C": "Somente pelo Ministério Público.",
+        "D": "Apenas após o trânsito em julgado da sentença."
+      },
+      "gabarito": "B",
+      "explicacao": "O habeas corpus pode ser impetrado por qualquer pessoa, em seu favor ou de outrem, independentemente de capacidade postulatória, conforme CF, art. 5º, LXVIII.",
+      "fundamentacao": "CF/88, art. 5º, LXVIII",
+      "dificuldade": "facil",
+      "ano_prova": 2023
+    }
+  ]
+}

@@ -19,6 +19,7 @@ from engines.explanation_engine import ExplanationEngine, StudentProfile, Explan
 from engines.decision_engine import DecisionEngine, EngineEvent, EventType, EngineAction
 from engines.memory_engine import MemoryEngine, ReviewCycle
 from engines.question_engine_db import QuestionEngineDB
+from engines.question_engine import Question  # Classe Question para type hints
 from engines.piece_engine import PieceEngine, PieceType, PieceEvaluation
 
 

@@ -151,6 +151,7 @@ class User(Base):
     data_nascimento = Column(DateTime)
     estado_uf = Column(String(2))
     cidade = Column(String(100))
+    foto_perfil = Column(String(500))  # URL da foto de perfil
     status = Column(Enum(UserStatus), default=UserStatus.ATIVO, nullable=False, index=True)
     data_ultimo_acesso = Column(DateTime)
     created_at = Column(DateTime, server_default=func.now(), nullable=False)
@@ -670,6 +671,7 @@ class QuestaoBanco(Base):
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
 
     codigo_questao = Column(String(50), unique=True, nullable=False, index=True)
+    hash_conceito = Column(String(32), nullable=True, index=True)  # Hash para agrupar variações da mesma questão
     disciplina = Column(String(100), nullable=False, index=True)
     topico = Column(String(200), nullable=False, index=True)
     subtopico = Column(String(200))
@@ -705,6 +707,7 @@ class QuestaoBanco(Base):
         Index('idx_questao_disciplina', 'disciplina'),
         Index('idx_questao_topico', 'topico'),
         Index('idx_questao_dificuldade', 'dificuldade'),
+        Index('idx_questao_hash_conceito', 'hash_conceito'),  # Índice para agrupar variações
         Index('idx_questao_tags_gin', 'tags', postgresql_using='gin'),
     )
 
@@ -777,6 +780,177 @@ class Consentimento(Base):
         return f"<Consentimento(user_id={self.user_id}, tipo={self.tipo_consentimento}, consentido={self.consentido})>"
 
 
+class PasswordResetToken(Base):
+    """Tokens de recuperação de senha"""
+    __tablename__ = 'password_reset_tokens'
+
+    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    user_id = Column(UUID(as_uuid=True), ForeignKey('users.id', ondelete='CASCADE'), nullable=False, index=True)
+    token = Column(String(255), nullable=False, unique=True, index=True)
+
+    expira_em = Column(DateTime, nullable=False)  # Token válido por 1 hora
+    usado = Column(Boolean, default=False, nullable=False)
+    usado_em = Column(DateTime)
+
+    ip_solicitacao = Column(String(45))
+    user_agent = Column(String(500))
+
+    created_at = Column(DateTime, server_default=func.now(), nullable=False)
+
+    # Relacionamento
+    user = relationship("User")
+
+    # Índices
+    __table_args__ = (
+        Index('idx_reset_token', 'token'),
+        Index('idx_reset_user', 'user_id'),
+        Index('idx_reset_expiracao', 'expira_em'),
+    )
+
+    def __repr__(self):
+        return f"<PasswordResetToken(user_id={self.user_id}, usado={self.usado})>"
+
+
+class UserSettings(Base):
+    """Configurações do usuário"""
+    __tablename__ = 'user_settings'
+
+    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    user_id = Column(UUID(as_uuid=True), ForeignKey('users.id', ondelete='CASCADE'), nullable=False, unique=True, index=True)
+
+    # Preferências de notificação
+    notificacao_email = Column(Boolean, default=True)
+    notificacao_push = Column(Boolean, default=True)
+    lembrete_diario = Column(Boolean, default=True)
+    horario_lembrete = Column(String(5), default='09:00')  # HH:MM
+
+    # Preferências de estudo
+    tema = Column(String(20), default='light')  # light, dark, auto
+    questoes_por_sessao = Column(Integer, default=10)
+    dificuldade_preferida = Column(String(20), default='mista')  # facil, medio, dificil, mista
+
+    # Preferências de som
+    som_ativado = Column(Boolean, default=True)
+    som_acerto = Column(Boolean, default=True)
+    som_erro = Column(Boolean, default=True)
+
+    # Preferências de privacidade
+    perfil_publico = Column(Boolean, default=False)
+    mostrar_ranking = Column(Boolean, default=True)
+    compartilhar_estatisticas = Column(Boolean, default=True)
+
+    created_at = Column(DateTime, server_default=func.now(), nullable=False)
+    updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now(), nullable=False)
+
+    # Relacionamento
+    user = relationship("User")
+
+    def __repr__(self):
+        return f"<UserSettings(user_id={self.user_id}, tema={self.tema})>"
+
+
+class PlanoStatus(str, enum.Enum):
+    """Status da assinatura"""
+    ATIVO = "ATIVO"
+    CANCELADO = "CANCELADO"
+    EXPIRADO = "EXPIRADO"
+    TRIAL = "TRIAL"
+    PAUSADO = "PAUSADO"
+
+
+class Assinatura(Base):
+    """Assinaturas de usuários"""
+    __tablename__ = 'assinaturas'
+
+    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    user_id = Column(UUID(as_uuid=True), ForeignKey('users.id', ondelete='CASCADE'), nullable=False, unique=True, index=True)
+
+    # Plano
+    plano = Column(String(50), nullable=False)  # GRATUITO, PREMIUM, PRO
+    preco_mensal = Column(DECIMAL(10, 2), nullable=False, default=0.00)
+
+    # Status
+    status = Column(Enum(PlanoStatus), default=PlanoStatus.ATIVO, nullable=False, index=True)
+
+    # Datas
+    data_inicio = Column(DateTime, nullable=False, server_default=func.now())
+    data_fim = Column(DateTime)  # Null = indeterminado
+    data_cancelamento = Column(DateTime)
+    data_proxima_cobranca = Column(DateTime)
+
+    # Limites do plano
+    sessoes_por_dia = Column(Integer, default=5)
+    questoes_por_sessao = Column(Integer, default=10)
+    acesso_chat_ia = Column(Boolean, default=False)
+    acesso_pecas = Column(Boolean, default=False)
+    acesso_relatorios = Column(Boolean, default=False)
+    acesso_simulados = Column(Boolean, default=True)
+
+    # Stripe
+    stripe_customer_id = Column(String(255), index=True)
+    stripe_subscription_id = Column(String(255), index=True)
+    stripe_price_id = Column(String(255))
+
+    # Metadados
+    metodo_pagamento = Column(String(50))  # card, boleto, pix
+    trial_usado = Column(Boolean, default=False)
+
+    created_at = Column(DateTime, server_default=func.now(), nullable=False)
+    updated_at = Column(DateTime, server_default=func.now(), onupdate=func.now(), nullable=False)
+
+    # Relacionamento
+    user = relationship("User")
+
+    # Índices
+    __table_args__ = (
+        Index('idx_assinatura_user', 'user_id'),
+        Index('idx_assinatura_status', 'status'),
+        Index('idx_assinatura_stripe_customer', 'stripe_customer_id'),
+    )
+
+    def __repr__(self):
+        return f"<Assinatura(user_id={self.user_id}, plano={self.plano}, status={self.status})>"
+
+
+class Pagamento(Base):
+    """Histórico de pagamentos"""
+    __tablename__ = 'pagamentos'
+
+    id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
+    user_id = Column(UUID(as_uuid=True), ForeignKey('users.id', ondelete='CASCADE'), nullable=False, index=True)
+    assinatura_id = Column(UUID(as_uuid=True), ForeignKey('assinaturas.id', ondelete='SET NULL'), index=True)
+
+    # Valor
+    valor = Column(DECIMAL(10, 2), nullable=False)
+    moeda = Column(String(3), default='BRL')
+
+    # Status
+    status = Column(String(50), nullable=False)  # succeeded, pending, failed, refunded
+    metodo = Column(String(50))  # card, boleto, pix
+
+    # Stripe
+    stripe_payment_intent_id = Column(String(255), unique=True, index=True)
+    stripe_invoice_id = Column(String(255))
+
+    # Datas
+    data_pagamento = Column(DateTime)
+    data_confirmacao = Column(DateTime)
+    data_reembolso = Column(DateTime)
+
+    # Metadados
+    erro_mensagem = Column(Text)
+    payment_metadata = Column(JSONB)
+
+    created_at = Column(DateTime, server_default=func.now(), nullable=False)
+
+    # Relacionamentos
+    user = relationship("User")
+    assinatura = relationship("Assinatura")
+
+    def __repr__(self):
+        return f"<Pagamento(user_id={self.user_id}, valor={self.valor}, status={self.status})>"
+
+
 # ============================================================================
 # FUNÇÕES AUXILIARES
 # ============================================================================
@@ -787,7 +961,8 @@ def get_all_models():
         User, PerfilJuridico, ProgressoDisciplina, ProgressoTopico,
         SessaoEstudo, InteracaoQuestao, AnaliseErro, PraticaPeca,
         ErroPeca, RevisaoAgendada, SnapshotCognitivo, MetricasTemporal,
-        QuestaoBanco, LogSistema, Consentimento
+        QuestaoBanco, LogSistema, Consentimento, PasswordResetToken, UserSettings,
+        Assinatura, Pagamento
     ]
 
 

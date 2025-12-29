@@ -1,0 +1,35 @@
+{
+  "total_questoes": 2,
+  "formato": "Formato 1 - numero. a) b) c) d)",
+  "arquivo_origem": "651924283-CADERNO-DE-ESTRUTURACAO-Oab.pdf",
+  "questoes": [
+    {
+      "codigo_questao": "OAB_F1_651924283-CADERNO-DE-ESTRUTURACAO-Oab_1",
+      "numero": 1,
+      "enunciado": "Nome...  \n2. Nome...  \n \nNestes term os, \nPede deferimento.  \nLocal... data...  \nADVOGADO...  \nOAB...  \n \n \n \n \n \n \n \n \n \n \n \n@izadorafinelon.adv  Excelentíssimo Senhor Doutor Juiz de Direito da ... Vara Criminal da Comarca de ...  \n \n \nProcesso n°....  \n \n \n \nFulano de tal, já qualificados nos autos, por seu procurador infra -assinado, com \nprocuração em anexo, vem, respeitosamente à presença de Vossa Excelência, apresentar \nRESPOSTA À ACUSAÇÃO , com base no artigo 396 e 396 -A, do Código de Processo Penal , \npelos fa tos e fundamentos jurídicos a seguir expostos:  \n \nI) DOS FATOS  \nBreve rel",
+      "alternativas": {
+        "A": "PRELIMINARES  \nEx. Incompetência do juízo;  \nRejeição da denúncia  (artigo 395): por inépcia  (quando a descrição dos fatos não esta \nobjetiva, clara, com as circunstânc ias); por falta de pressuposto processual  (quando um \nestagiário assina no lugar do promotor, pode ser também quando um assessor ",
+        "B": "MÉRITO  \n* Excludente de ilicitude (artigo 397, I, do CPP)  Resposta à acusação  \n@izadorafinelon.adv  Estado de necessidade, legítima defesa, estrito cumprimento do dever legal e exercício \nregular do direito (artigos 23 ao 25, CP); consentimento do ofendido.  \n \n* Excludente de culpabilidade (arti",
+        "C": "nulidades (colocar as nulidades que estão na peça);",
+        "D": "absolvição sumária, com b ase no artigo 397 (colocar o inciso correspondente)  \ne) A produção de provas, com designação de audiência de instrução e julgamento e oitiva \ndas testemunhas arroladas.  \n \nROL DE TESTEMUNHAS  \nA) Fulano de Tal  \nB) Fulano de Tal  \n \nNestes termos,  \nPede deferimento.  \nLo"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_FORMATO1"
+    },
+    {
+      "codigo_questao": "OAB_F1_651924283-CADERNO-DE-ESTRUTURACAO-Oab_11",
+      "numero": 11,
+      "enunciado": "343/06);  \nBuscar teses para a desclassificação do crime.!!! Ex. de tráfico de drogas para o de \nusuário.  \nIII) DO PEDIDO  \nAnte o exposto, requer:",
+      "alternativas": {
+        "A": "A rejeição da denúncia, pela ausência de materialidade, com base no artigo 395, inciso \nIII, do Código de Processo Penal;",
+        "B": "Seja desclassif icado o crime previsto no artigo 33 da Lei 11.343/2006 para o delito do \nartigo 28 da Lei 11.343/2006, remetendo -se os autos ao Juizado Especial Criminal;",
+        "C": "A produção de todas as provas admitidas em direito, principalmente a testemunhal, \nconforme rol abai xo. \n \nROL DE TESTEMUNHAS:  \n1. Fulano de tal.  \nNestes termos,  pede deferimento.  \nLocal... data...  \nAVOGADO...  \nOAB...  Defesa Preliminar da Lei de Drogas  \n@izadorafinelon.adv  Excelentíssimo S",
+        "D": "absolvição, com base no artigo 386, CPP (colocar os incisos);  \ne) diminuição da pena (pena -base no mínimo legal, reconhecimento da atenuante, causa \nde diminuição da penal, afastar a agravante, afastar a causa de aumento de pen a; \nf) regime carcerário;  \ng) substituição da pena privativa de liber"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_FORMATO1"
+    }
+  ]
+}

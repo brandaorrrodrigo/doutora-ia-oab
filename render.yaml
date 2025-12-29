@@ -1,0 +1,41 @@
+services:
+  # Backend API
+  - type: web
+    name: juris-ia-api
+    env: python
+    region: oregon
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn api.api_server:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: DATABASE_URL
+        fromDatabase:
+          name: juris-ia-db
+          property: connectionString
+      - key: JWT_SECRET_KEY
+        generateValue: true
+      - key: SENDGRID_API_KEY
+        sync: false
+      - key: STRIPE_API_KEY
+        sync: false
+      - key: STRIPE_WEBHOOK_SECRET
+        sync: false
+      - key: STRIPE_PRICE_ID_PREMIUM
+        sync: false
+      - key: STRIPE_PRICE_ID_PRO
+        sync: false
+      - key: FRONTEND_URL
+        value: https://doutoraia.com
+      - key: ENVIRONMENT
+        value: production
+
+databases:
+  - name: juris-ia-db
+    databaseName: juris_ia
+    user: juris_ia_user
+    plan: starter
+    region: oregon
+    postgresMajorVersion: 15

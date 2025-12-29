@@ -1,0 +1,23 @@
+================================================================================
+RELATORIO DE EXTRACAO - BANCO CONSOLIDADO OAB
+================================================================================
+
+Data: 25/12/2025 09:03:58
+
+RESUMO GERAL
+--------------------------------------------------------------------------------
+Total de PDFs processados: 3
+Total de questoes extraidas: 1539
+
+DETALHAMENTO POR ARQUIVO
+--------------------------------------------------------------------------------
+
+Como Passar Na OAB 5.000 Questo -.pdf
+  Questoes: 711
+
+563839978-Simulados-OAB-de-800-Questoes.pdf
+  Questoes: 710
+
+2018 - Livro de Questoes Comentadas e Gabaritadas.pdf
+  Questoes: 118
+

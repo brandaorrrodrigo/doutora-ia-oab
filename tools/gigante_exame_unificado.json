@@ -1,0 +1,1281 @@
+{
+  "total_questoes": 90,
+  "total_paginas": 2207,
+  "blocos_processados": 11,
+  "questoes_por_bloco": {
+    "pag_0-200": 16,
+    "pag_200-400": 24,
+    "pag_400-600": 17,
+    "pag_600-800": 12,
+    "pag_800-1000": 24,
+    "pag_1000-1200": 12,
+    "pag_1200-1400": 11,
+    "pag_1400-1600": 12,
+    "pag_1600-1800": 33,
+    "pag_1800-2000": 37,
+    "pag_2000-2200": 16
+  },
+  "arquivo_origem": "EXAME DA OAB UNIFICADO 1ª FASE.PDF",
+  "questoes": [
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1",
+      "numero": 1,
+      "enunciado": "7 \nIrretroatividade da lei\nA legislação posterior não atingirá o \nato jurídico perfeito\n, o \ndireito adquirido \ne a \ncoisa\njulgada\n. O \nato\n \njurídico\n \nper​feito\n é o que já se consumou à luz da norma vigente à época em que fora\npraticado. É inabalável pelo novo regramento. Se assim não o fosse não haveria estabilidade social.\nO direito (adquirido) concreto incorporado definitivamente ao sujeito também não pode ser atingido\npor legislação superveniente (\nv.g., \nse um sujeito completou a idade para se aposentar e se manteve\ninerte, ainda assim não poderá ser prejudicado por lei ulterior que ma",
+      "alternativas": {
+        "A": "morte ou ausênci\na:\n lei do país de domicílio do morto;",
+        "B": "bens de estrangeiros sitos no Brasi\nl:\n lei\nbrasileira em favor do cônjuge e dos filhos brasileiros, sempre que a legislação alienígena não for\nmais favorável;",
+        "C": "capacidade do herdeiro ou legatário para sucede\nr:\n lei do domicílio do\ntestamentário ou legatário; 2) No que atina aos ben\ns:\n a) sua qualificação e regulaçã\no:\n lei do país em\nque estiverem situados; b) bens móvei\ns:\n lei do país de domicílio do proprietário; c) penho\nr:\ndomicílio do possuidor da ",
+        "D": "imóveis sitos no Brasil e ações correspondente\ns:\nJustiça brasileira; 3) Referente às obrigaçõe\ns:\n a) criaçã\no:\n lei do país em que foram constituídas; b)\nresultante de contrat\no:\n domicílio do proponente; 4) Sociedade empresária estrangeira no Brasi\nl:\ndevem obediência às leis de seu país de orige"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_2",
+      "numero": 2,
+      "enunciado": "PARTE GERAL\n2.1 \nDas pessoas\nAtrela-se ao conceito de pessoa a expressão personalidade jurídica, porquanto toda pessoa\nque nascer com vida (natural) e toda aquela que tiver seus atos constitutivos registrados (jurídic",
+      "alternativas": {
+        "A": "adquirirá personalidade jurídica.\n2.1.1 \nPessoa Natural\n2.1.1.1\n Aquisição da personalidade\nO ser humano, pessoa \nnatural\n ou \nfísica\n, nos termos da Lei Civil, adquirirá personalidade\njurídica com seu \nnascimento com vida\n (arts. 7º da LINDB e 2º do CC).\nNão basta nascer, que significa vir à luz, é",
+        "B": "por meio da \nemancipação;\n ou",
+        "C": "por\nocasião da \ncessação\n do motivo causador da incapacidade plena ou da incapacidade relativa, o que\nocorrerá, por exemplo, quando o sujeito que estava em estado de coma tiver sua saúde\nconvalescida, momento em que readquirirá a plenitude de suas aptidões civis.\nA respeito da primeira hipótese, lec",
+        "D": "Por fim,\nainda figuram como bens acessórios as benfeitorias que, em curtas linhas, são obras feitas no bem\nou despesas que a ele se destinaram com o fito de melhorá-lo, conservá-lo ou embelezá-lo.\nBenfeitorias \núteis\n são as que têm por finalidade facilitar o uso do bem principal, sem que tais\nmelho"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_3",
+      "numero": 3,
+      "enunciado": "3.7 \nPrescrição e decadência\nPrescrição: \na prescrição é a perda da pretensão do direito de ação, de reparação do direito\nviolado em virtude de inércia do seu titular no prazo previsto em lei\n134\n. São elementos da\nprescriçã\no:",
+      "alternativas": {
+        "A": "existência de um direito de ação, ou seja, é pressuposta a violação a algum direito\nque dê origem à ação;",
+        "B": "inércia do titular deste di​reito de acionar o Poder Judiciário;",
+        "C": "continuidade desta inércia durante um determinado tempo previsto em lei;",
+        "D": "ausência de algum fato\na que a lei atribua causa que suspenda, interrompa ou impeça o decurso do prazo. São\ncaracterísticas da prescriçã\no:\n a) a prescrição em curso não cria qualquer direito adquirido,\npodendo ter seu lapso temporal aumentado ou diminuído pela lei e somente pela lei; b) a prescriçã"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_4",
+      "numero": 4,
+      "enunciado": "2.9.2\n Troca ou permuta\nA troca ou permuta é, segundo Clóvis Beviláqua, o contrato pelo qual as partes se obrigam a\ndar uma coisa por outra que não seja dinheiro. Apresenta os seguintes caracteres jurídico\ns:\n é\ncontrato bilateral, oneroso, comutativo, translativo de propriedade no sentido de servir como \ntitulus\nadquirendi\n, gerando, para cada contratante, a obrigação de transferir para o outro o domínio da\ncoisa objeto de sua prestação, e, em regra, consensual, embora excepcionalmente possa ser\nsolene\n146\n. A principal característica da troca é a presença de pagamentos com coisas. Enquanto n",
+      "alternativas": {
+        "A": "doação pura:\n é um contrato unilateral em que\na formação se dá sem nenhuma contraprestação do donatário;",
+        "B": "doação gravada:\n \no doador estipula\num dever a ser cumprido pelo donatário, que não chega a ser uma contraprestação pela propriedade,\nmas sim uma prestação para que o negócio surta efeitos;",
+        "C": "doação remuneratória:\n \nacontece quando\no donatário presta algum serviço para o doador sem antes ter sido pactuado que o doador teria\nalgum dever de remunerar o donatário com um bem;",
+        "D": "doação condicional:\n é a doação cujos\nefeitos estão subordinados a um acontecimento futuro e incerto. São \nlimitações à doação:\n \na)\nimpossibilidade de doação da totalidade dos bens:\n \no doador não pode doar a integralidade de seu\npatrimônio, devendo pelo menos manter rendas suficientes para sua sob"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_201",
+      "numero": 201,
+      "enunciado": "000 salários mínimos\n.\nInventário negativo\nNão previsto em lei mas admitido pela doutrina e jurisprudência, poderá ser feito tal\ninventário, judicial ou extrajudicialmente\n436\n, com o propósito de documentar a \ninexistência\n de bens\na inventariar.\nTorna-se pertinente e quiçá necessário para que o cônjuge viúvo possa escolher o regime de\nbens de seu novo casamento. Estabelecendo a mister congruência entre os arts. 1.523, inciso I, CC\n(causas suspensivas do casamento) e 1.641, inciso I, CC (regime de separação obrigatóri",
+      "alternativas": {
+        "A": ",\nfacilmente concluímos que ao viúvo que não der partilha dos bens do morto será vedada a escolha\nde regime, sendo imposta a separação obrigatória. Pois bem.\nComo provar que o morto não deixou bens e que, portanto, não há o que inventariar, para que\npossa escolher o regime de bens? Surge, para este ",
+        "B": ".\nQuanto à \neficácia da lei processual no espaço\n, vige o princípio da territorialidade (art. 16 do\nNovo CP",
+        "C": ", limitando-se o juiz em aplicar a lei em todo o território nacional. Excepcionalmente,\npodem as normas processuais nacionais ser aplicadas em outro país em casos em que exista efetiva\nconexão internacional, desde que o território estrangeiro assim o permita. Da mesma forma, existe a\npossibilidade d",
+        "D": "Princípio do juiz natural: \nconsiste na garantia constitucional de se exigir que todos os atos\ndo processo e a decisão que deles emanarem sejam conduzidas por autoridades investidas de\njurisdição (juízes) e competentes segundo o disposto na lei (art. 5º, LIII, da CF). Destarte, vedada\nestá a existên"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_203",
+      "numero": 203,
+      "enunciado": "2 \nGarantias gerais internas\nSão consideradas garantias inerentes à própria relação processual, encontrando-se previstas\ntanto na legislação específica (CPC) quanto na extravagante. De maneira singela, podem ser listadas\ncom\no:",
+      "alternativas": {
+        "A": "Ação:\n a provocação do Judiciário deve ser feita pelas partes interessadas na solução do\nconflito de interesses, destacando-se neste tópico a inércia da jurisdição (art. 2º do Novo CPC).\nConsiste, portanto, no pilar de ordem subjetiva de provocar a jurisdição para compor o processo,\nque somente se m",
+        "B": "Disposição:\n liberdade concedida pela lei à parte para escolher a ação que pretende deduzir,\nselecionando os argumentos e a forma que melhor lhe aprouver, em face das inúmeras “ações” à sua\ndisposição até a sua efetiva distribuição. Não obstante a esse fato, há ainda que se observar a livre\niniciati",
+        "C": "Verdade formal:\n o juiz deve se manter relativamente equidistante das partes, relegando a\nestas a oportunidade de fazer suas provas, decidindo a lide com base naquilo que foi produzido nos\nautos. Com a devida prudência, admite-se, inclusive, a iniciativa judicial na busca da prova, sendo\nesta maior ",
+        "D": "Livre convencimento motivado:\n sinônimo de persuasão racional, este princípio concede\nao juiz uma ampla possibilidade para apreciar as provas constantes dos autos do processo (art. 371\ndo Novo CPC) segundo seu livre convencimento, sendo o juiz soberano na análise das provas\nproduzidas. Todavia, a de"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_204",
+      "numero": 204,
+      "enunciado": "6.6 \nHeranças jacente e vacante\nSegundo Maria Helena Diniz, “a jacência é um estado transitório que perdura até o momento\nda entrega da herança aos herdeiros, que comprovarem sua condição, ou da declaração de\nvacância”\n424\n.\nConstatada a “jacência”, o juiz mandará arrecadar os bens do morto e nomeará curador\nespecial, a quem recairá o \nmunus \nde administrar os bens arrecadados, sempre sob a fiscalização do\nMinistério Público e da Fazenda Púbica.\nO procedimento\n425\n, que se iniciará de ofício, a requerimento do Ministério Público, da\nFazenda Pública ou de qualquer interessado, terá por fim a te",
+      "alternativas": {
+        "A": ", impondo-lhe a \nperda\n \ndo direito a seu quinhão\n hereditário (legítimo ou testamentário)\nou do \nbem certo individuado no testamento\n (legado). Presume-se a vontade do autor da herança em\ndestituir o herdeiro de seu posto.\nHerdeiros que podem ser declarados indignos\nA ação declaratória de indignida",
+        "B": "que houverem acusado caluniosamente em\njuízo o autor da herança ou incorrerem em crime contra a sua honra, ou de seu cônjuge ou\ncompanheiro (forma consumada, e não tentada. \nVide\n art. 339, CP);",
+        "C": "que, por violência ou meios\nfraudulentos, inibirem ou obstarem o autor da herança de dispor livremente de seus bens por ato de\núltima vontade.\nAção declaratória\nNão basta a prática da conduta para afastar o herdeiro da sucessão, ainda que haja condenação\npenal transitada em julgado.\nÉ indispensável,",
+        "D": "presença de advogado (cada herdeiro poderá ter o seu, assim como poderá ser nomeado\napenas um para assistir a todos).\nInventári\no judicial e partilha\nPrazo para abertura\nDe acordo com o art. 611 do Novo Código de Processo Civil\n433\n, o inventário deverá ser\naberto \nem até dois meses \ncontados da dat"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_402",
+      "numero": 402,
+      "enunciado": "5 \nEmpresário irregular e sociedade empresária irregular\nTambém chamados de empresários ou sociedades “de fato”, são os que exercem suas\natividades sem o devido registro na Junta Comercial ou com descumprimento de uma ou algumas\ndas suas obrigações (irregular).\nNa prática, são confundidas entre si, dando a uma a denominação da outra. No entanto,\nSociedades de Fato (ou “em comum”)\n são aquelas que existem na vida cotidiana atuando \nsem\nregistro\n e, portanto, sem o reconhecimento de sua existência pelo direito. Apresentam-se como se\nfossem sociedades sem, entretanto, possuir as formalidades dess",
+      "alternativas": {
+        "A": "dias do recebimento da\nnotificação).\nNa Falência ou na Recuperação Judicial, aquele que adquirir o estabelecimento, não\nresponderá pelos débitos anteriores (civis, trabalhistas e tributários, inclusive) (trata-se da ausência\nde sucessão).\n3.7 \nAviamento e clientela\nAviamento: \né a potencialidade de ",
+        "B": "definição de ramos de atividade a ser explorada com maior ou menor visibilidade;",
+        "C": "proibição de competição autofágica.\nO contrato estabelecido entre o lojista e o \nShopping Center\n é um contrato de locação, com\nalgumas peculiaridade\ns:\n► \naluguel composto de uma parcela fixa e outra variável;\n► \npagamento da \nres sperata,\n para fazer parte do complexo empresarial;\n► \nobrigatorieda",
+        "D": "a cota de cada sócio e o modo de realizá-la;\ne) as prestações a que se obriga o sócio, cuja contribuição consista em serviços;\nf) as pessoas naturais incumbidas da administração da sociedade, seus poderes e atribuições;\ng) a participação de cada sócio nos lucros e perdas;\nh) se os sócios respondem o"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_408",
+      "numero": 408,
+      "enunciado": "5.3.8\n Assembleia dos sócios\nDeverão os administradores convocar reunião de todos os sócios para tomada de algumas\ndecisões de maior importância previstas na lei ou no contrato social, art. 1.072 do CC. A\nAssembleia dos Sócios poderá ser convocada pelos sócios se os administradores não o fizerem em\n60 dias, ou pelo conselho fiscal como já fora afirmado.\nÉ órgão obrigatório se a sociedade possuir mais de 10 sócios, art. 1.072, § 1º, do CC. Mas\nserá facultativo nas sociedades até 10 sócios, devendo, nesse caso, ser chamada de \nReunião de\nSócios\n.\nToda decisão tomada em Assembleia obriga e vincul",
+      "alternativas": {
+        "A": "tomar as contas dos administradores e deliberar sobre os balanços;",
+        "B": "designar administradores, se houver necessidade;",
+        "C": "tratar de qualquer assunto constante da ordem do dia.\nO quórum para instauração da Assembleia dos Sócios é de 3/4 do capital social em primeira\nconvocação e qualquer número na segunda, art. 1.074 do CC.\nOs quóruns de aprovação são os seguinte\ns:\n► \nmaioria qualificada de 3/4 para os temas dos incs. ",
+        "D": "liquidação de cotas do sócio por credor particular.\nA exclusão extrajudicial depende, igualmente, da vontade da maioria do capital social,\npodendo se verificar sempre que um ou mais sócios estiverem colocando em risco a atividade da\nempresa, praticando atos de inegável gravidade e desde que prevista"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_409",
+      "numero": 409,
+      "enunciado": "3.6 \nConselho Fiscal (arts. 161 a 165)\n► \nÓrgão da existência \nobrigatória\n, mas de \nfuncionamento facultativo\n;\n► \nComposto de no mínimo 3 e máximo 5 membros, acionistas ou não, eleitos pela AGO,\nsendo possível a reeleição e suplentes em igual número. Sua competência está elencada\nno (art. 163). Sua função é fiscalizar a gestão da sociedade e as demonstrações contábeis.\nNa Assembleia Geral, um membro será eleito pelos acionistas minoritários, outro pelos\ncontroladores e de um a três pela AGE (todos juntos).\n9.3.7 \nAcionistas\nDireitos essenciais (art. 109)\n► \nparticipação nos resultados sociai",
+      "alternativas": {
+        "A": "Filiação\nSerão consideradas filiadas, ou simplesmente coligadas, as sociedades quando uma participar\ndo capital da outra (reciprocamente ou não) em pelo menos 10%, sem a controlar, art. 1.099 do CC.",
+        "B": "De simples participação\nSão de simples participação as sociedades que possuam participação uma na outra (não\nnecessariamente recíproca) em menos de 10%, sem controle, mas com direito de voto, art. 1.100 do\nCC.",
+        "C": "Controle\nA controladora é titular do direito de sócio da controlada, fazendo prevalecer seus interesses\nnas deliberações sociais e com o poder de eleger a maioria dos administradores da sociedade\ncontrolada. Neste tipo de operação é vedada a participação recíproca, salvo hipóteses legais\nautorizador",
+        "D": "Princípio da autonomia: \nas diversas obrigações que um mesmo \ntítulo de cr\nédito\n pode\ndocumentar são independentes e autônomas umas em relação às outras. De outra forma \nos vícios que\ncomprometem a validade de uma relação jurídica, documentada em título de crédito, não se\nestendem às demais relaçõe"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_411",
+      "numero": 411,
+      "enunciado": "7\n Constituição do crédito cambiário\nA Lei Uniforme de Genebra buscou padronizar, nos países participantes, a regulamentação e\naplicabilidade dos \ntítulos de crédito\n, especialmente a Letra de Câmbio e a Nota Promissória. O\nBrasil acatou grande parte desta regulamentação, por ser um dos signatários do diploma\ninternacional em questão; entretanto, como já possuía legislação cambial, boa parte dela\npermaneceu em vigência.\nA LUG vigora no país, portanto, com algumas restriçõe\ns:",
+      "alternativas": {
+        "A": "arts. 10, 41 terceira alínea, 43 números 2 e 3 e 44, não são aplicáveis;",
+        "B": "o art. 38 deve ser completado com o art. 5º do anexo II;",
+        "C": "não se aplicam as taxas de juros dos arts. 48 e 49, mas as autorizadas pelo direito\nbrasileiro;",
+        "D": "permanecem em vigor, do Decreto n. 2.044/ 2008, os arts. 3º, 10, 20 (salvo quanto às\nconsequências da inobservância do prazo), 36, 48 e 54, I.\nPara que possamos entender a aplicabilidade do direito cambiário, se faz necessária a\ncolocação de alguns conceitos basilares comuns à maioria deles, para de"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_412",
+      "numero": 412,
+      "enunciado": "8.1\n Os recursos especial e extraordinário repetitivos\nDe acordo com o procedimento previsto nos arts. 1.036 ss. do Novo CPC, em havendo\nmultiplicidade de recursos extraordinários ou especiais que digam respeito a idênticas questões de\ndireito veiculado nos recursos excepcionais, com possibilidade de lesão à isonomia do\nposicionamento dos Tribunais Superiores (STJ/STF) acerca de determinados assuntos, serão\nselecionados dois ou mais recursos representativos da controvérsia, suspendendo-se a tramitação\ndos demais, a fim de que seja decidida a questão e fixada tese pelo tribunal superior (STF ou",
+      "alternativas": {
+        "A": ", poderá ser condenado a pagar multa no importe de\naté 20% sobre o valor do débito, a qual será revertida em proveito do exequente e exigível nos\npróprios autos do processo (art. 774, parágrafo único c/c art. 903, § 6º, ambos do Novo CPC). Se o\njuiz tiver dificuldades na definição do valor da multa,",
+        "B": "Fraude de execução:\n não é necessária nenhuma ação para se declarar a fraude, pois\npressupõe a existência de ação de execução em andamento, e a ineficácia poderá ser decretada nos\npróprios autos, podendo os bens do devedor ser alcançados pelos atos de apreensão judicial\nindependentemente de qualquer",
+        "C": "; ii) sendo incerto ou desconhecido o domicílio do executado, a execução\npoderá ser proposta no lugar onde for encontrado (art. 73 do CC), hipótese em que o exequente\npoderá optar pelo foro de seu domicílio para a propositura da ação; iii) havendo mais de um\ndevedor, com diferentes domicílios, a exe",
+        "D": "a\ndecisão interlocutória estrangeira, após a concessão do \nexequatur\n à carta rogatória pelo Superior\nTribunal de Justiça), hipóteses na qual o devedor será citado no juízo cível para o cumprimento da\nsentença ou para a liquidação no prazo de quinze dias.\nInovação importante trazida pelo Novo CPC é "
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_413",
+      "numero": 413,
+      "enunciado": "4.5.\n3 Da suspensão e da extinção da execução\nA execução somente será suspensa em caso de recebimento de embargos a critério do próprio\njuiz (haja vista que atualmente tais hipóteses não mais possuem efeito suspensivo de regr",
+      "alternativas": {
+        "A": ", nas\nhipóteses do art. 313 e 315 do Novo CPC, ou ainda quando o devedor não possuir bens penhoráveis\n(cf. art. 921 e 922 ambos do Novo CPC)\n71\n. Também poderá ser suspensa a execução mediante\nacordo realizado entre as partes durante o prazo concedido para o cumprimento voluntário da\nobrigação, que ",
+        "B": "a retirada (CC, arts. 1.029 e 1.077)\n82\n e",
+        "C": "a exclusão (CC, arts. 1.030 e 1.085)\n83\n.\nDistribuída a ação de dissolução parcial e estando preenchidos os requisitos essenciais da\npetição inicial (cf. arts. 319 e 320, ambos do Novo CPC), o juiz determinará a citação\n84\n dos sócios\ne da sociedade (regra geral pelo correio) para, no prazo de 15 di",
+        "D": "ECA – Lei n. 8.069/90. Assim, as disposições mencionadas nos arts. 693 ss. do\nNovo CPC serão aplicadas no que couber, àquilo que tiver sido disciplinado de modo especial,\nsalientando inclusive a preferência da lei pela solução consensual de conflitos (cf. art. 694 do Novo\nCPC), sendo inclusive permi"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_414",
+      "numero": 414,
+      "enunciado": "1.1\n1 Da ação monitória (arts. 700 a 702 do Novo CPC)\nA ação monitória é adequada para fins de produção de um título executivo judicial,\npossibilitando a execução de obrigação de pagamento em dinheiro, de entrega de coisa móvel ou\nfungível, que tem como base prova escrita desprovida de força executiva, nos termos do art. 700 do\nNovo CPC. O polo passivo da demanda é ocupado pelo devedor, sendo a legitimidade ativa do\ncredor, admitindo-se inclusive a ação monitória contra a Fazenda Pública (Súmula 339 do STJ c/c §\n6º do art. 700 do Novo CPC). O direito do credor nesse caso deve ser evidente (cf.",
+      "alternativas": {
+        "A": "ocorrida no transporte\nmarítimo, decorrente de uma ação deliberada do capitão do navio para se evitar um dano maior,\ndesde que tal dano maior não tenha se originado de suas ações ou das ações de sua tripulação.\n91\nSua relevância se dá diante dos contratos de transporte marítimo e eventuais danos às ",
+        "B": "regulamentador das relações jurídicas dos empresários entre si ou com particulares, não só\npara dirimir conflitos, mas para estabelecer regras básicas no desenvolvimento da atividade;",
+        "C": "estabelecer diretrizes para regulamentação do Direito Empresarial como direito custo\n1\n no\ndesenvolvimento da atividade lucrativa.\nCaracterísticas do Direito Empresarial\n► \nDinamism\no:\n mutável, sofre constantes mudanças socioeconômicas.\n► \nCosmopolitism\no:\n aplicação mundial, pois interessa a todos",
+        "D": "falência.\nCaso o empresário recuse-se a cumprir a ordem judicial para exibição dos Livros, eles serão\napreendidos e considerar-se-ão verdadeiros todos os fatos imputados judicialmente contra o\nempresário pela parte contrária, o que somente poderá ser elidido por prova documental (art. 1.192\ndo CC)."
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_601",
+      "numero": 601,
+      "enunciado": "1. Créditos trabalhistas limitados a 150 salários mínimos e créditos surgidos de\nacidente de trabalho.\n2. \n2. Créditos com garantia real até o limite do valor do bem gravado.\n3. \n3. Créditos tributários, salvo as multas tributárias.\n4. \n4. Créditos com privilégios especiais.\n5. \n5. Créditos com privilégio geral.\n6. \n6. Créditos quirografários, inclusive os créditos trabalhistas que excederem o limite de\n150 salários mínimos.\n7. \n7. Multas contratuais, penas pecuniárias, incluindo as multas tributárias.\n8. \n8. Créditos subordinados.\nu) Efeitos da falência:\nQuanto à pessoa do falido:\n com a decr",
+      "alternativas": {
+        "A": "pagamento integral;",
+        "B": "pagamento de 50% dos quirografários;",
+        "C": "5 anos do encerramento da falência se não houve condenação por crime;",
+        "D": "10 anos do encerramento se houve condenação por crime.\nOs sócios de responsabilidade ilimitada, observando que houve a prescrição ou extinção das\nobrigações nos termos da Lei de Falência, poderão requerer que seja declarada por sentença a\nextinção de suas obrigações na falência (art. 160 da LFRE).\nN"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_602",
+      "numero": 602,
+      "enunciado": "Falência requerida pelo credor\nDeve estar sempre embasada no\n \nart. 94; quando no inc. I, será instruída com o protesto para\nfins falimentares, quando no inc. II, com uma certidão de Execução frustrada, expedida pelo Juízo\nda execução, e quando no inc. III, pelas provas do ato alegado.\nApós citado, o réu terá prazo de 10 dias para pagar ou se defender. O pagamento consiste na\nrealização do Depósito Elisivo, que compreende o valor total da dívida acrescido de correção\nmonetária, juros e honorários advocatícios (parágrafo único do art. 98 da LFRE); nesta hipótese a\nfalência não será decretada. A",
+      "alternativas": {
+        "A": "ordena o falido a apresentar em cinco dias relação nominativa de credores (não é somente o\nnome, mas também o valor da dívida, data de vencimento e o título do crédito);",
+        "B": "determina os prazos para habilitação dos créditos;",
+        "C": "determina anotação na Junta Comercial;",
+        "D": "intimação do MP;\ne) comunicação das Fazendas Públicas;\nf) nomeação do administrador judicial;\ng) fixará o termo legal.\nj) Termo legal ou período suspeito:\n às vésperas da falência o devedor pode realizar\nmanobras econômicas a fim de resguardar algum patrimônio caso sua quebra seja decretada. Assim\no"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_611",
+      "numero": 611,
+      "enunciado": "15.\n3 Duplicata\nA \nDuplicata\n é regulada basicamente pela Lei n. 5.474, de 18-7-1968. Essa lei já sofreu\ndiversas modificações que foram introduzidas por leis posteriores.\nA \nDuplicata\n é um título causal. É um Título de Crédito que está revestido daqueles atributos\ncomuns aos títulos de crédito, mas que não é um título abstrato. Assim, trata-se de um título que só\npode ser emitido em razão de causas determinadas, expressamente indicadas na lei.\nAtualmente, sob este aspecto, temos duas espécies de \nDuplicatas:\n a \nDuplicata\n que tem por\ncausa uma fatura advinda de um contrato de compra e venda",
+      "alternativas": {
+        "A": "sujeita o emitente a uma sanção de natureza\npenal, uma vez que é crime a expedição de \nDuplicata\n simulada, ou seja, de \nDuplicata\n que não tenha\npor causa uma efetiva venda mercantil ou uma prestação de serviço (art. 172, CP).\nO mecanismo da \nDuplicata\n é semelhante ao mecanismo da \nLetra de Câmbio",
+        "B": "Títulos de Crédito Rural\nConsidera-se crédito rural o suprimento de recursos financeiros por entidades públicas e\nestabelecimentos de créditos particulares e produtores rurais ou as suas cooperativas para\naplicação exclusiva em atividades que se enquadrem nos objetos indicados. Como exemplos de\ntítu",
+        "C": "caso fortuito ou força maior são excludentes do cumprimento da obrigação\npelo fato de ter se tornado impossível por evento externo ao contrato, o devedor não será\nresponsabilizado pelo inadimplemento a que não deu causa, nem poderia evitar, por exemplo um\nterremoto, causado ou não pela participação ",
+        "D": "Responsabilidade das partes\nNa celebração do contrato de venda e compra entre empresários, o comprador assume a\nobrigação de pagar o preço e o vendedor a de transferir o domínio, ou seja, proceder à entrega da\ncoisa no prazo. Caso o comprador não cumpra sua parte na avença, responde pelo valor devid"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_612",
+      "numero": 612,
+      "enunciado": "3\n Mandato mercantil – arts. 653 a 691 do Código Civil\na\n) Conceito:\n é o contrato consensual pelo qual uma pessoa (mandatário) se obriga a praticar\nos atos ou administrar os interesses de outra (mandante) em nome e por conta desta última a título\noneroso; é muito comum, no meio empresarial, pela agilidade e especialidade na execução dos\nnegócios da contratada.\nEm regra, o contrato de mandato é unilateral, contudo a vontade das partes ou a natureza\nprofissional do mandatário pode convertê-lo em bilateral impróprio.\nObrigações do mandatário\n► \ndiligência;\n► \ndar contas de sua gerência, transfer",
+      "alternativas": {
+        "A": "Conceito\nÉ o vínculo contratual consensual em que uma pessoa (comissário) se obriga a realizar\nnegócios por conta de outra pessoa (comitente), de quem recebe ordens e instruções, mas em nome\npróprio, assumindo, portanto, perante terceiros, responsabilidade pessoal pelos atos praticados.\nNesse sentid",
+        "B": "Espécies: comissão imperativa\n – ao comissário resta agir em consonância com o que está\nexpressamente acordado; \ncomissões indicativas\n – há certa liberdade de atuação do comissário, o\nqual deve comunicar sua atuação ao comitente, e \ncomissão facultativa\n \n– o comitente passa para o\ncomissário seus ",
+        "C": "Características\n► \nperante o comitente, o comissário tem a obrigação de observar as instruções recebidas\n(art. 695 do CC), bem como zelar pelos bens a ele confiados, prestar contas do\nmovimento econômico do contrato e proporcionar lucro ao comitente;\n► \nperante terceiro, o comissário tem todas as ob",
+        "D": "Espécies de seguro: \nsão duas as espécies de segur\no:\nSeguro de dano\n – tem por objeto os interesses relacionados com o patrimônio e obrigações\n(valores, direitos, bens etc.) ou saúde e integridade física, apresentando sentido meramente\nindenizatório, ou seja, de reparação do prejuízo sofrido. Não a"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_613",
+      "numero": 613,
+      "enunciado": "2.2\n Recuperação extrajudicial (arts. 161 a 167 da LFRE)\nÉ o acordo entre devedor e seus credores. É uma forma de os credores receberem seus\ncréditos a partir dos sacrifícios que concordam suportar. Para negociar suas dívidas com os\ncredores (ou parte delas), o devedor empresário não tem que preencher nenhum requisito de lei,\nbastando o acordo dos envolvidos.\nCaso todos os credores adiram ao plano de recuperação extrajudicial, está pode ser ou não\nhomologação, haja vista seu caráter facultativo. Caso o devedor consiga 3/5 dos créditos de cada\nespécie abrangida pelo plano de recuperação, a homo",
+      "alternativas": {
+        "A": "Requisitos subjetivos\n► \natender às condições da recuperação judicial (art. 161, § 3º, da LFRE);\n► \nnão possuir pedido de recuperação judicial em trâmite (art. 161, § 3º, da LFRE);\n► \nnão ter sido concedida recuperação (judicial ou extrajudicial) há menos de 2 anos.",
+        "B": "Requisitos objetivos\n► \no plano não prever pagamento antecipado de nenhuma dívida;\n► \ntratamento paritário e todos os credores sujeitos ao plano;\n► \nplano abranger somente os créditos já existentes na data do pedido;\n► \nsó pode constar alienação de bens gravados ou substituição de garantia real com ",
+        "C": "Homologação facultativa e obrigatória:\n será \nfacultativa\n quando \ntodos\n os credores\nsujeitos ao plano aderiram a ele (art. 161, \ncaput\n, da LFRE). Será \nobrigatória\n quando o devedor\nconseguir adesão de boa parte dos credores ao plano, com discordância da minoria (art. 163, \ncaput\n,\n§ 6º, da LFRE)",
+        "D": "Descumprimento de qualquer outra exigência legal.\nHavendo apresentação de impugnação, o devedor terá o prazo de 5 dias para se manifestar\nsobre o referido feito; após este prazo o juiz prolatará sua decisão. O Ministério Público poderá se\nmanifestar na Recuperação Extrajudicial, como \ncustos legis\n,"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_803",
+      "numero": 803,
+      "enunciado": "4.2 \nCrimes de ação pública condicionada\nNos crimes de ação pública condicionada o inquérito policial poderá ser iniciad\no:",
+      "alternativas": {
+        "A": "Requisição \ndo Ministro da Justiça (crimes do art. 7º, § 3º, \nb\n, do CP; art. 145, parágrafo\núnico, do CP).",
+        "B": "Representação \ndo ofendido ou de seu representante legal – arts. 5º, § 4º, e 24, ambos do\nCPP).\n3.4.3 \nCrimes de ação privada\nNos crimes de ação privada o inquérito policial poderá ser iniciado a \nrequerimento\n \ndo\nofendido ou de seu representante legal (arts. 5º, § 5º, e 30, ambos do CPP). Na hipót",
+        "C": "inquérito instaurado\npela Câmara dos Deputados ou Senado Federal visando à apuração de infração penal praticada em\nsuas dependências.\nSúmula 397 do Supremo Tribunal Federal – \nO poder de polícia da Câmara dos Deputados e do Senado Federal, em caso de\ncrime cometido nas suas dependências, compreende,",
+        "D": "justa causa \n– segundo a corrente moderna, deve haver o mínimo de provas razoáveis para\nindiciar alguém e afirmar que existe a materialidade delitiva. A falta de justa causa acarreta a\nrejeição da denúncia ou queixa-crime, segundo o art. 395, III, do CPP."
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_804",
+      "numero": 804,
+      "enunciado": "8.3 \nTipos de ação penal privada\n4.8.3.1 \nAção penal privada exclusiva\nTitular: \no ofendido (querelante/vítim",
+      "alternativas": {
+        "A": "ou seu representante legal.\nAtenção\nSe o ofendido vier a falecer ou quando ele for declarado judicialmente ausente \n→\n o C.A.D.I. (cônjuge, ascendente, descendente,\nirmão) poderá oferecer a \nqueixa-crime\n – art. 31 CPP.\n4.8.3.2 \nAção penal privada personalíssima\nTitular: \nsomente\n a vítima (querelan",
+        "B": "Renún\ncia\n – ato unilateral (só depende da vontade do querelante) que deve ocorrer antes da\nação penal – o querelante abre mão de apresentar a sua queixa-crime.\nA renúncia pode se\nr:\na) tácita;\nb) expressa – art. 50 do CPP.\nA renúncia dada a um dos réus a todos se estenderá – art. 49 do CPP.",
+        "C": "Perdão\n – é um ato bilateral =\n \nvontade do ofendido de \nperdoar\n +\n \nvontade do querelado de\naceitar\n o perdão – art. 51 do CPP. Só pode ocorrer durante a ação penal até o trânsito em julgado.\nPode se\nr:\na) tácito;\nb) expresso.\nO querelado tem \n3 dias\n para dizer se aceita ou não o perdão – art. 58",
+        "D": "Perempção\n – as causas estão previstas no art. 60 do CPP → o ofendido (vítima/querelante)\nperde o direito de continuar na ação penal privada, devido à sua negligência. Trata-se de um\ninstituto que só se aplica na \nação penal exclusivamente privada\n."
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_805",
+      "numero": 805,
+      "enunciado": "AÇÃO CIVIL EX DELICTO\nA ação civil \nex delicto\n é meio pelo qual a vítima (ou seus herdeiros) busca uma indenização\npelos prejuízos advindos do crime.\nO art. 91, I, do CP deixa bem claro que um dos efeitos da sentença condenatória transitada em\njulgado é o dever de o acusado indenizar a vítima.\nO direito a uma justa indenização está alicerçado na nossa Constituição Federal de 1988, em\nseu art. 5º, XLV.\nApesar de a referida ação estar prevista no Código de Processo Penal, tem a sua tramitação na\nesfera cível, conforme art. 63, \ncaput\n, do CPP.\nO juiz da esfera cível pode suspender o andamento d",
+      "alternativas": {
+        "A": "pelo art. 386, I, do CPP (ficar provada inexistência do fato);",
+        "B": "nos termos do art. 65 do CPP – legítima defesa, estado de necessidade, estrito cumprimento\ndo dever legal e exercício regular do direito.\nA Lei n. 11.690/2008 introduziu o inc. VII ao art. 386 do CPP, bem como alterou o texto dos\nincs. IV, V e VI.\nO inc. IV declar\na:\n “estar provado que o réu não co",
+        "C": "Procurador-Geral da República;",
+        "D": "Ministro do STF; e) membros do\nConselho Nacional de Justiça (CNJ) e do Conselho Nacional do Ministério Público; e f)\nAdvogado-Geral da União."
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_806",
+      "numero": 806,
+      "enunciado": "6 \nComo estabelecer a competência\n1º –\n \naplicar a regra geral de competência prevista no\n art. 70 do CPP\n, ou seja, localizar o\nlugar da consumação do crime.\n2º – verificar a\n \nexistência de matéria especial ou fo​ro privilegiado (\nexceções\n à regra geral do\nart. 70 do CPP).\n3º – não havendo exceções, verificar a existência de mais de um juiz competente para julgar o\ncaso.\n4º – se houver mais de um juiz deve ser realizada a distribuição (sorteio aleatório de um dos\njuízes competente no foro para conduzir o processo criminal).\n7. QUESTÕES E PROCESSOS INCIDENTES\n7.1 \nQuestões prejudiciais\nPor v",
+      "alternativas": {
+        "A": "as questões preliminares são referentes ao direito processual, enquanto as questões\nprejudiciais são sempre referentes ao direito material, ou seja, ao mérito;",
+        "B": "as questões\nprejudiciais podem ser solucionadas na esfera penal ou extrapenal (cível etc. – conforme a sua\nnatureza), enquanto as questões preliminares devem ser sempre solucionadas na esfera penal.\nA questão prejudicial pode ser homogênea – quando pertence ao mesmo ramo do direito da\nquestão prejud",
+        "C": "os que já opinaram no objeto a ser periciado ou já prestaram\ndeclarações nos autos;",
+        "D": "os que estiverem com seus direitos temporariamente interditados,\nconforme hipóteses do art. 47, I e II, do CP.\nTanto as partes como a própria autoridade poderá elaborar os quesitos até o ato da diligência.\nO exame necroscópico\n (autópsia) deverá ser feito 6 (seis) horas após o óbito – art. 162,\ncapu"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_808",
+      "numero": 808,
+      "enunciado": "13.9\n Interrogatório na lei ambiental (Lei n. 9.605/98)\nCabe lembrar que, segundo alguns doutrinadores que aplicam a regra da analogia do\nprocedimento do CPP e da Lei n. 9.099/95, na lei ambiental também há possibilidade do\ninterrogatório da pessoa jurídica, apesar de esse entendimento ser rechaçado por algumas correntes\ndoutrinárias.\n8.14\n Da testemunha e da prova testemunhal\n8.14.1\n Conceito\nTestemunha é a pessoa estranha ao processo que, por intermédio de seus sentidos, consegue\ndepor sobre fatos perante o magistrado. É considerada elemento de prova.\n8.14.2\n Testemunhas\nQualquer pessoa pode",
+      "alternativas": {
+        "A": "menores de 14 anos; (",
+        "B": "as pessoas mencionadas no art.\n206 do CPP; (",
+        "C": "com doença ou deficiência mental não prestam o compromisso de dizer a verdade.\nNão é aceito, no Código de Processo Penal, o testemunho de pessoas inidôneas. Portanto, antes\nde começar o depoimento, a testemunha poderá ser \ncontraditada\n, arguindo a parte circunstâncias\nque possam induzir a suspeição",
+        "D": "Testemunha\n \nindireta:\n é a pessoa que tomou conhecimento sobre os fatos por intermédio de\noutra pessoa.\ne) \nTestemunha\n \nnumerária:\n é aquela que as partes podem arrolar segundo a lei (rito ordinário\n– até 8 testemunhas, sumário até 5 testemunhas etc.). Ela presta o compromisso de dizer a verdade.\n"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_809",
+      "numero": 809,
+      "enunciado": "SUJEITOS PROCESSUAIS\nO Código de Processo Penal reserva um título (VIII, do Livro I) para cuidar das partes\nenvolvidas no processo penal.\n9.1 \nJuiz\nPrimeiramente, o juiz é um sujeito processual imparcial (mesmos pesos e mesmas medidas\npara ambas as partes), tendo como função precípua conduzir o processo e o julgamento da lide.\nTodo magistrado possui a chamada jurisdição (“o direito de falar do direito”) que é sem sombra de\ndúvidas limitada pela competência.\nO poder do juiz é dividido em duas categorias, de acordo com a corrente predominante\ndoutrinári\na:",
+      "alternativas": {
+        "A": "poder jurisdicional – a imparcialidade do juiz em decidir as lides aplicando a lei ao caso\nconcreto sempre deve ser a sua principal função.",
+        "B": "poder de polícia – são poderes administrativos, instrumentos em que o juiz faz valer a\nregularidade e ordem do processo.\nUm exemplo\n clássico deste poder é a ordem do juiz de mandar buscar por força pública a\ntestemunha intimada que se recusa a comparecer em juízo.\nNesta linha de raciocínio sobre o ",
+        "C": "a independência funcional\n, também conhecida como \nautonomia funcional\n – a hierarquia\nque existe dentro do Ministério Público é meramente administrativa e não funcional. Dessa forma, o\nsuperior hierárquico não manda no entendimento do membro em posição inferior hierarquicamente,\nou seja, o MP poder",
+        "D": "resistir sem motivo à ordem judicial; e)\ndescumprir medida cautelar imposta cumulativamente com a fiança. Já a \nperda\n da fiança (atual art.\n344 do mesmo \nCodex\n) ocorre quando o condenado não se apresenta para o início do cumprimento\nda pena imposta.\nO \nvalor da fiança\n será determinado pela nature"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_811",
+      "numero": 811,
+      "enunciado": "719/2008).\nf) \nSentença absolutória\n \n(art. 386 do CPP).\n12.2\n Da sentença condenatória\nEste tipo de decisão soluciona a ação, julgando procedente, total ou parcialmente, a pretensão\npunitiva e aplica uma sanção penal.\nCom o advento da Lei n. 11.719/2008, foram alterados os incs. II, III e IV, todos do art. 387 do\nCPP.\nA nova redação \ndo inc. IV\n do art. 387 do CPP determina que \nna condenação o juiz deverá\nfixar o valor mínimo para a reparação dos danos sofridos pelo ofendido\n.\nCuriosidade\nEsta exigência também existe na lei ambiental. Quando o juiz profere uma sentença condenatória por \ncrim",
+      "alternativas": {
+        "A": "Absolutória própria\n – é aquela que não acolhe a pretensão punitiva.",
+        "B": "Absolutória imprópria\n (art. 386, parágrafo único, inc. III, do CPP) – é aquela que não\nacolhe a pretensão punitiva, mas reconhece que houve um crime e, portanto, aplica uma medida de\nsegurança ao réu.\n12.3.1\n Efeitos da sentença absolutória\na) \nPôr o réu\n em liberdade se estiver preso.\nb) \nTransita",
+        "C": "Aplicação da medida de segurança em caso de absolvição imprópria.\n12.4\n Os requisitos intrínsecos da sentença\nRelatório\n – o relatório nada mais é que um resumo de tudo que ocorreu no processo. Ele é\nexigido no art. 381, I e II, do CPP. Cabe lembrar que a ausência de \nrelatório na sentença\n gera\nnul",
+        "D": "absolvição sumária – art. 415 do CPP.\nDecisão:\n \npronúncia ou desclassificação\n – cabe o Recurso em Sentido Estrito – RSE – art.\n581, II ou IV, do CPP e \ndecisão: impronúncia ou abs. sumária\n – cabe \nApelação\n – art. 416 do CPP.\nFonte:\n Fernanda Fisher\nComo é composto o Tribunal do Júri?\nConforme de"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_813",
+      "numero": 813,
+      "enunciado": "5.4\n Procedimento dos crimes falimentares (Lei n. 11.101/2005)\nA referida lei estabelece no seu art. 183 que \ncompetirá ao juiz criminal\n da jurisdição onde\ntenha sido decretada a falência, homologado o plano de recuperação extrajudicial ou concedida a\nrecuperação judicial conhecer a ação penal pelos crimes falimentares.\nTodos os crimes falimentares são de natureza pública (titularidade do MP) incondicionada. À\nluz dos arts. 185 e 187, § 1º, o MP possui um prazo de 5 (cinco) dias (réu preso) e 15 (quinze) dias\n(réu solto) para oferecer a denúncia. Estando o réu solto ou afiançado, o MP pode op",
+      "alternativas": {
+        "A": "dias, a contar da homologação do laudo.\n14. NULIDADES NO PROCESSO PENAL (ARTS. 563 A 573 DO CPP)\nSegundo Tourinho Filho, o conceito de nulidade é “nulo é o ato imperfeito, defeituoso, atípico,\na que se aplicou a sanção de ineficácia” (\nManual de processo penal\n, p. 488). Portanto nulidade é\num vício",
+        "B": "suprimento – art. 569 do CPP, e",
+        "C": "substituição – art. 570 do CPP.\nOs suprimentos\n são as omissões constantes na denúncia ou na queixa, na representação, na\nportaria ou no auto de prisão em flagrante que poderão ser supridas, a todo tempo, antes da\nsentença, diz o art. 569 do CPP.\nLogo, sempre que houver a necessidade de fazer um acr",
+        "D": "Carta Testemunhável\n – art. 643 do CPP."
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_815",
+      "numero": 815,
+      "enunciado": "5\n Reclamação\nÉ um recurso que as partes podem usar para afastar decisões que deixem de cumprir os\njulgados dos tribunais, ofendendo a sua autoridade ou usurpando-lhes a sua competência. Esse\nrecurso está previsto na Lei n. 8.038/90, art. 13, bem como na Constituição Federal, no art. 103, \na\n, §\n3º. Os regimentos internos dos tribunais também regulamentam o referido recurso. A súmula\nvinculante tem força de julgado do STF em relação ao caso particular.\nOutrossim, não cabe esse recurso na hipótese da Súmula 734 do STF – “Não cabe reclamação\nquando já houver transitado em julgado o ato judicial ",
+      "alternativas": {
+        "A": "decisão que contrariar lei federal ou negar-lhe\nvigência,",
+        "B": "decisão que julgar válido ato de governo local contestado em face de lei federal,",
+        "C": "decisão que der a lei federal interpretação diferente da que lhe seja atribuída por outro tribunal.\nAlém de todos os pressupostos de admissibilidade supramencionados, o Recuso Especial\nexige, para ser conhecido, o esgotamento de todas as vias ordinárias recursais existentes e o\nchamado prequestionam",
+        "D": "julgar válida lei local contestada em face de\nlei federal.\nAlém de todos os pressupostos de admissibilidade supramencionados, o Recuso\nExtraordinário exige para ser conhecido o esgotamento de todas as vias ordinárias recursais\nexistentes, prequestionamento e, segundo determina Emenda Constitucional "
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_828",
+      "numero": 828,
+      "enunciado": "2\n Infração de medida sanitária preventiva\nConduta típica:\n infringir determinação do poder público, destinada a impedir introdução ou\npropagação de doença contagiosa.\nNúcleo do tipo:\n infringir.\nBem protegido:\n a incolumidade pública (saúde públic",
+      "alternativas": {
+        "A": ".\nPena:\n de um mês a um ano de detenção, e multa.\nClassificação:\n crime comum, instantâneo, formal, de forma livre, comissivo ou comissivo por\nomissão e admite tentativa.\nObservação:\n a pena é aumentada de um terço se o agente é funcionário da saúde pública ou\nexerce a profissão de médico, farmacêut",
+        "B": ".\n\n3. INQUÉRITO POLICIAL (ARTS. 4º A 23 DO CPP)\n3.1 \nConceito e natureza jurídica\nA primeira dúvida que pode despontar nesse tema é evidentemente qual a natureza jurídica do\ninquérito policia\nl:\n processo ou procedimento administrativo?\nProcesso \né palavra de origem do latim \nprocessus\n. O processo ",
+        "C": "antecipadas.\n3.3.1 \nProvas cautelares\nAs provas cautelares são aquelas que, \nem face de urgência\n, são realizadas antes do momento\nadequado.\n3.3.2 \nProva não repetível\nTrata-se daquela que não pode ser realizada novamente na fase judicial. Ex\n.:\n um laudo pericial\nrealizado na fase do I.P. de um obj",
+        "D": "Requerimento \ndo ofendido ou de seu representante legal – art. 5º, II."
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1003",
+      "numero": 1003,
+      "enunciado": "688/41 – LCP);\nb) no crime de tortura foi acrescentada causa de aumento de pena se o crime é cometido contra\n“\nmaior de 60 (sessent",
+      "alternativas": {
+        "A": "anos” (art. 1º, § 4º, II, da Lei n. 9.455/97);\nc) nos crimes da antiga Lei de Entorpecentes foi incluída causa de aumento de pena quando\nqualquer deles visasse a “pessoa com idade igual ou superior a 60 (sessenta) anos”\n \n(art. 18, III, da\nLei n. 6.368/76).\n8. INTERCEPTAÇÃO DE COMUNICAÇÕES TELEFÔNIC",
+        "B": "Dissimulação, também chamada de controle ou estratificação (\nempilage\n), que objetiva\ndissociar o dinheiro da sua origem, dificultando a obtenção de sua ilegalidade (rastreamento) –\ngeralmente o dinheiro é movimentado de forma eletrônica, ou depositado em empresas-fantasma, ou\nmisturado com dinheiro",
+        "C": "Integração (\nintegration\n), fase final e exaurimento da lavagem de dinheiro, em que o agente\ncria explicações legítimas para os recursos, aplicados, agora de modo aberto, como investimentos\nfinanceiros ou compra de ativos (ouro, ações, veículos, imóveis etc.) – podem surgir as\norganizações de fachad",
+        "D": "prestação pecuniária (art. 12); e\ne) recolhimento domiciliar (art. 13)."
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1006",
+      "numero": 1006,
+      "enunciado": "1.12\n Fixação da pena de multa – art. 43\nNa Lei de Drogas, a sistemática do dia-multa foi preservada, em consonância com o que\ndispõe a Parte Geral do Código Penal (arts. 49 a 52).\nNos crimes apenados com multa, o legislador já incluiu, no preceito secundário da norma, a\nquantidade mínima e máxima de dias-multa.\nNa fixação do número de dias-multa, entretanto, deve o juiz considerar as circunstâncias do\nart. 42 da lei, ou seja, a natureza e a quantidade da substância ou do produto, a personalidade e a\nconduta social do agente. Fixada a quantidade de dias-multa, deve o juiz atribuir valor a cada",
+      "alternativas": {
+        "A": "e “desviar” (desencaminhar, alterar o destino). Embora o dispositivo em comento\nnão faça menção expressa, é necessário que o sujeito ativo tenha a posse ou detenção do bem,\nprovento, pensão ou qualquer outra renda do idoso. Trata-se de modalidade especial de\napropriação indébita inserida no Estatuto",
+        "B": "tornou-se causa de aumento de pena no crime de homicídio doloso ser ele praticado contra\npessoa “maior de 60 (sessenta) anos”\n \n(art. 121, § 4º, \nin fine\n);",
+        "C": "no crime de abandono de incapaz, foi incluída causa de aumento de pena de um terço “se a\nvítima é maior de 60 (sessenta) anos” (art. 133, § 3º, III);",
+        "D": "no crime de injúria (art. 140), a utilização de elementos referentes à “condição de pessoa\nidosa ou portadora de deficiência”\n \ntrouxe nova redação ao § 3º (injúria por preconceito);\ne) nos crimes contra a honra de calúnia e difamação, foi introduzida causa de aumento quando\nforem praticados “contra"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1010",
+      "numero": 1010,
+      "enunciado": "8\n Circunstâncias atenuantes e agravantes\nAs circunstâncias atenuantes, previstas no art. 14 da Lei dos Crimes Ambientais, sã\no:\nI – baixo grau de instrução ou escolaridade do agente;\nII – arrependimento do infrator, manifestado pela espontânea reparação do dano, ou limitação significativa da degradação\nambiental causada;\nIII – comunicação prévia pelo agente do perigo iminente de degradação ambiental;\nIV – colaboração com os agentes encarregados da vigilância e do controle ambiental.\nAs circunstâncias agravantes, por seu turno, previstas no art. 15 do mesmo diploma, sã\no:\nI – reincidência nos ",
+      "alternativas": {
+        "A": "em caso de parcelamento, a representação fiscal ao Ministério Público para fins penais fica\ncondicionada à exclusão da pessoa física ou jurídica do parcelamento;",
+        "B": "durante o período em que a pessoa física ou jurídica relacionada aos agentes dos crimes\ncontra a ordem tributária estiver incluída no parcelamento, fica suspensa a pretensão punitiva do\nEstado, desde que o parcelamento tenha sido formalizado antes do recebimento da denúncia\ncriminal;",
+        "C": "a prescrição criminal dos crimes contra a ordem tributária não corre durante o período da\nsuspensão da pretensão punitiva;",
+        "D": "deve ser considerada a irretroatividade da lei mais severa, de modo que o disposto nos §§\n1º, 2º, 3º e 4º do art. 83 da Lei n. 9.430/96 somente pode ser aplicado aos lançamentos ocorridos a\npartir de 25 de fevereiro de 2011. Assim, para os lançamentos ocorridos antes de 25 de fevereiro\nde 2011, é po"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1011",
+      "numero": 1011,
+      "enunciado": "1\n7 Impossibilidade de pagar o tributo\nA doutrina e a jurisprudência vêm entendendo que, estando o contribuinte insolvente, em grave\ncrise financeira a que não deu causa, impossibilitado de pagar o tributo ou contribuição, não deverá\nser penalizado.\nAlguns entendem tratar-se de \nestado de necessidade\n. Outros entendem haver \ncausa excludente\ngenérica de criminalidade\n. E outra corrente pugna pela ocorrência de \ninexigibilidade de conduta\ndiversa\n.\nO estado de necessidade, como causa de exclusão da antijuridicidade, requer, para sua\nconfiguração, a ocorrência de \nsituação de perigo\n, em que se ",
+      "alternativas": {
+        "A": ", acessoriedade (deve\nser imprescindível) e provisoriedade (é por prazo restrito).\nAntecedentes históricos:\n a prisão temporária vem como salutar substituição da prisão para\naveriguação que podia ser decretada pela autoridade policial sem a análise do Poder Judiciário e\nsem o controle externo do Min",
+        "B": "o de provocar ação ou omissão de\nnatureza criminosa;",
+        "C": "o de discriminação racial ou religiosa.\nInexistente qualquer desses propósitos\n supra\n, não haverá crime de tortura, mas eventualmente\noutra figura típica.\nQuando, na hipótese do art. 1º, I, \na\n, a provocação do sofrimento visar a obtenção de\ninformação, declaração ou confissão, não haverá a necessi",
+        "D": "a \nviolência patrimonial\n, entendida como qualquer conduta que configure retenção,\nsubtração, destruição parcial ou total de seus objetos, instrumentos de trabalho, documentos\npessoais, bens, valores e direitos ou recursos econômicos, incluindo os destinados a satisfazer suas\nnecessidades;\ne) a \nvio"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1015",
+      "numero": 1015,
+      "enunciado": "1\n0 Juizados de violência doméstica e familiar contra a mulher\nInspirada pelo Princípio da Especialização, a Lei de Violência Doméstica e Familiar contra a\nMulher previu, no art. 14, a criação, pela União, no Distrito Federal e nos Territórios, e pelos\nEstados, dos Juizados de Violência Doméstica e Familiar contra a Mulher, órgãos da Justiça\nOrdinária, com competência cível e criminal, para o processo, o julgamento e a execução das\ncausas decorrentes da prática de violência doméstica e familiar contra a mulher. Previu a lei, ainda,\nque os atos processuais poderão realizar-se em horário noturno",
+      "alternativas": {
+        "A": "do domicílio ou da residência da mulher;",
+        "B": "do lugar do fato em que se baseou a demanda;",
+        "C": "do domicílio do agressor.\n15.1\n1 Violência doméstica e familiar contra a mulher e a Lei n. 9.099/95\nPreviu expressamente o art. 41 da Lei n. 11.340/2006 a impossibilidade de aplicação da Lei n.\n9.099/95, em sua integralidade, aos casos de violência doméstica e familiar contra a mulher,\nestabelecendo",
+        "D": "repouso semanal remunerado, preferencialmente aos domingos (art. 7º, XV, da CF);\ne) férias anuais remuneradas com, pelo menos, um terço a mais do que o salário normal (art.\n7º, XVII, da CF);\nf) licença à gestante, sem prejuízo do emprego e do salário, com a duração de cento e vinte\ndias (art. 7º, XV"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1016",
+      "numero": 1016,
+      "enunciado": "3\n Habeas Corpus (arts. 647 a 667 do CPP e art. 5º, LXVIII, da CF/88)\nTambém o \nHabeas Corpus\n não é um recurso. É uma ação de impugnação, uma ação popular\nconstitucional, é, enfim, um remédio constitucional.\nA origem remota do \nHabeas Corpus\n está para alguns autores na Magna Carta do Rei João sem\nTerra, na Inglaterra, no ano de 1215. Outros apontam o cerne do \nHabeas Corpus\n na previsão dos\ninterditos\n do Direito Romano.\nNo Brasil, o \nHabeas Corpus\n veio previsto primeira e implicitamente na Constituição do\nImpério, em 1924.\nDe início, o \nHC \ncuidava de toda e qualquer situação em que o home",
+      "alternativas": {
+        "A": ", em regra se impetra \nHabeas Corpus\n para a autoridade ou instância acima de quem\nestiver infringindo o direito de locomoção. Desse modo, se a autoridade coatora for delegado de\npolícia ou a ilegalidade partir do particular, a impetração se dará para o juiz. Se a autoridade for o\njuiz, impetra-se p",
+        "B": "participando, em via pública, de corrida, disputa ou competição automobilística, de\nexibição ou demonstração de perícia em manobra de veículo automotor, não autorizada\npela autoridade competente;",
+        "C": "transitando em velocidade superior à máxima permitida\npara a via em 50 km/h (cinquenta quilômetros por hora);\n► \nembriaguez ao volante (art. 306), cuja pena privativa de liberdade é de 6 meses a 3\nanos de detenção;\n► \nparticipação em corrida, disputa ou competição não autorizada (art. 308).\n1.2 \nPri",
+        "D": "consumo conjunto (também pelo agente).\nCausa de diminuição de pena: \no § 4º do art. 33 trouxe causa de diminuição de pena aos\ncrimes do \ncaput\n e do § 1º, quando o agente for primário, de bons antecedentes, não se dedicar às\natividades criminosas nem integrar organização criminosa.\nPenas restritivas"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1203",
+      "numero": 1203,
+      "enunciado": "9 \nCapacidade tributária\nO art. 7º, § 3º, do CTN determina que não constitui delegação de competência o cometimento,\na pessoa de direito privado, do encargo ou da função de arrecadar tributos.\nA competência diz respeito à aptidão para instituir tributos e a capacidade tributária ativa diz\nrespeito à aptidão para cobrar tributos.\nPortanto, a capacidade tributária ativa é delegável por lei (editada pela entidade tributante),\npodendo uma terceira pessoa arrecadar os tributos. Ex\n.:\n ITR (art. 153, § 4º, III) “será fiscalizado e\ncobrado pelos Municípios que assim optarem, na forma da lei, desde qu",
+      "alternativas": {
+        "A": ".\n4.5 \nImunidade dos templos de qualquer culto\nSegundo a nossa Constituição Federal (art. 150, VI, \nb\n), a imunidade atingirá os templos de\nqualquer culto, sendo que as vedações expressas no inc. VI, alíneas \nb\n e \nc\n, compreendem somente o\npatrimônio, a renda e os serviços relacionados com as final",
+        "B": "os recursos devem ser utilizados no país para as finalidades sociais; e",
+        "C": "as instituições devem manter a escrituração de suas receitas e despesas em livros revestidos\nde formalidades capazes de assegurar sua exatidão.\nCabe ressaltar, o resultado do julgamento do RE 767.332, onde foi reconhecida a repercussão\ngeral e, o STF confirmou a imunidade com relação ao IPTU dos imó",
+        "D": "nas prestações de serviço de comunicação nas modalidades de radiodifusão sonora e de sons e imagens de\nrecepção livre e gratuita.”\nICMS –\nprovedores\nde acesso à\ninternet e\nhabilitação de\ntelefonia\ncelular\nSúmula 350 do STJ – “O ICMS não incide sobre o serviço de habilitação de telefone celular”.\nSúm"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1205",
+      "numero": 1205,
+      "enunciado": "2.1 \nImpostos\nO art. 16 do CTN é claro ao dispor que o imposto é um tributo não vinculado, que independe\nde qualquer atividade estatal específica, sendo utilizado para custear atividades gerais, universais e\nabstratas, não visando à satisfação de interesse ou benefício individual, mas, sim, geral de toda a\ncoletividade.\nJá o art. 167, IV, da CF determina que são vedada\ns:\na vinculação de receita de impostos a órgão, fundo ou despesa, ressalvadas a repartição do produto da arrecadação dos\nimpostos a que se referem os arts. 158 e 159, a destinação de recursos para as ações e serviços públicos de",
+      "alternativas": {
+        "A": "do tributo.\nImpostos\nindiretos\nTemos o chamado contribuinte de direito, nos moldes da legislação, que transfere a terceiros o ônus financeiro,\nconhecido como contribuinte de fato. Atenção: no dia a dia é praxe os prestadores de serviços, comerciantes etc.,\ncolocarem no preço final do serviço e da me",
+        "B": "melhoramentos de praças;",
+        "C": "aterros e embelezamentos em geral;",
+        "D": "construção de campos de desportos.\nDeve respeitar o princípio da anterioridade anual e o princípio da anterioridade nonagesimal\nou noventena, ambos previstos no art. 150, III, \nb\n e \nc\n, da CF/88."
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1206",
+      "numero": 1206,
+      "enunciado": "1 \nRescisão do contrato de trabalho pelo empregado\nO empregado pode rescindir o contrato de trabalho por meio do pedido de rescisão\n(demissão), pela rescisão indireta, ou pela aposentadoria.\nO pedido de demissão fica evidenciado quando o empregado não tem mais interesse em dar\ncontinuidade à relação de emprego; terá que avisar com uma antecedência mínima de trinta dias que\nnão pretende continuar trabalhando, devendo trabalhar durante o aviso-prévio, salvo se for liberado\npelo empregador.\nJá rescisão indireta é a justa causa do empregado para o empregador (art. 483 da CLT).\nCaracterizada a resc",
+      "alternativas": {
+        "A": "Forem exigidos serviços superiores às suas forças, defesos por lei, contrários aos bons\ncostumes, ou alheios ao contrato: \ntal\n \nalínea ficará evidenciada quando o empregador exigir que o\nempregado pratique serviços superiores às suas forças físicas, contrários à lei e aos bons costumes\nou fora do c",
+        "B": "For tratado pelo empregador ou por seus superiores hierárquicos com rigor excessivo:\no rigor excessivo nada mais é do que o sinônimo de perseguição ou a intolerância.\n“O empregador que exige de um empregado menor a prestação habitual de trabalho extraordinário, fora das hipóteses dos incs. I\ne II do",
+        "C": "Correr perigo manifesto de mal considerável: \nperigo à vida. Ex\n.:\n Pintor de prédio que\nfica nas cadeirinhas.",
+        "D": "Não cumprir o empregador as obrigações do contrato: \ndeixar de cumprir as obrigações\ncontratuais. Ex\n.:\n a falta de pagamento de salário.\ne) Praticar o empregador ou seus prepostos, contra ele ou pessoas de sua família, ato\nlesivo da honra e boa fama: \nesta alínea fica evidente por meio de calúnia, "
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1207",
+      "numero": 1207,
+      "enunciado": "DAS VERBAS RESCISÓRIAS\nOcorrendo a rescisão do contrato de trabalho, seja a rescisão motivada ou não, o empregado\nterá direito ao recebimento das verbas rescisórias.\nPor parte do empregador, a rescisão pode ocorrer de forma imotivada (sem justa caus",
+      "alternativas": {
+        "A": "ou\nmotivada (por justa causa).\nNas dispensas sem justa causa, não há um motivo legal para a aplicação da rescisão. Sendo\nassim, nas demissões sem justa causa o empregado receberá a título de verbas rescisórias os\nseguintes direito\ns:\n► \nsaldo de salário;\n► \naviso-prévio;\n► \nférias proporcionais (ou ",
+        "B": "Comutativo \n– consiste numa equivalência simbólica entre o serviço prestado e o valor\npago.",
+        "C": "Sinalagmático \n– as partes se obrigam a prestações recíprocas e antagônicas. O trabalhador\ntem a obrigação de prestar serviços e o direito a receber salário pelos serviços prestados;",
+        "D": "Caráter forfetário \n– uma vez tendo sido executado o trabalho, o salário é sempre devido.\nMesmo que o empregado seja dispensado por justa causa, fará jus o obreiro ao salário dos dias\ntrabalhados.\ne)\n Duração ou continuidade do salário \n– o contrato de trabalho é de débito permanente ou de\ntrato suc"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1209",
+      "numero": 1209,
+      "enunciado": "EQUIPARAÇÃO SALARIAL – ART. 461 DA CLT\nQueridos leitores, este é um tema muito perguntado nos Exames de Ordem.\nA equiparação salarial tem como finalidade proibir uma diferença salarial entre funcionários\nde uma mesma empresa e que prestam o mesmo serviço.\nO art. 7º, XXX, da CF, proíbe qualquer diferença de salários, de exercício de funções e de\ncritério de admissão por motivo de sexo, idade, cor, estado civil, sendo que todo empregado deverá\nreceber salário igual desde que preste serviço de igual valor.\nPara que ocorra a equiparação salarial têm que estar presentes todos os requisitos do art. ",
+      "alternativas": {
+        "A": "Advogad\no:\n jornada de 4 horas contínuas ou 20 horas semanais, salvo, acordo ou convenção\ncoletiva ou contrato de exclusividade (art. 20 da Lei n. 8.906/94).",
+        "B": "Bancári\no:\n jornada de 6 horas contínuas ou 30 horas semanais, de segunda-feira a sexta-\nfeira. A jornada poderá ser prorrogada, excepcionalmente, até 8 horas por dia, não excedendo de 40\nhoras semanais (art. 224 da CLT).\nSúmula 102 do TST:\nBancário – Caixa – Cargo de confiança.\nI – A configuração, ",
+        "C": "Telefonista, telegrafista submarino ou subfluvial, radiotelegrafista ou radiotelefonist\na:\njornada de 6 horas por dia ou 36 horas semanais (art. 227 da CLT).\nSúmula 178 do TST:\nTelefonista de mesa – Serviço de telefonia\n. É aplicável à telefonista de mesa de empresa que não explora o serviço de\ntele",
+        "D": "Professore\ns:\n jornada de 4 aulas/dia ou 6 aulas/dia intercaladas (art. 318 da CLT).\nOJ 206 da SDI-1 do TST:\nProfessor – Horas extras – Adicional de 50%.\n Excedida a jornada máxima (art. 318 da CLT), as horas excedentes devem ser\nremuneradas com o adicional de, no mínimo, 50% (art. 7º, XVI, CF/1988)"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1219",
+      "numero": 1219,
+      "enunciado": "8\n Recurso adesivo\nEste recurso está previsto no art. 500 do CPC e, nos termos da Súmula 283 do TST, possui\ncabimento no âmbito do Direito Processual Laboral.\nAtenção\nTrata-se de matéria já perguntada nos concursos.\nDeverá preencher os pressupostos de admissibilidade do recurso ao qual adere, em especial,\nos relacionados a preparo e tempestividade. Além disso, deverá ser interposto no prazo das\ncontrarrazões, e não ao final destas, sob pena de ser considerado intempestivo.\nO pressuposto básico para sua interposição é a existência de sucumbência recíproca, ou seja,\nque reclamante e reclamada te",
+      "alternativas": {
+        "A": ", sendo que, nos termos\nda Lei n. 6.830/80 (LEF), são sujeitos passivos na execuçã\no:\n o devedor, o fiador, o espólio, a\nmassa, o responsável tributário e os sucessores a qualquer título.\nJá, no CPC, temos como sujeitos passivos da execução, como regra, o devedor, reconhecido\ncomo tal no título exec",
+        "B": "organização sindical, entidade de classe ou\nassociação legalmente constituída e em funcionamento há pelo menos um ano, na defesa dos\ninteresses de seus membros ou associados”.\nVemos, assim, que a Constituição prevê o Mandado de Segurança individual e o coletivo.\nAtualmente, o Mandado de Segurança en",
+        "C": ", porém, essa dependência não retira sua autonomia, quando considerado em si\nmesmo. Isso porque, de acordo com o art. 810 do CPC/1973, o indeferimento da tutela cautelar não\nobsta que a parte formule o pedido principal, nem influencia, em tese, no seu julgamento.\nPor meio dessa medida acautelatória,",
+        "D": "inampliável;\ne) irrenunciável; e\nf) indelegável.\nEm face de todo o supraexposto a respeito da competência tributária, devemos lembrar a\ndiferença entre bitributação e \nbis in idem:\nBitributação\nEstamos diante de mais de um ente tributando (cobrando) pelo mesmo fato gerador. Exceção à regra é o dispo"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1230",
+      "numero": 1230,
+      "enunciado": "ADICIONAL DE INSALUBRIDADE – ART. 192 DA CLT\nAtividade insalubre é aquela que expõe a risco a saúde do trabalhador (art. 189 da CLT). A\natividade insalubre é remunerada pelo adicional de insalubridade (art. 192 da CLT). Faz jus a esse\nadicional, todo empregado que trabalha em atividade insalubre, como exposição a ruídos, variações\nde temperatura, agentes químicos.\nO adicional é devido de acordo com o grau de insalubridade, e consiste em um percentual\nvariável (máximo 40%, médio 20% e mínimo 10%) sobre o \nsalário mínimo\n.\nO STF editou a \nSúmula Vinculante 4\n, proibindo o uso do salário mínimo c",
+      "alternativas": {
+        "A": "hora nem\nsuperior a 2 (duas) horas. Para as mulheres que trabalhem mais de 4 (quatro) horas e menos de 6\n(seis) horas, haverá um intervalo de 15 minutos.\nAo empregador será vedado empregar a mulher em serviços que demande o emprego de força\nmuscular superior a \n20 quilos\n para trabalho \ncontínuo\n, o",
+        "B": "suscetível de impugnação\nmediante recurso para o mesmo Tribunal; (",
+        "C": "que acolhe exceção de incompetência territorial, com\nremessa dos autos para Tribunal Regional distinto daquele a que se vincula o juízo excepcionado,\nconsoante o disposto no art. 799, § 2º, da CLT”.\nExtrapetição:\n por força desse princípio poderá o juiz, nos casos expressamente previstos em\nlei, con",
+        "D": "despacho do Presidente que concede liminar em Mandado de Segurança ou em Ação\nCautelar;\ne) decisões ou despachos de lavra do Corregedor Geral;\nf) decisão do relator que nega prosseguimento a recurso;\ng) despacho do relator que indefere inicial de competência originária do Tribunal, tal como\nMandado "
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1406",
+      "numero": 1406,
+      "enunciado": "1.1 \nRemédios constitucionais\nApós tratarmos de forma específica sobre diversos direitos fundamentais, importante\ndiscorrermos sobre os remédios constitucionais, responsáveis para a efetiva garantia de todos esses\ndireitos.\nNão podendo deixar de mencionar a importância dos institutos do direito de petição e certidão,\nbem como da ação popular, neste capítulo procuramos detalhar um pouco mais sobre outros quatro\nremédios.\nDiscorreremos de forma rápida sobre o mandado de segurança, o \nhabeas corpus\n, \nhabeas data\ne o mandado de injunção.\nMandado de segurança: \no mandado de segurança é o remédio c",
+      "alternativas": {
+        "A": "dias, quando notificado judicialmente.\nTambém, em caso de urgência, é permitido, observados os requisitos legais, impetrar mandado\nde segurança por telegrama, radiograma, fax ou outro meio eletrônico de autenticidade comprovada,\npodendo o juiz, também, em casos de urgência, notificar a autoridade po",
+        "B": "os nascidos no estrangeiro, de pai brasileiro ou mãe brasileira, desde que qualquer deles\nesteja a serviço da República Federativa do Brasil (critério \njus sanguini\n);",
+        "C": "os nascidos no estrangeiro de pai brasileiro ou de mãe brasileira, desde que sejam\nregistrados em repartição brasileira competente ou venham a residir na República Federativa do\nBrasil e optem, em qualquer tempo, depois de atingida a maioridade, pela nacionalidade brasileira\n(critério \njus sanguini\n",
+        "D": "desrespeitar proibição especialmente prevista em lei para estrangeiro.\nCaberá exclusivamente ao Presidente da República, via decreto, resolver sobre a conveniência\ne a oportunidade da expulsão ou de sua revogação.\nNão se procederá à expulsã\no:\n► \nse implicar extradição inadmitida pela lei brasileira"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1410",
+      "numero": 1410,
+      "enunciado": "5\n Parcelamento\nO parcelamento está previsto no art. 155-A do CTN, determinando que este será concedido na\nforma e condição estabelecidas em lei específica.\nPortanto, para que o contribuinte tenha direito a efetuar o parcelamento tributário, é necessário\nque cada um dos entes competentes publique a lei regrando o parcelamento com todas as condições,\nou seja, cabe ao sujeito passivo aderir às regras contidas no parcelamento, sem poder negociá-las.\nContinuando, se a lei não determinar o contrário, o parcelamento do crédito tributário não\nexclui a incidência de juros e multas, bem como se aplicam",
+      "alternativas": {
+        "A": "quando parcial, das prestações em que se decomponha;",
+        "B": "quando total, de outros créditos referentes ao mesmo ou a outros tributos.\nLocal do pagamento\n“Quando a legislação tributária não dispuser a respeito, o pagamento é efetuado na repartição competente\ndo domicílio do sujeito passivo” (art. 159 do CTN).\nPrazo para\npagamento\n“Quando a legislação tributá",
+        "C": "o crédito pago por cheque somente se considera extinto com o resgate deste pelo sacado;",
+        "D": "crédito pagável em estampilha considera-se extinto com a inutilização regular daquela, ressalvado o\ndisposto no art. 150;\ne) a perda ou destruição da estampilha, ou o erro no pagamento por esta modalidade, não dão direito à\nrestituição, salvo nos casos expressamente previstos na legislação tributári"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1411",
+      "numero": 1411,
+      "enunciado": "1.1\n Imputação ao pagamento\nO art. 163 do CTN regra as hipóteses em que deve ser imputado o pagamento. Imputar o\npagamento significa atribuir o pagamento a determinada situação e desde que existam\nsimultaneamente dois ou mais débitos vencidos do mesmo sujeito passivo para com a mesma pessoa\njurídica de direito público, relativos ao mesmo ou a diferentes tributos ou provenientes de\npenalidade pecuniária ou juros de mora, cabendo à autoridade administrativa a obrigação de fazer a\nrespectiva imputação, ou seja, seguir a ordem determinada.\nAssim sendo, temos a seguinte ordem a ser observada pela a",
+      "alternativas": {
+        "A": "cobrança de tributo\nindevido ou devido a maior (por erro de direito ou por erro de fato);",
+        "B": "erro na identificação do\nsujeito passivo;",
+        "C": "reforma, anulação, revogação ou rescisão de decisão denegatória (art. 165 do\nCTN).\nA devolução da repetição de indébito deve ser feita administrativamente ou judicialmente, sob\npena de enriquecimento sem causa por parte do fisco.\nUma questão polêmica de nossos tribunais é a do disposto no art. 166 d",
+        "D": "a origem e a natureza do crédito, mencionada especificamente a disposição da lei em que\nseja fundado;\ne) a data em que foi inscrita;\nf) sendo o caso, o número do processo administrativo de que se originar o crédito.\ng) a indicação do livro e da folha da inscrição.\nO art. 203 do CTN determina qu\ne:\n "
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1414",
+      "numero": 1414,
+      "enunciado": "3\n Certidões negativas de débito fiscal e certidões positivas com efeito de\nnegativa\nAs certidões negativas servem para provar a quitação de um determinado tributo, podendo a\nlei determinar que a prova da quitação de certo tributo, quando exigível, seja feita por certidão\nnegativa, expedida à vista de requerimento do interessado, que contenha todas as informações\nnecessárias à identificação de sua pessoa, domicílio fiscal e ramo de negócio ou atividade e\nindique o período a que se refere o pedido, devendo ser fornecida dentro de 10 (dez) dias da data\nda entrada do requerimento na repartição (a",
+      "alternativas": {
+        "A": "o importador ou quem a lei equiparar;",
+        "B": "o arrematante de produtos apreendidos ou abandonados.\nOutrossim e, atualmente, não podemos nos esquecer do destinatário da remessa postal internacional.\nBase de\ncálculo\nArt. 20 do CTN\na) quando a alíquota seja específica, a unidade de medida adotada pela lei tributária;\nb) quando a alíquota seja \nad",
+        "C": "quando se trate de produto apreendido ou abandonado, levado a leilão, o preço da arrematação.\nAtenção: os valores expressos em moeda estrangeira são convertidos em moeda nacional à taxa de câmbio\ncorrespondente na data do fato gerador.\nAlíquota\nEspecífica ou \nad valorem.\nLançamento\nPor homologação, ",
+        "D": "o arrematante de produtos apreendidos ou abandonados, levados a leilão.\nPara os efeitos deste imposto, considera-se contribuinte autônomo qualquer estabelecimento de importador,\nindustrial, comerciante ou arrematante.\nBase de\ncálculo\n1 – Quando de procedência estrangeira – O preço normal, como defin"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1415",
+      "numero": 1415,
+      "enunciado": "1.4\n Imposto de Renda\nFunção\nFiscal\nFato gerador\nArt. 43 do CTN\n“O imposto, de competência da União, sobre a renda e proventos de qualquer natureza tem como fato gerador a\naquisição da disponibilidade econômica ou jurídica:\nI – de renda, assim entendido o produto do capital, do trabalho ou da combinação de ambos;\nII – de proventos de qualquer natureza, assim entendidos os acréscimos patrimoniais não compreendidos no\ninciso anterior.\n§ 1º A incidência do imposto independe da denominação da receita ou do rendimento da localização, condição\njurídica ou nacionalidade da fonte, da origem e da forma",
+      "alternativas": {
+        "A": ".\nAlíquota\nVaria de 0,03% a 20% em função da área do imóvel e do grau de sua utilização.\nSerá progressivo e terá as suas alíquotas fixadas de forma a desestimular a manutenção das propriedades\nimprodutivas (função extrafiscal) (art. 153, § 4º).\nLançamento\nPor homologação.\nDemais\nconsiderações\n“TRIBU",
+        "B": "na transmissão, o preço ou o valor nominal, ou o valor da cotação em Bolsa, como determinar a lei;",
+        "C": "no pagamento ou resgate, o preço.\nAlíquota\nSão flexíveis e podem ser alteradas por ato do Poder Executivo.\nLançamento\nPor homologação.\nDemais\nconsiderações\na) Segundo o posicionamento do STF, o IOF sobre o ouro somente incide na primeira operação, não podendo\nocorrer nas operações posteriores.\nb) “O",
+        "D": "1% ao Fundo de Participação dos Municípios, que será entregue no primeiro decêndio do mês de dezembro de\ncada ano;\ne) 1% (um por cento) ao Fundo de Participação dos Municípios, que será entregue no primeiro decêndio do mês de\njulho de cada ano;"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1417",
+      "numero": 1417,
+      "enunciado": "AÇÕES DE INICIATIVA DO CONTRIBUINTE E EXECUÇÃO FISCAL\nDestacaremos agora alguns aspectos relevantes às ações de iniciativa do contribuinte e da Lei\nn. 6.830/80, conhecida como Lei das Execuções Fiscais.\nAs ações de iniciativa do contribuinte sã\no:",
+      "alternativas": {
+        "A": "ação declaratória de inexistência de relação\njurídica tributária;",
+        "B": "ação anulatória de débito fiscal ou ação anulatória de lançamento tributário;",
+        "C": "mandado de segurança (preventivo ou repressivo);",
+        "D": "ação de consignação em pagamento; e)\nação de repetição de indébito; f) medida cautelar inominada.\nOutrossim, o contribuinte ainda poderá contar com os embargos à execução fiscal e com a\nexceção de pré-executividade.\nPara melhor memorização e visualização, vejamos o quadro a segui\nr:\n \nFundamento\nleg"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1601",
+      "numero": 1601,
+      "enunciado": "500.000,00 (um milhão e quinhentos mil reais); II – para compras e serviços que não sejam de\nengenhari\na:\n até R$ 650.000,00 (seiscentos e cinquenta mil reais). A nota marcante é a habilitação\nprévia com cadastramento nos registros cadastrais.\ne) Concorrência:\n é a modalidade de licitação entre quaisquer interessados que, na fase inicial\nde habilitação preliminar, comprovem possuir os requisitos mínimos de qualificação exigidos no\nedital para execução de seu objeto. É usado para celebrar contratos de grande vult\no:\n I – para obras\ne serviços de engenhari\na:\n acima de R$ 1.500.000,00 (um milhão",
+      "alternativas": {
+        "A": "Concurs\no:\n 45 dias;",
+        "B": "Concorrênci\na:\n em regra será de\n30 dias; por exceção, será de 45 dias, quando o contrato a ser celebrado contemplar o regime de\nempreitada integral ou quando a licitação for do tipo “melhor técnica” ou “técnica e preço”;",
+        "C": "Tomada de preço\ns:\n em regra será de 15 dias; por exceção, será de 30 dias, quando a licitação for do\ntipo “melhor técnica” ou “técnica e preço”;",
+        "D": "Leilã\no:\n 15 dias; e) Convit\ne:\n 5 dias úteis. Os prazos\nserão contados a partir da última publicação do edital resumido ou da expedição do convite, ou\nainda da efetiva disponibilidade do edital ou do convite e respectivos anexos, prevalecendo a data\nque ocorrer mais tarde. Qualquer modificação no e"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1602",
+      "numero": 1602,
+      "enunciado": "3.4 \nAdministração pública e administração privada\nNa Administração Pública, o administrador recebe as ordens de instruções de como agir, das\nleis e regulamentos. E sua finalidade de atuação é buscar o bem comum da coletividade\nadministrada. Na Administração Privada, o administrador recebe as ordens e instruções de como\nagir do proprietário. E sua finalidade de atuação é buscar satisfazer os interesses do proprietário.\n2.3.5 \nAdministração e propriedade\nO administrador é o que cuida dos bens e interesses alheios, possuindo, dessa forma, poderes\nde zelo e conservação de bens e interesses. O pro",
+      "alternativas": {
+        "A": "polític\na:\n ocorre quando o Estado Federal transfere para União, DF, Estados e\nMunicípios poderes políticos e administrativos;",
+        "B": "administrativ\na:\n ocorre quando os entes\nfederativos transferem poderes administrativos para outras pessoas jurídicas.\nA descentralização administrativa, por sua vez, pode ser feita de três maneira\ns:\n a) territoria\nl:\n a\nUnião transfere para os Territórios Federais a capacidade administrativa genér",
+        "C": "por colaboraçã\no:\n o ente federativo transfere a execução do\nserviço por contrato administrativo ou ato unilateral para pessoa jurídica de direito privado\n(delegação).\nA concentração administrativa ocorre quando dentro da pessoa jurídica não há divisão interna\nde serviços. Na desconcentração há dist",
+        "D": "empresas públicas; e) sociedades de economia\nmista; f) consórcios públicos.\nFicam excluídas da estrutura da Administração Indireta empresas exploradoras de atividade\neconômica que estão \nsob controle acionário do Estado e as entidades paraestatais,\n \npessoas\njurídicas de direito privado\n, instituída"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1605",
+      "numero": 1605,
+      "enunciado": "1 \nAutarquias\n1. Conceito:\n são pessoas jurídicas de direito público criadas por lei para exercer funções\npróprias do Estado, que requeiram uma especialização.\n2. Criação:\n é feita por lei específica, sem necessidade de registro. A iniciativa da lei para\ncriação de autarquia é do chefe do Poder Executivo.\n3. Regime de pessoal:\n os funcionários são estatutários e estão sujeitos à proibição de\nacumulação remunerada de cargos.\n4. Privilégio tributário:\n são imunes aos impostos.\n5. Licitação:\n estão sujeitas à licitação.\n6. Dirigentes:\n a competência para a nomeação é do Chefe do Executivo; sua in",
+      "alternativas": {
+        "A": "o STF não permite a criação de autarquia interestadual;",
+        "B": "se for geográfica, tem\ncapacidade administrativa genérica; se for institucional, tem capacidade administrativa específica;",
+        "C": "quando a au​tarquia é caracterizada por uma reunião de pessoas, que unem seus esforços para\natender seus objetivos próprios, é corporativa; se, por sua vez, for caracterizada por uma reunião de\nbens, é fundacional.\n5.2 \nFundação pública\n1. \nConceito:\n são pessoas jurídicas de direito público criadas",
+        "D": "Autonomia financeira:\n capacidade de gerir os seus próprios recursos financeiros. Os\nrecursos financeiros são as contribuições parafiscais.\ne) Base jurídica:\n o documento que rege a entidade paraestatal é o estatuto.\nf) Fins:\n não têm fins lucrativos.\ng) Natureza:\n não integram nem a Administração D"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1606",
+      "numero": 1606,
+      "enunciado": "2 \nOrganizações da sociedade civil de interesse público",
+      "alternativas": {
+        "A": "Natureza:\n é uma qualificação especial ou título jurídico concedido pelo Poder Público.\nPodem qualificar-se como Organizações da Sociedade Civil de Interesse Público as pessoas\njurídicas de direito privado, sem fins lucrativos, desde que os respectivos objetivos sociais e\nnormas estatutárias atendam",
+        "B": "Áreas de atuação:\n I – promoção da assistência social; II – promoção da cultura, defesa e\nconservação do patrimônio histórico e artístico; III – promoção gratuita da educação, observando-\nse a forma complementar de participação das organizações; IV – promoção gratuita da saúde,\nobservando-se a forma",
+        "C": "Execução de atividades:\n mediante a execução direta de projetos, programas, planos de\nações correlatas, por meio da doação de recursos físicos, humanos e financeiros, ou ainda pela\nprestação de serviços intermediários de apoio a outras organizações sem fins lucrativos e a órgãos\ndo setor público que",
+        "D": "Conselho:\n a constituição de conselho fiscal ou órgão equivalente, dotado de competência\npara opinar sobre os relatórios de desempenho financeiro e contábil, e sobre as operações\npatrimoniais realizadas, emitindo pareceres para os organismos superiores da entidade.\ne) Dissolução:\n o respectivo patri"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1607",
+      "numero": 1607,
+      "enunciado": "TEORIA DO ÓRGÃO PÚBLICO\n7.1 \nConceito\nSão centros de competência criados para o desempenho de funções estatais.\n7.2 \nCaracterísticas\nSão unidades abstratas que possuem funções, cargos e agentes. Os órgãos públicos não têm\npersonalidade jurídica nem vontade própria. Eles não possuem patrimônio próprio e podem firmar\ncontratos de gestão e todos os seus atos são imputados à pessoa jurídica de que fazem parte.\n7.3 \nEspécies\nQuanto à estrutura:\n simples (não há subdivisões internas) e compostos (há subdivisões\ninternas).\nQuanto à atuação funcional:\n singulares (único agente) e colegiados (mais de u",
+      "alternativas": {
+        "A": ", autônomos (atribuições diretivas, ampla autonomia) e independentes (atribuições em\nsubordinação hierárquica, representam os poderes do Estado e estão previstos na CF).\n8. PODERES ADMINISTRATIVOS\n8.1 \nConceito\nSão os instrumentos de trabalho que o administrador público usa para realizar o bem comum",
+        "B": "quanto à finalidade\nnormativa:\n \npoder regulamentar;",
+        "C": "quanto à limitação aos direitos individuais:\n \npoder de polícia;",
+        "D": "quanto à liberdade de atuação:\n poder \nvinculado e discricionário."
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1608",
+      "numero": 1608,
+      "enunciado": "7 \nDiscricionariedade e vinculação\nSe a lei não dá opções ao administrador público, estabelecendo qual a forma de agir, o poder é\nvinculado. A lei estabelece a única solução possível diante da situação de fato; fixa todos os\nrequisitos. Se a lei dá opções ao administrador público, ou seja, certa margem de liberdade de\ndecisão de acordo com os critérios de oportunidade, conveniência, justiça e equidade, o poder é\ndiscricionário. Cabe ressaltar que não existe poder totalmente discricionário, pois alguns elementos\nsão sempre vinculado\ns:\n forma, finalidade e competência.\n9. SETORES DO ESTADO\nOs s",
+      "alternativas": {
+        "A": "Núcleo estratégico:\n é o governo, responsável pela tomada das decisões estratégicas,\ndefinindo as leis e as políticas públicas. Corresponde aos Poderes Legislativo e Judiciário, ao\nMinistério Público e, no Poder Executivo, ao Presidente da República, aos ministros e aos seus\nauxiliares e assessores ",
+        "B": "Atividades exclusivas:\n é o setor dos serviços próprios do Estado, ou seja, serviços que só\no Estado pode realizar, como, por exemplo, o serviço de emissão de passaportes etc. Nas\natividades exclusivas de Estado, onde o poder extroverso de Estado é exercido, a propriedade\ntambém só pode ser estatal.",
+        "C": "Serviços não exclusivos:\n é o setor onde o Estado atua simultaneamente com outras\norganizações públicas não estatais e privadas, como, por exemplo, as universidades, os hospitais,\nos centros de pesquisa e os museus. Já para o setor não exclusivo ou competitivo do Estado a\npropriedade ideal é a públi",
+        "D": "Produção de bens e serviços para o mercado: \né a área de atuação das empresas, que\nexploram atividades econômicas voltadas para o lucro, como, por exemplo, as do setor de\ninfraestrutura. Em termos de propriedade, dada a possibilidade de coordenação via mercado, a\npropriedade privada é a regra. A pro"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1610",
+      "numero": 1610,
+      "enunciado": "REGIME JURÍDICO DA ADMINISTRAÇÃO PÚBLICA\nRegime jurídico é um conjunto de normas jurídicas. A Administração Pública pode estar\nsubmetida ao regime jurídico de direito público ou de direito privado. A opção pelo regime é feita\npela Constituição Federal ou pela lei.\nO regime jurídico de direito público chamado de regime jurídico-administrativo é\nfundamentado em dois princípio\ns:",
+      "alternativas": {
+        "A": "supremacia do interesse público sobre o particular;",
+        "B": "indisponibilidad\ne:\n o administrador só pode alienar, dispor, renunciar ou transacionar, quando\nhouver permissão na lei.\nQuando a Administração Pública seguir o regime jurídico de direito privado, tal regime será\nhíbrido, ou seja, parcialmente derrogado por normas de direito público.\nNo regime juríd",
+        "C": "Moralidade:\n os administradores devem agir de\nmaneira ética;",
+        "D": "Impessoalidade: \na\n \nadministração não pode atuar para beneficiar ou prejudicar\npessoas determinadas, mas sempre visar o interesse público. Os atos e provimentos administrativos\nsão imputáveis ao órgão ou entidade da Administração Pública. Na publicidade dos órgãos\npúblicos não pode constar nome, sí"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1611",
+      "numero": 1611,
+      "enunciado": "1\n8\n \nEspécies de atos administrativos",
+      "alternativas": {
+        "A": "Alvará: \né o instrumento da licença ou autorização.",
+        "B": "Despacho: \ncontém decisão das autoridades administrativas.",
+        "C": "Circular: \ninstrumento de transmissão de ordens internas para subordinados.",
+        "D": "Decreto: \né forma dos atos gerais ou individuais emanados do Chefe do Poder Executivo.\ne) Portaria: \nchefe expede determinações gerais ou especiais a seus subordinados ou designam\nservidores para funções e cargos secundários ou se iniciam sindicâncias e processos\nadministrativos.\nf) Licença: \nAdmini"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1612",
+      "numero": 1612,
+      "enunciado": "SERVIÇO PÚBLICO\n12.1\n Conceito\nNo Direito Brasileiro, adotamos na identificação do serviço público a corrente formalista, ou\nseja, a identificação de um serviço como público depende da previsão legal ou constitucional.\nServiço público é atividade prestada pelo Estado, de forma direta ou indireta, submetida a um\nregime jurídico de direito público e que visa à satisfação das necessidades da coletividade.\n12.2\n Espécies",
+      "alternativas": {
+        "A": "Individuais ou \nuti singuli\n ou singulares:\n são prestados a um número determinado ou\ndeterminável de pessoas; são divisíveis, já que podem ser utilizados de forma separada por cada\nusuário e podem ser remunerados por taxa ou preço público.",
+        "B": "Gerais ou universais ou \nuti universi\n:\n são prestados a um número indeterminado de pessoas;\nsão indivisíveis, já que não é possível identificar de forma separada o usuário; são remunerados\npor impostos.",
+        "C": "Próprio ou típico:\n somente prestado por órgãos ou entidades públicas, em delegação a\nparticulares.",
+        "D": "Impróprio ou atípico:\n são os que o Estado não executa, mas apenas autoriza, regulamenta e\nfiscaliza.\ne) Propriamente estatal:\n são os serviços pró-comunidades, considerados essenciais para a\nsobrevivência da sociedade.\nf) De utilidade pública:\n são os serviços pró-cidadão, considerados úteis para a"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1615",
+      "numero": 1615,
+      "enunciado": "2.5\n Ação regressiva\nÉ a ação proposta pela Administração Pública em face do agente público, causador do dano,\nvisando obter o pagamento da importância usada no ressarcimento de uma vítima, desde que\ncomprovados dois requisito\ns:",
+      "alternativas": {
+        "A": "Administração Pública tenha sido condenada a indenizar a vítima\npelo dano;",
+        "B": "demonstrar culpa ou dolo do agente em razão do dano. É ação de natureza civil,\ntransmitida a herdeiros, respeitado o limite do valor do patrimônio transferido. Pode ser proposta\nmesmo depois de terminado o vínculo entre o servidor e a Administração Pública. É imprescritível.\n15.2.6\n Reparação do dan",
+        "C": "Atos jurisdicionais:\n quando houver a prática de atos não jurisdicionais; erro judiciário;\nexcesso de prazo na prisão; responsabilidade pessoal do juiz no caso de dolo, fraude.\n16. CONTROLE DA ADMINISTRAÇÃO PÚBLICA\n16.1\n Conceito\nÉ o conjunto de mecanismos por meio dos quais se exerce o poder de fis",
+        "D": "Processo especial de execução:\n o art. 100 da CF prevê processo especial de execução\n(precatórios) contra a Fazenda Federal, Estadual e Municipal, e que abrange todas as entidades de\ndireito público.\ne) Prescrição quinquenal: \nnos termos do art. 1º do Decreto n. 20.910/32, “as dívidas passivas\nda Un"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1618",
+      "numero": 1618,
+      "enunciado": "BENS PÚBLICOS\n18.1\n Domínio público\nÉ o poder que o Estado exerce sobre todos os bens do território de um Estado. Existem duas\nespécie\ns:",
+      "alternativas": {
+        "A": "Domínio iminente\n é o poder político pelo qual o Estado submete à sua vontade todas as\ncoisas de seu território.",
+        "B": "Domínio patrimonial\n é definido como direito de propriedade, mas de direito de\npropriedade pública, sujeito a um regime administrativo especial.\n18.2\n Bens públicos\n18.2.1\n Conceito\nSão bens corpóreos ou incorpóreos pertencentes às pessoas jurídicas de direito público ou que\nestejam afetados à prest",
+        "C": "Impenhorabilidade: \nnão podem ser penhorados, arrestados ou sequestrados. Da mesma\nforma, o art. 100 da CF de 1988 prevê a disciplina de precatórios para o pagamento das obrigações\npor parte da Ad​ministração Pública, afastando, por conseguinte, a possibilidade de hasta pública\nsobre bens do Estado.",
+        "D": "Não oneração:\n não podem ser objeto de penhor, hipoteca ou anticrese."
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1619",
+      "numero": 1619,
+      "enunciado": "IMPROBIDADE ADMINISTRATIVA\n19.1\n Conceito\nImprobidade administrativa é agir em desconformidade com os princípios éticos, da lealdade,\nda boa-fé e de regras de boa administração e disciplina interna.\n19.2\n Sujeitos da improbidade\nO sujeito ativo pode ser qualquer agente público, servidor ou não, bem como o particular,\nquando induzir ou concorrer para a prática do ato de improbidade ou dele se beneficiar sob\nqualquer forma direta ou indireta. O sujeito passivo é a Administração Direta, Indireta ou\nfundacional de qualquer dos Poderes da União, dos Estados, do Distrito Federal, dos Municípios,\nde ",
+      "alternativas": {
+        "A": "Ato de\nimprobidade administrativa importando enriquecimento ilícit\no:\n é auferir qualquer tipo de vantagem\npatrimonial indevida em razão do exercício de cargo, mandato, função, emprego ou atividade nas\nentidades;",
+        "B": "Ato de improbidade administrativa que causa lesão ao erári\no:\n é qualquer ação ou\nomissão, dolosa ou culposa, que enseje perda patrimonial, desvio, apropriação, malbaratamento ou\ndilapidação dos bens ou haveres das entidades;",
+        "C": "Ato de improbidade administrativa que atenta\ncontra os princípios da Administração Públic\na:\n é qualquer ação ou omissão que viole os deveres de\nhonestidade, imparcialidade, legalidade e lealdade às instituições.\n19.4\n Sanções\nAs sanções da perda da função pública e a suspensão dos direitos político",
+        "D": "Tomada de preços:\n é a modalidade de licitação entre interessados devidamente\ncadastrados ou que atenderem a todas as condições exigidas para cadastramento até o terceiro dia\nanterior à data do recebimento das propostas, observada a necessária qualificação. O julgamento é\nfeito por Comissão integrad"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1620",
+      "numero": 1620,
+      "enunciado": "10.\n3 Licitação dispensável\nO rol das hipóteses de licitação dispensável tem natureza taxativa no art. 24 da Lei n.\n8.666/93. São hipóteses de licitação dispensáve\nl:\nI – para obras e serviços de engenharia de valor até 10% (dez por cento) de R$ 150.000,00,\ndesde que não se refiram a parcelas de uma mesma obra ou serviço ou ainda para obras e serviços\nda mesma natureza e no mesmo local que possam ser realizadas conjunta e concomitantemente. O\npercentual será de 20% (vinte por cento) para compras, obras e serviços contratados por\nconsórcios públicos, sociedade de economia mista, empresa pública",
+      "alternativas": {
+        "A": "dias consecutivos e\nininterruptos, contados da ocorrência da emergência ou calamidade, vedada a prorrogação dos\nrespectivos contratos;\nV – quando não acudirem interessados à licitação anterior e esta, justificadamente, não puder\nser repetida sem prejuízo para a Administração, mantidas, neste caso, t",
+        "B": "os de direito privado ou atípicos. A diferença entre os dois contratos é a presença da\nAdministração Pública; no contrato público, a Administração está na posição vertical, agindo com\nsupremacia; no contrato privado, a Administração está na posição horizontal, agindo sem\nsupremacia. Existem duas esp",
+        "C": "aluguel de\nequipamentos e à utilização de programas de informátic\na:\n podendo a duração estender-se pelo\nprazo de até 48 meses após o início da vigência do contrato.\nToda prorrogação de prazo deverá ser justificada por escrito e previamente autorizada pela\nautoridade competente para celebrar o contr",
+        "D": "declaração de inidoneidade para licitar ou\ncontratar com a Administração Pública enquanto perdurarem os motivos determinantes da punição\nou até que seja promovida a reabilitação perante a própria autoridade que aplicou a penalidade, que\nserá concedida sempre que o contratado ressarcir a Administraçã"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1621",
+      "numero": 1621,
+      "enunciado": "6.3\n Fiscalização\nO poder da Administração de fiscalizar e controlar a execução do contrato não precisa de\ncláusula expressa no contrato administrativo. Nos casos de serviços essenciais, pode ocupar\nprovisoriamente bens móveis, imóveis, pessoal e serviços vinculados ao objeto do contrato, nas\nhipótese\ns:",
+      "alternativas": {
+        "A": "da necessidade de acautelar apuração administrativa de faltas contratuais pelo\ncontratado;",
+        "B": "na hipótese de rescisão do contrato administrativ\no:\n assunção imediata do objeto do\ncontrato, no estado e local em que se encontrar, por ato próprio da Administração e ocupação e\nutilização do local, instalações, equipamentos, material e pessoal empregados na execução do\ncontrato, necessários à sua",
+        "C": "contínu\no:\n a entrega do bem se dá de forma sucessiva, em datas previamente ajustadas.\n21.16.\n2 Contrato de serviço\nTem por finalidade a prestação, pelo contratado, de uma determinada atividade ao Poder\nPúblico. Não podemos confundir contrato de serviço com contrato de concessão de serviço. No\nContr",
+        "D": "Fases: \npossui duas fase\ns:\n a) fase declaratóri\na:\n o poder público declara a existência da\nutilidade pública ou interesse social; pode ser por lei ou decreto; b) fase executóri\na:\n transferência\ndo bem por via administrativa (acordo) ou via judicial (não há acordo).\ne) Imissão provisória na posse:"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1623",
+      "numero": 1623,
+      "enunciado": "ESTATUTO DA CIDADE\nAs diretrizes impostas pela Constituição Federal à propriedade urbana são dua\ns:\ndesenvolvimento urbano e bem-estar. Os instrumentos de desenvolvimento urbano são mecanismos\nque visam garantir o crescimento e a expansão urban\na:\n plano diretor e regiões metropolitanas.\nO plano diretor, que tem natureza de lei municipal, dispõe sobre o aproveitamento do solo\nurbano, é obrigatório nas cidades com mais de 20 mil habitantes e sua finalidade é garantir a função\nsocial da propriedade urbana. Quando não houver plano diretor, a propriedade urbana atenderá sua\nfunção social, quando c",
+      "alternativas": {
+        "A": "notificar o\nproprietário para o cumprimento da obrigação, devendo a notificação ser averbada no cartório de\nregistro de imóveis;",
+        "B": "em caso de descumprimento, o Município procederá à aplicação do imposto\nsobre a propriedade predial e territorial urbana (IPTU) progressivo no tempo, mediante a\nmajoração da alíquota pelo prazo de cinco anos consecutivos;",
+        "C": "decorridos cinco anos de cobrança\ndo IPTU progressivo sem que o proprietário tenha cumprido a obrigação de parcelamento,\nedificação ou utilização, o Município poderá proceder à desapropriação do imóvel, com pagamento\nem títulos da dívida pública. Os títulos da dívida pública terão prévia aprovação p",
+        "D": "institutos tributários e financeiro\ns:\n imposto sobre a propriedade predial e\nterritorial urbana – IPTU; contribuição de melhoria; incentivos e benefícios fiscais e financeiros; e)\ninstitutos jurídicos e político\ns:\n desapropriação; servidão administrativa; limitações administrativas;\ntombamento de "
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1624",
+      "numero": 1624,
+      "enunciado": "INTERVENÇÃO DO ESTADO NO DOMÍNIO ECONÔMICO\n1) Direta: \né a\n \nexploração de atividade econômica, em caso de segurança nacional ou relevante\ninteresse coletivo. Quando o Estado atua de maneira direta, é chamado pela doutrina de \nagente\neconômico ou “empresário”.\n \nExistem duas formas de atuação direta do Estado no domínio\neconômic\no:",
+      "alternativas": {
+        "A": "Em regime de monopólio ou intervenção por absorção: \no Estado explora de maneira\nexclusiva uma atividade econômica, no sentido de proteger o interesse público e somente nas\nhipóteses previstas na Constituição Federal, quais seja\nm:\n \npetróleo, gás natural e minerais\nnucleares. \nExistem duas espécies",
+        "B": "Ou de competição:\n o Estado compete na área econômica, quando cria uma empresa pública\nou uma sociedade de economia mista. O regime jurídico aplicável será o de uma empresa privada,\njá que o Estado está na posição equivalente ao do particular. Na área tributária, podemos afirmar\nque as empresas esta",
+        "C": "Planejamento econômico: \né a fixação de diretrizes no setor econômico. Cabe ressaltar que\no planejamento é vinculante para o setor público e indicativo para o setor privado.\n25. PROCESSO ADMINISTRATIVO\n25.1\n Princípios aplicáveis\na) Legalidade:\n atuação conforme a lei e o Direito.\nb) Finalidade:\n at",
+        "D": "Publicidade:\n divulgação oficial dos atos administrativos, ressalvadas as hipóteses de sigilo\nprevistas na Constituição.\ne) Proporcionalidade:\n adequação entre meios e fins, vedada a imposição de obrigações,\nrestrições e sanções em medida superior àquelas estritamente necessárias ao atendimento do\ni"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1625",
+      "numero": 1625,
+      "enunciado": "2\n Direitos dos administrados\nI – ser tratado com respeito pelas autoridades e servidores, que deverão facilitar o exercício\nde seus direitos e o cumprimento de suas obrigações; II – ter ciência da tramitação dos processos\nadministrativos em que tenha a condição de interessado, ter vista dos autos, obter cópias de\ndocumentos neles contidos e conhecer as decisões proferidas; III – formular alegações e apresentar\ndocumentos antes da decisão, os quais serão objeto de consideração pelo órgão competente; IV –\nfazer-se assistir, facultativamente, por advogado, salvo quando obrigatória a representaçã",
+      "alternativas": {
+        "A": "anos; II – pessoa portadora de deficiência, física ou mental; III – pessoa portadora de\ntuberculose ativa, esclerose múltipla, neoplasia maligna, hanseníase, paralisia irreversível e\nincapacitante, cardiopatia grave, doença de Parkinson, espondiloartrose anquilosante, nefropatia\ngrave, hepatopatia g",
+        "B": "Perda da qualificação:\n quando deixar de atender aos requisitos legais.",
+        "C": "Manutenção da qualificação:\n desde que o contrato de gestão seja sucessivamente renovado\ne que o plano estratégico de reestruturação e de desenvolvimento institucional tenha prosseguimento\nininterrupto, até a sua conclusão.",
+        "D": "Desqualificação:\n será feita por decreto de iniciativa do Ministério supervisor, com\nanuência do Ministério da Administração Federal e Reforma do Estado.\ne) Contrato de gestão:\n definirá relações e compromissos entre os signatários, constituindo-se\nem instrumento de acompanhamento e avaliação do des"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1626",
+      "numero": 1626,
+      "enunciado": "2\n Agências reguladoras\n26.2.1\n Natureza\nSão autarquias especiais criadas como consequência do processo de reforma do Estado e estão\npresentes em vários setores de serviços públicos e da economia. São pessoas jurídicas de direito\npúblico.\n26.2.2\n Características",
+      "alternativas": {
+        "A": "Independência administrativa, fundamentada na estabilidade de seus dirigentes:\n os\nadministradores possuem mandato, só podendo ser destituídos por condenação judicial transitada\nem julgado, improbidade administrativa ou descumprimento injustificado das políticas\nestabelecidas para o setor ou pelo co",
+        "B": "Autonomia financeira:\n renda própria e liberdade de sua aplicação.",
+        "C": "Poder normativo:\n regulamentação das matérias de sua competência.\n26.2.3\n Nomeação dos dirigentes\nÉ feita pelo Presidente da República, com prévia aprovação dos nomes pelo Senado Federal,\nnos termos do art. 52, III, \nf\n, da CF. É vedado ao ex-dirigente, até um ano depois de deixar o cargo,\nde repres",
+        "D": "Direito de associação sindical\nÉ garantido ao servidor público civil o direito à livre associação sindical. É norma de eficácia\nplena. É vedada a dispensa do empregado sindicalizado a partir do registro da candidatura a cargo\nde direção ou representação sindical e, se eleito, ainda que suplente, até"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1803",
+      "numero": 1803,
+      "enunciado": "6 \nHierarquia dos tratados internacionais no direito interno\nEm regra, um tratado internacional a ser incorporado ao ordenamento jurídico brasileiro tem\ncaráter de lei ordinária, segundo o Supremo Tribunal Federal. Todavia, a doutrina diverge,\nsustentando diversas teorias sobre o \nstatus\n dos tratados no âmbito interno. Após a Emenda\nConstitucional n. 45/2004, há possibilidade de os tratados internacionais sobre direitos humanos\nterem caráter de norma constitucional. Para tanto, é necessário o cumprimento de dois requisito\ns:\n (i)\nde ordem materia\nl:\n conteúdo dos tratados tem de ser necessari",
+      "alternativas": {
+        "A": "Teoria dualista: \npara esta\nteoria o direito interno e o direito internacional seriam duas ordens distintas e autônomas. Desse\nmodo, não existirá conflito de normas entre o ordenamento jurídico interno e o externo, cada qual\nseria responsável por campos distintos de atuaçã\no:\n o direito interno reso",
+        "B": "Teoria monista:\nmono\n vem de \num\n; por esta teoria, o ordenamento jurídico interno e internacional constitui uma única\nordem jurídica. Os conflitos advindos da aplicação prática são sanados pelas vertentes de tal\nteoria, quais seja\nm:\n b.1) Teoria monista internacionalist\na:\n havendo conflito preval",
+        "C": "Nação: \npode ser conceituada\ncomo o conjunto de pessoas que têm semelhanças, afinidades de etnia, falam a mesma língua, têm os\nmesmos costumes. Os nacionais se adéquam à definição de nação. Os estrangeiros não, pois são de\ndiversos países, cada qual com seus costumes, cultura, tradição etc.;",
+        "D": "Cidadania:\n a definição aqui\né mais restrita. Somente pelo alistamento eleitoral é possível obter a cidadania, e mais, só o\nnacional pode ser titular de direitos políticos. Portanto conclui-se que a nacionalidade é requisito\nnecessário, mas não suficiente para a cidadania (porque ainda é preciso obt"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1804",
+      "numero": 1804,
+      "enunciado": "FONTES\nDe modo a convergirem os vários entendimentos, podemos afirmar que as fontes do DIP sã\no:",
+      "alternativas": {
+        "A": "As leis de cada país:\n a lei é a fonte primária do direito internacional privado na grande maioria\ndos Estados soberanos, situação esta que faz com que a lei seja a primeira a ser consultada com o\nintuito de dirimir os conflitos resultantes de uma relação jurídica de direito privado com conexão\ninte",
+        "B": "Os tratados internacionais:\n considera-\nse tratado internacional todo acordo formal e escrito concluído entre pessoas jurídicas de direito\ninternacional público, com o objetivo de compartilhar normas e costumes comuns, e estabelecer\nregras de conduta em suas múltiplas relações. Vale deixar consignad",
+        "C": "Costumes: \ntambém chamado de direito\nconsuetudinário, pode ser definido como uma regra social cuja prática constante de forma\ngeneralizada e prolongada resulta numa certa convicção de obrigatoriedade dentro daquele grupo\nespecífico. Assim, podemos dizer que, em relação aos costumes internacionais, o",
+        "D": "Princípios gerais do direito:\n podem ser considerados, em linhas gerais, como sendo os elementos\nfundamentais da cultura jurídica humana, que tem como objetivo o preenchimento de lacunas do\ndireito, como elementos subsidiários para as decisões judiciais, tais com\no:\n a dignidade do ser\nhumano é invi"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1805",
+      "numero": 1805,
+      "enunciado": "NORMAS\nEm linhas gerais, podemos afirmar que o direito aplicável em uma relação jurídica de direito\nprivado com conexão internacional é sempre o direito interno de um determinado Estado ou então\numa norma de direito estrangeiro, consoante as normas do direito internacional privado da lei do\nforo \n(lex fori)\n29\n. \nAssim, o principal objetivo dessas normas de direito internacional consiste em\ndefinir qual a regra mais adequada para a resolução de \nconflitos de leis\n na esfera internacional\nprivada. A doutrina se posiciona, basicamente, em duas corrente\ns:",
+      "alternativas": {
+        "A": "Corrente nacionalista:\ndefende que o direito internacional privado é representado pelo conjunto das regras estabelecidas\npelos legisladores internos dos Estados soberanos, formando uma parte do direito nacional de cada\npaís. Essa corrente se subdivide na vertente \nuniversalista\n (admitem não somente",
+        "B": "Corrente internacionalista: \nas normas de\nDireito Internacional Interno de cada país são utilizadas de forma harmônica e interligada aos\ndemais sistemas jurídicos dos demais países soberanos, compondo um único sistema jurídico\ninternacional para solução dos conflitos de interesses. Qualquer que seja",
+        "C": "Normas bilaterais: \nsão aquelas normas jurídicas que determinam a aplicação tanto de direito\ninterno quanto de direito estrangeiro, \ni.e.\n, no respectivo caso concreto a solução passível de ser\naplicada pode ser dada pelo ordenamento jurídico de qualquer dos Estados em que as partes\nenvolvidas na re",
+        "D": "Normas indiretas: \nsão consideradas as principais normas de direito internacional privado diante\ndo próprio objetivo final da disciplina que é basicamente o de identificar qual o direito aplicável a\numa relação jurídica de direito privado com conexão internacional. Podem ser identificadas como\nnorma"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1806",
+      "numero": 1806,
+      "enunciado": "ELEMENTOS DE CONEXÃO\nPodem ser considerados como elementos que auxiliam o intérprete na aplicação da norma mais\nadequada ao caso concreto diante da existência de um conflito de leis. Cada Estado tem o seu\nsistema de aplicação da lei estrangeira, não somente estruturado, como também com as claras\ndefinições dos conflitos possíveis e as soluções cabíveis e compatíveis com a respectiva realidade\nlocal, motivo pelo qual podemos afirmar que cada Estado possui seus elementos de conexão\ndefinidos que entendam ser os mais adequados e mais próximos em termos espaciais para reger as\nsituações jurídicas ",
+      "alternativas": {
+        "A": "Domicílio: \no local onde se estabelece\nmorada com desejo permanente de ali estar. Para o direito brasileiro, existe em regra a adoção do\nconcurso sucessivo em relação a este elemento de conexão, isto é, em primeiro lugar o domicílio,\nna sua falta ou ausência, a residência, e, inexistindo esta, o loc",
+        "B": "Nacionalidade;",
+        "C": "Raça e religião;",
+        "D": "Autonomia da\nvontade: \nesta liberdade de contratar, todavia, não é absoluta, haja vista que em certas hipóteses a\nprópria lei estabelece limites a tal liberdade\n35\n, situação que faz com que a escolha de um direito\naplicável que não respeite os limites da lei seja considerada ineficaz, sendo, portan"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1807",
+      "numero": 1807,
+      "enunciado": "REENVIO\nEm linhas gerais, o magistrado, ao proferir julgamento acerca de um conflito de interesses de\nconexão internacional, deverá decidir qual deve ser o direito aplicável ao caso específico, e,\noptando pela aplicação do direito estrangeiro, deverá analisar esse direito com propriedade. Ao\nrealizar essa análise da lei estrangeira, o magistrado poderá concluir que esta remete a questão de\nvolta ao juiz originário (inicial) ou ainda remeta a um (terceiro) direito estrangeiro de outro país\nque não seja nenhum daqueles dois primeiros que supostamente estariam para ser analisados, sendo\nque esta ",
+      "alternativas": {
+        "A": "O DIP de um país (A) designa o direito do país (",
+        "B": "como o aplicável. O DIP do\npaís (B), ao seu turno, também indica o direito substantivo/material do próprio país (B) como sendo\no aplicável. Nessa hipótese o juiz do país (A) – \nlex fori\n – deverá aplicar o direito material do país\n(B), não havendo, portanto, nenhum conflito ou dificuldade nesse caso",
+        "C": "O DIP de um país (A) designa o direito do país (B) como o aplicável. O DIP do país (B), ao seu\nturno, indica o DIP do país (A) como sendo o aplicável. Nessa hipótese surge o problema do\nreenvio, pois a ordem jurídica originalmente designada diz-se incompetente e devolve a solução\npara o juiz do país",
+        "D": "O DIP de um país (A) designa o direito do país (B) como o aplicável. O DIP\ndo país (B), ao seu turno, indica o direito substantivo/material do país (C) como sendo o aplicável.\nAqui temos o reenvio de 2º grau, salientando que o maior problema a ser encontrado nessa situação\né o direito do país (C) se"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1808",
+      "numero": 1808,
+      "enunciado": "PROVAS\nEspecificamente sobre o regime probatório no âmbito do Direito Internacional, este tornou-se\nobjeto de diversas convenções\n37\n, cujo objetivo principal sempre foi o de facilitar a colheita de\nprovas no estrangeiro. O Brasil, contudo, não ratificou nenhuma dessas convenções mais modernas\naté o presente momento, motivo pelo qual em termos práticos a colheita de provas no estrangeiro\nacaba sendo realizada por meio de Cartas Rogatórias, cujo procedimento e trâmite acabam por\nseguir as regras expressas do Direito Processual Civil interno\n38\n. Em primeiro plano, importante\ndeixar consignado q",
+      "alternativas": {
+        "A": "quais são os meios probatórios\nadmitidos em lei (p. ex\n.:\n art. 369 do Novo CPC);",
+        "B": "qual é a sua força probante (p. ex\n.:\n art. 405/429\ndo Novo CP",
+        "C": "; c) de que forma as provas devem se produzidas (p. ex\n.:\n art. 355, I, 357, I a V, e 358\na 367 do Novo CPC);",
+        "D": "se a produção de provas é determinada pelo juiz de ofício ou a\nrequerimento da parte (p. ex\n.:\n art. 370 do Novo CPC); quando um fato é considerado como provado\nou incontroverso no processo (p. ex\n.:\n art. 374 do Novo CPC); e f) como o juiz apreciará as provas\nproduzidas (p. ex\n.:\n art. 371 do Novo "
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1809",
+      "numero": 1809,
+      "enunciado": "INTERPRETAÇÃO DO DIREITO ESTRANGEIRO",
+      "alternativas": {
+        "A": "Interpretação sociológica: \nDiante dessa metodologia, impõe-se profundo exame dos\nelementos históricos, teleológicos bem como dos usos, costumes e tradições de um povo, com o\nobjetivo de identificar o fato gerador da lei e sua própria motivação. Nesse método, a lei sofre\nconstante mutação de acordo ",
+        "B": "Interpretação lógica: \ndiante\ndessa metodologia se busca o real sentido da lei, vulgarmente entendido como o espírito do\nlegislador, buscando o fundamento racional da própria norma;",
+        "C": "Interpretação sistemática:\n diante\ndessa metodologia a interpretação da lei é feita confrontando-se sua exata posição perante o sistema\nlegislativo como um todo;",
+        "D": "Interpretação analógica: \nmetodologia de interpretação baseada na\nanálise de situações semelhantes diante de seus pontos em comum. Assim, ainda que não exista uma\nlei específica para o caso em comento, a similitude dos pontos analisados e os elementos em\ncomum permitem a utilização da analogia para "
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1810",
+      "numero": 1810,
+      "enunciado": "APLICAÇÃO DO DIREITO ESTRANGEIRO\nAplicação do direito estrangeiro de ofício pelo magistrado:\n Diante do caso submetido a\njulgamento, o juiz poderá efetuar a aplicação do direito que bem entender ao caso sob sua análise,\npodendo exigir inclusive das partes, nos próprios termos do art. 376 do Novo CPC, a prova do teor\ne da vigência do direito discutido nos autos, se assim o determinar. É a corrente dominante e que\nmelhor revela os termos de aplicação do direito estrangeiro; é \nvedada a aplicação do direito\nestrangeiro de ofício, cabendo às partes exclusivamente a indicação do direito a ser aplic",
+      "alternativas": {
+        "A": "aplicação direta\n, o processo tem a devida tramitação\nperante o juiz competente do foro, sendo sua primeira tarefa a de identificar qual será o elemento de\nconexão a ser aplicado ao caso \nsub judice\n e, por consequência, qual a lei a ser aplicada em relação\nao fato submetido a julgamento (se a lei n",
+        "B": "aplicação indireta\n, a sentença é proferida por um juiz estrangeiro, sendo\ncerto que apenas a execução será feita no Brasil. Todavia, para que possa produzir seus efeitos em\nterritório nacional, a sentença deve ser homologada perante o Superior Tribunal de Justiça (art. 109,\nX, da CF), devendo ser o",
+        "C": "quando a ação se originar de fato ocorrido ou ato praticado no Brasil;",
+        "D": "quando a ação\nfor relativa a imóvel situado no Brasil; e) nas ações de inventário ou partilha de bens situados no\nBrasil, ainda que o \nde cujus\n seja estrangeiro ou tenha residido fora do território nacional,\nsalientando que as três primeiras hipóteses definem uma situação de competência concorrente"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1815",
+      "numero": 1815,
+      "enunciado": "DA PREVENÇÃO ESPECIAL\nAs crianças menores de 10 anos somente poderão ingressar e permanecer nos locais de\napresentação ou exibição quando acompanhadas dos pais ou responsável; as emissoras de rádio e\ntelevisão somente exibirão, no horário recomendado para o público infanto-juvenil, programas com\nfinalidades educativas, artísticas, culturais e informativas; as revistas e publicações contendo\nmaterial impróprio ou inadequado a crianças e adolescentes deverão ser comercializadas em\nembalagem lacrada, com a advertência de seu conteúdo; as revistas e publicações destinadas ao\npúblico infanto-juveni",
+      "alternativas": {
+        "A": "tratar-se\nde comarca contígua à da residência da criança, se na mesma unidade da Federação, ou incluída na\nmesma região metropolitana;",
+        "B": "a criança estiver acompanhad\na:\n 1) de ascendente ou colateral maior,\naté o terceiro grau, comprovado documentalmente o parentesco; 2) de pessoa maior, expressamente\nautorizada pelo pai, mãe ou responsável. Quando se tratar de viagem ao exterior, a autorização é\ndispensável, se a criança ou adolesce",
+        "C": "Idade do adotando:\n deve contar com, no máximo, 18 anos à data do pedido, salvo se já\nestiver sob a guarda ou tutela dos adotantes.",
+        "D": "Efeito:\n atribui a condição de filho ao adotado, com os mesmos direitos e deveres, inclusive\nsucessório. A morte dos adotantes não restabelece o poder familiar dos pais naturais.\ne) Relação do adotado com a família natural ou extensa:\n após a adoção, ocorre o\ndesligamento de qualquer vínculo com pai"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1816",
+      "numero": 1816,
+      "enunciado": "1\n3 Ação penal\nPública incondicionada.\n16.1\n4 Transação penal\nSomente poderá ser formulada desde que tenha havido a prévia composição do dano\nambiental, salvo em caso de comprovada impossibilidade.\n16.1\n5 Infração administrativa ambiental",
+      "alternativas": {
+        "A": "Conceito:\n toda ação ou omissão que viole as regras jurídicas de uso, gozo, promoção,\nproteção e recuperação do meio ambiente.",
+        "B": "Competência:\n são autoridades competentes para lavrar auto de infração ambiental e\ninstaurar processo administrativo os funcionários de órgãos ambientais integrantes do Sistema\nNacional de Meio Ambiente – SISNAMA, designados para as atividades de fiscalização, bem como\nos agentes das Capitanias dos ",
+        "C": "Obrigação de apuração:\n a autoridade ambiental que tiver conhecimento de infração\nambiental é obrigada a promover a sua apuração imediata, mediante processo administrativo\npróprio, sob pena de corresponsabilidade.",
+        "D": "Forma de apuração:\n as infrações ambientais são apuradas em processo administrativo\npróprio, assegurado o direito de ampla defesa e o contraditório.\ne) Prazos máximos do processo administrativo:\n 20 dias para o infrator oferecer defesa ou\nimpugnação contra o auto de infração, contados da data da ciê"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1819",
+      "numero": 1819,
+      "enunciado": "DO PROMOTOR DE JUSTIÇA DA INFÂNCIA E JUVENTUDE\n19.1\n Funções do Promotor da Infância e Juventude: as funções do Ministério\nPúblico previstas no ECA serão exercidas nos termos da respectiva lei orgânica.\n19.1.1\n Atribuições do MP\n► \nConcessão: \nconceder a remissão como forma de exclusão do processo;\n► \nPromoção e Acompanhamento: \ndos procedimentos relativos às infrações atribuídas a\nadolescentes; as ações de alimentos e os procedimentos de suspensão e destituição do\npoder familiar, nomeação e remoção de tutores, curadores e guardiães, bem como oficiar\nem todos os demais procedimentos da competê",
+      "alternativas": {
+        "A": "expedir\nnotificações para colher depoimentos ou esclarecimentos e, em caso de não\ncomparecimento injustificado, requisitar condução coercitiva, inclusive pela polícia civil\nou militar;",
+        "B": "requisitar informações, exames, perícias e documentos de autoridades\nmunicipais, estaduais e federais, da administração direta ou indireta, bem como promover\ninspeções e diligências investigatórias;",
+        "C": "requisitar informações e documentos a\nparticulares e instituições privadas;\n► \nZelo: \nzelar pelo efetivo respeito aos direitos e garantias legais assegurados às crianças\ne adolescentes, promovendo as medidas judiciais e extrajudiciais cabíveis;\n► \nImpetração: \nimpetrar mandado de segurança, de injun",
+        "D": "do\ntrabalh\no:\n \nlocal de trabalho que tem condições de salubridade e segurança. O meio ambiente\necologicamente equilibrado é direito de todos, de terceira geração, consubstanciado na integração\ndo desenvolvimento, proteção ambiental e vida digna."
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_1841",
+      "numero": 1841,
+      "enunciado": "Qual a natureza da Secretaria Executiva do Conselho Nacional de Recursos Hídricos?\nSerá exercida pelo órgão integrante da estrutura do Ministério do Meio Ambiente, dos\nRecursos Hídricos e da Amazônia Legal, responsável pela gestão dos recursos hídricos.\n42. Quais as funções da Secretaria Executiva do Conselho Nacional de Recursos Hídricos?\nI – prestar apoio administrativo, técnico e financeiro ao Conselho Nacional de Recursos\nHídricos; (...)\nIII – instruir os expedientes provenientes dos Conselhos Estaduais de Recursos Hídricos e dos\nComitês de Bacia Hidrográfica; (...)\nV – elaborar seu progra",
+      "alternativas": {
+        "A": "Responsabilidade:\n serão responsabilizadas administrativa, civil e penalmente, nos casos\nem que a infração seja cometida por decisão de seu representante legal ou contratual, ou de seu\nórgão colegiado, no interesse ou benefício da sua entidade. A responsabilidade das pessoas\njurídicas não exclui a d",
+        "B": "Desconsideração da personalidade jurídica: \npoderá ser desconsiderada a pessoa jurídica\nsempre que sua personalidade for obstáculo ao ressarcimento de prejuízos causados à qualidade do\nmeio ambiente.",
+        "C": "Penas:\n as penas aplicáveis isolada, cumulativa ou alternativamente às pessoas jurídicas\nsã\no:\n multa; restritivas de direitos (suspensão parcial ou total de atividades – será aplicada quando\nestas não estiverem obedecendo às disposições legais ou regulamentares, relativas à proteção do\nmeio ambient",
+        "D": "Liquidação forçada:\n a pessoa jurídica constituída ou utilizada, preponderantemente, com o\nfim de permitir, facilitar ou ocultar a prática de crime ambiental terá decretada sua liquidação\nforçada, seu patrimônio será considerado instrumento do crime e, como tal, perdido em favor do\nFundo Penitenciár"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_2001",
+      "numero": 2001,
+      "enunciado": "021.” (NR)\n38\n “No regime do Novo CPC, adota-se, como princípio, a regra de que não apenas os vícios processuais em geral, mas também\nvícios que impediriam o conhecimento do recurso devem ser, sempre que possível, sanados... Caso, p.ex., note-se a ausência de\ncitação de pessoa que deveria ter sido citada como litisconsorte necessária (arts. 114 e 115 do Novo CPC), a solução será a\ndecretação da nulidade dos atos praticados, com o retorno dos autos ao órgão \na quo\n. É o que ocorre no “caso em que o Tribunal \na\nquo\n entendendo pela necessidade da produção de prova pericial para o efetivo esclare",
+      "alternativas": {
+        "A": ",\ndependendo sua aprovação do voto de 2/3 dos seus integrantes, depois que uma determinada matéria já tiver sido reiteradamente\ndecidida (CF, art. 103-A, \ncaput\n). A súmula terá por objetivo a validade, a interpretação e a eficácia de normas determinadas, acerca\ndas quais haja controvérsia atual ent",
+        "B": "penhora, depósito e avaliação;",
+        "C": "expropriação de bens;",
+        "D": "satisfação do\ncrédito; e) extinção da execução.\n51\n O requerimento do cumprimento de sentença deverá ser instruído com demonstrativo discriminado e atualizado do crédito,\ndevendo a petição conte\nr:\n a)o nome completo, o número do cadastro de pessoas físicas ou do cadastro nacional de pessoas jurídic"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_2006",
+      "numero": 2006,
+      "enunciado": "FILOSOFIA HELENISTA\nHá uma preocupação com a vida interior do homem, um enfraquecimento da reflexão política,\numa interação das culturas orientais com os valores gregos e uma preocupação com a ética, a física,\na teologia e a religião.\nEpicurismo: \na felicidade do ser humano está na busca do prazer, seja ele duradouro ou\nimediato.\nEstoicismo: \na virtude é o fim supremo e único bem do homem.\nCinismo: \no homem deve procurar conhecer a si mesmo e desprezar todos os bens materiais.\n7. FILOSOFIA MEDIEVAL\nA estrutura medieval era explicada e justificada pela teologia, em que a criação do mundo é\nato ",
+      "alternativas": {
+        "A": "corpos\nnaturais \n(filosofia da natureza) e",
+        "B": "corpo artificial\n ou \nEstado\n (filosofia política). Toda a\nrealidade pode ser explicada a partir de dois elemento\ns:\n \na) corpo:\n elemento material que existe e \nb)\nmovimento:\n determinado matemática e geometricamente. Prega o materialismo e o mecanicismo. O\nbem é somente aquilo que desejamos alcanç",
+        "C": "juízo sintético \na priori\n – acrescenta informações novas ao sujeito, possibilitando ampliação do\nconhecimento.\nEconomistas preocupados com problemas de mercado: \na regra é a liberdade de mercado; a\nintervenção do Estado deve ocorrer apenas para garantir o livre funcionamento do mercado.\nEconomistas",
+        "D": "promover o progresso social, preservando a estabilidade das instituições político-jurídicas e\ngarantindo os direitos fundamentais.\nA hermenêutica constitucional possui as seguintes característica\ns:\n a) \nCaráter político:\n a\nConstituição é um conjunto de normas jurídicas que disciplinam o exercício "
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_2009",
+      "numero": 2009,
+      "enunciado": "COMISSÃO DA VERDADE\nFoi criada \ncom a finalidade de examinar e esclarecer as graves violações de direitos humanos\npraticadas no período de 18 de setembro de 1946 até a data da promulgação da \nConstituição \na fim\nde efetivar o direito à memória e à verdade histórica e promover a reconcili\nação nacional. \nFoi\ncomposta por \nsete membros, designados pelo \nPresidente da\n \nRepública\n, dentre brasileiros, de\nreconhecida idoneidade e conduta ética, identificados com a defesa da democracia e da\ninstitucionalidade constitucional, bem como com o respeito aos direitos humanos.\n10. REFERÊNCIAS\nACCIOLY, Hil",
+      "alternativas": {
+        "A": "que significa amor à sabedoria. A filosofia consiste em um trabalho teórico que busca refletir e\nquestionar o saber instituído, dentro de uma perspectiva sistemática ou conjunta dos acontecimentos\ndo cotidiano. É um saber universal, livre e crítico sobre o mundo. É uma pesquisa empírica da\nrealidade",
+        "B": "Sofistas: \nmestres do saber político e da retórica, tratam o homem como indivíduo e\ndifundem a ideia de que tudo é relativo. São representante\ns:\n Protágoras de Abdera (o homem é a\nmedida de todas as coisas), Hipódamos de Mileto, entre outros.",
+        "C": "Escola Socrática: \nSócrates foi preocupado em ordenar o comportamento do homem\nchegando ao conceito de indução. O homem traz em si a capacidade de conseguir a verdade.\nSócrates pregava verdades universais e utilizava o método do diálogo. O método socrático abrang\ne:\n1) a ironia (interrogação); 2) a ",
+        "D": "Platão: \nos males não cessarão para os homens antes que a raça dos puros e autênticos\nfilósofos chegue ao poder. Na teoria das ideias o mundo terreno, criação do Demiurgo, é cópia\nimperfeita do mundo perfeito ou mundo das ideias. O conhecimento se dá por processo de passagem\ndo mundo enganoso para o"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_2011",
+      "numero": 2011,
+      "enunciado": "DA INSCRIÇÃO – ART. 8º DO EAOAB\nO advogado precisa cumprir certos requisitos para o exercício da profissão. Assim, o art. 8º\ndo EAOAB determina, em seus diversos incisos, quais são esses requisitos, necessários para a\ninscrição do advogado.\nEstando ausente um dos requisitos previstos nos incisos do art. 8º do EAOAB, a inscrição não\nserá realizada.\nPortanto, para que a inscrição perante os quadros da OAB seja efetivamente concluída, o\ncandidato deve preencher todos os requisitos do artigo supramencionado.\nVale lembrar que apenas Conselhos Seccionais da OAB possuem competência legal para\nrealiza",
+      "alternativas": {
+        "A": "certidão expedida por cartórios ou secretarias judiciais;",
+        "B": "cópia autenticada de atos privativos;",
+        "C": "certidão expedida pelo órgão público no qual o advogado exerça função privativa do seu ofício, indicando os atos praticados.\nArt. 26. O advogado fica dispensado de comunicar o exercício eventual da profissão, até o total de cinco causas por ano, acima\ndo qual obriga-se à inscrição suplementar.\nObser",
+        "D": "que o desconto ou a compensação dos honorários contratados e de valores que devam ser\nentregues ao constituinte ou cliente só podem ocorrer se houver prévia autorização ou previsão\ncontratual;\ne) devem ser delimitados os serviços profissionais a se prestarem nos procedimentos\npreliminares, judiciais"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_2012",
+      "numero": 2012,
+      "enunciado": "2\n Da homologação de sentença estrangeira\nPara que a sentença possa produzir efeitos para além das fronteiras do território nacional, é\nnecessário que esta sentença preencha determinados requisitos formais, bem como seja aposto pela\njustiça alienígena o seu \nexequatur\n, isto é, a declaração feita por um determinado Estado de que se\nsubmete à execução de uma sentença proferida por um outro país, sendo este o requisito essencial\npara que a decisão proferida por um ordenamento jurídico estrangeiro passe a ter a mesma validade\nque uma decisão proferida por um órgão jurisdicional nacional. No orden",
+      "alternativas": {
+        "A": "haver sido proferida por juiz competente;",
+        "B": "terem as partes sido regularmente\ncitadas ou haver-se legalmente verificado a revelia;",
+        "C": "ter ocorrido o efetivo trânsito em julgado e\nestar revestida das formalidades necessárias à execução no local em que foi proferida;",
+        "D": "estar\ninstruído o pedido com cópia autêntica ou certidão do texto integral da sentença estrangeira que se\npretende ver homologada chancelada pelo respectivo cônsul brasileiro do país de origem,\ndevidamente traduzida por intérprete oficial/tradutor juramentado. Não obstante estes requisitos\ngerais, a"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_2013",
+      "numero": 2013,
+      "enunciado": "CONTRATOS E OBRIGAÇÕES INTERNACIONAIS\nA regra geral aponta para uma ampla liberdade de contratar, sendo esta, todavia, limitada por\nmeio das questões de ordem pública, dos costumes, da moral e do direito. Seguindo as regras\ncomuns de direito internacional, se a obrigação estabelecida em contrato tiver sido constituída no\nBrasil, esta será regida pelas leis brasileiras (art. 9º da LINDB), sendo admitida ainda a hipótese\nde a obrigação ter sido contraída no exterior e as partes terem escolhido a legislação brasileira\npara regê-la, o que, inclusive, admite a execução do contrato em território nac",
+      "alternativas": {
+        "A": ". Já em relação aos contratos específicos de compra e venda de imóveis situados no Brasil,\nsomente após o efetivo registro é que este passará a produzir efeitos em relação ao ordenamento\njurídico brasileiro, razão pela qual, caso não preencha a operação de compra e venda todos os\nrequisitos da lei n",
+        "B": "Incoterms:\n \nconhecidos vulgarmente como termos internacionais do comércio, os\nincoterms\n foram difundidos em âmbito global pela Câmara de Comércio Internacional (CCI), com\nsede em Paris, com o objetivo de uniformização de entendimentos para facilitar as negociações e/ou\ncumprimento das obrigações d",
+        "C": ".\nA renúncia independe da anuência do cliente. Porém, cabe ao advogado informar ao cliente a\nrespeito da renúncia, por meio de carta via AR, e posteriormente informar ao juízo.\nA conclusão ou desistência da causa, com ou sem a extinção do mandato, obriga o advogado à\ndevolução de bens, valores e doc",
+        "D": "em qualquer assembleia ou reunião de que participe ou possa participar o seu cliente,\nou perante a qual este deva comparecer, desde que munido de poderes especiais.\nNestes itens temos que ter muita atenção, pois na prática é completamente diferente.\nO advogado tem acesso livre nas salas de sessões d"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_2017",
+      "numero": 2017,
+      "enunciado": "3\n Regras e princípios\nItens\nPrincípios\nRegras\nColidência e\nsolução\nColisão. A solução é a ponderação de\nvalores.\nConflito. A solução é o critério hierárquico, cronológico\nou especial.\nObjeto\nMultiplicidade de situações.\nCaso concreto.\nGrau de\nabstração e\ndeterminação\nElevado grau de abstração. São vagos e\nindeterminados.\nReduzido grau de abstração. São específicas.\nNatureza e\ncaracterística\nFundamento das regras e exigências de\njustiça.\nTêm aplicação direta no caso concreto e possuem como\nconteúdo uma conduta ou uma estrutura.\nConvivência\nCoexistência; permitem ponderar os bens e\nvalores – ma",
+      "alternativas": {
+        "A": "Jeremy Bentham:\n filósofo e jurista inglês, expoente do utilitarismo clássico, precursor das\nideias do Estado do bem-estar social e idealizador do modelo de prisão Panopticon. Para Jeremy,\ndireitos deviam ser explícitos em um sistema legal, e a sociedade ideal concilia a felicidade do\nindivíduo com ",
+        "B": "H. L. A. Hart:\n liberal, defensor do Estado Democrático, da tolerância e da liberdade,\npositivista moderado, reconhece que o Direito é um fenômeno cultural modelado pela linguagem.",
+        "C": "John Rawls:\n filósofo político, teórico da democracia liberal, busca conciliar equidade\nsocial, eficácia econômica e liberdade política. Sua teoria política fundamenta-se na prioridade do\njusto sobre o bem. Desenvolveu os pressupostos de uma sociedade just\na:\n igualdade de oportunidade\naberta a todo",
+        "D": "Gustav Radbruch:\n jurista alemão, jusnaturalista, representante da filosofia de valores de\norigem neokantiana, defensor da relatividade dos juízos de existência e valor, concebe a filosofia\ndo direito como a consideração valorativa do direito e defende o direito como uma relação entre\njustiça, fim e"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_2019",
+      "numero": 2019,
+      "enunciado": "NEOCONSTITUCIONALISMO\nA expressão “neoconstitucionalismo” foi cunhada em 1993, inicialmente, pela jurista italiana\nSuzanna Pozzolo, numa conferência em Buenos Aires\n1\n. É a teoria do Direito que se propõe a\ndescrever as transformações dos grandes sistemas jurídicos contemporâneos, consistentes na\nconfiguração de uma Constituição invasora, na onipresença de princípios e regras na Constituição e\nna existência de peculiaridades na interpretação e aplicação das leis a partir da incidência da\nConstituição. O neoconstitucionalismo surgiu após a Segunda Guerra Mundial, como um novo\nmodelo de compreen",
+      "alternativas": {
+        "A": "princípios em vez de regra\ns:\n a\nimportância dada aos princípios e valores como componentes elementares dos sistemas jurídicos\nconstitucionalizados;",
+        "B": "ponderação no lugar de subsunção;",
+        "C": "justiça particular em vez de justiça\ngeral;",
+        "D": "Poder Judiciário em vez dos Poderes Legislativo ou Executivo, com a judicialização da\npolítica e das relações sociais; e) Constituição em substituição à lei; f) a aceitação de alguma\nconexão entre Direito e moral, inclusive com a inserção da filosofia do direito na teoria da\nconstituição; g) constit"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_2020",
+      "numero": 2020,
+      "enunciado": "REFERÊNCIAS\nBARROSO, Luiz Roberto. Neoconstitucionalismo e constitucionalização do direito. I\nn:\nSAMPAIO, José Adércio Leite (coord.). \nConstituição e crise política.\n Belo Horizont\ne:\n Del Rey,\n2006.\nBORNHEIM, Gerd. A. \nIntrodução ao filosofar\n. São Paul\no:\n Globo, 1969.\nCABRAL DE MONCADA, L. \nFilosofia do Direito e do Estado\n. Coimbr\na:\n Coimbra Editora,\n2006.\nCHAUI, Marilena. \nConvite à filosofia\n. São Paul\no:\n Ática, 1996.\nMAIA, Mário Sérgio Falcão. A recepção da teoria neoconstitucional pelo Supremo Tribunal\nFederal Bra​sileiro\n. Revista Internacional de Direito e Cidadania\n, n. 5, p. 151",
+      "alternativas": {
+        "A": "; IV – Tem-se, assim, que os artigos 112, parágrafo único, e 114 do CPC,\nna verdade, encerram critério de competência de natureza híbrida (ora absoluta, quando detectada a abusividade da cláusula de\neleição de foro, ora relativa, quando ausente a abusividade e, portanto, derrogável pela vontade das ",
+        "B": "decisão interlocutória do juiz\nrelativa aos efeitos que esse Recurso Inominado é recebido;",
+        "C": "decisão interlocutória do juiz passível de causar à parte uma lesão\ngrave ou de difícil reparação.\n28\n Não é considerada sentença pela lei, logo, não pode ser impugnada por recurso de apelação – a decisão que, embora\nfundamentada nos arts. 485 e 487 do Novo CPC, não coloquem fim à fase cognitiva do ",
+        "D": "art. 164, § 7º, da mesma Lei, sobre a apelação interposta contra sentença que homologa plano de recuperação\nde empresa.\n30\n Como exemplos de decisões monocráticas temo\ns:\n i) a decisão do relator que não conheceu do recurso, ou que lhe deu ou negou\nprovimento, ou, ainda, que tenha apreciado requerim"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_2023",
+      "numero": 2023,
+      "enunciado": "936/RO, Rel. Min. Humberto Martins, 2ª T., j. 12-2-2015, \nDJe\n 19-2-2015).\n10.4\n Concessão de liminares em mandado de segurança e cautelares e tutela\nantecipada em outras ações\nO mandado de segurança é conhecido como remédio constitucional contra as ilegalidades ou\nabuso de poder praticado pelo fisco, previsto no art. 5º, LXIX, da CF/88 e regrado pela Lei n.\n12.016/2009.\nA medida liminar tem fundamento legal no art. 7º, III, da Lei n. 12.016/2009\n:\nArt. 7º Ao despachar a inicial, o juiz ordenar\ná:\n(...)\nIII – que se suspenda o ato que deu motivo ao pedido, quando houver fundamento relevante e ",
+      "alternativas": {
+        "A": "a recorrida, por ter\nefetuado lançamento a maior e ilegal em as (\nsic\n) escritas fiscal, beneficiando-se de indevida correção monetária do saldo credor\ndo ICMS, no período de 1994 a 199 (\nsic\n), não está isenta de arcar com a multa legal e a totalidade dos juros devidos;",
+        "B": "o fato\nde ter agido sob o amparo de medida liminar judicial, posteriormente cassada, não afasta a sua responsabilidade pelas obrigações\nacessórias acima identificadas;",
+        "C": "o fisco, mesmo no período da vigência da liminar, não estava impedido de lavrar autuação; só\nnão podia exigir tributo;",
+        "D": "ser impossível, por interpretação analógica, o afastamento de multa prevista em lei; e) ao ser mantida,\npelo acórdão recorrido, a cobrança da obrigação principal, consequentemente, a ela se incorporam os juros e multa previstas em\nlei; f) a indevida escrituração e apropriação de créditos na escrita "
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_2024",
+      "numero": 2024,
+      "enunciado": "REABILITAÇÃO DISCIPLINAR\nÉ permitido ao advogado que tenha sofrido qualquer sanção disciplinar requerer, um ano após\nseu cumprimento, a reabilitação, em face de provas efetivas de bom comportamento, conforme\ndispõe o art. 41 do EAOAB.\nEsse prazo deve ser modificado quando a sanção disciplinar resultar da prática de crime.\nQuando tal ocorrer, o pedido de reabilitação depende também da correspondente reabilitação\ncriminal.\n25. DA PRESCRIÇÃO PROCESSUAL\nPrescreve em cinco anos a pretensão à punibilidade das infrações disciplinares, contados da\ndata da constatação oficial do fato. Vejamo\ns:\n“A pret",
+      "alternativas": {
+        "A": ".\nUma vez instaurado, o processo disciplinar precisa ser instruído e concluído.\nA lei também estabeleceu hipótese de prescrição para a paralisação do processo.\nAssim, na conformidade do § 1º, do art. 43, do EAOAB, aplica-se a prescrição a todo\nprocesso disciplinar paralisado por mais de três anos, p",
+        "B": "é serviço público,\nsem vínculo funcional ou hierárquico com órgãos da Administração Pública.\nSua independência só encontra limite na subordinação à lei.\nI – defender a Constituição, a ordem jurídica do Estado democrático de direito, os direitos\nhumanos, a justiça social, e pugnar pela boa aplicação ",
+        "C": "Eleger o sucessor dos membros da Diretoria do Conselho Federal, nos casos de vacância.",
+        "D": "Regular, mediante resoluções, matérias de sua competência que não exijam edição de\nprovimento.\ne) Instituir, mediante provimento, comissões permanentes para assessorar o Conselho Federal\ne a Diretoria.\nCompete, também, ao Conselho Pleno decidir sobre todas as matérias privativas de seu órgão\nespecia"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    },
+    {
+      "codigo_questao": "OAB_GIG_EXAME DA OAB UNIFICADO 1ª FASE_2028",
+      "numero": 2028,
+      "enunciado": "2\n Diretoria do Conselho Federal\nA diretoria do Conselho Federal é composta de cinco membros, servindo de parâmetro para\ntodos os órgãos da Ordem dos Advogados do Brasi\nl:\n Presidente, Vice-presidente, Secretário-geral,\nSecretário adjunto e o Tesoureiro.\n29. DA CONFERÊNCIA NACIONAL DOS ADVOGADOS – CNA\nA Conferência Nacional dos Advogados é órgão consultivo máximo do Conselho Federal,\nreunindo-se trienalmente, no segundo ano do mandato, tendo por objetivo o estudo e o debate das\nquestões e problemas que digam respeito às finalidades da OAB e ao congraçamento dos\nadvogados.\n30. CONSELHO SECCIONA",
+      "alternativas": {
+        "A": "como órgão julgador, decidindo todos os processos disciplinares instruídos pelo Conselho\nSeccional ou pelas Subseções;",
+        "B": "como órgão de consulta e de promoção da ética profissional.\nOs membros do Tribunal de Ética e Disciplina exercem mandato, com prazo definido no\nregimento interno do Conselho, sendo irremovíveis, salvo nas mesmas hipóteses de perda de\nmandato dos conselheiros.\nXIV – eleger as listas, constitucionalme",
+        "C": "Irrenunciabilidade:\n em regra, não é possível abrir mãos dos\ndireitos;",
+        "D": "Inviolabilidade:\n os direitos devem ser respeitados pelo Poder Público e pela\nlegislação; e)\n Universalidade:\n os direitos são destinados a todos os seres humanos, de forma\nindistinta; f)\n Efetividade: \nos direitos devem ser implementados; g)\n Interdependência: \nos direitos\ndevem ser analisados de f"
+      },
+      "alternativa_correta": "REVISAR",
+      "disciplina": "REVISAR",
+      "status": "EXTRAIDO_PDF_GIGANTE"
+    }
+  ]
+}

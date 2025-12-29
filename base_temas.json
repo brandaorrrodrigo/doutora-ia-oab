@@ -1,0 +1,499 @@
+{
+  "temas": [
+    {
+      "id": 1,
+      "titulo": "Recursos no Código de Processo Civil",
+      "area": "Processo Civil",
+      "dificuldade": "intermediario",
+      "tags": ["recursos", "CPC", "apelacao", "agravo"],
+      "carga_horaria": "4 horas",
+      "prerequisitos": ["Processo Civil I"]
+    },
+    {
+      "id": 2,
+      "titulo": "Direitos do Consumidor - CDC Completo",
+      "area": "Direito do Consumidor",
+      "dificuldade": "iniciante",
+      "tags": ["CDC", "relacao de consumo", "fornecedor"],
+      "carga_horaria": "6 horas",
+      "prerequisitos": []
+    },
+    {
+      "id": 3,
+      "titulo": "Contratos - Teoria Geral",
+      "area": "Direito Civil",
+      "dificuldade": "iniciante",
+      "tags": ["contratos", "obrigacoes", "pacta sunt servanda"],
+      "carga_horaria": "5 horas",
+      "prerequisitos": ["Direito Civil I"]
+    },
+    {
+      "id": 4,
+      "titulo": "Responsabilidade Civil",
+      "area": "Direito Civil",
+      "dificuldade": "intermediario",
+      "tags": ["dano", "nexo causal", "culpa", "dolo"],
+      "carga_horaria": "4 horas",
+      "prerequisitos": ["Direito Civil I"]
+    },
+    {
+      "id": 5,
+      "titulo": "Direitos Fundamentais na Constituição",
+      "area": "Direito Constitucional",
+      "dificuldade": "iniciante",
+      "tags": ["direitos fundamentais", "CF88", "garantias"],
+      "carga_horaria": "6 horas",
+      "prerequisitos": []
+    },
+    {
+      "id": 6,
+      "titulo": "Controle de Constitucionalidade",
+      "area": "Direito Constitucional",
+      "dificuldade": "avancado",
+      "tags": ["ADI", "ADPF", "STF", "controle concentrado"],
+      "carga_horaria": "8 horas",
+      "prerequisitos": ["Direito Constitucional I"]
+    },
+    {
+      "id": 7,
+      "titulo": "Contrato de Trabalho - CLT",
+      "area": "Direito do Trabalho",
+      "dificuldade": "iniciante",
+      "tags": ["CLT", "empregado", "empregador", "vinculo"],
+      "carga_horaria": "5 horas",
+      "prerequisitos": []
+    },
+    {
+      "id": 8,
+      "titulo": "Jornada de Trabalho e Horas Extras",
+      "area": "Direito do Trabalho",
+      "dificuldade": "intermediario",
+      "tags": ["jornada", "horas extras", "intervalo", "descanso"],
+      "carga_horaria": "3 horas",
+      "prerequisitos": ["Direito do Trabalho I"]
+    },
+    {
+      "id": 9,
+      "titulo": "Crimes contra o Patrimônio",
+      "area": "Direito Penal",
+      "dificuldade": "intermediario",
+      "tags": ["furto", "roubo", "extorsao", "patrimonio"],
+      "carga_horaria": "6 horas",
+      "prerequisitos": ["Direito Penal I"]
+    },
+    {
+      "id": 10,
+      "titulo": "Teoria do Crime",
+      "area": "Direito Penal",
+      "dificuldade": "avancado",
+      "tags": ["fato tipico", "antijuridicidade", "culpabilidade"],
+      "carga_horaria": "8 horas",
+      "prerequisitos": ["Direito Penal I"]
+    },
+    {
+      "id": 11,
+      "titulo": "Ação Penal e Denúncia",
+      "area": "Processo Penal",
+      "dificuldade": "intermediario",
+      "tags": ["denuncia", "acao penal", "MP", "queixa"],
+      "carga_horaria": "4 horas",
+      "prerequisitos": ["Processo Penal I"]
+    },
+    {
+      "id": 12,
+      "titulo": "Prisões e Medidas Cautelares",
+      "area": "Processo Penal",
+      "dificuldade": "avancado",
+      "tags": ["prisao", "cautelar", "flagrante", "preventiva"],
+      "carga_horaria": "5 horas",
+      "prerequisitos": ["Processo Penal I"]
+    },
+    {
+      "id": 13,
+      "titulo": "Alimentos e Pensão Alimentícia",
+      "area": "Direito de Família",
+      "dificuldade": "iniciante",
+      "tags": ["alimentos", "pensao", "binomio", "necessidade"],
+      "carga_horaria": "3 horas",
+      "prerequisitos": []
+    },
+    {
+      "id": 14,
+      "titulo": "Guarda e Convivência Familiar",
+      "area": "Direito de Família",
+      "dificuldade": "intermediario",
+      "tags": ["guarda", "compartilhada", "unilateral", "menor"],
+      "carga_horaria": "4 horas",
+      "prerequisitos": ["Direito de Família I"]
+    },
+    {
+      "id": 15,
+      "titulo": "Sucessões - Herança e Inventário",
+      "area": "Direito Civil",
+      "dificuldade": "avancado",
+      "tags": ["sucessao", "heranca", "inventario", "testamento"],
+      "carga_horaria": "6 horas",
+      "prerequisitos": ["Direito Civil III"]
+    },
+    {
+      "id": 16,
+      "titulo": "Petição Inicial no CPC",
+      "area": "Processo Civil",
+      "dificuldade": "iniciante",
+      "tags": ["peticao inicial", "requisitos", "CPC", "art 319"],
+      "carga_horaria": "3 horas",
+      "prerequisitos": []
+    },
+    {
+      "id": 17,
+      "titulo": "Contestação e Reconvenção",
+      "area": "Processo Civil",
+      "dificuldade": "intermediario",
+      "tags": ["contestacao", "reconvencao", "defesa", "reu"],
+      "carga_horaria": "4 horas",
+      "prerequisitos": ["Processo Civil I"]
+    },
+    {
+      "id": 18,
+      "titulo": "Provas no Processo Civil",
+      "area": "Processo Civil",
+      "dificuldade": "intermediario",
+      "tags": ["prova", "testemunha", "documental", "pericial"],
+      "carga_horaria": "5 horas",
+      "prerequisitos": ["Processo Civil I"]
+    },
+    {
+      "id": 19,
+      "titulo": "Sentença e Coisa Julgada",
+      "area": "Processo Civil",
+      "dificuldade": "avancado",
+      "tags": ["sentenca", "coisa julgada", "transito", "rescisoria"],
+      "carga_horaria": "5 horas",
+      "prerequisitos": ["Processo Civil II"]
+    },
+    {
+      "id": 20,
+      "titulo": "Execução de Título Judicial",
+      "area": "Processo Civil",
+      "dificuldade": "avancado",
+      "tags": ["execucao", "titulo judicial", "penhora", "expropriacao"],
+      "carga_horaria": "6 horas",
+      "prerequisitos": ["Processo Civil II"]
+    },
+    {
+      "id": 21,
+      "titulo": "Direito Administrativo - Princípios",
+      "area": "Direito Administrativo",
+      "dificuldade": "iniciante",
+      "tags": ["LIMPE", "legalidade", "impessoalidade", "moralidade"],
+      "carga_horaria": "3 horas",
+      "prerequisitos": []
+    },
+    {
+      "id": 22,
+      "titulo": "Atos Administrativos",
+      "area": "Direito Administrativo",
+      "dificuldade": "intermediario",
+      "tags": ["ato administrativo", "atributos", "vinculado", "discricionario"],
+      "carga_horaria": "5 horas",
+      "prerequisitos": ["Direito Administrativo I"]
+    },
+    {
+      "id": 23,
+      "titulo": "Licitações e Contratos Administrativos",
+      "area": "Direito Administrativo",
+      "dificuldade": "avancado",
+      "tags": ["licitacao", "pregao", "tomada de precos", "contrato"],
+      "carga_horaria": "8 horas",
+      "prerequisitos": ["Direito Administrativo II"]
+    },
+    {
+      "id": 24,
+      "titulo": "Servidores Públicos",
+      "area": "Direito Administrativo",
+      "dificuldade": "intermediario",
+      "tags": ["servidor", "concurso", "estatutario", "celetista"],
+      "carga_horaria": "4 horas",
+      "prerequisitos": ["Direito Administrativo I"]
+    },
+    {
+      "id": 25,
+      "titulo": "Responsabilidade Civil do Estado",
+      "area": "Direito Administrativo",
+      "dificuldade": "avancado",
+      "tags": ["responsabilidade objetiva", "estado", "dano", "regresso"],
+      "carga_horaria": "5 horas",
+      "prerequisitos": ["Direito Administrativo II"]
+    },
+    {
+      "id": 26,
+      "titulo": "Tributos - Conceito e Espécies",
+      "area": "Direito Tributário",
+      "dificuldade": "iniciante",
+      "tags": ["tributo", "imposto", "taxa", "contribuicao"],
+      "carga_horaria": "4 horas",
+      "prerequisitos": []
+    },
+    {
+      "id": 27,
+      "titulo": "Fato Gerador e Obrigação Tributária",
+      "area": "Direito Tributário",
+      "dificuldade": "intermediario",
+      "tags": ["fato gerador", "obrigacao tributaria", "CTN"],
+      "carga_horaria": "5 horas",
+      "prerequisitos": ["Direito Tributário I"]
+    },
+    {
+      "id": 28,
+      "titulo": "Crédito Tributário e Lançamento",
+      "area": "Direito Tributário",
+      "dificuldade": "avancado",
+      "tags": ["credito tributario", "lancamento", "execucao fiscal"],
+      "carga_horaria": "6 horas",
+      "prerequisitos": ["Direito Tributário II"]
+    },
+    {
+      "id": 29,
+      "titulo": "Imunidades e Isenções Tributárias",
+      "area": "Direito Tributário",
+      "dificuldade": "avancado",
+      "tags": ["imunidade", "isencao", "nao incidencia"],
+      "carga_horaria": "4 horas",
+      "prerequisitos": ["Direito Tributário I"]
+    },
+    {
+      "id": 30,
+      "titulo": "Propriedade - Direitos Reais",
+      "area": "Direito Civil",
+      "dificuldade": "intermediario",
+      "tags": ["propriedade", "posse", "direitos reais", "usucapiao"],
+      "carga_horaria": "6 horas",
+      "prerequisitos": ["Direito Civil II"]
+    },
+    {
+      "id": 31,
+      "titulo": "Posse e suas Classificações",
+      "area": "Direito Civil",
+      "dificuldade": "iniciante",
+      "tags": ["posse", "detentor", "possuidor", "classificacao"],
+      "carga_horaria": "3 horas",
+      "prerequisitos": []
+    },
+    {
+      "id": 32,
+      "titulo": "Usucapião - Modalidades",
+      "area": "Direito Civil",
+      "dificuldade": "avancado",
+      "tags": ["usucapiao", "extraordinaria", "ordinaria", "especial"],
+      "carga_horaria": "5 horas",
+      "prerequisitos": ["Direito Civil II"]
+    },
+    {
+      "id": 33,
+      "titulo": "Títulos de Crédito",
+      "area": "Direito Empresarial",
+      "dificuldade": "intermediario",
+      "tags": ["titulo de credito", "cheque", "nota promissoria", "duplicata"],
+      "carga_horaria": "4 horas",
+      "prerequisitos": ["Direito Empresarial I"]
+    },
+    {
+      "id": 34,
+      "titulo": "Sociedades Empresárias",
+      "area": "Direito Empresarial",
+      "dificuldade": "avancado",
+      "tags": ["sociedade", "LTDA", "SA", "empresario"],
+      "carga_horaria": "6 horas",
+      "prerequisitos": ["Direito Empresarial I"]
+    },
+    {
+      "id": 35,
+      "titulo": "Recuperação Judicial e Falência",
+      "area": "Direito Empresarial",
+      "dificuldade": "avancado",
+      "tags": ["recuperacao judicial", "falencia", "credores"],
+      "carga_horaria": "8 horas",
+      "prerequisitos": ["Direito Empresarial II"]
+    },
+    {
+      "id": 36,
+      "titulo": "Mandado de Segurança",
+      "area": "Direito Constitucional",
+      "dificuldade": "intermediario",
+      "tags": ["MS", "direito liquido e certo", "autoridade coatora"],
+      "carga_horaria": "4 horas",
+      "prerequisitos": ["Direito Constitucional I"]
+    },
+    {
+      "id": 37,
+      "titulo": "Habeas Corpus e Habeas Data",
+      "area": "Direito Constitucional",
+      "dificuldade": "intermediario",
+      "tags": ["HC", "HD", "remedio constitucional", "liberdade"],
+      "carga_horaria": "3 horas",
+      "prerequisitos": ["Direito Constitucional I"]
+    },
+    {
+      "id": 38,
+      "titulo": "Organização do Estado - Federação",
+      "area": "Direito Constitucional",
+      "dificuldade": "iniciante",
+      "tags": ["federacao", "uniao", "estados", "municipios"],
+      "carga_horaria": "4 horas",
+      "prerequisitos": []
+    },
+    {
+      "id": 39,
+      "titulo": "Poder Legislativo",
+      "area": "Direito Constitucional",
+      "dificuldade": "intermediario",
+      "tags": ["congresso", "senado", "camara", "processo legislativo"],
+      "carga_horaria": "5 horas",
+      "prerequisitos": ["Direito Constitucional I"]
+    },
+    {
+      "id": 40,
+      "titulo": "Poder Executivo",
+      "area": "Direito Constitucional",
+      "dificuldade": "intermediario",
+      "tags": ["presidente", "MP", "competencias", "crime de responsabilidade"],
+      "carga_horaria": "4 horas",
+      "prerequisitos": ["Direito Constitucional I"]
+    },
+    {
+      "id": 41,
+      "titulo": "Poder Judiciário",
+      "area": "Direito Constitucional",
+      "dificuldade": "intermediario",
+      "tags": ["STF", "STJ", "justica federal", "justica estadual"],
+      "carga_horaria": "5 horas",
+      "prerequisitos": ["Direito Constitucional I"]
+    },
+    {
+      "id": 42,
+      "titulo": "Princípios do Direito Penal",
+      "area": "Direito Penal",
+      "dificuldade": "iniciante",
+      "tags": ["legalidade", "anterioridade", "irretroatividade"],
+      "carga_horaria": "3 horas",
+      "prerequisitos": []
+    },
+    {
+      "id": 43,
+      "titulo": "Aplicação da Lei Penal",
+      "area": "Direito Penal",
+      "dificuldade": "intermediario",
+      "tags": ["lei penal no tempo", "lei penal no espaco", "territorialidade"],
+      "carga_horaria": "4 horas",
+      "prerequisitos": ["Direito Penal I"]
+    },
+    {
+      "id": 44,
+      "titulo": "Crimes contra a Vida",
+      "area": "Direito Penal",
+      "dificuldade": "avancado",
+      "tags": ["homicidio", "infanticidio", "aborto", "instigacao"],
+      "carga_horaria": "6 horas",
+      "prerequisitos": ["Direito Penal II"]
+    },
+    {
+      "id": 45,
+      "titulo": "Crimes contra a Honra",
+      "area": "Direito Penal",
+      "dificuldade": "intermediario",
+      "tags": ["calúnia", "difamacao", "injuria", "honra"],
+      "carga_horaria": "3 horas",
+      "prerequisitos": ["Direito Penal I"]
+    },
+    {
+      "id": 46,
+      "titulo": "Penas - Teoria e Aplicação",
+      "area": "Direito Penal",
+      "dificuldade": "avancado",
+      "tags": ["pena", "dosimetria", "circunstancias", "trifasico"],
+      "carga_horaria": "6 horas",
+      "prerequisitos": ["Direito Penal II"]
+    },
+    {
+      "id": 47,
+      "titulo": "Excludentes de Ilicitude",
+      "area": "Direito Penal",
+      "dificuldade": "avancado",
+      "tags": ["legitima defesa", "estado de necessidade", "estrito cumprimento"],
+      "carga_horaria": "5 horas",
+      "prerequisitos": ["Direito Penal I"]
+    },
+    {
+      "id": 48,
+      "titulo": "Concurso de Pessoas",
+      "area": "Direito Penal",
+      "dificuldade": "avancado",
+      "tags": ["coautoria", "participacao", "concurso", "crime"],
+      "carga_horaria": "4 horas",
+      "prerequisitos": ["Direito Penal II"]
+    },
+    {
+      "id": 49,
+      "titulo": "Inquérito Policial",
+      "area": "Processo Penal",
+      "dificuldade": "iniciante",
+      "tags": ["inquerito", "policia", "investigacao", "indiciamento"],
+      "carga_horaria": "3 horas",
+      "prerequisitos": []
+    },
+    {
+      "id": 50,
+      "titulo": "Provas no Processo Penal",
+      "area": "Processo Penal",
+      "dificuldade": "intermediario",
+      "tags": ["prova", "ilicita", "confissao", "testemunha"],
+      "carga_horaria": "5 horas",
+      "prerequisitos": ["Processo Penal I"]
+    },
+    {
+      "id": 51,
+      "titulo": "Recursos no Processo Penal",
+      "area": "Processo Penal",
+      "dificuldade": "avancado",
+      "tags": ["recurso", "apelacao", "RESE", "REsp", "RE"],
+      "carga_horaria": "6 horas",
+      "prerequisitos": ["Processo Penal II"]
+    },
+    {
+      "id": 52,
+      "titulo": "Tribunal do Júri",
+      "area": "Processo Penal",
+      "dificuldade": "avancado",
+      "tags": ["juri", "crimes dolosos contra a vida", "quesitos", "veredicto"],
+      "carga_horaria": "7 horas",
+      "prerequisitos": ["Processo Penal II"]
+    },
+    {
+      "id": 53,
+      "titulo": "Juizados Especiais Cíveis",
+      "area": "Processo Civil",
+      "dificuldade": "iniciante",
+      "tags": ["JEC", "pequenas causas", "lei 9099", "simplicidade"],
+      "carga_horaria": "4 horas",
+      "prerequisitos": []
+    },
+    {
+      "id": 54,
+      "titulo": "Tutelas Provisórias",
+      "area": "Processo Civil",
+      "dificuldade": "avancado",
+      "tags": ["tutela antecipada", "cautelar", "urgencia", "evidencia"],
+      "carga_horaria": "5 horas",
+      "prerequisitos": ["Processo Civil II"]
+    },
+    {
+      "id": 55,
+      "titulo": "Ação Rescisória",
+      "area": "Processo Civil",
+      "dificuldade": "avancado",
+      "tags": ["rescisoria", "desconstituir", "coisa julgada", "hipoteses"],
+      "carga_horaria": "4 horas",
+      "prerequisitos": ["Processo Civil III"]
+    }
+  ]
+}
