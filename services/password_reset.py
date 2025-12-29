@@ -34,7 +34,7 @@ def create_password_reset_token(email: str) -> Tuple[bool, Optional[str], Option
     try:
         # Verificar se usuário existe
         cursor.execute(
-            "SELECT id, nome FROM usuarios WHERE email = %s",
+            "SELECT id, nome FROM users WHERE email = %s",
             (email,)
         )
         result = cursor.fetchone()
@@ -158,8 +158,8 @@ def reset_password(token: str, new_password_hash: str) -> Tuple[bool, Optional[s
 
         # Atualizar senha
         cursor.execute("""
-            UPDATE usuarios
-            SET senha_hash = %s, updated_at = NOW()
+            UPDATE users
+            SET password_hash = %s, atualizado_em = NOW()
             WHERE id = %s
         """, (new_password_hash, user_id))
 

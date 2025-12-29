@@ -436,6 +436,35 @@ def with_db_session(func):
 
 
 # ============================================================================
+# CONEXÃO PSYCOPG2 DIRETA (Para código legado)
+# ============================================================================
+
+def get_db_connection():
+    """
+    Retorna uma conexão psycopg2 direta (não SQLAlchemy).
+    Usado por código legado que precisa de cursor direto.
+
+    IMPORTANTE: O caller deve fechar a conexão quando terminar!
+
+    Returns:
+        psycopg2.connection: Conexão direta com PostgreSQL
+    """
+    import psycopg2
+
+    config = DatabaseConfig()
+
+    conn = psycopg2.connect(
+        host=config.host,
+        port=config.port,
+        database=config.database,
+        user=config.user,
+        password=config.password
+    )
+
+    return conn
+
+
+# ============================================================================
 # INSTÂNCIA GLOBAL (SINGLETON)
 # ============================================================================
 

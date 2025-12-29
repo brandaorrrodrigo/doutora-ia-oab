@@ -37,7 +37,8 @@
       "Bash(docker exec:*)",
       "Bash(npm audit:*)",
       "Bash(pip freeze:*)",
-      "Bash(pip install:*)"
+      "Bash(pip install:*)",
+      "Bash(psql:*)"
     ]
   }
 }

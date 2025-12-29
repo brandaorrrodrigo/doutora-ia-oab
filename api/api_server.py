@@ -1409,7 +1409,7 @@ async def enviar_email_boas_vindas(user_id: str):
         cursor = conn.cursor()
 
         cursor.execute(
-            "SELECT nome, email FROM usuarios WHERE id = %s",
+            "SELECT nome, email FROM users WHERE id = %s",
             (user_id,)
         )
         result = cursor.fetchone()
