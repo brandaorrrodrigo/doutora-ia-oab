@@ -75,9 +75,7 @@ jsonpatch==1.33
 jsonpointer==3.0.0
 jsonschema==4.25.1
 jsonschema-specifications==2025.9.1
-kubernetes==34.1.0
 langchain==0.3.27
-langchain-classic==1.0.0
 langchain-community==0.3.31
 langchain-core==0.3.80
 langchain-openai==0.3.35
@@ -147,9 +145,9 @@ pyasn1==0.6.1
 pyasn1_modules==0.4.2
 pybase64==1.4.3
 pycparser==2.23
-pydantic==2.5.3
+pydantic>=2.7.4,<3.0.0
 pydantic-settings==2.12.0
-pydantic_core==2.14.6
+pydantic_core>=2.18.0
 pydeck==0.9.1
 pyee==13.0.0
 Pygments==2.19.2
@@ -173,7 +171,6 @@ python-http-client==3.3.7
 python-jose==3.5.0
 python-multipart==0.0.18
 pytz==2025.2
-pywin32==311
 PyYAML==6.0.3
 qdrant-client==1.7.0
 qrcode==7.4.2
@@ -211,12 +208,8 @@ tokenizers==0.15.0
 toml==0.10.2
 tomli==2.3.0
 tomli_w==1.2.0
-torch==2.1.0
-torchaudio==2.1.2+cu118
-torchvision==0.16.0
 tornado==6.5.4
 tqdm==4.66.1
-transformers==4.35.2
 typer==0.20.0
 typing-inspect==0.9.0
 typing-inspection==0.4.2
@@ -236,3 +229,7 @@ xxhash==3.6.0
 yarl==1.22.0
 zipp==3.23.0
 zstandard==0.25.0
+
+# Monitoramento e Rate Limiting (opcional)
+sentry-sdk[fastapi,sqlalchemy]==2.22.0
+slowapi==0.1.9
