@@ -5,7 +5,7 @@ JURIS_IA_CORE_V1 - API REST COM ENFORCEMENT
 API RESTful com enforcement completo de limites por plano.
 
 Tecnologia: FastAPI
-Enforcement: Integrado em todos os endpoints críticos
+Enforcement: Integrado em todos os endpoints criticos
 
 Autor: JURIS_IA_CORE_V1
 Data: 2025-12-19
@@ -14,13 +14,17 @@ Data: 2025-12-19
 
 import os
 import httpx
+import json
+import asyncio
+import requests
 from fastapi import FastAPI, HTTPException, status, Request, Depends
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, StreamingResponse
 from pydantic import BaseModel, Field
 from typing import Optional, List, Dict, Any
 from datetime import datetime
 from enum import Enum
+from sqlalchemy import text
 
 # Importa sistema principal
 from engines.juris_ia import JurisIA
@@ -32,11 +36,39 @@ from dotenv import load_dotenv
 
 # Importa routers
 from api.endpoints.admin import router as admin_router
+from api.endpoints.auth import router as auth_router
+from api.endpoints.sessao import router as sessao_router
+from api.endpoints.progresso import router as progresso_router
 
-# Carrega variáveis de ambiente
-# Prioridade: .env.local (desenvolvimento) > .env (produção)
+# Carrega variaveis de ambiente
+# Prioridade: .env.local (desenvolvimento) > .env (producao)
 load_dotenv(".env")  # Carrega .env primeiro
 load_dotenv(".env.local", override=True)  # Sobrescreve com .env.local se existir
+
+# ============================================================
+# SENTRY - MONITORAMENTO DE ERROS (OPCIONAL)
+# ============================================================
+try:
+    import sentry_sdk
+    from sentry_sdk.integrations.fastapi import FastApiIntegration
+    from sentry_sdk.integrations.sqlalchemy import SqlalchemyIntegration
+
+    SENTRY_DSN = os.getenv("SENTRY_DSN")
+    if SENTRY_DSN:
+        sentry_sdk.init(
+            dsn=SENTRY_DSN,
+            environment=os.getenv("ENVIRONMENT", "development"),
+            traces_sample_rate=0.1,  # 10% de transações rastreadas
+            integrations=[
+                FastApiIntegration(),
+                SqlalchemyIntegration()
+            ]
+        )
+        print("✓ Sentry inicializado com sucesso")
+except ImportError:
+    print("⚠ Sentry SDK não instalado (opcional)")
+except Exception as e:
+    print(f"⚠ Erro ao inicializar Sentry: {e}")
 
 
 # ============================================================
@@ -44,52 +76,69 @@ load_dotenv(".env.local", override=True)  # Sobrescreve com .env.local se existi
 # ============================================================
 
 class TipoSessao(str, Enum):
-    """Tipos de sessão de estudo"""
+    """Tipos de sessao de estudo"""
     DRILL = "drill"
     SIMULADO = "simulado"
     REVISAO = "revisao"
 
 
 class SessaoEstudoRequest(BaseModel):
-    """Request para iniciar sessão de estudo"""
+    """Request para iniciar sessao de estudo"""
     aluno_id: str = Field(..., description="ID do aluno")
-    disciplina: Optional[str] = Field(None, description="Disciplina específica")
-    tipo: TipoSessao = Field(TipoSessao.DRILL, description="Tipo de sessão")
-    modo_estudo_continuo: bool = Field(False, description="Se true, inicia modo revisão")
+    disciplina: Optional[str] = Field(None, description="Disciplina especifica")
+    tipo: TipoSessao = Field(TipoSessao.DRILL, description="Tipo de sessao")
+    modo_estudo_continuo: bool = Field(False, description="Se true, inicia modo revisao")
 
 
 class RespostaQuestaoRequest(BaseModel):
-    """Request para responder questão"""
+    """Request para responder questao"""
     aluno_id: str = Field(..., description="ID do aluno")
-    questao_id: str = Field(..., description="ID da questão")
-    session_id: Optional[str] = Field(None, description="ID da sessão ativa")
+    questao_id: str = Field(..., description="ID da questao")
+    session_id: Optional[str] = Field(None, description="ID da sessao ativa")
     alternativa_escolhida: str = Field(..., description="Alternativa escolhida (A, B, C, D)", pattern="^[A-D]$")
     tempo_segundos: int = Field(..., description="Tempo gasto em segundos", gt=0)
 
 
 class IniciarPecaRequest(BaseModel):
-    """Request para iniciar prática de peça"""
+    """Request para iniciar pratica de peca"""
     aluno_id: str = Field(..., description="ID do aluno")
-    tipo_peca: str = Field(..., description="Tipo de peça processual")
-    enunciado: str = Field(..., description="Enunciado da questão")
+    tipo_peca: str = Field(..., description="Tipo de peca processual")
+    enunciado: str = Field(..., description="Enunciado da questao")
 
 
 class AvaliarPecaRequest(BaseModel):
-    """Request para avaliar peça"""
+    """Request para avaliar peca"""
     aluno_id: str = Field(..., description="ID do aluno")
-    tipo_peca: str = Field(..., description="Tipo de peça processual")
-    conteudo: str = Field(..., description="Texto da peça escrita")
+    tipo_peca: str = Field(..., description="Tipo de peca processual")
+    conteudo: str = Field(..., description="Texto da peca escrita")
     enunciado: str = Field(..., description="Enunciado original")
 
 
 class ChatRequest(BaseModel):
     """Request para chat com IA"""
-    user_name: str = Field(..., description="Nome do usuário")
+    user_name: str = Field(..., description="Nome do usuario")
+    message: str = Field(..., description="Mensagem do usuario")
+
+
+class ChatThreadRequest(BaseModel):
+    """Request para criar thread de chat"""
+    aluno_id: str = Field(..., description="ID do aluno")
+    topic: Optional[str] = Field(None, description="Tópico da conversa")
+    disciplina: Optional[str] = Field(None, description="Disciplina relacionada")
+    title: Optional[str] = Field(None, description="Título da thread")
+
+
+class ChatMessageRequest(BaseModel):
+    """Request para enviar mensagem no chat"""
+    aluno_id: str = Field(..., description="ID do aluno")
+    thread_id: str = Field(..., description="ID da thread de conversa")
     message: str = Field(..., description="Mensagem do usuário")
+    questao_id: Optional[str] = Field(None, description="ID da questão relacionada")
+    interacao_id: Optional[str] = Field(None, description="ID da interação relacionada")
 
 
 class Response(BaseModel):
-    """Response padrão da API"""
+    """Response padrao da API"""
     success: bool
     data: Optional[Dict[str, Any]] = None
     message: Optional[str] = None
@@ -97,19 +146,19 @@ class Response(BaseModel):
 
 
 # ============================================================
-# APLICAÇÃO FASTAPI
+# APLICACAO FASTAPI
 # ============================================================
 
 app = FastAPI(
     title="JURIS_IA API (com Enforcement)",
-    description="API RESTful para o sistema de aprovação OAB com IA e controle de limites",
+    description="API RESTful para o sistema de aprovacao OAB com IA e controle de limites",
     version="2.0.0",
     docs_url="/docs",
     redoc_url="/redoc"
 )
 
-# Configuração CORS
-# Em produção, apenas domínios específicos
+# Configuracao CORS
+# Em producao, apenas dominios especificos
 ALLOWED_ORIGINS = os.getenv("ALLOWED_ORIGINS", "http://localhost:3000,https://oab.doutoraia.com").split(",")
 app.add_middleware(
     CORSMiddleware,
@@ -120,14 +169,33 @@ app.add_middleware(
 )
 
 # Incluir routers
-app.include_router(admin_router)  # Router já tem prefix="/admin" definido
+app.include_router(admin_router)     # /admin/*
+app.include_router(auth_router)      # /auth/register, /auth/login, /auth/me
+app.include_router(sessao_router)    # /api/sessao/iniciar, /responder, /finalizar, /ativa
+app.include_router(progresso_router) # /api/progresso, /disciplinas, /erros, /ranking
 
-# Instância global do sistema
+# Instancia global do sistema
 sistema = JurisIA()
 
-# Instância global do enforcement
+# Instancia global do enforcement
 DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://juris_ia_user:changeme123@localhost:5432/juris_ia")
 enforcement = LimitsEnforcement(DATABASE_URL)
+
+# ============================================================
+# RATE LIMITING (OPCIONAL)
+# ============================================================
+try:
+    from slowapi import Limiter, _rate_limit_exceeded_handler
+    from slowapi.util import get_remote_address
+    from slowapi.errors import RateLimitExceeded
+
+    limiter = Limiter(key_func=get_remote_address)
+    app.state.limiter = limiter
+    app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
+    print("✓ Rate limiting configurado com sucesso")
+except ImportError:
+    limiter = None
+    print("⚠ slowapi não instalado (rate limiting desabilitado)")
 
 
 # ============================================================
@@ -140,7 +208,7 @@ async def custom_http_exception_handler(request: Request, exc: HTTPException):
     Handler customizado para HTTPException.
     Garante que bloqueios de enforcement sejam retornados corretamente.
     """
-    # Se é um bloqueio de enforcement (403 com detail dict)
+    # Se e um bloqueio de enforcement (403 com detail dict)
     if exc.status_code == status.HTTP_403_FORBIDDEN and isinstance(exc.detail, dict):
         return JSONResponse(
             status_code=exc.status_code,
@@ -159,24 +227,24 @@ async def custom_http_exception_handler(request: Request, exc: HTTPException):
 
 
 # ============================================================
-# ENDPOINTS - INFORMAÇÕES
+# ENDPOINTS - INFORMACOES
 # ============================================================
 
 @app.get("/", response_model=Response)
 async def root():
-    """Endpoint raiz - informações da API"""
+    """Endpoint raiz - informacoes da API"""
     return Response(
         success=True,
         data={
             "nome": "JURIS_IA API (Enforcement Enabled)",
             "versao": "2.0.0",
-            "descricao": "Sistema de IA para aprovação na OAB com controle de limites",
+            "descricao": "Sistema de IA para aprovacao na OAB com controle de limites",
             "features": [
                 "Enforcement de limites por plano",
-                "Mensagens pedagógicas",
+                "Mensagens pedagogicas",
                 "Logs de auditoria",
-                "Modo estudo contínuo",
-                "Sessões estendidas"
+                "Modo estudo continuo",
+                "Sessoes estendidas"
             ],
             "endpoints": [
                 "/estudo/iniciar",
@@ -194,30 +262,74 @@ async def root():
 
 @app.get("/health")
 async def health_check():
-    """Health check para monitoramento"""
-    return {
+    """
+    Health check para monitoramento com verificação de dependências.
+    Retorna 200 se healthy, 503 se degraded.
+    """
+    from database.connection import get_db_session
+
+    health_status = {
         "status": "healthy",
         "timestamp": datetime.now().isoformat(),
-        "sistema": "operacional",
-        "enforcement": "ativo"
+        "enforcement": "ativo",
+        "checks": {}
     }
+
+    # Check 1: Database
+    try:
+        with get_db_session() as session:
+            session.execute(text("SELECT 1"))
+        health_status["checks"]["database"] = "ok"
+    except Exception as e:
+        health_status["checks"]["database"] = f"error: {str(e)[:100]}"
+        health_status["status"] = "degraded"
+
+    # Check 2: Redis (opcional)
+    try:
+        # Tentar importar Redis client se disponível
+        try:
+            from database.redis_client import redis_client
+            redis_client.ping()
+            health_status["checks"]["redis"] = "ok"
+        except ImportError:
+            health_status["checks"]["redis"] = "not_configured"
+    except Exception as e:
+        health_status["checks"]["redis"] = f"error: {str(e)[:100]}"
+        health_status["status"] = "degraded"
+
+    # Check 3: Ollama
+    try:
+        ollama_host = os.getenv('OLLAMA_HOST', 'http://localhost:11434')
+        response = requests.get(f"{ollama_host}/api/tags", timeout=5)
+        if response.status_code == 200:
+            health_status["checks"]["ollama"] = "ok"
+        else:
+            health_status["checks"]["ollama"] = f"status: {response.status_code}"
+            health_status["status"] = "degraded"
+    except Exception as e:
+        health_status["checks"]["ollama"] = f"error: {str(e)[:100]}"
+        health_status["status"] = "degraded"
+
+    # Return com status code apropriado
+    status_code = 200 if health_status["status"] == "healthy" else 503
+    return JSONResponse(content=health_status, status_code=status_code)
 
 
 # ============================================================
-# ENDPOINTS - SESSÃO DE ESTUDO (COM ENFORCEMENT)
+# ENDPOINTS - SESSAO DE ESTUDO (COM ENFORCEMENT)
 # ============================================================
 
 @app.post("/estudo/iniciar", response_model=Response)
 async def iniciar_sessao_estudo(request_body: SessaoEstudoRequest, request: Request):
     """
-    Inicia sessão de estudo personalizada.
+    Inicia sessao de estudo personalizada.
 
     **ENFORCEMENT APLICADO:**
-    - Verifica limite de sessões diárias
-    - Verifica permissão de estudo contínuo (se aplicável)
+    - Verifica limite de sessoes diarias
+    - Verifica permissao de estudo continuo (se aplicavel)
     - Bloqueia se plano inativo/expirado
 
-    Retorna conjunto de questões selecionadas baseado no perfil do estudante.
+    Retorna conjunto de questoes selecionadas baseado no perfil do estudante.
     """
     try:
         # ENFORCEMENT: Verificar limites
@@ -234,7 +346,7 @@ async def iniciar_sessao_estudo(request_body: SessaoEstudoRequest, request: Requ
                 detail=enforcement_result.to_dict()
             )
 
-        # Permitido - executar lógica normal
+        # Permitido - executar logica normal
         resultado = sistema.iniciar_sessao_estudo(
             aluno_id=request_body.aluno_id,
             disciplina=request_body.disciplina,
@@ -244,7 +356,7 @@ async def iniciar_sessao_estudo(request_body: SessaoEstudoRequest, request: Requ
         return Response(
             success=True,
             data=resultado,
-            message=f"Sessão de {request_body.tipo.value} iniciada com sucesso"
+            message=f"Sessao de {request_body.tipo.value} iniciada com sucesso"
         )
 
     except HTTPException:
@@ -254,22 +366,23 @@ async def iniciar_sessao_estudo(request_body: SessaoEstudoRequest, request: Requ
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail={
                 "error": True,
-                "message": "Erro interno ao iniciar sessão. Nossa equipe foi notificada.",
+                "message": "Erro interno ao iniciar sessao. Nossa equipe foi notificada.",
                 "technical_details": str(e) if os.getenv("DEBUG") else None
             }
         )
 
 
 @app.post("/estudo/responder", response_model=Response)
+@limiter.limit("60/minute") if limiter else lambda x: x
 async def responder_questao(request_body: RespostaQuestaoRequest, request: Request):
     """
-    Processa resposta de uma questão.
+    Processa resposta de uma questao.
 
     **ENFORCEMENT APLICADO:**
-    - Verifica limite de questões por sessão
-    - Verifica limite de questões diárias
+    - Verifica limite de questoes por sessao
+    - Verifica limite de questoes diarias
 
-    Retorna feedback completo com explicação adaptativa e próximas ações.
+    Retorna feedback completo com explicacao adaptativa e proximas acoes.
     """
     try:
         # ENFORCEMENT: Verificar limites (se session_id fornecido)
@@ -286,7 +399,7 @@ async def responder_questao(request_body: RespostaQuestaoRequest, request: Reque
                     detail=enforcement_result.to_dict()
                 )
 
-        # Permitido - executar lógica normal
+        # Permitido - executar logica normal
         resultado = sistema.responder_questao(
             aluno_id=request_body.aluno_id,
             questao_id=request_body.questao_id,
@@ -316,9 +429,9 @@ async def responder_questao(request_body: RespostaQuestaoRequest, request: Reque
 @app.post("/estudo/finalizar/{aluno_id}", response_model=Response)
 async def finalizar_sessao_estudo(aluno_id: str):
     """
-    Finaliza sessão de estudo e gera relatório.
+    Finaliza sessao de estudo e gera relatorio.
 
-    Retorna análise completa do desempenho na sessão.
+    Retorna analise completa do desempenho na sessao.
     """
     try:
         resultado = sistema.finalizar_sessao_estudo(aluno_id)
@@ -326,7 +439,7 @@ async def finalizar_sessao_estudo(aluno_id: str):
         return Response(
             success=True,
             data=resultado,
-            message="Sessão finalizada com sucesso"
+            message="Sessao finalizada com sucesso"
         )
 
     except Exception as e:
@@ -334,26 +447,261 @@ async def finalizar_sessao_estudo(aluno_id: str):
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail={
                 "error": True,
-                "message": "Erro interno ao finalizar sessão. Nossa equipe foi notificada.",
+                "message": "Erro interno ao finalizar sessao. Nossa equipe foi notificada.",
+                "technical_details": str(e) if os.getenv("DEBUG") else None
+            }
+        )
+
+
+@app.post("/estudo/responder/stream")
+@limiter.limit("60/minute") if limiter else lambda x: x
+async def responder_questao_stream(
+    request_body: RespostaQuestaoRequest,
+    request: Request
+):
+    """
+    Processa resposta com streaming de explicação (SSE).
+
+    **ENFORCEMENT APLICADO:**
+    - Verifica limite de questoes por sessao
+    - Verifica limite de questoes diarias
+
+    Retorna explicação em tempo real usando Server-Sent Events.
+    """
+    try:
+        # ENFORCEMENT: Verificar limites (se session_id fornecido)
+        if request_body.session_id:
+            enforcement_result = enforcement.check_can_answer_question(
+                user_id=request_body.aluno_id,
+                session_id=request_body.session_id,
+                endpoint="/estudo/responder/stream"
+            )
+
+            if not enforcement_result.allowed:
+                raise HTTPException(
+                    status_code=status.HTTP_403_FORBIDDEN,
+                    detail=enforcement_result.to_dict()
+                )
+
+        async def event_stream():
+            """Gerador de eventos SSE"""
+            from database.connection import get_db_session
+            from core.explicacao_service_ollama import ExplicacaoServiceOllama
+
+            try:
+                with get_db_session() as session:
+                    servico = ExplicacaoServiceOllama()
+
+                    # Yield start event
+                    yield f"data: {json.dumps({'type': 'start', 'questao_id': request_body.questao_id})}\n\n"
+
+                    # Stream tokens
+                    for token in servico.gerar_explicacao_stream(
+                        session=session,
+                        questao_id=request_body.questao_id,
+                        alternativa_escolhida=request_body.alternativa_escolhida,
+                        tipo_erro="conceito"
+                    ):
+                        yield f"data: {json.dumps({'type': 'token', 'content': token})}\n\n"
+                        await asyncio.sleep(0)  # Permite outros tasks rodarem
+
+                    # Yield completion
+                    yield f"data: {json.dumps({'type': 'done'})}\n\n"
+
+            except Exception as e:
+                error_msg = str(e) if os.getenv("DEBUG") else "Erro ao gerar explicação"
+                yield f"data: {json.dumps({'type': 'error', 'message': error_msg})}\n\n"
+
+        return StreamingResponse(
+            event_stream(),
+            media_type="text/event-stream",
+            headers={
+                "Cache-Control": "no-cache",
+                "Connection": "keep-alive",
+                "X-Accel-Buffering": "no"
+            }
+        )
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail={
+                "error": True,
+                "message": "Erro interno ao processar resposta em streaming.",
                 "technical_details": str(e) if os.getenv("DEBUG") else None
             }
         )
 
 
 # ============================================================
-# ENDPOINTS - PRÁTICA DE PEÇAS (COM ENFORCEMENT)
+# ENDPOINTS - CHAT PEDAGÓGICO (COM LANGCHAIN)
+# ============================================================
+
+@app.post("/chat/thread/create", response_model=Response)
+@limiter.limit("30/minute") if limiter else lambda x: x
+async def criar_thread_chat(request_body: ChatThreadRequest):
+    """
+    Cria nova thread de conversa no chat pedagógico.
+
+    Retorna ID da thread criada para uso posterior.
+    """
+    try:
+        from database.connection import get_db_session
+        from core.chat_service_langchain import ChatServiceLangChain
+        from uuid import UUID
+
+        with get_db_session() as session:
+            chat_service = ChatServiceLangChain()
+
+            thread_id = chat_service.criar_thread(
+                session=session,
+                user_id=UUID(request_body.aluno_id),
+                title=request_body.title,
+                topic=request_body.topic,
+                disciplina=request_body.disciplina
+            )
+
+            return Response(
+                success=True,
+                data={
+                    "thread_id": str(thread_id),
+                    "title": request_body.title or "Nova Conversa"
+                },
+                message="Thread de chat criada com sucesso"
+            )
+
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail={
+                "error": True,
+                "message": "Erro ao criar thread de chat",
+                "technical_details": str(e) if os.getenv("DEBUG") else None
+            }
+        )
+
+
+@app.get("/chat/threads/{aluno_id}", response_model=Response)
+@limiter.limit("120/minute") if limiter else lambda x: x
+async def listar_threads_chat(aluno_id: str, limit: int = 20):
+    """
+    Lista threads de chat do usuário.
+
+    Retorna lista de conversas com metadados.
+    """
+    try:
+        from database.connection import get_db_session
+        from core.chat_service_langchain import ChatServiceLangChain
+        from uuid import UUID
+
+        with get_db_session() as session:
+            chat_service = ChatServiceLangChain()
+
+            threads = chat_service.listar_threads(
+                session=session,
+                user_id=UUID(aluno_id),
+                limit=limit
+            )
+
+            return Response(
+                success=True,
+                data={"threads": threads},
+                message="Threads listadas com sucesso"
+            )
+
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail={
+                "error": True,
+                "message": "Erro ao listar threads",
+                "technical_details": str(e) if os.getenv("DEBUG") else None
+            }
+        )
+
+
+@app.post("/chat/message/stream")
+@limiter.limit("60/minute") if limiter else lambda x: x
+async def enviar_mensagem_stream(request_body: ChatMessageRequest):
+    """
+    Envia mensagem no chat com streaming de resposta (SSE).
+
+    Retorna resposta da IA em tempo real usando Server-Sent Events.
+    """
+    try:
+        async def event_stream():
+            """Gerador de eventos SSE"""
+            from database.connection import get_db_session
+            from core.chat_service_langchain import ChatServiceLangChain
+            from uuid import UUID
+
+            try:
+                with get_db_session() as session:
+                    chat_service = ChatServiceLangChain()
+
+                    # Yield start event
+                    yield f"data: {json.dumps({'type': 'start', 'thread_id': request_body.thread_id})}\n\n"
+
+                    # Converter IDs para UUID
+                    questao_id = UUID(request_body.questao_id) if request_body.questao_id else None
+                    interacao_id = UUID(request_body.interacao_id) if request_body.interacao_id else None
+
+                    # Stream tokens da resposta
+                    for token in chat_service.chat_stream(
+                        session=session,
+                        user_id=UUID(request_body.aluno_id),
+                        thread_id=UUID(request_body.thread_id),
+                        message=request_body.message,
+                        questao_id=questao_id,
+                        interacao_id=interacao_id
+                    ):
+                        yield f"data: {json.dumps({'type': 'token', 'content': token})}\n\n"
+                        await asyncio.sleep(0)  # Permite outros tasks rodarem
+
+                    # Yield completion
+                    yield f"data: {json.dumps({'type': 'done'})}\n\n"
+
+            except Exception as e:
+                error_msg = str(e) if os.getenv("DEBUG") else "Erro ao gerar resposta"
+                yield f"data: {json.dumps({'type': 'error', 'message': error_msg})}\n\n"
+
+        return StreamingResponse(
+            event_stream(),
+            media_type="text/event-stream",
+            headers={
+                "Cache-Control": "no-cache",
+                "Connection": "keep-alive",
+                "X-Accel-Buffering": "no"
+            }
+        )
+
+    except Exception as e:
+        raise HTTPException(
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail={
+                "error": True,
+                "message": "Erro ao processar mensagem do chat",
+                "technical_details": str(e) if os.getenv("DEBUG") else None
+            }
+        )
+
+
+# ============================================================
+# ENDPOINTS - PRATICA DE PECAS (COM ENFORCEMENT)
 # ============================================================
 
 @app.post("/peca/iniciar", response_model=Response)
 async def iniciar_pratica_peca(request_body: IniciarPecaRequest, request: Request):
     """
-    Inicia prática de peça processual.
+    Inicia pratica de peca processual.
 
     **ENFORCEMENT APLICADO:**
-    - Verifica limite mensal de peças
-    - Bloqueia se plano não permite peças
+    - Verifica limite mensal de pecas
+    - Bloqueia se plano nao permite pecas
 
-    Retorna checklist e orientações para elaboração.
+    Retorna checklist e orientacoes para elaboracao.
     """
     try:
         # ENFORCEMENT: Verificar limites
@@ -371,7 +719,7 @@ async def iniciar_pratica_peca(request_body: IniciarPecaRequest, request: Reques
         # Converte string para enum
         tipo_peca = PieceType[request_body.tipo_peca.upper()]
 
-        # Permitido - executar lógica normal
+        # Permitido - executar logica normal
         resultado = sistema.iniciar_pratica_peca(
             aluno_id=request_body.aluno_id,
             tipo_peca=tipo_peca,
@@ -381,7 +729,7 @@ async def iniciar_pratica_peca(request_body: IniciarPecaRequest, request: Reques
         return Response(
             success=True,
             data=resultado,
-            message="Prática de peça iniciada"
+            message="Pratica de peca iniciada"
         )
 
     except KeyError:
@@ -389,7 +737,7 @@ async def iniciar_pratica_peca(request_body: IniciarPecaRequest, request: Reques
             status_code=status.HTTP_400_BAD_REQUEST,
             detail={
                 "error": True,
-                "message": f"Tipo de peça inválido: {request_body.tipo_peca}"
+                "message": f"Tipo de peca invalido: {request_body.tipo_peca}"
             }
         )
     except HTTPException:
@@ -399,7 +747,7 @@ async def iniciar_pratica_peca(request_body: IniciarPecaRequest, request: Reques
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail={
                 "error": True,
-                "message": "Erro interno ao iniciar prática. Nossa equipe foi notificada.",
+                "message": "Erro interno ao iniciar pratica. Nossa equipe foi notificada.",
                 "technical_details": str(e) if os.getenv("DEBUG") else None
             }
         )
@@ -408,7 +756,7 @@ async def iniciar_pratica_peca(request_body: IniciarPecaRequest, request: Reques
 @app.post("/peca/avaliar", response_model=Response)
 async def avaliar_peca(request_body: AvaliarPecaRequest, request: Request):
     """
-    Avalia peça escrita pelo estudante.
+    Avalia peca escrita pelo estudante.
 
     Retorna nota, erros encontrados e feedback detalhado.
     """
@@ -426,7 +774,7 @@ async def avaliar_peca(request_body: AvaliarPecaRequest, request: Request):
         return Response(
             success=True,
             data=resultado,
-            message="Peça avaliada com sucesso"
+            message="Peca avaliada com sucesso"
         )
 
     except KeyError:
@@ -434,7 +782,7 @@ async def avaliar_peca(request_body: AvaliarPecaRequest, request: Request):
             status_code=status.HTTP_400_BAD_REQUEST,
             detail={
                 "error": True,
-                "message": f"Tipo de peça inválido: {request_body.tipo_peca}"
+                "message": f"Tipo de peca invalido: {request_body.tipo_peca}"
             }
         )
     except Exception as e:
@@ -442,7 +790,7 @@ async def avaliar_peca(request_body: AvaliarPecaRequest, request: Request):
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail={
                 "error": True,
-                "message": "Erro interno ao avaliar peça. Nossa equipe foi notificada.",
+                "message": "Erro interno ao avaliar peca. Nossa equipe foi notificada.",
                 "technical_details": str(e) if os.getenv("DEBUG") else None
             }
         )
@@ -457,7 +805,7 @@ async def obter_painel_estudante(aluno_id: str):
     """
     Retorna painel completo do estudante.
 
-    Inclui: desempenho, memória, próximas revisões, recomendações.
+    Inclui: desempenho, memoria, proximas revisoes, recomendacoes.
     """
     try:
         resultado = sistema.obter_painel_estudante(aluno_id)
@@ -485,11 +833,11 @@ async def obter_relatorio_progresso(
     periodo: str = "semanal"
 ):
     """
-    Gera relatório de progresso.
+    Gera relatorio de progresso.
 
     **ENFORCEMENT APLICADO:**
-    - Verifica se plano permite relatório completo
-    - Retorna versão básica se plano FREE
+    - Verifica se plano permite relatorio completo
+    - Retorna versao basica se plano FREE
 
     Params:
         periodo: "diario", "semanal", "mensal"
@@ -500,11 +848,11 @@ async def obter_relatorio_progresso(
                 status_code=status.HTTP_400_BAD_REQUEST,
                 detail={
                     "error": True,
-                    "message": "Período deve ser 'diario', 'semanal' ou 'mensal'"
+                    "message": "Periodo deve ser 'diario', 'semanal' ou 'mensal'"
                 }
             )
 
-        # ENFORCEMENT: Verificar se pode acessar relatório completo
+        # ENFORCEMENT: Verificar se pode acessar relatorio completo
         enforcement_result = enforcement.check_can_access_complete_report(
             user_id=aluno_id,
             endpoint="/estudante/relatorio"
@@ -516,13 +864,13 @@ async def obter_relatorio_progresso(
                 detail=enforcement_result.to_dict()
             )
 
-        # Permitido - gerar relatório completo
+        # Permitido - gerar relatorio completo
         resultado = sistema.obter_relatorio_progresso(aluno_id, periodo)
 
         return Response(
             success=True,
             data=resultado,
-            message=f"Relatório {periodo} gerado"
+            message=f"Relatorio {periodo} gerado"
         )
 
     except HTTPException:
@@ -532,22 +880,22 @@ async def obter_relatorio_progresso(
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail={
                 "error": True,
-                "message": "Erro interno ao gerar relatório. Nossa equipe foi notificada.",
+                "message": "Erro interno ao gerar relatorio. Nossa equipe foi notificada.",
                 "technical_details": str(e) if os.getenv("DEBUG") else None
             }
         )
 
 
 # ============================================================
-# ENDPOINTS - DIAGNÓSTICO E ANÁLISE
+# ENDPOINTS - DIAGNOSTICO E ANALISE
 # ============================================================
 
 @app.get("/diagnostico/{aluno_id}", response_model=Response)
 async def diagnostico_completo(aluno_id: str):
     """
-    Retorna diagnóstico completo do estudante.
+    Retorna diagnostico completo do estudante.
 
-    Análise profunda de desempenho, padrões de erro, estado emocional.
+    Analise profunda de desempenho, padroes de erro, estado emocional.
     """
     try:
         diagnostico = sistema.decision_engine.diagnosticar_estudante(aluno_id)
@@ -555,7 +903,7 @@ async def diagnostico_completo(aluno_id: str):
         return Response(
             success=True,
             data=diagnostico,
-            message="Diagnóstico gerado com sucesso"
+            message="Diagnostico gerado com sucesso"
         )
 
     except Exception as e:
@@ -563,7 +911,7 @@ async def diagnostico_completo(aluno_id: str):
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail={
                 "error": True,
-                "message": "Erro interno ao gerar diagnóstico. Nossa equipe foi notificada.",
+                "message": "Erro interno ao gerar diagnostico. Nossa equipe foi notificada.",
                 "technical_details": str(e) if os.getenv("DEBUG") else None
             }
         )
@@ -572,9 +920,9 @@ async def diagnostico_completo(aluno_id: str):
 @app.get("/memoria/{aluno_id}", response_model=Response)
 async def analise_memoria(aluno_id: str):
     """
-    Retorna análise de memória do estudante.
+    Retorna analise de memoria do estudante.
 
-    Estado de retenção de conceitos e próximas revisões.
+    Estado de retencao de conceitos e proximas revisoes.
     """
     try:
         memoria = sistema.memory_engine.analisar_memoria(aluno_id)
@@ -586,7 +934,7 @@ async def analise_memoria(aluno_id: str):
                 "analise": memoria,
                 "alertas": alertas
             },
-            message="Análise de memória concluída"
+            message="Analise de memoria concluida"
         )
 
     except Exception as e:
@@ -594,7 +942,7 @@ async def analise_memoria(aluno_id: str):
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail={
                 "error": True,
-                "message": "Erro interno ao analisar memória. Nossa equipe foi notificada.",
+                "message": "Erro interno ao analisar memoria. Nossa equipe foi notificada.",
                 "technical_details": str(e) if os.getenv("DEBUG") else None
             }
         )
@@ -609,7 +957,7 @@ async def chat_com_ia(request_body: ChatRequest):
     """
     Proxy seguro para chat com IA.
 
-    A API key do chat server fica no backend, não exposta ao frontend.
+    A API key do chat server fica no backend, nao exposta ao frontend.
     """
     try:
         # URL e API key do chat server (configurados em .env)
@@ -621,11 +969,11 @@ async def chat_com_ia(request_body: ChatRequest):
                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
                 detail={
                     "error": True,
-                    "message": "Chat server não configurado. Entre em contato com o suporte."
+                    "message": "Chat server nao configurado. Entre em contato com o suporte."
                 }
             )
 
-        # Fazer requisição ao chat server
+        # Fazer requisicao ao chat server
         async with httpx.AsyncClient(timeout=30.0) as client:
             response = await client.post(
                 f"{chat_server_url}/api/chat",
@@ -681,7 +1029,7 @@ async def chat_com_ia(request_body: ChatRequest):
 
 
 # ============================================================
-# INICIALIZAÇÃO
+# INICIALIZACAO
 # ============================================================
 
 @app.on_event("startup")
@@ -690,9 +1038,9 @@ async def startup_event():
     print("=" * 70)
     print("JURIS_IA API - INICIANDO (ENFORCEMENT ENABLED)")
     print("=" * 70)
-    print("Sistema carregado e pronto para receber requisições")
+    print("Sistema carregado e pronto para receber requisicoes")
     print("Enforcement: ATIVO")
-    print("Documentação: http://localhost:8000/docs")
+    print("Documentacao: http://localhost:8000/docs")
     print("=" * 70)
 
 
@@ -703,7 +1051,7 @@ async def shutdown_event():
 
 
 # ============================================================
-# EXECUÇÃO
+# EXECUCAO
 # ============================================================
 
 if __name__ == "__main__":
@@ -713,31 +1061,31 @@ if __name__ == "__main__":
     ╔════════════════════════════════════════════════════════════╗
     ║           JURIS_IA API SERVER (ENFORCEMENT v2.0)           ║
     ║                                                            ║
-    ║  Sistema de IA para Aprovação na OAB                       ║
+    ║  Sistema de IA para Aprovacao na OAB                       ║
     ║  Enforcement de Limites: ATIVO                             ║
     ╚════════════════════════════════════════════════════════════╝
 
     Inicializando servidor...
 
     Features de Enforcement:
-    ✓ Verificação de limites por plano
-    ✓ Mensagens pedagógicas personalizadas
+    ✓ Verificacao de limites por plano
+    ✓ Mensagens pedagogicas personalizadas
     ✓ Logs de auditoria completos
-    ✓ Suporte a estudo contínuo
-    ✓ Sessões estendidas (plano Semestral)
+    ✓ Suporte a estudo continuo
+    ✓ Sessoes estendidas (plano Semestral)
 
-    Endpoints disponíveis:
-    - POST /estudo/iniciar       - Inicia sessão de estudo
-    - POST /estudo/responder     - Responde questão
-    - POST /estudo/finalizar     - Finaliza sessão
-    - POST /peca/iniciar         - Inicia prática de peça
-    - POST /peca/avaliar         - Avalia peça escrita
+    Endpoints disponiveis:
+    - POST /estudo/iniciar       - Inicia sessao de estudo
+    - POST /estudo/responder     - Responde questao
+    - POST /estudo/finalizar     - Finaliza sessao
+    - POST /peca/iniciar         - Inicia pratica de peca
+    - POST /peca/avaliar         - Avalia peca escrita
     - GET  /estudante/painel     - Painel do estudante
-    - GET  /estudante/relatorio  - Relatório de progresso
-    - GET  /diagnostico          - Diagnóstico completo
-    - GET  /memoria              - Análise de memória
+    - GET  /estudante/relatorio  - Relatorio de progresso
+    - GET  /diagnostico          - Diagnostico completo
+    - GET  /memoria              - Analise de memoria
 
-    Documentação interativa: http://localhost:8000/docs
+    Documentacao interativa: http://localhost:8000/docs
     """)
 
     uvicorn.run(
