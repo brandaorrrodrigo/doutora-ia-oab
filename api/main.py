@@ -2,9 +2,16 @@
 import sys
 import os
 
-# Adicionar diretorio raiz do projeto ao sys.path
-# Necessario para imports como 'from database.connection import ...'
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+# Resolver conflito de nomes: api/config.py vs config/ package na raiz
+# api/ precisa estar antes de ROOT para 'from config import get_settings' funcionar
+# ROOT precisa estar no path para 'from database.connection import ...' funcionar
+# api/database.py foi renomeado para db_legacy.py para nao conflitar com database/ package
+API_DIR = os.path.dirname(os.path.abspath(__file__))
+ROOT_DIR = os.path.dirname(API_DIR)
+if API_DIR not in sys.path:
+    sys.path.insert(0, API_DIR)
+if ROOT_DIR not in sys.path:
+    sys.path.insert(1, ROOT_DIR)
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
