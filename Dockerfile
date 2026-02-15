@@ -52,6 +52,6 @@ EXPOSE 8000
 HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
     CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8000/health').read()"
 
-# Comando de inicialização (servidor simplificado sem dependências de Qdrant/Ollama)
-# Usar Python para ler PORT env var e passar ao uvicorn
-CMD python -c "import os, subprocess; subprocess.run(['uvicorn', 'api.main:app', '--host', '0.0.0.0', '--port', os.getenv('PORT', '8000'), '--log-level', 'info'])"
+# Comando de inicialização via script Python wrapper
+# O script lê PORT do ambiente e inicia uvicorn programaticamente
+CMD ["python", "scripts/start.py"]
