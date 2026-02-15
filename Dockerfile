@@ -48,9 +48,9 @@ ENV PORT=8000
 # Expor porta
 EXPOSE 8000
 
-# Health check (usa PORT do ambiente)
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-    CMD python -c "import os, urllib.request; urllib.request.urlopen(f'http://localhost:{os.getenv(\"PORT\", \"8000\")}/health').read()"
+# Health check REMOVIDO temporariamente para debug
+# HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
+#     CMD python -c "import os, urllib.request; urllib.request.urlopen(f'http://localhost:{os.getenv(\"PORT\", \"8000\")}/health').read()"
 
 # Comando de inicialização via script Python wrapper
 # Usando versão MÍNIMA para debug (sem deps de DB/config)
