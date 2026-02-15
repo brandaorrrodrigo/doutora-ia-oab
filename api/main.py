@@ -77,6 +77,11 @@ app.include_router(admin_router)    # /admin/create-tables, /admin/seed-questoes
 app.include_router(sessao_router)   # /api/sessao/iniciar, /responder, /finalizar, /ativa
 app.include_router(progresso_router) # /api/progresso, /disciplinas, /erros, /ranking
 
+# Endpoint de health check para Docker/Railway
+@app.get("/health")
+async def health_check():
+    """Health check endpoint para monitoramento"""
+    return {"status": "ok", "service": "juris-ia-api"}
 
 if __name__ == "__main__":
     import uvicorn
