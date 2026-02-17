@@ -91,8 +91,7 @@ async def register(request: RegisterRequest):
             password_hash=password_hash,
             cpf=request.cpf,
             telefone=request.telefone,
-            status=UserStatus.ATIVO,
-            ultimo_acesso=datetime.utcnow()
+            status=UserStatus.ATIVO
         )
 
         db.add(new_user)
