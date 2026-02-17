@@ -13,11 +13,11 @@ RUN apt-get update && apt-get install -y \
     libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Copiar requirements
-COPY requirements.txt .
+# Copiar requirements (usando versão mínima para produção)
+COPY requirements.minimal.txt .
 
-# Instalar dependências Python
-RUN pip install --no-cache-dir --user -r requirements.txt
+# Instalar dependências Python (apenas o essencial)
+RUN pip install --no-cache-dir --user -r requirements.minimal.txt
 
 # Stage 2: Runtime
 FROM python:3.11-slim
